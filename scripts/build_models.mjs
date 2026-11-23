@@ -460,51 +460,56 @@ function buildSetMorris() {
   b.place('plate_2x4', 'RED', -2, 8, 4, 0);
   b.place('tile_2x4',  'RED', -2, 9, 4, 0);
 
-  // BAG 4: Twin Sand-Blue Vertical Fins + Sky-Boxes + 16-Story Light-Gray Core Tower
-  b.beginStep(4, '立起雙片標誌性沙藍垂直建築鰭板與紅飾線', '於玻璃基座上方對稱砌高兩道沙藍翼板，左翼後方鑲嵌台積紅垂直飾線。');
+  // BAG 4: Twin Sand-Blue Vertical Fins (ALONG X, PERPENDICULAR to & TOUCHING Gray Tower at X=9!) + Skybridge + Tall Gray Core Tower
+  b.beginStep(4, '立起與右側灰塔垂直相接的雙片沙藍建築鰭板與紅飾線', '沿 X 軸對稱砌高前後兩道沙藍鰭板並於 X=9 處垂直緊貼右側高塔，左端鑲嵌台積紅垂直飾線。');
   for (let y = 17; y <= 35; y += 3) {
-    b.spanZ(1, y, -1, 6, 'SAND_BLUE', 'brick', y % 6 === 0);
-    b.spanZ(6, y, -1, 6, 'SAND_BLUE', 'brick', y % 6 !== 0);
-    b.place('brick_1x1', 'RED', 1, y, -2, 0);
+    // Back Sand-Blue fin running ALONG X (X 1..9, Z -2), flush against gray tower at X=9!
+    b.spanX(1, 9, y, -2, 'SAND_BLUE', 'brick', y % 6 === 0);
+    // Front Sand-Blue fin running ALONG X (X 1..9, Z 3), flush against gray tower at X=9!
+    b.spanX(1, 9, y,  3, 'SAND_BLUE', 'brick', y % 6 !== 0);
+    // Vertical Sand-Blue side return wall at X=8..9 connecting cleanly to gray tower
+    b.spanZ(8, y, -1, 3, 'SAND_BLUE', 'brick', y % 6 === 0);
+    // Signature vertical RED accent line on left front edge of back fin (X 0, Z -2)
+    b.place('brick_1x1', 'RED', 0, y, -2, 0);
   }
-  b.spanZ(1, 38, -1, 6, 'SAND_BLUE', 'tile');
-  b.spanZ(6, 38, -1, 6, 'SAND_BLUE', 'tile');
-  b.place('tile_1x1', 'RED', 1, 38, -2, 0);
+  b.spanX(1, 9, 38, -2, 'SAND_BLUE', 'tile');
+  b.spanX(1, 9, 38,  3, 'SAND_BLUE', 'tile');
+  b.place('tile_1x1', 'RED', 0, 38, -2, 0);
 
-  b.beginStep(4, '懸挑安裝雙翼間與右側白框透藍玻璃空中盒體', '在雙鰭之間與右側懸挑安裝白框透藍玻璃盒，完整重現立體層次。');
-  // Between fins (X 2..6, Z 0..5, Y 24..33)
-  b.fillRect(2, 6, 0, 5, 24, 'WHITE', 'plate');
-  b.wallRing(2, 6, 0, 5, 25, 'TRANS_LIGHT_BLUE', 'brick');
-  b.wallRing(2, 6, 0, 5, 28, 'TRANS_LIGHT_BLUE', 'brick', true);
-  b.fillRect(2, 6, 0, 5, 31, 'WHITE', 'plate');
-  b.fillRect(2, 6, 0, 5, 32, 'WHITE', 'tile');
-  // Right cantilevered sky-box (X 7..10, Z 1..6, Y 24..33)
-  b.fillRect(7, 10, 1, 6, 24, 'WHITE', 'plate');
-  b.wallRing(7, 10, 1, 6, 25, 'TRANS_LIGHT_BLUE', 'brick');
-  b.wallRing(7, 10, 1, 6, 28, 'TRANS_LIGHT_BLUE', 'brick', true);
-  b.fillRect(7, 10, 1, 6, 31, 'WHITE', 'plate');
-  b.fillRect(7, 10, 1, 6, 32, 'WHITE', 'tile');
+  b.beginStep(4, '架設垂直連接右側灰塔的透藍玻璃空橋與懸挑方盒', '於雙片沙藍鰭板之間架設白框透藍玻璃空橋直抵灰塔，並於前方懸挑出標誌性玻璃盒體。');
+  // Main glass skybridge between the two X-axis fins (X 2..8, Z -1..3, Y 24..33) connecting into X=8..9!
+  b.fillRect(2, 8, -1, 3, 24, 'WHITE', 'plate');
+  b.wallRing(2, 8, -1, 3, 25, 'TRANS_LIGHT_BLUE', 'brick');
+  b.wallRing(2, 8, -1, 3, 28, 'TRANS_LIGHT_BLUE', 'brick', true);
+  b.fillRect(2, 8, -1, 3, 31, 'WHITE', 'plate');
+  b.fillRect(2, 8, -1, 3, 32, 'WHITE', 'tile');
+  // Front cantilevered glass sky-box projecting forward from front fin (X 3..8, Z 4..6, Y 24..33)
+  b.fillRect(3, 8, 4, 6, 24, 'WHITE', 'plate');
+  b.wallRing(3, 8, 4, 6, 25, 'TRANS_LIGHT_BLUE', 'brick');
+  b.wallRing(3, 8, 4, 6, 28, 'TRANS_LIGHT_BLUE', 'brick', true);
+  b.fillRect(3, 8, 4, 6, 31, 'WHITE', 'plate');
+  b.fillRect(3, 8, 4, 6, 32, 'WHITE', 'tile');
 
-  // Towering Far-Right Light-Gray Elevator Core Tower (X 9..14, Z -14..1, Y 2..47)
-  b.beginStep(4, '堆疊最右側淺灰電梯核心塔下段 (1–6 層)', '於右側築起 5×15 厚實淺藍灰電梯核心塔身。');
+  // Towering Far-Right Light-Gray Elevator Core Tower (X 9..14, Z -14..4, Y 2..47 — physically contacts fins & podium at X=9!)
+  b.beginStep(4, '堆疊右側淺灰電梯核心塔下段 (1–6 層，緊貼藍色空橋)', '於 X=9..14、Z=-14..4 築起厚實淺藍灰核心塔身，與藍色空橋及玻璃大廳垂直緊密相接。');
   for (let y = 2; y <= 17; y += 3) {
-    b.wallRing(9, 14, -14, 1, y, 'LIGHT_BLUISH_GRAY', 'brick', (y / 3) % 2 === 0);
+    b.wallRing(9, 14, -14, 4, y, 'LIGHT_BLUISH_GRAY', 'brick', (y / 3) % 2 === 0);
   }
 
   b.beginStep(4, '堆疊淺灰電梯核心塔中段 (7–12 層)', '持續向上交錯堆疊淺灰塔身至超越白色研發主翼。');
   for (let y = 20; y <= 35; y += 3) {
-    b.wallRing(9, 14, -14, 1, y, 'LIGHT_BLUISH_GRAY', 'brick', (y / 3) % 2 === 0);
+    b.wallRing(9, 14, -14, 4, y, 'LIGHT_BLUISH_GRAY', 'brick', (y / 3) % 2 === 0);
   }
 
   b.beginStep(4, '堆疊核心塔頂段並完成凹槽顆粒機電屋頂', '砌高至 47 層高成為全棟最高天際線，頂部保留原圖標誌性深灰顆粒凹槽！');
   for (let y = 38; y <= 44; y += 3) {
-    b.wallRing(9, 14, -14, 1, y, 'LIGHT_BLUISH_GRAY', 'brick', (y / 3) % 2 === 0);
+    b.wallRing(9, 14, -14, 4, y, 'LIGHT_BLUISH_GRAY', 'brick', (y / 3) % 2 === 0);
   }
-  b.fillRect(9, 14, -14, 1, 47, 'DARK_BLUISH_GRAY', 'plate');
-  b.spanZ(9,  48, -14, 1, 'LIGHT_BLUISH_GRAY', 'tile');
-  b.spanZ(13, 48, -14, 1, 'LIGHT_BLUISH_GRAY', 'tile');
+  b.fillRect(9, 14, -14, 4, 47, 'DARK_BLUISH_GRAY', 'plate');
+  b.spanZ(9,  48, -14, 4, 'LIGHT_BLUISH_GRAY', 'tile');
+  b.spanZ(13, 48, -14, 4, 'LIGHT_BLUISH_GRAY', 'tile');
   b.spanX(10, 13, 48, -14, 'LIGHT_BLUISH_GRAY', 'tile');
-  b.spanX(10, 13, 48,   0, 'LIGHT_BLUISH_GRAY', 'tile');
+  b.spanX(10, 13, 48,   3, 'LIGHT_BLUISH_GRAY', 'tile');
 
   return b.finalize();
 }
