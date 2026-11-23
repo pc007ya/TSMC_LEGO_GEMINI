@@ -8,10 +8,10 @@
 
 | 編號 | 盒組名稱 | 地點 | 總零件數 | 獨立料號 | 說明書與 BOM |
 | :---: | :--- | :--- | :---: | :---: | :--- |
-| **#21035** | 新竹總部與生態池園區 (`TSMC HQ & Fab 12`) | 台灣・新竹科學園區 | **260** | 45 | [SET01_21035_HQ_MANUAL.md](./docs/SET01_21035_HQ_MANUAL.md) |
+| **#21035** | 台積電南京廠 (`TSMC Nanjing Company Limited`) | 南京・浦口經濟開發區 | **321** | 41 | [SET01_21035_HQ_MANUAL.md](./docs/SET01_21035_HQ_MANUAL.md) |
 | **#21036** | JASM 熊本一廠 (`TSMC JASM Kumamoto`) | 日本・熊本縣菊陽町 | **197** | 40 | [SET02_21036_JASM_MANUAL.md](./docs/SET02_21036_JASM_MANUAL.md) |
 | **#21037** | 亞利桑那鳳凰城廠 (`TSMC Arizona Fab 21`) | 美國・鳳凰城 | **171** | 26 | [SET03_21037_ARIZONA_MANUAL.md](./docs/SET03_21037_ARIZONA_MANUAL.md) |
-| **#21038** | 張忠謀大樓 (`Morris Chang Building`) | 台灣・新竹總部 | **303** | 74 | [SET04_21038_MORRIS_MANUAL.md](./docs/SET04_21038_MORRIS_MANUAL.md) |
+| **#21038** | 台積總部及晶圓十二A廠・張忠謀大樓 (`TSMC HQ & Fab 12A`) | 台灣・新竹總部 | **303** | 74 | [SET04_21038_MORRIS_MANUAL.md](./docs/SET04_21038_MORRIS_MANUAL.md) |
 | **#21039** | 台積電全球研發中心 (`Global R&D Center`) | 台灣・新竹寶山 | **198** | 42 | [SET05_21039_RD_MANUAL.md](./docs/SET05_21039_RD_MANUAL.md) |
 
 👉 完整全系列設計規格與 5 組總合併 BOM 請見：[docs/TSMC_LEGO_MASTER_DESIGN.md](./docs/TSMC_LEGO_MASTER_DESIGN.md)

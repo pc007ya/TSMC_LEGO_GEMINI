@@ -1,6 +1,6 @@
-# LEGO Architecture #21038 — 張忠謀大樓 (Morris Chang Building)
+# LEGO Architecture #21038 — 台積總部及晶圓十二A廠 (張忠謀大樓)
 
-> **TSMC Morris Chang Building (HQ)**  
+> **TSMC HQ & Fab 12A (Morris Chang Building)**  
 > 📍 地點：台灣・新竹科學園區力行六路 (Hsinchu, Taiwan) ｜ 適用年齡：18+ ｜ 總零件數：**303 PCS** ｜ 獨立料號：**74 種** ｜ 分包數量：**4 包**
 
 ## 1. 盒組設計簡介

@@ -134,3 +134,23 @@ export function place(part, color, xMin, y, zMin, rot = 0, bag = 1, step = 1) {
     step
   };
 }
+
+/**
+ * Free-angle placement helper for 45° diagonal LEGO turntable/hinge sub-assemblies
+ * and true circular segmented ring walls (e.g., TSMC Nanjing Fab 16).
+ */
+export function placeAngled(part, color, cx, y, cz, rotDeg = 0, bag = 1, step = 1) {
+  const def = PARTS[part];
+  if (!def) throw new Error(`Unknown part: ${part}`);
+  return {
+    part,
+    color,
+    x: cx,
+    y,
+    z: cz,
+    rot: 0,
+    rotDeg,
+    bag,
+    step
+  };
+}

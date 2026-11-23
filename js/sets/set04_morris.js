@@ -239,9 +239,9 @@ function buildBricks() {
 export const SET_04_MORRIS = {
   id: 'set04_morris',
   setNumber: '21038',
-  shortName: '張忠謀大樓',
-  name: '張忠謀大樓 (Morris Chang Building)',
-  englishName: 'TSMC Morris Chang Building (HQ)',
+  shortName: '台積總部・張忠謀大樓',
+  name: '台積總部及晶圓十二A廠 (張忠謀大樓)',
+  englishName: 'TSMC HQ & Fab 12A (Morris Chang Building)',
   location: '台灣・新竹科學園區力行六路 (Hsinchu, Taiwan)',
   age: '18+',
   year: '2024',

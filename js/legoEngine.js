@@ -516,7 +516,9 @@ export class LegoEngine {
       }
     }
 
-    group.rotation.y = (b.rot || 0) * (Math.PI / 2);
+    group.rotation.y = (b.rotDeg !== undefined)
+      ? (b.rotDeg * Math.PI / 180)
+      : (b.rot || 0) * (Math.PI / 2);
     const basePos = new THREE.Vector3(b.x * STUD, b.y * PLATE, b.z * STUD);
     group.position.copy(basePos);
 

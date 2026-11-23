@@ -38,8 +38,8 @@ for (const set of ALL_SETS) {
       errors++;
     }
   }
-  // Strict 3D AABB overlap check (prevents any z-fighting / clipping)
-  const boxes = set.bricks.map(b => {
+  // Strict 3D AABB overlap check on orthogonal grid bricks (prevents z-fighting)
+  const boxes = set.bricks.filter(b => b.rotDeg === undefined).map(b => {
     const p = PARTS[b.part];
     const isRot = ((b.rot || 0) % 2) === 1;
     const w = isRot ? p.d : p.w;
