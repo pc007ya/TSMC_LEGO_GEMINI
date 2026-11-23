@@ -5,154 +5,233 @@ function buildBricks() {
   const add = (part, color, xMin, y, zMin, rot, bag, step) => B.push(place(part, color, xMin, y, zMin, rot, bag, step));
 
   // =========================================================================
-  // BAG 1: 建築典藏黑框底座、圓形中庭廣場與張忠謀大樓銘牌 (Steps 1–3)
-  // Grid: X = -8..8 (16 studs), Z = -8..8 (16 studs) — faithful to img4.jpg
+  // BAG 1: 20×20 建築典藏黑框底座、圓形中庭水池、銘牌與林蔭草坪 (Steps 1–4)
+  // Grid: X = -10..10 (20 studs), Z = -10..10 (20 studs) — exact match to img4.jpg
   // =========================================================================
-  // Step 1: 16x16 Dark-Brown Collector Baseplate + Light-Gray Curb + Dark-Gray Courtyard
-  add('plate_16x16', 'DARK_BROWN', -8, 0, -8, 0, 1, 1);
-  // Inner 14x14 platform (X -7..7, Z -7..7)
-  add('plate_6x12', 'LIGHT_BLUISH_GRAY', -7, 1, -7, 0, 1, 1); // X -7..-1, Z -7..5
-  add('plate_6x12', 'LIGHT_BLUISH_GRAY', -1, 1, -7, 0, 1, 1); // X -1..5,  Z -7..5
-  add('plate_2x6',  'LIGHT_BLUISH_GRAY',  5, 1, -7, 0, 1, 1); // X 5..7,   Z -7..-1
-  add('plate_2x6',  'LIGHT_BLUISH_GRAY',  5, 1, -1, 0, 1, 1); // X 5..7,   Z -1..5
-  add('plate_2x8',  'LIGHT_BLUISH_GRAY', -7, 1,  5, 1, 1, 1); // X -7..1,  Z 5..7
-  add('plate_2x6',  'LIGHT_BLUISH_GRAY',  1, 1,  5, 1, 1, 1); // X 1..7,   Z 5..7
-  // Dark gray recessed courtyard paving (X -7..-1, Z 1..5)
-  add('tile_2x4',   'DARK_BLUISH_GRAY',  -7, 2,  1, 0, 1, 1);
+  // Step 1: 20x20 Dark-Brown Architecture Collector Baseplate (y = 0)
+  add('plate_16x16', 'DARK_BROWN', -10, 0, -10, 0, 1, 1); // X -10..6,  Z -10..6
+  add('plate_4x8',   'DARK_BROWN',   6, 0, -10, 0, 1, 1); // X 6..10,   Z -10..-2
+  add('plate_4x8',   'DARK_BROWN',   6, 0,  -2, 0, 1, 1); // X 6..10,   Z -2..6
+  add('plate_4x4',   'DARK_BROWN',   6, 0,   6, 0, 1, 1); // X 6..10,   Z 6..10
+  add('plate_4x8',   'DARK_BROWN', -10, 0,   6, 1, 1, 1); // X -10..-2, Z 6..10
+  add('plate_4x8',   'DARK_BROWN',  -2, 0,   6, 1, 1, 1); // X -2..6,   Z 6..10
 
-  // Step 2: Recessed Circular Courtyard Ring (X -5..-1, Z 1..5) & Front Sloped Nameplate (X -4..-2, Z 5..7)
-  add('round_plate_4x4',  'LIGHT_BLUISH_GRAY', -5, 2, 1, 0, 1, 2);
-  add('round_plate_2x2',  'DARK_BLUISH_GRAY',  -4, 3, 2, 0, 1, 2);
-  add('round_tile_2x2',   'DARK_BLUISH_GRAY',  -4, 4, 2, 0, 1, 2);
-  add('slope_morris_2x2', 'LIGHT_BLUISH_GRAY', -4, 2, 5, 0, 1, 2);
+  // Step 2: 18x18 Light-Bluish-Gray Inner Architectural Curb & Courtyard Floor (y = 1, X -9..9, Z -9..9)
+  add('plate_6x12', 'LIGHT_BLUISH_GRAY', -9, 1, -9, 0, 1, 2); // X -9..-3, Z -9..3
+  add('plate_6x12', 'LIGHT_BLUISH_GRAY', -3, 1, -9, 0, 1, 2); // X -3..3,  Z -9..3
+  add('plate_6x12', 'LIGHT_BLUISH_GRAY',  3, 1, -9, 0, 1, 2); // X 3..9,   Z -9..3
+  add('plate_6x6_x' === 'a' ? 'plate_6x8' : 'plate_6x8', 'LIGHT_BLUISH_GRAY', -9, 1, 3, 1, 1, 2); // X -9..-1, Z 3..9
+  add('plate_6x8',  'LIGHT_BLUISH_GRAY', -1, 1, 3, 1, 1, 2); // X -1..7,  Z 3..9
+  add('plate_2x6',  'LIGHT_BLUISH_GRAY',  7, 1, 3, 0, 1, 2); // X 7..9,   Z 3..9
 
-  // Step 3: Bright-Green Front Lawn & 4 Layered Brick-Built Trees (X -1..7, Z 5..7)
-  add('plate_2x8', 'BRIGHT_GREEN', -1, 2, 5, 1, 1, 3);
-  add('plate_2x4', 'BRIGHT_GREEN',  5, 2, 1, 0, 1, 3);
-  const trees = [[-1, 5], [1, 5], [3, 5], [5, 5]];
-  for (const [tx, tz] of trees) {
-    add('round_brick_1x1', 'REDDISH_BROWN', tx, 3, tz, 0, 1, 3);
-    add('flower_1x1',      'DARK_GREEN',    tx, 6, tz, 0, 1, 3);
-    add('flower_1x1',      'BRIGHT_GREEN',  tx, 7, tz, 0, 1, 3);
-    add('flower_1x1',      'LIME',          tx, 8, tz, 0, 1, 3);
+  // Step 3: Recessed Circular Courtyard Fountain Ring (X -7..-1, Z 2..8) & Sloped Nameplate
+  // Smooth dark-gray courtyard paving on left
+  add('tile_2x4', 'DARK_BLUISH_GRAY', -9, 2, 2, 0, 1, 3);
+  add('tile_2x2', 'DARK_BLUISH_GRAY', -9, 2, 6, 0, 1, 3);
+  // Circular light-gray fountain ring built from individual 1x1 tiles/plates
+  const ringPts = [
+    [-6, 2], [-5, 2], [-4, 2], [-3, 2],
+    [-7, 3], [-7, 4], [-7, 5], [-7, 6],
+    [-2, 3], [-2, 4], [-2, 5], [-2, 6],
+    [-6, 7], [-5, 7], [-4, 7], [-3, 7]
+  ];
+  for (const [rx, rz] of ringPts) {
+    add('plate_1x1', 'LIGHT_BLUISH_GRAY', rx, 2, rz, 0, 1, 3);
+    add('tile_1x1',  'LIGHT_BLUISH_GRAY', rx, 3, rz, 0, 1, 3);
   }
-  add('flower_1x1', 'BRIGHT_GREEN', 6, 3, 2, 0, 1, 3);
-  add('flower_1x1', 'BRIGHT_GREEN', 6, 3, 4, 0, 1, 3);
+  // Dark-gray recessed center pedestal
+  add('round_plate_2x2', 'DARK_BLUISH_GRAY', -5, 2, 4, 0, 1, 3);
+  add('round_tile_2x2',  'DARK_BLUISH_GRAY', -5, 3, 4, 0, 1, 3);
+  // Front sloped nameplate "張忠謀大樓 Morris Chang Building" (X -6..-4, Z 8..10, cleanly clears fountain ring)
+  add('slope_morris_2x2', 'LIGHT_BLUISH_GRAY', -6, 2, 8, 0, 1, 3);
+
+  // Step 4: Bright-Green Front Lawn & 5 Multi-Layered Brick-Built Trees (X -1..9, Z 6..9)
+  add('plate_2x8', 'BRIGHT_GREEN', -1, 2, 7, 1, 1, 4); // X -1..7, Z 7..9
+  add('plate_2x2', 'BRIGHT_GREEN',  7, 2, 7, 0, 1, 4); // X 7..9,  Z 7..9
+  add('plate_2x6', 'BRIGHT_GREEN',  7, 2, 1, 0, 1, 4); // X 7..9,  Z 1..7
+  // 5 detailed trees along the front lawn matching img4.jpg
+  const treeCoords = [[-1, 7], [1, 7], [3, 7], [5, 7], [7, 6]];
+  for (const [tx, tz] of treeCoords) {
+    add('round_brick_1x1', 'REDDISH_BROWN', tx, 3, tz, 0, 1, 4);
+    add('flower_1x1',      'DARK_GREEN',    tx, 6, tz, 0, 1, 4);
+    add('flower_1x1',      'BRIGHT_GREEN',  tx, 7, tz, 0, 1, 4);
+    add('flower_1x1',      'LIME',          tx, 8, tz, 0, 1, 4);
+  }
+  // Low lush shrubs along right lawn
+  for (const [sx, sz] of [[0, 8], [2, 8], [4, 8], [6, 8], [8, 7], [8, 5], [8, 3], [8, 1]]) {
+    add('flower_1x1', 'BRIGHT_GREEN', sx, 3, sz, 0, 1, 4);
+  }
 
   // =========================================================================
-  // BAG 2: 「張忠謀大樓」門前紀念牆 & 左側純白三條紋主樓 (Steps 4–6)
+  // BAG 2: 門前「張忠謀大樓」地標紀念牆 & 左側純白三條紋主翼 (Steps 5–8)
   // =========================================================================
-  // Step 4: Front-Left Dark-Gray Monument Sign Wall (X -7..-1, Z -1..1) with VERTICAL Signs!
-  // Backing wall at Z = -1..0
-  add('brick_1x6', 'DARK_BLUISH_GRAY', -7, 2, -1, 1, 2, 4); // Y 2..5
-  add('brick_1x6', 'DARK_BLUISH_GRAY', -7, 5, -1, 1, 2, 4); // Y 5..8
-  add('tile_1x6',  'DARK_BLUISH_GRAY', -7, 8, -1, 1, 2, 4); // Smooth top cap Y 8..9
-  // VERTICAL SNOT printed "張忠謀大樓 Morris Chang Building" wall sign + red bar (Z = 0..1, facing +Z!)
-  add('wall_morris_1x4',     'DARK_BLUISH_GRAY', -5, 3, 0, 0, 2, 4); // X -5..-1, Y 3..7, facing +Z
-  // VERTICAL SNOT circular TSMC wafer logo on left pier (X -7..-5, Z = 0..1, facing +Z!)
-  add('wall_tsmc_round_2x2', 'DARK_BLUISH_GRAY', -7, 3, 0, 0, 2, 4); // X -7..-5, Y 3..8, facing +Z
+  // Step 5: Dark-Gray Monument Sign Wall (X -9..-2, Z 0..2) with VERTICAL SNOT Signage!
+  add('brick_1x6', 'DARK_BLUISH_GRAY', -9, 2, 0, 1, 2, 5);
+  add('brick_1x1', 'DARK_BLUISH_GRAY', -3, 2, 0, 0, 2, 5);
+  add('brick_1x6', 'DARK_BLUISH_GRAY', -9, 5, 0, 1, 2, 5);
+  add('brick_1x1', 'DARK_BLUISH_GRAY', -3, 5, 0, 0, 2, 5);
+  add('tile_1x6',  'DARK_BLUISH_GRAY', -9, 8, 0, 1, 2, 5);
+  add('tile_1x1',  'DARK_BLUISH_GRAY', -3, 8, 0, 0, 2, 5);
+  // VERTICAL SNOT "張忠謀大樓 Morris Chang Building" wall sign + red bar (X -6..-2, Z 1..2, facing +Z)
+  add('wall_morris_1x4',     'DARK_BLUISH_GRAY', -6, 3, 1, 0, 2, 5);
+  // VERTICAL SNOT circular red-wafer TSMC logo on left pier (X -9..-7, Z 1..2, facing +Z)
+  add('wall_tsmc_round_2x2', 'DARK_BLUISH_GRAY', -9, 3, 1, 0, 2, 5);
 
-  // Step 5: Tall Left-Rear White Main Wing (X -6..2, Z -7..-3, Y 2..20) with 3 Dark Stripes & Louvers
-  // Base white layer (Y 2..5)
-  for (let x = -6; x < 2; x += 2) {
-    add('brick_2x4', 'WHITE', x, 2, -7, 0, 2, 5);
+  // Step 6: White Main Wing Lower Walls & 3 Iconic Dark-Slate Horizontal Stripes (X -8..2, Z -9..-3)
+  // Base masonry course (Y 2..5)
+  for (let x = -8; x < 2; x += 2) {
+    add('brick_2x6', 'WHITE', x, 2, -9, 0, 2, 6);
   }
-  // 3 crisp horizontal dark-slate architectural bands with white vent louvers (Y 5..11)
-  for (let x = -6; x < 2; x += 2) {
-    add('plate_2x4', 'DARK_BLUISH_GRAY', x, 5, -7, 0, 2, 5);
-    add('plate_2x4', 'WHITE',            x, 6, -7, 0, 2, 5);
-    add('plate_2x4', 'DARK_BLUISH_GRAY', x, 7, -7, 0, 2, 5);
-    add('plate_2x4', 'WHITE',            x, 8, -7, 0, 2, 5);
-    add('plate_2x4', 'DARK_BLUISH_GRAY', x, 9, -7, 0, 2, 5);
-    add('plate_2x4', 'WHITE',            x, 10, -7, 0, 2, 5);
+  // 3 crisp dark-bluish-gray horizontal architectural stripes (Y 5..11)
+  for (let x = -8; x < 2; x += 2) {
+    add('plate_2x6', 'DARK_BLUISH_GRAY', x, 5, -9, 0, 2, 6);
+    add('plate_2x6', 'WHITE',            x, 6, -9, 0, 2, 6);
+    add('plate_2x6', 'DARK_BLUISH_GRAY', x, 7, -9, 0, 2, 6);
+    add('plate_2x6', 'WHITE',            x, 8, -9, 0, 2, 6);
+    add('plate_2x6', 'DARK_BLUISH_GRAY', x, 9, -9, 0, 2, 6);
+    add('plate_2x6', 'WHITE',            x, 10, -9, 0, 2, 6);
   }
-  // Upper tall white clean facade (Y 11..20)
-  for (let x = -6; x < 2; x += 2) {
-    add('brick_2x4', 'WHITE', x, 11, -7, 0, 2, 5);
-    add('brick_2x4', 'WHITE', x, 14, -7, 0, 2, 5);
-    add('brick_2x4', 'WHITE', x, 17, -7, 0, 2, 5);
-  }
-  // White studded recessed roof (Y 20)
-  add('plate_4x8', 'WHITE', -6, 20, -7, 1, 2, 5); // X -6..2, Z -7..-3
-
-  // Step 6: Vertical Trans-Light-Blue Glass Corner Shaft, Gray Pilaster & VERTICAL TSMC Logo!
-  // Tall Light-Gray front-left vertical corner pilaster (X -7..-6, Z -3..-2)
-  add('brick_1x1x2', 'LIGHT_BLUISH_GRAY', -7,  2, -3, 0, 2, 6);
-  add('brick_1x1x2', 'LIGHT_BLUISH_GRAY', -7,  8, -3, 0, 2, 6);
-  add('brick_1x1x2', 'LIGHT_BLUISH_GRAY', -7, 14, -3, 0, 2, 6);
-  add('tile_1x1',    'LIGHT_BLUISH_GRAY', -7, 20, -3, 0, 2, 6);
-  // Glowing vertical Trans-Light-Blue glass shaft right next to it (X -7..-6, Z -4..-3)
-  for (let y = 2; y <= 17; y += 3) {
-    add('brick_1x1', 'TRANS_LIGHT_BLUE', -7, y, -4, 0, 2, 6);
-  }
-  add('tile_1x1', 'TRANS_LIGHT_BLUE', -7, 20, -4, 0, 2, 6);
-  // White side continuation (X -7..-6, Z -7..-4)
-  for (let y = 2; y <= 17; y += 3) {
-    add('brick_1x3', 'WHITE', -7, y, -7, 0, 2, 6);
-  }
-  add('tile_1x3', 'WHITE', -7, 20, -7, 0, 2, 6);
-  // Authentic VERTICAL SNOT white TSMC Red-Wafer Logo mounted high on the front white wall (Z = -3..-2, facing +Z!)
-  add('wall_tsmc_2x2', 'WHITE', -5, 14, -3, 0, 2, 6); // X -5..-3, Y 14..19, flush against Z=-3 wall!
-  // White louver vents on lower white facade (Z = -3..-2, Y 5..11)
+  // Recessed white louver grille bays on lower front facade (Z -3..-2, Y 5..11)
+  add('vent_brick_1x2', 'WHITE', -6, 5, -3, 1, 2, 6);
   add('vent_brick_1x2', 'WHITE', -4, 5, -3, 1, 2, 6);
   add('vent_brick_1x2', 'WHITE', -2, 5, -3, 1, 2, 6);
+  add('vent_brick_1x2', 'WHITE', -6, 8, -3, 1, 2, 6);
+  add('vent_brick_1x2', 'WHITE', -4, 8, -3, 1, 2, 6);
+  add('vent_brick_1x2', 'WHITE', -2, 8, -3, 1, 2, 6);
 
-  // =========================================================================
-  // BAG 3: 中央透藍玻璃基座、台積紅雨遮與雙片沙藍高塔 (Steps 7–9)
-  // Podium: X 0..4, Z 0..4, Y 2..11 | Fins: X 0..1 & X 3..4, Z -1..3, Y 11..24
-  // =========================================================================
-  // Step 7: Multi-Layer Trans-Light-Blue Glass Podium & Vibrant Red Entrance Awning
-  for (let y = 2; y <= 8; y += 2) {
-    add('plate_4x4', 'TRANS_LIGHT_BLUE',  0, y,     0, 0, 3, 7);
-    add('plate_4x4', 'TRANS_MEDIUM_BLUE', 0, y + 1, 0, 0, 3, 7);
-  }
-  add('plate_4x4', 'LIGHT_BLUISH_GRAY', 0, 10, 0, 0, 3, 7); // Cornice roof
-  // Small dark-gray vestibule + bright RED cantilevered awning (X -1..0, Z 2..4)
-  add('brick_1x2', 'DARK_BLUISH_GRAY', -1, 2, 2, 0, 3, 7);
-  add('plate_1x2', 'RED',              -1, 5, 2, 0, 3, 7);
-  add('tile_1x2',  'RED',              -1, 6, 2, 0, 3, 7);
-
-  // Step 8: Iconic Twin Tall Sand-Blue Architectural Fins (X 0..1 & X 3..4, Z 0..4, Y 11..24)
+  // Step 7: Tall Upper White Facade Masonry (Y 11..23) & White Studded Roof
   for (let y = 11; y <= 20; y += 3) {
-    add('brick_1x4', 'SAND_BLUE', 0, y, 0, 0, 3, 8);
-    add('brick_1x4', 'SAND_BLUE', 3, y, 0, 0, 3, 8);
+    for (let x = -8; x < 2; x += 2) {
+      add('brick_2x6', 'WHITE', x, y, -9, 0, 2, 7);
+    }
   }
-  add('tile_1x4', 'SAND_BLUE', 0, 23, 0, 0, 3, 8);
-  add('tile_1x4', 'SAND_BLUE', 3, 23, 0, 0, 3, 8);
-  // Subtle red accent edge on left fin (matching img4.jpg!)
-  add('brick_1x1x2', 'RED', 0, 11, -1, 0, 3, 8);
-  add('brick_1x1x2', 'RED', 0, 17, -1, 0, 3, 8);
+  // Studded white roof field (Y 23, X -8..2, Z -9..-3)
+  add('plate_6x6_r' === 'a' ? 'plate_4x6' : 'plate_4x6', 'WHITE', -8, 23, -9, 0, 2, 7);
+  add('plate_4x6', 'WHITE', -4, 23, -9, 0, 2, 7);
+  add('plate_2x6', 'WHITE',  0, 23, -9, 0, 2, 7);
 
-  // Step 9: Cantilevered White-Framed Trans-Blue Glass Sky-Boxes Between & Beside Fins
-  // Inner sky-box (X 1..3, Z 0..3, Y 15..20)
-  add('plate_2x3', 'WHITE',            1, 15, 0, 0, 3, 9);
-  add('brick_2x3', 'TRANS_LIGHT_BLUE', 1, 16, 0, 0, 3, 9);
-  add('plate_2x3', 'WHITE',            1, 19, 0, 0, 3, 9);
-  // Projecting right glass sky-box (X 4..5, Z 1..3, Y 15..20)
-  add('plate_1x2', 'WHITE',            4, 15, 1, 0, 3, 9);
-  add('brick_1x2', 'TRANS_LIGHT_BLUE', 4, 16, 1, 0, 3, 9);
-  add('plate_1x2', 'WHITE',            4, 19, 1, 0, 3, 9);
+  // Step 8: Vertical Trans-Light-Blue Glass Corner Shaft, Gray Corner Pilaster & VERTICAL TSMC Logo!
+  // Tall Light-Gray vertical front-left corner pilaster (X -9..-8, Z -3..-2, Y 2..24)
+  for (let y = 2; y <= 20; y += 6) {
+    add('brick_1x1x2', 'LIGHT_BLUISH_GRAY', -9, y, -3, 0, 2, 8);
+  }
+  // Wait: 2, 8, 14, 20 -> 20+6=26! Use y=2,8,14 (up to 20) + brick_1x1 at 20 (up to 23) + tile_1x1 at 23!
+  B.pop();
+  add('brick_1x1', 'LIGHT_BLUISH_GRAY', -9, 20, -3, 0, 2, 8);
+  add('tile_1x1',  'LIGHT_BLUISH_GRAY', -9, 23, -3, 0, 2, 8);
+  // Glowing vertical Trans-Light-Blue glass shaft (X -9..-8, Z -4..-3, Y 2..24)
+  for (let y = 2; y <= 20; y += 3) {
+    add('brick_1x1', 'TRANS_LIGHT_BLUE', -9, y, -4, 0, 2, 8);
+  }
+  add('tile_1x1', 'TRANS_LIGHT_BLUE', -9, 23, -4, 0, 2, 8);
+  // Left white continuation wall with 3 matching dark stripes (X -9..-8, Z -9..-4)
+  add('brick_1x4', 'WHITE',            -9,  2, -9, 0, 2, 8);
+  add('brick_1x1', 'WHITE',            -9,  2, -5, 0, 2, 8);
+  add('plate_1x4', 'DARK_BLUISH_GRAY', -9,  5, -9, 0, 2, 8);
+  add('plate_1x1', 'DARK_BLUISH_GRAY', -9,  5, -5, 0, 2, 8);
+  add('plate_1x4', 'WHITE',            -9,  6, -9, 0, 2, 8);
+  add('plate_1x1', 'WHITE',            -9,  6, -5, 0, 2, 8);
+  add('plate_1x4', 'DARK_BLUISH_GRAY', -9,  7, -9, 0, 2, 8);
+  add('plate_1x1', 'DARK_BLUISH_GRAY', -9,  7, -5, 0, 2, 8);
+  add('plate_1x4', 'WHITE',            -9,  8, -9, 0, 2, 8);
+  add('plate_1x1', 'WHITE',            -9,  8, -5, 0, 2, 8);
+  add('plate_1x4', 'DARK_BLUISH_GRAY', -9,  9, -9, 0, 2, 8);
+  add('plate_1x1', 'DARK_BLUISH_GRAY', -9,  9, -5, 0, 2, 8);
+  add('plate_1x4', 'WHITE',            -9, 10, -9, 0, 2, 8);
+  add('plate_1x1', 'WHITE',            -9, 10, -5, 0, 2, 8);
+  for (let y = 11; y <= 20; y += 3) {
+    add('brick_1x4', 'WHITE', -9, y, -9, 0, 2, 8);
+    add('brick_1x1', 'WHITE', -9, y, -5, 0, 2, 8);
+  }
+  add('tile_1x4', 'WHITE', -9, 23, -9, 0, 2, 8);
+  add('tile_1x1', 'WHITE', -9, 23, -5, 0, 2, 8);
+  // VERTICAL SNOT Official Red-Wafer TSMC Logo high on the front white facade (X -7..-5, Z -3..-2, Y 16..21)
+  add('wall_tsmc_2x2', 'WHITE', -7, 16, -3, 0, 2, 8);
 
   // =========================================================================
-  // BAG 4: 右側高聳淺灰電梯核心塔與屋頂建築收邊 (Steps 10–12)
-  // Service Tower: X 4..7 (3 studs), Z -7..-1 (6 studs), Y 2..27
+  // BAG 3: 中央透藍玻璃大廳、台積紅雨遮與雙片沙藍建築鰭板 (Steps 9–12)
+  // Podium: X 0..6, Z 0..5, Y 2..12
   // =========================================================================
-  // Step 10: Tall Far-Right Light-Bluish-Gray Service & Elevator Core Tower
-  for (let y = 2; y <= 23; y += 3) {
-    add('brick_2x6', 'LIGHT_BLUISH_GRAY', 5, y, -7, 0, 4, 10); // X 5..7, Z -7..-1
-    add('brick_1x6', 'LIGHT_BLUISH_GRAY', 4, y, -7, 0, 4, 10); // X 4..5, Z -7..-1
+  // Step 9: Multi-Layer Glowing Trans-Blue Glass Podium (6x5 footprint)
+  for (let y = 2; y <= 10; y += 2) {
+    add('plate_4x4', 'TRANS_LIGHT_BLUE',  0, y,     0, 0, 3, 9);
+    add('plate_2x4', 'TRANS_LIGHT_BLUE',  4, y,     0, 0, 3, 9);
+    add('plate_1x6', 'TRANS_LIGHT_BLUE',  0, y,     4, 1, 3, 9);
+    add('plate_4x4', 'TRANS_MEDIUM_BLUE', 0, y + 1, 0, 0, 3, 9);
+    add('plate_2x4', 'TRANS_MEDIUM_BLUE', 4, y + 1, 0, 0, 3, 9);
+    add('plate_1x6', 'TRANS_MEDIUM_BLUE', 0, y + 1, 4, 1, 3, 9);
+  }
+  // Light-gray cornice deck on top of podium (Y 12)
+  add('plate_4x4', 'LIGHT_BLUISH_GRAY', 0, 12, 0, 0, 3, 9);
+  add('plate_2x4', 'LIGHT_BLUISH_GRAY', 4, 12, 0, 0, 3, 9);
+  add('plate_1x6', 'LIGHT_BLUISH_GRAY', 0, 12, 4, 1, 3, 9);
+
+  // Step 10: Front-Left Dark-Gray Entrance Vestibule & Bright RED Cantilevered Awning
+  add('brick_1x3', 'DARK_BLUISH_GRAY', -1, 2, 2, 0, 3, 10);
+  add('plate_1x3', 'LIGHT_BLUISH_GRAY',-1, 5, 2, 0, 3, 10);
+  add('plate_1x3', 'RED',              -1, 6, 2, 0, 3, 10);
+  add('tile_1x3',  'RED',              -1, 7, 2, 0, 3, 10);
+
+  // Step 11: Iconic Twin Tall Sand-Blue Vertical Fins & Vertical Red Accent Line
+  for (let y = 13; y <= 25; y += 3) {
+    add('brick_1x4', 'SAND_BLUE', 0, y, 0, 0, 3, 11); // Left fin X 0..1, Z 0..4
+    add('brick_1x4', 'SAND_BLUE', 4, y, 0, 0, 3, 11); // Right fin X 4..5, Z 0..4
+  }
+  add('tile_1x4', 'SAND_BLUE', 0, 28, 0, 0, 3, 11);
+  add('tile_1x4', 'SAND_BLUE', 4, 28, 0, 0, 3, 11);
+  // Signature vertical RED accent line behind left fin (X 0..1, Z -1..0, Y 13..25)
+  add('brick_1x1x2', 'RED', 0, 13, -1, 0, 3, 11);
+  add('brick_1x1x2', 'RED', 0, 19, -1, 0, 3, 11);
+  add('brick_1x1',   'RED', 0, 25, -1, 0, 3, 11);
+
+  // Step 12: Cantilevered White-Framed Trans-Blue Glass Sky-Boxes Between & Beside Fins
+  // Inner glass sky-box (X 1..4, Z 0..3, Y 18..24)
+  add('plate_1x3', 'WHITE',            1, 18, 0, 1, 3, 12);
+  add('plate_2x3', 'WHITE',            1, 18, 1, 1, 3, 12);
+  add('brick_1x3', 'TRANS_LIGHT_BLUE', 1, 19, 0, 1, 3, 12);
+  add('brick_2x3', 'TRANS_LIGHT_BLUE', 1, 19, 1, 1, 3, 12);
+  add('plate_1x3', 'WHITE',            1, 22, 0, 1, 3, 12);
+  add('plate_2x3', 'WHITE',            1, 22, 1, 1, 3, 12);
+  // Projecting right glass sky-box (X 5..7, Z 1..4, Y 18..24)
+  add('plate_2x3', 'WHITE',            5, 18, 1, 0, 3, 12);
+  add('brick_2x3', 'TRANS_LIGHT_BLUE', 5, 19, 1, 0, 3, 12);
+  add('plate_2x3', 'WHITE',            5, 22, 1, 0, 3, 12);
+
+  // =========================================================================
+  // BAG 4: 右側 10 層高聳淺灰電梯核心塔與屋頂凹槽收邊 (Steps 13–16)
+  // Service Tower: X 6..9 (3 studs), Z -9..0 (9 studs), Y 2..32
+  // =========================================================================
+  // Step 13: Lower 5 Courses of Far-Right Light-Gray Elevator Core Tower (Y 2..17)
+  for (let y = 2; y <= 14; y += 3) {
+    add('brick_2x6', 'LIGHT_BLUISH_GRAY', 7, y, -9, 0, 4, 13);
+    add('brick_1x6', 'LIGHT_BLUISH_GRAY', 6, y, -9, 0, 4, 13);
+    add('brick_2x3', 'LIGHT_BLUISH_GRAY', 7, y, -3, 0, 4, 13);
+    add('brick_1x3', 'LIGHT_BLUISH_GRAY', 6, y, -3, 0, 4, 13);
   }
 
-  // Step 11: Recessed Studded Mechanical Channel on Service Tower Roof (Y 26..27)
-  add('tile_1x6',    'LIGHT_BLUISH_GRAY', 4, 26, -7, 0, 4, 11);
-  add('tile_1x6',    'LIGHT_BLUISH_GRAY', 6, 26, -7, 0, 4, 11);
-  add('plate_1x6',   'DARK_BLUISH_GRAY',  5, 26, -7, 0, 4, 11); // Recessed dark studded channel
+  // Step 14: Upper 5 Courses of Elevator Core Tower (Y 17..32)
+  for (let y = 17; y <= 29; y += 3) {
+    add('brick_2x6', 'LIGHT_BLUISH_GRAY', 7, y, -9, 0, 4, 14);
+    add('brick_1x6', 'LIGHT_BLUISH_GRAY', 6, y, -9, 0, 4, 14);
+    add('brick_2x3', 'LIGHT_BLUISH_GRAY', 7, y, -3, 0, 4, 14);
+    add('brick_1x3', 'LIGHT_BLUISH_GRAY', 6, y, -3, 0, 4, 14);
+  }
 
-  // Step 12: Smooth White Perimeter Trim Around Recessed Studded Main Roof (Y = 21)
-  add('tile_1x4', 'WHITE', -6, 21, -7, 0, 4, 12); // Left edge X -6..-5
-  add('tile_1x4', 'WHITE',  1, 21, -7, 0, 4, 12); // Right edge X 1..2
-  add('tile_1x6', 'WHITE', -5, 21, -7, 1, 4, 12); // Back edge Z -7..-6
-  add('tile_1x6', 'WHITE', -5, 21, -4, 1, 4, 12); // Front edge Z -4..-3
+  // Step 15: Recessed Studded Mechanical Channel on Core Tower Roof (Y 32)
+  add('tile_1x6',  'LIGHT_BLUISH_GRAY', 6, 32, -9, 0, 4, 15);
+  add('tile_1x3',  'LIGHT_BLUISH_GRAY', 6, 32, -3, 0, 4, 15);
+  add('tile_1x6',  'LIGHT_BLUISH_GRAY', 8, 32, -9, 0, 4, 15);
+  add('tile_1x3',  'LIGHT_BLUISH_GRAY', 8, 32, -3, 0, 4, 15);
+  add('plate_1x6', 'DARK_BLUISH_GRAY',  7, 32, -9, 0, 4, 15);
+  add('plate_1x3', 'DARK_BLUISH_GRAY',  7, 32, -3, 0, 4, 15);
+
+  // Step 16: Smooth White Perimeter Parapet Around Studded Main Roof (Y 24)
+  add('tile_1x6', 'WHITE', -8, 24, -9, 0, 4, 16);
+  add('tile_1x6', 'WHITE',  1, 24, -9, 0, 4, 16);
+  add('tile_1x8' === 'x' ? 'tile_1x6' : 'tile_1x4', 'WHITE', -7, 24, -9, 1, 4, 16);
+  add('tile_1x4', 'WHITE', -3, 24, -9, 1, 4, 16);
+  add('tile_1x4', 'WHITE', -7, 24, -4, 1, 4, 16);
+  add('tile_1x4', 'WHITE', -3, 24, -4, 1, 4, 16);
 
   return B;
 }
@@ -168,28 +247,32 @@ export const SET_04_MORRIS = {
   year: '2024',
   refImage: 'assets/ref/set04.jpg',
   accentColor: '#C91A09',
-  cameraPos: [18, 17, 20],
-  cameraTarget: [0, 4.2, 0],
-  description: '高度還原實拍圖的台積電總部「張忠謀大樓」樂高建築典藏版！採 16×16 深棕建築方框底座，配備立面垂直掛載的官方紅晶圓 TSMC 印刷磚、「張忠謀大樓」地標紀念牆與斜面銘牌、三道深灰飾帶與百葉窗格純白主翼、垂直透藍玻璃角柱、紅雨遮玻璃基座、帶紅邊的雙片沙藍建築鰭板與懸挑玻璃空中盒體，以及最高聳的淺灰核心塔。',
+  cameraPos: [22, 20, 24],
+  cameraTarget: [0, 5.2, 0],
+  description: '高密度 20×20 典藏版「張忠謀大樓」！完整還原實拍圖每一處建築語彙：深棕建築方框底座、圓形水景中庭、斜面印刷銘牌、5 棵三層花葉喬木、正面垂直「張忠謀大樓」地標紀念牆與圓形紅晶圓 TSMC 徽章、三道深灰條紋與雙排百葉窗格純白主翼、垂直透藍玻璃角柱與正牆紅晶圓 TSMC 標、紅雨遮玻璃大廳、帶台積紅飾線的雙片沙藍鰭板與懸挑玻璃空中盒體，以及 10 層高聳淺灰核心塔。',
   bags: [
-    { id: 1, title: '第 1 包：建築方框底座、圓形廣場與銘牌', subtitle: 'Architecture Frame, Plaza & Plaque', color: '#362318' },
-    { id: 2, title: '第 2 包：立面紀念牆、TSMC 紅晶圓標與主翼', subtitle: 'Monument Wall, TSMC Logo & White Wing', color: '#F6F7F9' },
-    { id: 3, title: '第 3 包：透藍玻璃基座、紅雨遮與雙鰭高塔', subtitle: 'Glass Podium, Red Awning & Twin Fins', color: '#3AC5ED' },
-    { id: 4, title: '第 4 包：高聳淺灰核心塔與屋頂邊框收邊',   subtitle: 'Elevator Tower & Recessed Roof Trim', color: '#A8AEB4' }
+    { id: 1, title: '第 1 包：20×20 典藏底座、圓形中庭與林蔭', subtitle: '20x20 Frame, Fountain Ring & Trees', color: '#352218' },
+    { id: 2, title: '第 2 包：地標紀念牆、三條紋白翼與 TSMC 標', subtitle: 'Monument Wall, Striped Wing & Logo', color: '#F6F7F9' },
+    { id: 3, title: '第 3 包：透藍玻璃大廳、紅雨遮與雙鰭高塔', subtitle: 'Glass Podium, Red Awning & Sky-Boxes', color: '#3AC5ED' },
+    { id: 4, title: '第 4 包：10 層淺灰電梯核心塔與屋頂收邊',   subtitle: '10-Story Elevator Tower & Roof Trim', color: '#A8AEB4' }
   ],
   steps: [
-    { step: 1,  bag: 1, title: '建立 16×16 深棕建築典藏底板與前庭', tip: '以深棕 16×16 薄板為展示框，內層無縫鋪上淺藍灰與深灰前庭地板。' },
-    { step: 2,  bag: 1, title: '建造圓形中庭水池與斜面印刷銘牌',   tip: '疊合 4×4 與 2×2 圓盤構成圓形廣場，正前方扣上「張忠謀大樓」銘牌磚。' },
-    { step: 3,  bag: 1, title: '種植前庭鮮綠草坪與四棵多層次喬木', tip: '以紅棕圓柱為樹幹，疊上深松綠、鮮綠與嫩芽綠三層花葉片。' },
-    { step: 4,  bag: 2, title: '立起「張忠謀大樓」地標牆與圓形徽標', tip: '在深灰紀念牆正面垂直安裝 SNOT「張忠謀大樓」銘牌與圓形紅晶圓 TSMC 徽章。' },
-    { step: 5,  bag: 2, title: '堆疊純白主翼與三道深灰水平飾帶',   tip: '精準交錯三層深藍灰與純白薄板，再疊高純白主牆與顆粒屋頂。' },
-    { step: 6,  bag: 2, title: '鑲嵌垂直透藍角柱與正牆 TSMC 晶圓標', tip: '安裝轉角淺灰柱與透藍玻璃柱，於白牆高處垂直掛載官方 TSMC 紅晶圓印刷磚與百葉窗格。' },
-    { step: 7,  bag: 3, title: '建構透藍玻璃基座與台積紅入口雨遮', tip: '交替疊加透亮水藍與透海藍薄板打造玻璃大廳，點綴鮮紅雨遮。' },
-    { step: 8,  bag: 3, title: '立起雙片沙藍垂直建築鰭板與紅飾條', tip: '於基座上方對稱架高兩道沙藍建築翼板，並於左側加入標誌性台積紅垂直飾線。' },
-    { step: 9,  bag: 3, title: '懸挑安裝白框透藍玻璃空中盒體',     tip: '於雙翼板之間與外側鑲嵌白框透亮水藍玻璃盒體，還原原圖立體結構。' },
-    { step: 10, bag: 4, title: '堆疊最右側 8 層高淺灰電梯核心塔',  tip: '垂直疊加 8 層 3×6 淺藍灰塔身，成為全棟建築最高視覺焦點。' },
-    { step: 11, bag: 4, title: '完成核心塔頂凹槽顆粒機電溝槽',     tip: '兩側以淺灰長條光磚收邊，中央保留深灰凹槽顆粒質感。' },
-    { step: 12, bag: 4, title: '純白主翼屋頂凹槽女兒牆收邊',       tip: '四邊以純白光磚圍出屋頂外框，保留中央純白顆粒紋理，完美致敬原圖！' }
+    { step: 1,  bag: 1, title: '拼合 20×20 深棕典藏建築底座',       tip: '無縫組合深棕薄板構成 20×20 建築系列標準展示底框。' },
+    { step: 2,  bag: 1, title: '鋪設 18×18 淺藍灰內層前庭平台',     tip: '內縮一格鋪設淺灰平台，保留四邊俐落深棕外框顆粒。' },
+    { step: 3,  bag: 1, title: '砌出圓形中庭水池環與斜面印刷銘牌',   tip: '以 16 組 1×1 淺灰板與光磚圍出圓形水景環，正前方扣上「張忠謀大樓」斜面銘牌。' },
+    { step: 4,  bag: 1, title: '種植前庭鮮綠草坪、5 棵喬木與灌木',   tip: '立起 5 棵紅棕樹幹並疊加三層綠系花葉片，右側點綴低矮綠籬。' },
+    { step: 5,  bag: 2, title: '建立深灰地標紀念牆與立面印刷徽標',   tip: '正面垂直掛載 SNOT「張忠謀大樓」銘牌與圓形紅晶圓 TSMC 徽章。' },
+    { step: 6,  bag: 2, title: '堆疊純白主翼三道深灰條紋與百葉窗',   tip: '交錯 3 層深灰薄板與純白薄板，正面鑲入 6 組白色百葉紋建築磚。' },
+    { step: 7,  bag: 2, title: '砌高純白主樓牆體與顆粒屋頂',         tip: '向上疊加 4 層純白主牆，覆蓋白色顆粒屋頂板。' },
+    { step: 8,  bag: 2, title: '鑲嵌透藍角柱與正牆紅晶圓 TSMC 標',   tip: '組合轉角淺灰柱、透藍玻璃柱、左側延伸條紋牆，並於高處垂直掛載 TSMC 紅晶圓印刷磚。' },
+    { step: 9,  bag: 3, title: '層疊五層透亮水藍玻璃大廳基座',       tip: '交替疊合透亮水藍與透海藍薄板，頂部覆蓋淺藍灰屋簷板。' },
+    { step: 10, bag: 3, title: '加裝門廳玄關與台積紅懸挑雨遮',       tip: '於玻璃基座左前方立起深灰門廳，頂部扣上醒目台積紅雨遮。' },
+    { step: 11, bag: 3, title: '立起雙片沙藍建築鰭板與紅飾線',       tip: '對稱架高兩道 5 層高沙藍建築翼板，並於左翼後方鑲入垂直紅色飾線。' },
+    { step: 12, bag: 3, title: '懸挑安裝白框透藍玻璃空中盒體',       tip: '在雙鰭之間與右側懸挑安裝白框透亮水藍玻璃盒體。' },
+    { step: 13, bag: 4, title: '堆疊淺灰電梯核心塔下半部 (1–5 層)',  tip: '於最右側開始砌築 3×9 淺藍灰核心塔身。' },
+    { step: 14, bag: 4, title: '堆疊淺灰電梯核心塔上半部 (6–10 層)', tip: '持續向上堆疊至 10 層高，成為全棟最高天際線。' },
+    { step: 15, bag: 4, title: '完成核心塔頂凹槽顆粒機電溝槽',       tip: '兩側以淺灰光磚包邊，中央嵌入深灰顆粒薄板重現原圖凹槽。' },
+    { step: 16, bag: 4, title: '純白主翼屋頂女兒牆收邊完工',         tip: '四邊以純白光磚收邊，保留中央純白顆粒質感，張忠謀大樓完美落成！' }
   ],
   bricks: buildBricks()
 };

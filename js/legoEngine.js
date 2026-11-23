@@ -32,9 +32,9 @@ export class LegoEngine {
     this.controls.dampingFactor = 0.06;
     this.controls.maxPolarAngle = Math.PI / 2 - 0.03;
     this.controls.minDistance = 8;
-    this.controls.maxDistance = 68;
+    this.controls.maxDistance = 95;
     this.controls.autoRotate = false;
-    this.controls.autoRotateSpeed = 1.1;
+    this.controls.autoRotateSpeed = 1.0;
 
     this._setupLighting();
     this._setupStudioFloor();
@@ -42,10 +42,12 @@ export class LegoEngine {
     this.modelGroup = new THREE.Group();
     this.scene.add(this.modelGroup);
 
-    // Caches
+    // Caches (shared geometries keep 450+ brick sets silky smooth at 60fps)
     this.materialCache = new Map();
     this.printTextureCache = new Map();
-    this.studGeom = new THREE.CylinderGeometry(STUD_R, STUD_R, STUD_H, 16);
+    this.boxGeoCache = new Map();
+    this.edgeGeoCache = new Map();
+    this.studGeom = new THREE.CylinderGeometry(STUD_R, STUD_R, STUD_H, 14);
     this.edgeMat = new THREE.LineBasicMaterial({ color: '#1E242B', transparent: true, opacity: 0.11 });
 
     this.currentSet = null;
@@ -254,9 +256,25 @@ export class LegoEngine {
     return tex;
   }
 
-  _addSubtleEdges(mesh, geo, isTransparent) {
+  _getBoxGeo(bw, bh, bd) {
+    const key = `${bw.toFixed(3)}_${bh.toFixed(3)}_${bd.toFixed(3)}`;
+    if (!this.boxGeoCache.has(key)) {
+      this.boxGeoCache.set(key, new THREE.BoxGeometry(bw, bh, bd));
+    }
+    return this.boxGeoCache.get(key);
+  }
+
+  _addSubtleEdges(mesh, geo, isTransparent, cacheKey = null) {
     if (isTransparent) return;
-    const edges = new THREE.EdgesGeometry(geo, 32);
+    let edges;
+    if (cacheKey) {
+      if (!this.edgeGeoCache.has(cacheKey)) {
+        this.edgeGeoCache.set(cacheKey, new THREE.EdgesGeometry(geo, 32));
+      }
+      edges = this.edgeGeoCache.get(cacheKey);
+    } else {
+      edges = new THREE.EdgesGeometry(geo, 32);
+    }
     const line = new THREE.LineSegments(edges, this.edgeMat);
     mesh.add(line);
   }
@@ -454,13 +472,17 @@ export class LegoEngine {
       }
     } else {
       // Standard rectangular brick, plate, tile, grille, or fluted vent_brick
-      const bodyGeo = new THREE.BoxGeometry(w - GAP * 2, h - 0.008, d - GAP * 2);
+      const bw = w - GAP * 2;
+      const bh = h - 0.008;
+      const bd = d - GAP * 2;
+      const geoKey = `${bw.toFixed(3)}_${bh.toFixed(3)}_${bd.toFixed(3)}`;
+      const bodyGeo = this._getBoxGeo(bw, bh, bd);
       const mats = printMat ? [mat, mat, printMat, mat, printMat, mat] : mat;
       const body = new THREE.Mesh(bodyGeo, mats);
       body.position.y = h / 2;
       body.castShadow = true;
       body.receiveShadow = true;
-      this._addSubtleEdges(body, bodyGeo, !!cDef.transparent);
+      this._addSubtleEdges(body, bodyGeo, !!cDef.transparent, geoKey);
       group.add(body);
 
       if (part.shape === 'grille') {
