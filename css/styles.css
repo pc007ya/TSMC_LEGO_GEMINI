@@ -1,0 +1,1274 @@
+:root {
+  --bg-studio: #EEF1F5;
+  --surface: #FFFFFF;
+  --surface-muted: #F6F8FB;
+  --ink-primary: #14181F;
+  --ink-secondary: #525B69;
+  --ink-muted: #7C8594;
+  --border-subtle: #DCE2EB;
+  --border-strong: #C5CEDB;
+
+  --lego-red: #C91A09;
+  --lego-red-hover: #A81406;
+  --lego-yellow: #F5CD2F;
+  --lego-yellow-hover: #E5BC1C;
+  --lego-blue: #006CB7;
+  --lego-callout-bg: #EBF4FC;
+  --lego-callout-border: #2B82C9;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.06);
+  --shadow-md: 0 10px 30px rgba(15, 23, 42, 0.10);
+  --shadow-lg: 0 22px 54px rgba(15, 23, 42, 0.18);
+
+  --topbar-h: 68px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Inter', 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg-studio);
+  color: var(--ink-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* =========================================================================
+   TOP HORIZONTAL BAR (LEGO SET SWITCHER)
+   ========================================================================= */
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--topbar-h);
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  gap: 16px;
+  z-index: 100;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.lego-badge {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: var(--lego-red);
+  color: #FFFFFF;
+  font-weight: 900;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 -2px 0 rgba(0,0,0,0.22), 0 2px 6px rgba(201, 26, 9, 0.28);
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.brand-title {
+  font-weight: 800;
+  font-size: 15px;
+  letter-spacing: -0.02em;
+  color: var(--ink-primary);
+}
+
+.brand-sub {
+  font-size: 11px;
+  color: var(--ink-muted);
+  font-weight: 500;
+}
+
+.set-switcher {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 4px 2px;
+  flex: 1;
+  justify-content: center;
+}
+.set-switcher::-webkit-scrollbar { display: none; }
+
+.set-tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--ink-secondary);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: all 0.18s ease;
+}
+
+.set-tab:hover {
+  background: var(--surface-muted);
+  color: var(--ink-primary);
+}
+
+.set-tab.active {
+  background: #14181F;
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(20, 24, 31, 0.18);
+}
+
+.set-tab-no {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  opacity: 0.72;
+  padding: 2px 6px;
+  border-radius: 5px;
+  background: rgba(148, 163, 184, 0.16);
+}
+
+.set-tab.active .set-tab-no {
+  background: rgba(255, 255, 255, 0.16);
+  opacity: 1;
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* =========================================================================
+   BUTTONS
+   ========================================================================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 14px;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.16s ease;
+  white-space: nowrap;
+}
+
+.btn-ghost {
+  background: var(--surface);
+  color: var(--ink-primary);
+  border-color: var(--border-subtle);
+}
+.btn-ghost:hover {
+  background: var(--surface-muted);
+  border-color: var(--border-strong);
+}
+
+.btn-primary {
+  background: var(--lego-red);
+  color: #FFFFFF;
+  box-shadow: 0 3px 10px rgba(201, 26, 9, 0.26);
+}
+.btn-primary:hover {
+  background: var(--lego-red-hover);
+  transform: translateY(-1px);
+}
+
+.btn-lego-yellow {
+  background: var(--lego-yellow);
+  color: #14181F;
+  font-weight: 700;
+  box-shadow: 0 3px 10px rgba(245, 205, 47, 0.35);
+}
+.btn-lego-yellow:hover {
+  background: var(--lego-yellow-hover);
+  transform: translateY(-1px);
+}
+
+.icon-close {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid var(--border-subtle);
+  background: var(--surface);
+  color: var(--ink-secondary);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  transition: background 0.15s;
+}
+.icon-close:hover {
+  background: var(--surface-muted);
+  color: var(--ink-primary);
+}
+
+/* =========================================================================
+   MAIN WORKSPACE & 3D CANVAS
+   ========================================================================= */
+.workspace {
+  position: relative;
+  width: 100%;
+  height: calc(100% - var(--topbar-h));
+  margin-top: var(--topbar-h);
+}
+
+.canvas-container {
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+}
+.canvas-container:active {
+  cursor: grabbing;
+}
+
+/* =========================================================================
+   SHOWCASE INFO CARD
+   ========================================================================= */
+.info-card {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 320px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  box-shadow: var(--shadow-md);
+  z-index: 20;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.info-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.set-number-pill {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  background: #14181F;
+  color: #FFFFFF;
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.info-age {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ink-secondary);
+  border: 1px solid var(--border-strong);
+  padding: 2px 6px;
+  border-radius: 5px;
+}
+
+.info-pieces {
+  margin-left: auto;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--lego-red);
+}
+
+.info-title {
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  margin-bottom: 3px;
+}
+
+.info-en {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-muted);
+  margin-bottom: 8px;
+}
+
+.info-location {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink-secondary);
+  margin-bottom: 10px;
+}
+
+.info-desc {
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--ink-secondary);
+  margin-bottom: 14px;
+}
+
+.info-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--surface-muted);
+  padding: 8px 4px;
+  border-radius: 9px;
+}
+
+.stat-val {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink-primary);
+}
+
+.stat-lbl {
+  font-size: 10.5px;
+  color: var(--ink-muted);
+  margin-top: 2px;
+}
+
+/* =========================================================================
+   BOTTOM FLOATING 3D STUDIO TOOLBAR
+   ========================================================================= */
+.studio-toolbar {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  box-shadow: var(--shadow-md);
+  z-index: 20;
+}
+
+.tool-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--ink-primary);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.tool-btn:hover {
+  background: var(--surface-muted);
+}
+.tool-btn[aria-pressed="true"] {
+  background: #14181F;
+  color: #FFFFFF;
+}
+
+.explode-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 8px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--ink-secondary);
+}
+
+.explode-control input[type="range"] {
+  width: 96px;
+  accent-color: var(--lego-red);
+  cursor: pointer;
+}
+
+.toolbar-divider {
+  width: 1px;
+  height: 24px;
+  background: var(--border-subtle);
+}
+
+/* =========================================================================
+   REFERENCE PHOTO COMPARE CARD
+   ========================================================================= */
+.ref-card {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 290px;
+  background: var(--surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  z-index: 30;
+}
+
+.ref-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 12.5px;
+  font-weight: 700;
+}
+
+.ref-card img {
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+  display: block;
+  background: #F3F4F6;
+}
+
+.ref-card-caption {
+  padding: 10px 14px;
+  font-size: 11.5px;
+  color: var(--ink-secondary);
+  background: var(--surface-muted);
+}
+
+/* =========================================================================
+   STAGE 1: COLLECTOR'S BOX UNBOXING OVERLAY
+   ========================================================================= */
+.overlay-stage {
+  position: absolute;
+  inset: 0;
+  background: rgba(238, 241, 245, 0.92);
+  backdrop-filter: blur(14px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  padding: 24px;
+  overflow-y: auto;
+}
+
+.box-stage-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  max-width: 720px;
+  width: 100%;
+}
+
+.btn-back-showcase {
+  align-self: flex-start;
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-secondary);
+  cursor: pointer;
+}
+.btn-back-showcase:hover {
+  color: var(--ink-primary);
+}
+
+.lego-box-3d {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 16px;
+  background: #14181F;
+  box-shadow: 0 28px 60px rgba(15, 23, 42, 0.34), 0 0 0 1px rgba(255,255,255,0.08) inset;
+  overflow: hidden;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.5s ease;
+}
+
+.lego-box-3d.opening {
+  transform: scale(1.06) translateY(-18px);
+  opacity: 0;
+}
+
+.box-lid {
+  background: linear-gradient(90deg, #1E242D, #2A313D);
+  border-bottom: 2px dashed rgba(245, 205, 47, 0.6);
+  padding: 10px 20px;
+  transition: transform 0.45s ease;
+}
+
+.box-seal-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.seal-tag {
+  background: var(--lego-yellow);
+  color: #14181F;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.box-header-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px 12px;
+  color: #FFFFFF;
+}
+
+.box-lego-logo {
+  width: 44px;
+  height: 44px;
+  background: var(--lego-red);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+
+.box-series-tag {
+  font-weight: 300;
+  font-size: 20px;
+  letter-spacing: 0.14em;
+  color: #E2E8F0;
+}
+
+.box-specs {
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-family: 'JetBrains Mono', monospace;
+  line-height: 1.25;
+}
+
+.box-age {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--lego-yellow);
+}
+.box-set-no {
+  font-size: 16px;
+  font-weight: 800;
+}
+.box-pcs {
+  font-size: 11px;
+  color: #94A3B8;
+}
+
+.box-artwork {
+  background: #ECEEF2;
+  margin: 0 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 270px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.box-artwork img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.box-footer-bar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 16px 20px 20px;
+  color: #FFFFFF;
+  gap: 16px;
+}
+
+.box-title {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 2px;
+}
+
+.box-subtitle {
+  font-size: 12.5px;
+  color: #94A3B8;
+}
+
+.box-contents-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  font-size: 11.5px;
+  color: #CBD5E1;
+  white-space: nowrap;
+}
+
+.box-cta-area {
+  text-align: center;
+}
+
+.btn-unbox-hero {
+  background: var(--lego-yellow);
+  color: #14181F;
+  font-size: 16px;
+  font-weight: 800;
+  padding: 14px 32px;
+  border-radius: 14px;
+  box-shadow: 0 10px 24px rgba(245, 205, 47, 0.42);
+}
+.btn-unbox-hero:hover {
+  background: var(--lego-yellow-hover);
+  transform: translateY(-2px);
+}
+
+.box-hint {
+  margin-top: 8px;
+  font-size: 12.5px;
+  color: var(--ink-secondary);
+}
+
+/* =========================================================================
+   STAGE 2: NUMBERED POLYBAGS WORKBENCH
+   ========================================================================= */
+.bags-workbench {
+  width: 100%;
+  max-width: 960px;
+  background: var(--surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 22px;
+  padding: 28px;
+  box-shadow: var(--shadow-lg);
+}
+
+.workbench-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.wb-badge {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  background: #DCFCE7;
+  color: #166534;
+  padding: 3px 9px;
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+
+.wb-title {
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.wb-sub {
+  font-size: 13px;
+  color: var(--ink-secondary);
+}
+
+.bags-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.polybag-card {
+  position: relative;
+  border-radius: 16px;
+  border: 2px solid var(--border-subtle);
+  background: linear-gradient(155deg, rgba(255,255,255,0.95) 0%, rgba(241,245,249,0.92) 55%, rgba(226,232,240,0.8) 100%);
+  padding: 18px 14px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.22s ease;
+  overflow: hidden;
+}
+
+/* Plastic bag top crimp seam */
+.polybag-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background: repeating-linear-gradient(90deg, rgba(148,163,184,0.28) 0 4px, transparent 4px 8px);
+  border-bottom: 1px dashed rgba(148,163,184,0.5);
+}
+
+.polybag-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--lego-blue);
+  box-shadow: var(--shadow-md);
+}
+
+.polybag-card.completed {
+  border-color: #22C55E;
+  background: linear-gradient(155deg, #F0FDF4, #DCFCE7);
+}
+
+.polybag-card.active-next {
+  border-color: var(--lego-red);
+  box-shadow: 0 8px 24px rgba(201, 26, 9, 0.14);
+}
+
+.bag-big-number {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #14181F;
+  color: #FFFFFF;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 28px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0 12px;
+  box-shadow: 0 4px 12px rgba(20,24,31,0.18);
+}
+
+.polybag-card.completed .bag-big-number {
+  background: #16A34A;
+}
+
+.bag-title {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--ink-primary);
+  margin-bottom: 4px;
+  line-height: 1.35;
+}
+
+.bag-meta {
+  font-size: 11.5px;
+  color: var(--ink-muted);
+  margin-bottom: 12px;
+}
+
+.bag-swatches {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 14px;
+}
+
+.bag-swatch-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  border: 1px solid rgba(0,0,0,0.18);
+}
+
+.bag-action-pill {
+  margin-top: auto;
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 9px;
+  font-size: 12.5px;
+  font-weight: 700;
+  background: #14181F;
+  color: #FFFFFF;
+}
+
+.polybag-card.active-next .bag-action-pill {
+  background: var(--lego-yellow);
+  color: #14181F;
+}
+
+.polybag-card.completed .bag-action-pill {
+  background: #16A34A;
+  color: #FFFFFF;
+}
+
+.manual-booklet-banner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  background: var(--surface-muted);
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+}
+
+.booklet-icon {
+  font-size: 26px;
+}
+
+.booklet-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.booklet-info strong {
+  font-size: 14px;
+}
+
+.booklet-info span {
+  font-size: 12px;
+  color: var(--ink-secondary);
+}
+
+/* =========================================================================
+   STAGE 3: LEGO INSTRUCTION MANUAL PANEL (LIVE 3D BUILD)
+   ========================================================================= */
+.manual-panel {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  bottom: 20px;
+  width: 360px;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 35;
+}
+
+.manual-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: #14181F;
+  color: #FFFFFF;
+}
+
+.manual-bag-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 800;
+  background: var(--lego-yellow);
+  color: #14181F;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.manual-step-counter {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.step-label {
+  font-size: 10px;
+  color: #94A3B8;
+  letter-spacing: 0.08em;
+}
+.step-num {
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1;
+}
+.step-total {
+  font-size: 13px;
+  color: #94A3B8;
+}
+
+.manual-progress-track {
+  height: 5px;
+  background: #E2E8F0;
+  width: 100%;
+}
+
+.manual-progress-fill {
+  height: 100%;
+  background: var(--lego-red);
+  transition: width 0.3s ease;
+}
+
+.manual-body {
+  padding: 16px;
+  overflow-y: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.manual-step-title {
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+.manual-step-tip {
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--ink-secondary);
+}
+
+/* Official LEGO Manual Blue-Bordered Callout Box */
+.lego-callout-box {
+  background: var(--lego-callout-bg);
+  border: 2px solid var(--lego-callout-border);
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.callout-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: #15558D;
+  margin-bottom: 10px;
+}
+
+.callout-parts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.callout-part-item {
+  background: #FFFFFF;
+  border: 1px solid rgba(43, 130, 201, 0.22);
+  border-radius: 9px;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.part-svg {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+}
+
+.callout-part-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.callout-qty {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  font-weight: 800;
+  color: #14181F;
+}
+
+.callout-name {
+  font-size: 11px;
+  color: var(--ink-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.callout-id {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--ink-muted);
+}
+
+.bag-tray-status {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  background: var(--surface-muted);
+  border-radius: 10px;
+  font-size: 12px;
+  color: var(--ink-secondary);
+}
+
+.link-btn {
+  background: none;
+  border: none;
+  color: var(--lego-blue);
+  font-weight: 700;
+  font-size: 12px;
+  cursor: pointer;
+}
+.link-btn:hover { text-decoration: underline; }
+
+.milestone-banner {
+  margin: 0 16px 12px;
+  padding: 14px;
+  background: #14181F;
+  color: #FFFFFF;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.milestone-emoji {
+  font-size: 22px;
+}
+
+.milestone-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.milestone-text strong {
+  font-size: 14px;
+}
+.milestone-text span {
+  font-size: 12px;
+  color: #CBD5E1;
+}
+
+.manual-controls {
+  padding: 12px 16px;
+  border-top: 1px solid var(--border-subtle);
+  background: var(--surface);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-place-brick {
+  flex: 1;
+  padding: 10px 14px;
+  font-size: 13.5px;
+}
+
+/* =========================================================================
+   BOM MODAL
+   ========================================================================= */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.54);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 200;
+}
+
+.modal-dialog {
+  width: 100%;
+  max-width: 820px;
+  max-height: 86vh;
+  background: var(--surface);
+  border-radius: 20px;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.modal-header h2 {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.modal-sub {
+  font-size: 12.5px;
+  color: var(--ink-muted);
+  margin-top: 2px;
+}
+
+.modal-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.bom-filters {
+  display: flex;
+  gap: 8px;
+  padding: 12px 24px;
+  background: var(--surface-muted);
+  border-bottom: 1px solid var(--border-subtle);
+  flex-wrap: wrap;
+}
+
+.filter-pill {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border-subtle);
+  background: var(--surface);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-secondary);
+  cursor: pointer;
+}
+.filter-pill.active {
+  background: #14181F;
+  color: #FFFFFF;
+  border-color: #14181F;
+}
+
+.bom-table-wrap {
+  overflow-y: auto;
+  padding: 0 24px 20px;
+  flex: 1;
+}
+
+.bom-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.bom-table th {
+  position: sticky;
+  top: 0;
+  background: var(--surface);
+  text-align: left;
+  padding: 12px 8px;
+  font-size: 11.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink-muted);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.bom-table td {
+  padding: 10px 8px;
+  border-bottom: 1px solid #EEF2F6;
+  vertical-align: middle;
+}
+
+.bom-table th.num, .bom-table td.num {
+  text-align: right;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+}
+
+.color-cell {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.color-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 5px;
+  border: 1px solid rgba(0,0,0,0.2);
+  flex-shrink: 0;
+}
+
+/* =========================================================================
+   TOAST
+   ========================================================================= */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #14181F;
+  color: #FFFFFF;
+  padding: 12px 18px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: var(--shadow-lg);
+  z-index: 300;
+  animation: slideUp 0.25s ease;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(14px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* =========================================================================
+   RESPONSIVE
+   ========================================================================= */
+@media (max-width: 1024px) {
+  .brand-sub { display: none; }
+  .btn-label { display: none; }
+  .bags-grid { grid-template-columns: repeat(2, 1fr); }
+  .info-card { width: 270px; padding: 16px; }
+}
+
+@media (max-width: 720px) {
+  .info-card { display: none; }
+  .manual-panel {
+    top: auto;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    width: auto;
+    max-height: 52vh;
+  }
+  .studio-toolbar {
+    width: calc(100% - 20px);
+    overflow-x: auto;
+  }
+  .bags-grid { grid-template-columns: 1fr; }
+}

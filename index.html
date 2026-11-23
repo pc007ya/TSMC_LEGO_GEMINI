@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TSMC × LEGO Architecture | 台積電全球廠區樂高 3D 互動組裝工坊</title>
+  <meta name="description" content="台積電全球五大代表性廠區樂高建築系列：3D 旋轉檢視、真實盒裝開箱、分包拆袋、樂高說明書步驟組裝與完整零件 BOM 表。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;600;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.169.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.169.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <!-- TOP HORIZONTAL NAVIGATION BAR: Switch between the 5 TSMC LEGO Sets -->
+  <header class="topbar" id="topbar">
+    <div class="brand">
+      <div class="lego-badge" aria-hidden="true">LEGO</div>
+      <div class="brand-text">
+        <span class="brand-title">TSMC Architecture</span>
+        <span class="brand-sub">台積電全球廠區典藏系列</span>
+      </div>
+    </div>
+
+    <nav class="set-switcher" id="setSwitcher" aria-label="切換樂高盒組">
+      <!-- Dynamically populated with 5 TSMC LEGO sets -->
+    </nav>
+
+    <div class="topbar-actions">
+      <button class="btn btn-ghost" id="btnToggleRef" title="對照參考圖片">
+        <span class="btn-icon">🖼️</span>
+        <span class="btn-label">參考原圖</span>
+      </button>
+      <button class="btn btn-ghost" id="btnOpenBOM" title="檢視完整零件 BOM 表">
+        <span class="btn-icon">📋</span>
+        <span class="btn-label">零件 BOM</span>
+      </button>
+      <button class="btn btn-primary" id="btnStartAssembly">
+        <span class="btn-icon">📦</span>
+        <span class="btn-label">開箱組裝</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN WORKSPACE -->
+  <main class="workspace">
+    <!-- THREE.JS 3D CANVAS -->
+    <div id="canvasContainer" class="canvas-container" aria-label="3D 樂高模型互動視窗"></div>
+
+    <!-- SHOWCASE MODE: Floating Set Info Card (Top-Left) -->
+    <aside class="info-card" id="showcaseInfoCard">
+      <div class="info-meta">
+        <span class="set-number-pill" id="infoSetNumber">#21035</span>
+        <span class="info-age">18+</span>
+        <span class="info-pieces" id="infoPieceCount">0 PCS</span>
+      </div>
+      <h1 class="info-title" id="infoTitle">新竹總部與生態池園區</h1>
+      <p class="info-en" id="infoEnglish">TSMC Hsinchu HQ &amp; Fab 12 Campus</p>
+      <p class="info-location" id="infoLocation">📍 台灣・新竹科學園區</p>
+      <p class="info-desc" id="infoDesc"></p>
+      <div class="info-stats">
+        <div class="stat-item">
+          <span class="stat-val" id="statPieces">0</span>
+          <span class="stat-lbl">總零件數</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-val" id="statUnique">0</span>
+          <span class="stat-lbl">零件種類</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-val" id="statBags">4</span>
+          <span class="stat-lbl">分包袋數</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-val" id="statSteps">12</span>
+          <span class="stat-lbl">說明步驟</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- SHOWCASE MODE: Bottom Floating 3D Controls -->
+    <div class="studio-toolbar" id="studioToolbar">
+      <button class="tool-btn" id="btnAutoRotate" aria-pressed="false">
+        <span>🔄</span> 自動旋轉
+      </button>
+      <div class="explode-control">
+        <label for="explodeSlider">💥 爆炸檢視</label>
+        <input type="range" id="explodeSlider" min="0" max="100" value="0" />
+      </div>
+      <button class="tool-btn" id="btnResetCam">
+        <span>🎯</span> 重置視角
+      </button>
+      <div class="toolbar-divider"></div>
+      <button class="btn btn-lego-yellow" id="btnStartAssemblyBottom">
+        📦 開始開箱組裝
+      </button>
+    </div>
+
+    <!-- REFERENCE PHOTO FLOATING COMPARE CARD -->
+    <div class="ref-card hidden" id="refCard">
+      <div class="ref-card-header">
+        <span>📸 設計參考原圖</span>
+        <button class="icon-close" id="btnCloseRef" aria-label="關閉參考原圖">✕</button>
+      </div>
+      <img id="refCardImg" src="" alt="參考圖片" />
+      <div class="ref-card-caption" id="refCardCaption"></div>
+    </div>
+
+    <!-- ================================================================
+         ASSEMBLY STAGE 1: COLLECTOR'S BOX UNBOXING OVERLAY
+         ================================================================ -->
+    <section class="overlay-stage hidden" id="boxOverlay" aria-label="樂高盒裝開箱">
+      <div class="box-stage-inner">
+        <button class="btn-back-showcase" id="btnCancelBox">← 返回 3D 完整模型</button>
+        <div class="lego-box-3d" id="legoBox3d">
+          <div class="box-lid" id="boxLid">
+            <div class="box-seal-strip">
+              <span>TSMC ARCHITECTURE COLLECTOR'S EDITION</span>
+              <span class="seal-tag">SEALED • 未拆封</span>
+            </div>
+          </div>
+          <div class="box-front">
+            <div class="box-header-bar">
+              <div class="box-lego-logo">LEGO</div>
+              <div class="box-series-tag">ARCHITECTURE</div>
+              <div class="box-specs">
+                <span class="box-age">18+</span>
+                <span class="box-set-no" id="boxSetNo">21035</span>
+                <span class="box-pcs" id="boxPcs">142 pcs/pzs</span>
+              </div>
+            </div>
+            <div class="box-artwork">
+              <img id="boxArtworkImg" src="" alt="盒裝封面" />
+            </div>
+            <div class="box-footer-bar">
+              <div>
+                <h2 class="box-title" id="boxTitle">新竹總部與生態池園區</h2>
+                <p class="box-subtitle" id="boxSubtitle">TSMC Hsinchu HQ &amp; Fab 12 Campus</p>
+              </div>
+              <div class="box-contents-preview">
+                <span>📖 1 冊精裝說明書</span>
+                <span>🛍️ 4 包編號零件袋</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="box-cta-area">
+          <button class="btn btn-unbox-hero" id="btnUnboxNow">
+            ✂️ 拆開盒裝封條・打開樂高盒
+          </button>
+          <p class="box-hint">點擊後將開箱取出精裝說明書與 1～4 號透明零件袋</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         ASSEMBLY STAGE 2: NUMBERED POLYBAGS WORKBENCH TRAY
+         ================================================================ -->
+    <section class="overlay-stage hidden" id="bagsOverlay" aria-label="選擇編號零件袋">
+      <div class="bags-workbench">
+        <div class="workbench-header">
+          <div>
+            <span class="wb-badge">UNBOXED • 已開箱</span>
+            <h2 class="wb-title" id="wbTitle">請依說明書順序拆開編號零件袋</h2>
+            <p class="wb-sub" id="wbSub">點擊任一小包零件袋將撕開包裝、倒出零件並進入 3D 說明書組裝</p>
+          </div>
+          <button class="btn btn-ghost" id="btnExitAssemblyFromBags">← 返回 3D 展示模式</button>
+        </div>
+
+        <div class="bags-grid" id="bagsGrid">
+          <!-- Dynamically populated with 4 numbered polybags -->
+        </div>
+
+        <div class="manual-booklet-banner">
+          <div class="booklet-icon">📖</div>
+          <div class="booklet-info">
+            <strong id="bookletTitle">官方樂高風格組裝說明書 (共 12 步驟)</strong>
+            <span>每包零件皆對應專屬組裝章節與零件檢核清單 (BOM)，支援單步放置與自動組裝。</span>
+          </div>
+          <button class="btn btn-ghost" id="btnOpenBOMFromBags">📋 檢視全套 BOM</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         ASSEMBLY STAGE 3: LEGO INSTRUCTION MANUAL + LIVE 3D BUILD HUD
+         ================================================================ -->
+    <aside class="manual-panel hidden" id="manualPanel" aria-label="樂高組裝說明書面板">
+      <div class="manual-header">
+        <div class="manual-bag-badge" id="manualBagBadge">BAG 1</div>
+        <div class="manual-step-counter">
+          <span class="step-label">STEP</span>
+          <strong class="step-num" id="manualStepNum">1</strong>
+          <span class="step-total" id="manualStepTotal">/ 12</span>
+        </div>
+        <button class="icon-close" id="btnExitBuild" title="回到零件袋工作台">🛍️</button>
+      </div>
+
+      <div class="manual-progress-track">
+        <div class="manual-progress-fill" id="manualProgressFill" style="width: 0%"></div>
+      </div>
+
+      <div class="manual-body">
+        <h3 class="manual-step-title" id="manualStepTitle">步驟標題</h3>
+        <p class="manual-step-tip" id="manualStepTip">組裝提示</p>
+
+        <!-- Authentic LEGO Blue-Bordered Parts Callout Box -->
+        <div class="lego-callout-box">
+          <div class="callout-header">
+            <span>本步驟所需零件</span>
+            <span class="callout-count" id="calloutCount">0 件</span>
+          </div>
+          <div class="callout-parts-grid" id="calloutPartsGrid">
+            <!-- SVG brick items with xQty -->
+          </div>
+        </div>
+
+        <!-- Bag Parts Tray Toggle / Summary -->
+        <div class="bag-tray-status" id="bagTrayStatus">
+          <span id="bagTrayText">第 1 包剩餘零件：0 件</span>
+          <button class="link-btn" id="btnSwitchBag">切換零件袋</button>
+        </div>
+      </div>
+
+      <!-- Bag Complete / Set Complete Banner -->
+      <div class="milestone-banner hidden" id="milestoneBanner">
+        <div class="milestone-emoji" id="milestoneEmoji">🎉</div>
+        <div class="milestone-text">
+          <strong id="milestoneTitle">第 1 包組裝完成！</strong>
+          <span id="milestoneSub">準備好拆開下一包零件袋了嗎？</span>
+        </div>
+        <button class="btn btn-lego-yellow" id="btnNextBagAction">🛍️ 拆開下一包</button>
+      </div>
+
+      <div class="manual-controls">
+        <button class="btn btn-ghost" id="btnPrevStep" title="上一步">◀ 上一步</button>
+        <button class="btn btn-ghost" id="btnAutoBuild" title="自動播放本包步驟">▶ 自動</button>
+        <button class="btn btn-primary btn-place-brick" id="btnNextStep">🧱 放置積木</button>
+      </div>
+    </aside>
+
+    <!-- ================================================================
+         FULL BOM MODAL (Bill of Materials)
+         ================================================================ -->
+    <div class="modal-backdrop hidden" id="bomModal" role="dialog" aria-modal="true" aria-labelledby="bomModalTitle">
+      <div class="modal-dialog">
+        <div class="modal-header">
+          <div>
+            <h2 id="bomModalTitle">零件清單 BOM (Bill of Materials)</h2>
+            <p class="modal-sub" id="bomModalSub">精準對應 3D 模型之每一塊樂高積木與官方料號</p>
+          </div>
+          <div class="modal-header-actions">
+            <button class="btn btn-ghost" id="btnExportCSV">⬇ 匯出 CSV</button>
+            <button class="icon-close" id="btnCloseBOM" aria-label="關閉">✕</button>
+          </div>
+        </div>
+
+        <div class="bom-filters" id="bomFilters">
+          <button class="filter-pill active" data-bag="all">全部零件</button>
+          <button class="filter-pill" data-bag="1">第 1 包</button>
+          <button class="filter-pill" data-bag="2">第 2 包</button>
+          <button class="filter-pill" data-bag="3">第 3 包</button>
+          <button class="filter-pill" data-bag="4">第 4 包</button>
+        </div>
+
+        <div class="bom-table-wrap">
+          <table class="bom-table">
+            <thead>
+              <tr>
+                <th>圖示</th>
+                <th>官方料號</th>
+                <th>零件名稱 (中 / 英)</th>
+                <th>顏色 (Color ID)</th>
+                <th class="num">數量</th>
+              </tr>
+            </thead>
+            <tbody id="bomTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div class="toast hidden" id="toast"></div>
+  </main>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
