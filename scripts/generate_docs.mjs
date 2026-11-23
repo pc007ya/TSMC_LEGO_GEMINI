@@ -38,6 +38,26 @@ for (const set of ALL_SETS) {
       errors++;
     }
   }
+  // Strict 3D AABB overlap check (prevents any z-fighting / clipping)
+  const boxes = set.bricks.map(b => {
+    const p = PARTS[b.part];
+    const isRot = ((b.rot || 0) % 2) === 1;
+    const w = isRot ? p.d : p.w;
+    const d = isRot ? p.w : p.d;
+    return { b, x1: b.x - w/2, x2: b.x + w/2, y1: b.y, y2: b.y + p.h, z1: b.z - d/2, z2: b.z + d/2 };
+  });
+  for (let i = 0; i < boxes.length; i++) {
+    for (let j = i + 1; j < boxes.length; j++) {
+      const A = boxes[i], B = boxes[j];
+      const ox = Math.min(A.x2, B.x2) - Math.max(A.x1, B.x1);
+      const oy = Math.min(A.y2, B.y2) - Math.max(A.y1, B.y1);
+      const oz = Math.min(A.z2, B.z2) - Math.max(A.z1, B.z1);
+      if (ox > 0.05 && oy > 0.05 && oz > 0.05) {
+        console.error(`[OVERLAP] ${set.setNumber} step ${A.b.step}(${A.b.part}@${A.b.x},${A.b.y},${A.b.z}) <-> step ${B.b.step}(${B.b.part}@${B.b.x},${B.b.y},${B.b.z})`);
+        errors++;
+      }
+    }
+  }
   grandTotalPieces += set.bricks.length;
 }
 

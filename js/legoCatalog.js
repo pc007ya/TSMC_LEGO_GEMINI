@@ -120,3 +120,25 @@ export const PARTS = {
 export function brick(part, color, x, y, z, rot = 0, bag = 1, step = 1) {
   return { part, color, x, y, z, rot, bag, step };
 }
+
+/**
+ * Grid-exact placement helper using integer corner coordinates (xMin, y, zMin).
+ * Automatically computes brick center from rotated dimensions so bricks tile with ZERO overlap.
+ */
+export function place(part, color, xMin, y, zMin, rot = 0, bag = 1, step = 1) {
+  const def = PARTS[part];
+  if (!def) throw new Error(`Unknown part: ${part}`);
+  const isRot = (rot % 2) === 1;
+  const w = isRot ? def.d : def.w;
+  const d = isRot ? def.w : def.d;
+  return {
+    part,
+    color,
+    x: xMin + w / 2,
+    y,
+    z: zMin + d / 2,
+    rot,
+    bag,
+    step
+  };
+}
