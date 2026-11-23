@@ -1,4 +1,3 @@
-import { ALL_SETS } from './sets/index.js';
 import { computeBOM, computeBagSummaries, renderPartSVG, exportBOMToCSV } from './bomGenerator.js';
 
 /**
@@ -86,17 +85,19 @@ class LegoSoundFX {
 }
 
 export class UIController {
-  constructor(engine) {
+  constructor(engine, sets) {
     this.engine = engine;
+    this.sets = sets;
     this.sfx = new LegoSoundFX();
 
     this.currentSetIndex = 0;
-    this.currentSet = ALL_SETS[0];
+    this.currentSet = this.sets[0];
+    this.decalCycleIndex = 0;
     this.mode = 'showcase'; // 'showcase' | 'box' | 'bags' | 'build'
 
     // Per-set build progress state
     this.progressMap = new Map();
-    for (const s of ALL_SETS) {
+    for (const s of this.sets) {
       this.progressMap.set(s.id, {
         unboxed: false,
         openedBags: new Set(),
@@ -138,6 +139,7 @@ export class UIController {
       studioToolbar: $('studioToolbar'),
       btnAutoRotate: $('btnAutoRotate'),
       explodeSlider: $('explodeSlider'),
+      btnStickerFocus: $('btnStickerFocus'),
       btnResetCam: $('btnResetCam'),
 
       refCard: $('refCard'),
@@ -192,6 +194,7 @@ export class UIController {
       bomFilters: $('bomFilters'),
       bomTableBody: $('bomTableBody'),
       btnCloseBOM: $('btnCloseBOM'),
+      btnExportLDR: $('btnExportLDR'),
       btnExportCSV: $('btnExportCSV'),
 
       toast: $('toast')
@@ -221,6 +224,23 @@ export class UIController {
       this._renderBOMTable();
     });
 
+    this.el.btnExportLDR.addEventListener('click', () => {
+      const ldrMap = {
+        set01_hq: 'docs/SET01_21035_NANJING.ldr',
+        set02_jasm: 'docs/SET02_21036_JASM.ldr',
+        set03_arizona: 'docs/SET03_21037_ARIZONA.ldr',
+        set04_morris: 'docs/SET04_21038_MORRIS.ldr',
+        set05_rd: 'docs/SET05_21039_RD.ldr'
+      };
+      const href = ldrMap[this.currentSet.id];
+      if (!href) return;
+      const a = document.createElement('a');
+      a.href = href;
+      a.download = `TSMC_LEGO_${this.currentSet.setNumber}.ldr`;
+      a.click();
+      this.showToast(`已下載 #${this.currentSet.setNumber} LDraw 3D 積木檔 (.ldr)`);
+    });
+
     this.el.btnExportCSV.addEventListener('click', () => {
       const csv = exportBOMToCSV(this.currentSet);
       const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
@@ -243,6 +263,19 @@ export class UIController {
     this.el.explodeSlider.addEventListener('input', e => {
       const factor = Number(e.target.value) / 100;
       this.engine.setExplodeFactor(factor);
+    });
+
+    this.el.btnStickerFocus.addEventListener('click', () => {
+      const decals = this.currentSet.decals || [];
+      if (!decals.length) {
+        this.showToast('此盒組無專屬貼紙');
+        return;
+      }
+      const decal = decals[this.decalCycleIndex % decals.length];
+      this.decalCycleIndex = (this.decalCycleIndex + 1) % decals.length;
+      this.el.btnAutoRotate.setAttribute('aria-pressed', 'false');
+      this.engine.focusCamera(decal.cameraPos, decal.target, 0.75);
+      this.showToast(`🏷️ 貼紙特寫 (${this.decalCycleIndex === 0 ? decals.length : this.decalCycleIndex}/${decals.length})：${decal.label} (#${decal.partId})`);
     });
 
     this.el.btnResetCam.addEventListener('click', () => {
@@ -307,7 +340,7 @@ export class UIController {
 
   _renderSetSwitcher() {
     this.el.setSwitcher.innerHTML = '';
-    ALL_SETS.forEach((set, idx) => {
+    this.sets.forEach((set, idx) => {
       const btn = document.createElement('button');
       btn.className = 'set-tab';
       btn.dataset.index = String(idx);
@@ -320,7 +353,8 @@ export class UIController {
   selectSet(idx) {
     this._stopAutoBuild();
     this.currentSetIndex = idx;
-    this.currentSet = ALL_SETS[idx];
+    this.currentSet = this.sets[idx];
+    this.decalCycleIndex = 0;
 
     // Update active tab styling
     this.el.setSwitcher.querySelectorAll('.set-tab').forEach((tab, i) => {
@@ -510,12 +544,21 @@ export class UIController {
       this.el.milestoneBanner.classList.add('hidden');
     }
 
+    // Orange LEGO target placement highlight box for current step
+    if (!bagCompleted && !setCompleted) {
+      this.engine.highlightStep(displayStepNum);
+    } else {
+      this.engine.clearHighlight();
+    }
+
     // Button states
     this.el.btnPrevStep.disabled = prog.builtStep <= 0;
     this.el.btnNextStep.disabled = bagCompleted || setCompleted;
     this.el.btnNextStep.textContent = setCompleted
       ? '✅ 已完工'
-      : (bagCompleted ? '🛍️ 請拆開下一包' : `🧱 放置步驟 ${displayStepNum} 積木`);
+      : (bagCompleted
+        ? '🛍️ 請拆開下一包'
+        : (stepMeta.hasSticker ? `🏷️ 貼上貼紙並放置步驟 ${displayStepNum}` : `🧱 放置步驟 ${displayStepNum} 積木`));
   }
 
   _placeNextStep() {

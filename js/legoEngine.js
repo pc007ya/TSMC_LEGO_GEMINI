@@ -31,10 +31,10 @@ export class LegoEngine {
     this.controls.enableDamping = true;
     this.controls.dampingFactor = 0.06;
     this.controls.maxPolarAngle = Math.PI / 2 - 0.03;
-    this.controls.minDistance = 8;
-    this.controls.maxDistance = 95;
+    this.controls.minDistance = 6;
+    this.controls.maxDistance = 135;
     this.controls.autoRotate = false;
-    this.controls.autoRotateSpeed = 1.0;
+    this.controls.autoRotateSpeed = 0.85;
 
     this._setupLighting();
     this._setupStudioFloor();
@@ -42,17 +42,21 @@ export class LegoEngine {
     this.modelGroup = new THREE.Group();
     this.scene.add(this.modelGroup);
 
-    // Caches (shared geometries keep 450+ brick sets silky smooth at 60fps)
+    this.highlightGroup = new THREE.Group();
+    this.scene.add(this.highlightGroup);
+
+    // Caches (shared geometries keep 900+ brick sets silky smooth at 60fps)
     this.materialCache = new Map();
     this.printTextureCache = new Map();
     this.boxGeoCache = new Map();
     this.edgeGeoCache = new Map();
-    this.studGeom = new THREE.CylinderGeometry(STUD_R, STUD_R, STUD_H, 14);
+    this.studGeom = new THREE.CylinderGeometry(STUD_R, STUD_R, STUD_H, 12);
     this.edgeMat = new THREE.LineBasicMaterial({ color: '#1E242B', transparent: true, opacity: 0.11 });
 
     this.currentSet = null;
     this.brickEntries = [];
     this.explodeFactor = 0;
+    this.cameraTween = null;
     this.clock = new THREE.Clock();
 
     this._resizeObserver = new ResizeObserver(() => this._onResize());
@@ -63,17 +67,17 @@ export class LegoEngine {
 
   _setupLighting() {
     const hemi = new THREE.HemisphereLight('#FFFFFF', '#CFD6E0', 0.90);
-    hemi.position.set(0, 40, 0);
+    hemi.position.set(0, 60, 0);
     this.scene.add(hemi);
 
     const key = new THREE.DirectionalLight('#FFFDF8', 1.38);
-    key.position.set(20, 34, 22);
+    key.position.set(32, 52, 34);
     key.castShadow = true;
     key.shadow.mapSize.width = 2048;
     key.shadow.mapSize.height = 2048;
     key.shadow.camera.near = 5;
-    key.shadow.camera.far = 90;
-    const d = 24;
+    key.shadow.camera.far = 140;
+    const d = 38;
     key.shadow.camera.left = -d;
     key.shadow.camera.right = d;
     key.shadow.camera.top = d;
@@ -82,16 +86,16 @@ export class LegoEngine {
     this.scene.add(key);
 
     const fill = new THREE.DirectionalLight('#DCEBFF', 0.48);
-    fill.position.set(-24, 16, -14);
+    fill.position.set(-34, 24, -22);
     this.scene.add(fill);
 
     const rim = new THREE.DirectionalLight('#FFFFFF', 0.35);
-    rim.position.set(0, 14, -28);
+    rim.position.set(0, 18, -42);
     this.scene.add(rim);
   }
 
   _setupStudioFloor() {
-    const floorGeo = new THREE.PlaneGeometry(160, 160);
+    const floorGeo = new THREE.PlaneGeometry(240, 240);
     const floorMat = new THREE.ShadowMaterial({ opacity: 0.16 });
     const floor = new THREE.Mesh(floorGeo, floorMat);
     floor.rotation.x = -Math.PI / 2;
@@ -99,8 +103,8 @@ export class LegoEngine {
     floor.receiveShadow = true;
     this.scene.add(floor);
 
-    const ringGeo = new THREE.RingGeometry(15.5, 15.65, 96);
-    const ringMat = new THREE.MeshBasicMaterial({ color: '#CBD3DF', side: THREE.DoubleSide, transparent: true, opacity: 0.5 });
+    const ringGeo = new THREE.RingGeometry(27.5, 27.7, 96);
+    const ringMat = new THREE.MeshBasicMaterial({ color: '#CBD3DF', side: THREE.DoubleSide, transparent: true, opacity: 0.45 });
     const ring = new THREE.Mesh(ringGeo, ringMat);
     ring.rotation.x = -Math.PI / 2;
     ring.position.y = 0.005;
@@ -579,12 +583,63 @@ export class LegoEngine {
   }
 
   showAllBricks() {
+    this.clearHighlight();
     for (const entry of this.brickEntries) {
       entry.mesh.visible = true;
       entry.isAnimating = false;
       entry.mesh.position.copy(entry.basePos);
     }
     this.setExplodeFactor(this.explodeFactor);
+  }
+
+  clearHighlight() {
+    while (this.highlightGroup.children.length > 0) {
+      this.highlightGroup.remove(this.highlightGroup.children[0]);
+    }
+  }
+
+  highlightStep(stepNum) {
+    this.clearHighlight();
+    const box = new THREE.Box3();
+    let found = false;
+    for (const entry of this.brickEntries) {
+      if (entry.data.step === stepNum) {
+        const p = PARTS[entry.data.part];
+        const isRot = ((entry.data.rot || 0) % 2) === 1;
+        const w = (isRot ? p.d : p.w) * STUD;
+        const d = (isRot ? p.w : p.d) * STUD;
+        const h = p.h * PLATE;
+        const bmin = new THREE.Vector3(entry.basePos.x - w / 2, entry.basePos.y, entry.basePos.z - d / 2);
+        const bmax = new THREE.Vector3(entry.basePos.x + w / 2, entry.basePos.y + h, entry.basePos.z + d / 2);
+        box.expandByPoint(bmin);
+        box.expandByPoint(bmax);
+        found = true;
+      }
+    }
+    if (!found) return;
+    box.expandByScalar(0.18);
+    const size = new THREE.Vector3();
+    const center = new THREE.Vector3();
+    box.getSize(size);
+    box.getCenter(center);
+
+    const wireGeo = new THREE.EdgesGeometry(new THREE.BoxGeometry(size.x, size.y, size.z));
+    const wireMat = new THREE.LineBasicMaterial({ color: '#F97316', transparent: true, opacity: 0.92 });
+    const wire = new THREE.LineSegments(wireGeo, wireMat);
+    wire.position.copy(center);
+    this.highlightGroup.add(wire);
+  }
+
+  focusCamera(camPos, targetPos, duration = 0.75) {
+    this.controls.autoRotate = false;
+    this.cameraTween = {
+      start: this.clock.getElapsedTime(),
+      duration,
+      fromPos: this.camera.position.clone(),
+      toPos: new THREE.Vector3(camPos[0], camPos[1], camPos[2]),
+      fromTarget: this.controls.target.clone(),
+      toTarget: new THREE.Vector3(targetPos[0], targetPos[1], targetPos[2])
+    };
   }
 
   setExplodeFactor(factor) {
@@ -601,8 +656,9 @@ export class LegoEngine {
   }
 
   resetCamera(setData = this.currentSet) {
-    const camPos = setData?.cameraPos || [21, 16, 22];
-    const target = setData?.cameraTarget || [0, 2.5, 0];
+    this.cameraTween = null;
+    const camPos = setData?.cameraPos || [36, 26, 38];
+    const target = setData?.cameraTarget || [0, 4.0, 0];
     this.camera.position.set(camPos[0], camPos[1], camPos[2]);
     this.controls.target.set(target[0], target[1], target[2]);
     this.controls.update();
@@ -620,6 +676,14 @@ export class LegoEngine {
   _animate() {
     requestAnimationFrame(() => this._animate());
     const now = this.clock.getElapsedTime();
+
+    if (this.cameraTween) {
+      const t = Math.min((now - this.cameraTween.start) / this.cameraTween.duration, 1);
+      const ease = 1 - Math.pow(1 - t, 3);
+      this.camera.position.lerpVectors(this.cameraTween.fromPos, this.cameraTween.toPos, ease);
+      this.controls.target.lerpVectors(this.cameraTween.fromTarget, this.cameraTween.toTarget, ease);
+      if (t >= 1) this.cameraTween = null;
+    }
 
     for (const entry of this.brickEntries) {
       if (!entry.isAnimating) continue;
