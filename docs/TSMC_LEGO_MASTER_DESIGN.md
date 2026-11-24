@@ -1,4 +1,4 @@
-# TSMC × LEGO Architecture — 全系列設計總覽與總表 BOM (2758 PCS)
+# TSMC × LEGO Architecture — 全系列設計總覽與總表 BOM (14658 PCS)
 
 🌐 **GitHub Pages 3D 互動工坊**：[https://pc007ya.github.io/TSMC_LEGO_GEMINI/](https://pc007ya.github.io/TSMC_LEGO_GEMINI/)
 
@@ -9,9 +9,10 @@
 | **#21037** | 台積電亞利桑那州廠 (Fab 21) | 48 × 28 | **357** | 41 | 4 包 / 15 步 | [MD](./SET03_21037_ARIZONA_MANUAL.md) · [CSV](./SET03_21037_ARIZONA_BOM.csv) · [LDR](./SET03_21037_ARIZONA.ldr) |
 | **#21038** | 台積總部及晶圓十二A廠 (張忠謀大樓) | 32 × 32 | **865** | 95 | 4 包 / 24 步 | [MD](./SET04_21038_MORRIS_MANUAL.md) · [CSV](./SET04_21038_MORRIS_BOM.csv) · [LDR](./SET04_21038_MORRIS.ldr) |
 | **#21039** | 台積電全球研發中心 (Global R&D Center) | 52 × 32 | **475** | 60 | 4 包 / 16 步 | [MD](./SET05_21039_RD_MANUAL.md) · [CSV](./SET05_21039_RD_BOM.csv) · [LDR](./SET05_21039_RD.ldr) |
+| **#21040** | 臺中國家歌劇院 UCS 典藏版 | 64 × 48 | **11900** | 41 | 6 包 / 28 步 | [MD](./SET06_21040_TAICHUNG_OPERA_MANUAL.md) · [CSV](./SET06_21040_TAICHUNG_OPERA_BOM.csv) · [LDR](./SET06_21040_TAICHUNG_OPERA.ldr) |
 
-- **全系列 5 組合計總零件數**：**2758 PCS**
-- **全系列不重複 (料號 × 顏色) 總數**：**186 項**
+- **全系列 5 組合計總零件數**：**14658 PCS**
+- **全系列不重複 (料號 × 顏色) 總數**：**194 項**
 
 > 以下是原模型零件計數，不是採購單；原欄位不保證是真實零件或正確 LDraw 色號。個別狀態、原廠色件、查無對照與自訂圖樣請以 [料號核對摘要](./TSMC_LEGO_BOM_AUDIT.md)／[合併核對 CSV](./TSMC_LEGO_BOM_AUDIT.csv) 為準。
 
@@ -19,44 +20,57 @@
 
 | 模型料號 | 零件名稱 (繁中) | Part Name (EN) | 顏色 | 原欄色碼 | 5 組總數量 |
 | :---: | :--- | :--- | :--- | :---: | :---: |
-| `3004` | 1×2 標準磚 | Brick 1 x 2 | 純白 (White) | #1 | **153** |
+| `3024` | 1×1 單點薄板 | Plate 1 x 1 | 純白 (White) | #1 | **6646** |
+| `3024` | 1×1 單點薄板 | Plate 1 x 1 | 透亮水藍 (Trans-Light Blue) | #42 | **1728** |
+| `3024` | 1×1 單點薄板 | Plate 1 x 1 | 鮮綠 (Bright Green) | #37 | **1020** |
+| `3024` | 1×1 單點薄板 | Plate 1 x 1 | 深藍灰 (Dark Bluish Gray) | #199 | **712** |
+| `3070b` | 1×1 單格光磚 | Tile 1 x 1 | 淺藍灰 (Light Bluish Gray) | #194 | **396** |
+| `3070b` | 1×1 單格光磚 | Tile 1 x 1 | 透亮水藍 (Trans-Light Blue) | #42 | **272** |
+| `3070b` | 1×1 單格光磚 | Tile 1 x 1 | 深藍灰 (Dark Bluish Gray) | #199 | **238** |
+| `87079` | 2×4 平面光磚 | Tile 2 x 4 | 沙漠米 (Tan) | #5 | **234** |
+| `3024` | 1×1 單點薄板 | Plate 1 x 1 | 深松綠 (Dark Green) | #141 | **223** |
+| `3070b` | 1×1 單格光磚 | Tile 1 x 1 | 透海藍 (Trans-Medium Blue) | #43 | **186** |
+| `3004` | 1×2 標準磚 | Brick 1 x 2 | 純白 (White) | #1 | **156** |
+| `3009` | 1×6 長牆磚 | Brick 1 x 6 | 純白 (White) | #1 | **120** |
 | `3009` | 1×6 長牆磚 | Brick 1 x 6 | 淺藍灰 (Light Bluish Gray) | #194 | **100** |
-| `3009` | 1×6 長牆磚 | Brick 1 x 6 | 純白 (White) | #1 | **99** |
-| `3070b` | 1×1 單格光磚 | Tile 1 x 1 | 淺藍灰 (Light Bluish Gray) | #194 | **91** |
 | `3004` | 1×2 標準磚 | Brick 1 x 2 | 淺藍灰 (Light Bluish Gray) | #194 | **86** |
 | `2877` | 1×2 百葉紋建築磚 | Brick, Modified 1 x 2 Grille | 曜石黑 (Black) | #26 | **84** |
-| `87079` | 2×4 平面光磚 | Tile 2 x 4 | 沙漠米 (Tan) | #5 | **66** |
-| `3070b` | 1×1 單格光磚 | Tile 1 x 1 | 透海藍 (Trans-Medium Blue) | #43 | **65** |
+| `24866` | 1×1 樹冠花葉片 | Plate, Round 1 x 1 Flower | 鮮綠 (Bright Green) | #37 | **83** |
+| `24866` | 1×1 樹冠花葉片 | Plate, Round 1 x 1 Flower | 深松綠 (Dark Green) | #141 | **74** |
+| `3460` | 1×8 細長薄板 | Plate 1 x 8 | 純白 (White) | #1 | **70** |
 | `3003` | 2×2 方磚 | Brick 2 x 2 | 沙藍色 (Sand Blue) | #135 | **64** |
+| `87079` | 2×4 平面光磚 | Tile 2 x 4 | 深藍灰 (Dark Bluish Gray) | #199 | **64** |
 | `3023` | 1×2 薄板 | Plate 1 x 2 | 透亮水藍 (Trans-Light Blue) | #42 | **62** |
+| `92438` | 8×16 基礎薄板 | Plate 8 x 16 | 淺藍灰 (Light Bluish Gray) | #194 | **60** |
 | `3024` | 1×1 單點薄板 | Plate 1 x 1 | 淺藍灰 (Light Bluish Gray) | #194 | **57** |
+| `3022` | 2×2 薄板 | Plate 2 x 2 | 台積紅 (Bright Red) | #21 | **55** |
+| `3069b` | 1×2 光磚 | Tile 1 x 2 | 台積紅 (Bright Red) | #21 | **55** |
 | `3460` | 1×8 細長薄板 | Plate 1 x 8 | 透亮水藍 (Trans-Light Blue) | #42 | **55** |
+| `3070b` | 1×1 單格光磚 | Tile 1 x 1 | 純白 (White) | #1 | **50** |
 | `3009` | 1×6 長牆磚 | Brick 1 x 6 | 深藍灰 (Dark Bluish Gray) | #199 | **48** |
-| `3460` | 1×8 細長薄板 | Plate 1 x 8 | 純白 (White) | #1 | **48** |
-| `24866` | 1×1 樹冠花葉片 | Plate, Round 1 x 1 Flower | 鮮綠 (Bright Green) | #37 | **47** |
 | `3009` | 1×6 長牆磚 | Brick 1 x 6 | 沙藍色 (Sand Blue) | #135 | **47** |
+| `6636` | 1×6 長條光磚 | Tile 1 x 6 | 純白 (White) | #1 | **47** |
+| `3024` | 1×1 單點薄板 | Plate 1 x 1 | 嫩芽綠 (Lime) | #119 | **45** |
 | `2412b` | 1×2 散熱格柵光磚 | Tile, Modified 1 x 2 Grille | 純白 (White) | #1 | **44** |
 | `3003` | 2×2 方磚 | Brick 2 x 2 | 純白 (White) | #1 | **44** |
+| `3023` | 1×2 薄板 | Plate 1 x 2 | 純白 (White) | #1 | **44** |
 | `11477` | 1×2 弧形立面磚 | Slope, Curved 2 x 1 | 純白 (White) | #1 | **42** |
+| `24866` | 1×1 樹冠花葉片 | Plate, Round 1 x 1 Flower | 嫩芽綠 (Lime) | #119 | **42** |
 | `3010` | 1×4 牆磚 | Brick 1 x 4 | 淺藍灰 (Light Bluish Gray) | #194 | **42** |
-| `3023` | 1×2 薄板 | Plate 1 x 2 | 純白 (White) | #1 | **41** |
 | `30374` | 4L 管線圓桿 | Bar 4L (MEP Pipe) | 金屬銀 (Flat Silver) | #315 | **41** |
-| `24866` | 1×1 樹冠花葉片 | Plate, Round 1 x 1 Flower | 深松綠 (Dark Green) | #141 | **38** |
-| `87079` | 2×4 平面光磚 | Tile 2 x 4 | 深藍灰 (Dark Bluish Gray) | #199 | **37** |
 | `2412b` | 1×2 散熱格柵光磚 | Tile, Modified 1 x 2 Grille | 深藍灰 (Dark Bluish Gray) | #199 | **36** |
 | `4073` | 1×1 圓薄片 | Plate, Round 1 x 1 | 沙漠米 (Tan) | #5 | **36** |
 | `3062b` | 1×1 圓柱磚 | Brick, Round 1 x 1 | 金屬銀 (Flat Silver) | #315 | **35** |
-| `92438` | 8×16 基礎薄板 | Plate 8 x 16 | 淺藍灰 (Light Bluish Gray) | #194 | **34** |
+| `3062b` | 1×1 圓柱磚 | Brick, Round 1 x 1 | 紅棕 (Reddish Brown) | #192 | **34** |
+| `6636` | 1×6 長條光磚 | Tile 1 x 6 | 深藍灰 (Dark Bluish Gray) | #199 | **34** |
 | `98138f` | 1×1 冷卻風扇圓磚 | Tile, Round 1 x 1 Cooling Fan | 金屬銀 (Flat Silver) | #315 | **34** |
 | `87079` | 2×4 平面光磚 | Tile 2 x 4 | 純白 (White) | #1 | **33** |
-| `3024` | 1×1 單點薄板 | Plate 1 x 1 | 透亮水藍 (Trans-Light Blue) | #42 | **28** |
 | `3024` | 1×1 單點薄板 | Plate 1 x 1 | 透海藍 (Trans-Medium Blue) | #43 | **28** |
 | `3005` | 1×1 柱磚 | Brick 1 x 1 | 純白 (White) | #1 | **27** |
 | `3010` | 1×4 牆磚 | Brick 1 x 4 | 純白 (White) | #1 | **25** |
 | `3022` | 2×2 薄板 | Plate 2 x 2 | 淺藍灰 (Light Bluish Gray) | #194 | **25** |
 | `3005` | 1×1 柱磚 | Brick 1 x 1 | 透亮水藍 (Trans-Light Blue) | #42 | **24** |
-| `6636` | 1×6 長條光磚 | Tile 1 x 6 | 深藍灰 (Dark Bluish Gray) | #199 | **24** |
-| `6636` | 1×6 長條光磚 | Tile 1 x 6 | 純白 (White) | #1 | **24** |
+| `3009` | 1×6 長牆磚 | Brick 1 x 6 | 沙漠米 (Tan) | #5 | **24** |
 | `3004` | 1×2 標準磚 | Brick 1 x 2 | 沙藍色 (Sand Blue) | #135 | **23** |
 | `2454` | 1×1×2 高柱磚 | Brick 1 x 1 x 2 | 透亮水藍 (Trans-Light Blue) | #42 | **22** |
 | `3004` | 1×2 標準磚 | Brick 1 x 2 | 深藍灰 (Dark Bluish Gray) | #199 | **22** |
@@ -66,7 +80,7 @@
 | `3666` | 1×6 細長薄板 | Plate 1 x 6 | 深藍灰 (Dark Bluish Gray) | #199 | **20** |
 | `3004` | 1×2 標準磚 | Brick 1 x 2 | 透亮水藍 (Trans-Light Blue) | #42 | **19** |
 | `3460` | 1×8 細長薄板 | Plate 1 x 8 | 深藍灰 (Dark Bluish Gray) | #199 | **19** |
-| `3666` | 1×6 細長薄板 | Plate 1 x 6 | 純白 (White) | #1 | **18** |
+| `3666` | 1×6 細長薄板 | Plate 1 x 6 | 純白 (White) | #1 | **19** |
 | `4073` | 1×1 圓薄片 | Plate, Round 1 x 1 | 金屬銀 (Flat Silver) | #315 | **17** |
 | `15068` | 2×2 圓弧屋頂磚 | Slope, Curved 2 x 2 | 純白 (White) | #1 | **16** |
 | `3741` | 園藝植栽樹苗 | Plant Flower Stem | 鮮綠 (Bright Green) | #37 | **16** |
@@ -75,52 +89,50 @@
 | `6636` | 1×6 長條光磚 | Tile 1 x 6 | 淺藍灰 (Light Bluish Gray) | #194 | **15** |
 | `3023` | 1×2 薄板 | Plate 1 x 2 | 深藍灰 (Dark Bluish Gray) | #199 | **14** |
 | `3023` | 1×2 薄板 | Plate 1 x 2 | 透海藍 (Trans-Medium Blue) | #43 | **14** |
+| `3028` | 6×12 基礎薄板 | Plate 6 x 12 | 淺藍灰 (Light Bluish Gray) | #194 | **14** |
 | `3062b` | 1×1 圓柱磚 | Brick, Round 1 x 1 | 沙漠米 (Tan) | #5 | **14** |
 | `3666` | 1×6 細長薄板 | Plate 1 x 6 | 透海藍 (Trans-Medium Blue) | #43 | **14** |
 | `2412b` | 1×2 散熱格柵光磚 | Tile, Modified 1 x 2 Grille | 深米棕 (Dark Tan) | #138 | **12** |
 | `2431` | 1×4 光磚 | Tile 1 x 4 | 透亮水藍 (Trans-Light Blue) | #42 | **12** |
 | `2454` | 1×1×2 高柱磚 | Brick 1 x 1 x 2 | 純白 (White) | #1 | **12** |
 | `2877` | 1×2 百葉紋建築磚 | Brick, Modified 1 x 2 Grille | 純白 (White) | #1 | **12** |
-| `3024` | 1×1 單點薄板 | Plate 1 x 1 | 深藍灰 (Dark Bluish Gray) | #199 | **12** |
-| `3062b` | 1×1 圓柱磚 | Brick, Round 1 x 1 | 紅棕 (Reddish Brown) | #192 | **12** |
-| `3070b` | 1×1 單格光磚 | Tile 1 x 1 | 透亮水藍 (Trans-Light Blue) | #42 | **12** |
+| `87079` | 2×4 平面光磚 | Tile 2 x 4 | 深棕 (Dark Brown) | #308 | **12** |
+| `91405` | 16×16 基礎薄板 | Plate 16 x 16 | 曜石黑 (Black) | #26 | **12** |
+| `3035` | 4×8 薄板 | Plate 4 x 8 | 淺藍灰 (Light Bluish Gray) | #194 | **11** |
 | `3010` | 1×4 牆磚 | Brick 1 x 4 | 沙藍色 (Sand Blue) | #135 | **10** |
 | `30374` | 4L 管線圓桿 | Bar 4L (MEP Pipe) | 珍珠金 (Pearl Gold) | #297 | **10** |
 | `3069b` | 1×2 光磚 | Tile 1 x 2 | 透亮水藍 (Trans-Light Blue) | #42 | **10** |
+| `3069b` | 1×2 光磚 | Tile 1 x 2 | 深藍灰 (Dark Bluish Gray) | #199 | **10** |
 | `3245c` | 1×2×2 高牆柱磚 | Brick 1 x 2 x 2 | 曜石黑 (Black) | #26 | **10** |
 | `85984` | 1×2 斜面修飾磚 | Slope 30° 1 x 2 x 2/3 | 純白 (White) | #1 | **10** |
 | `87079` | 2×4 平面光磚 | Tile 2 x 4 | 淺藍灰 (Light Bluish Gray) | #194 | **10** |
-| `3024` | 1×1 單點薄板 | Plate 1 x 1 | 鮮綠 (Bright Green) | #37 | **9** |
 | `3036` | 6×8 薄板 | Plate 6 x 8 | 深藍灰 (Dark Bluish Gray) | #199 | **9** |
-| `3069b` | 1×2 光磚 | Tile 1 x 2 | 深藍灰 (Dark Bluish Gray) | #199 | **9** |
-| `3070b` | 1×1 單格光磚 | Tile 1 x 1 | 深藍灰 (Dark Bluish Gray) | #199 | **9** |
 | `92438` | 8×16 基礎薄板 | Plate 8 x 16 | 沙漠米 (Tan) | #5 | **9** |
 | `3004v` | 1×2 V型斜撐柱 | Support V-Pillar 1 x 2 | 純白 (White) | #1 | **8** |
 | `3010` | 1×4 牆磚 | Brick 1 x 4 | 深藍灰 (Dark Bluish Gray) | #199 | **8** |
 | `3062b` | 1×1 圓柱磚 | Brick, Round 1 x 1 | 純白 (White) | #1 | **8** |
+| `3069b` | 1×2 光磚 | Tile 1 x 2 | 純白 (White) | #1 | **8** |
 | `6636` | 1×6 長條光磚 | Tile 1 x 6 | 沙漠米 (Tan) | #5 | **8** |
+| `2431` | 1×4 光磚 | Tile 1 x 4 | 純白 (White) | #1 | **7** |
 | `3005` | 1×1 柱磚 | Brick 1 x 1 | 台積紅 (Bright Red) | #21 | **7** |
-| `3024` | 1×1 單點薄板 | Plate 1 x 1 | 深松綠 (Dark Green) | #141 | **7** |
 | `3034` | 2×8 長薄板 | Plate 2 x 8 | 深藍灰 (Dark Bluish Gray) | #199 | **7** |
 | `3035` | 4×8 薄板 | Plate 4 x 8 | 鮮綠 (Bright Green) | #37 | **7** |
 | `3460` | 1×8 細長薄板 | Plate 1 x 8 | 透海藍 (Trans-Medium Blue) | #43 | **7** |
 | `3710` | 1×4 薄板 | Plate 1 x 4 | 透亮水藍 (Trans-Light Blue) | #42 | **7** |
 | `3710` | 1×4 薄板 | Plate 1 x 4 | 透海藍 (Trans-Medium Blue) | #43 | **7** |
-| `2431` | 1×4 光磚 | Tile 1 x 4 | 純白 (White) | #1 | **6** |
-| `24866` | 1×1 樹冠花葉片 | Plate, Round 1 x 1 Flower | 嫩芽綠 (Lime) | #119 | **6** |
-| `3024` | 1×1 單點薄板 | Plate 1 x 1 | 純白 (White) | #1 | **6** |
-| `3028` | 6×12 基礎薄板 | Plate 6 x 12 | 淺藍灰 (Light Bluish Gray) | #194 | **6** |
 | `3035` | 4×8 薄板 | Plate 4 x 8 | 純白 (White) | #1 | **6** |
 | `3035` | 4×8 薄板 | Plate 4 x 8 | 沙漠米 (Tan) | #5 | **6** |
 | `3245c` | 1×2×2 高牆柱磚 | Brick 1 x 2 x 2 | 深藍灰 (Dark Bluish Gray) | #199 | **6** |
 | `4073` | 1×1 圓薄片 | Plate, Round 1 x 1 | 紅棕 (Reddish Brown) | #192 | **6** |
-| `3035` | 4×8 薄板 | Plate 4 x 8 | 淺藍灰 (Light Bluish Gray) | #194 | **5** |
-| `3069b` | 1×2 光磚 | Tile 1 x 2 | 純白 (White) | #1 | **5** |
+| `3460` | 1×8 細長薄板 | Plate 1 x 8 | 淺藍灰 (Light Bluish Gray) | #194 | **5** |
+| `3795` | 2×6 薄板 | Plate 2 x 6 | 淺藍灰 (Light Bluish Gray) | #194 | **5** |
 | `4589b` | 1×1 錐形排氣管 | Cone 1 x 1 | 深藍灰 (Dark Bluish Gray) | #199 | **5** |
 | `92438` | 8×16 基礎薄板 | Plate 8 x 16 | 深藍灰 (Dark Bluish Gray) | #199 | **5** |
 | `92438` | 8×16 基礎薄板 | Plate 8 x 16 | 純白 (White) | #1 | **5** |
 | `3010` | 1×4 牆磚 | Brick 1 x 4 | 透亮水藍 (Trans-Light Blue) | #42 | **4** |
 | `3020` | 2×4 薄板 | Plate 2 x 4 | 純白 (White) | #1 | **4** |
+| `3035` | 4×8 薄板 | Plate 4 x 8 | 深棕 (Dark Brown) | #308 | **4** |
+| `3036` | 6×8 薄板 | Plate 6 x 8 | 淺藍灰 (Light Bluish Gray) | #194 | **4** |
 | `3069b` | 1×2 光磚 | Tile 1 x 2 | 曜石黑 (Black) | #26 | **4** |
 | `4073` | 1×1 圓薄片 | Plate, Round 1 x 1 | 淺藍灰 (Light Bluish Gray) | #194 | **4** |
 | `87079` | 2×4 平面光磚 | Tile 2 x 4 | 透亮水藍 (Trans-Light Blue) | #42 | **4** |
@@ -128,9 +140,9 @@
 | `2431` | 1×4 光磚 | Tile 1 x 4 | 深藍灰 (Dark Bluish Gray) | #199 | **3** |
 | `3023` | 1×2 薄板 | Plate 1 x 2 | 台積紅 (Bright Red) | #21 | **3** |
 | `3032` | 4×6 薄板 | Plate 4 x 6 | 淺藍灰 (Light Bluish Gray) | #194 | **3** |
+| `3034` | 2×8 長薄板 | Plate 2 x 8 | 淺藍灰 (Light Bluish Gray) | #194 | **3** |
 | `3034` | 2×8 長薄板 | Plate 2 x 8 | 鮮綠 (Bright Green) | #37 | **3** |
 | `3035` | 4×8 薄板 | Plate 4 x 8 | 深藍灰 (Dark Bluish Gray) | #199 | **3** |
-| `3036` | 6×8 薄板 | Plate 6 x 8 | 淺藍灰 (Light Bluish Gray) | #194 | **3** |
 | `3062b` | 1×1 圓柱磚 | Brick, Round 1 x 1 | 淺藍灰 (Light Bluish Gray) | #194 | **3** |
 | `3710` | 1×4 薄板 | Plate 1 x 4 | 鮮綠 (Bright Green) | #37 | **3** |
 | `60474` | 4×4 大圓盤 | Plate, Round 4 x 4 | 金屬銀 (Flat Silver) | #315 | **3** |
@@ -145,15 +157,12 @@
 | `3028` | 6×12 基礎薄板 | Plate 6 x 12 | 純白 (White) | #1 | **2** |
 | `3032` | 4×6 薄板 | Plate 4 x 6 | 純白 (White) | #1 | **2** |
 | `3034` | 2×8 長薄板 | Plate 2 x 8 | 曜石黑 (Black) | #26 | **2** |
-| `3034` | 2×8 長薄板 | Plate 2 x 8 | 淺藍灰 (Light Bluish Gray) | #194 | **2** |
 | `3034` | 2×8 長薄板 | Plate 2 x 8 | 純白 (White) | #1 | **2** |
 | `3069b` | 1×2 光磚 | Tile 1 x 2 | 沙藍色 (Sand Blue) | #135 | **2** |
 | `3069bpr01` | 1×2 立面印刷磚 (tsmc 紅標) | Tile 1 x 2 SNOT (Printed TSMC) | 純白 (White) | #1 | **2** |
 | `3070b` | 1×1 單格光磚 | Tile 1 x 1 | 台積紅 (Bright Red) | #21 | **2** |
-| `3070b` | 1×1 單格光磚 | Tile 1 x 1 | 純白 (White) | #1 | **2** |
 | `3622` | 1×3 牆磚 | Brick 1 x 3 | 透亮水藍 (Trans-Light Blue) | #42 | **2** |
 | `3666` | 1×6 細長薄板 | Plate 1 x 6 | 淺藍灰 (Light Bluish Gray) | #194 | **2** |
-| `3795` | 2×6 薄板 | Plate 2 x 6 | 淺藍灰 (Light Bluish Gray) | #194 | **2** |
 | `4032` | 2×2 圓薄板 | Plate, Round 2 x 2 | 深藍灰 (Dark Bluish Gray) | #199 | **2** |
 | `60474` | 4×4 大圓盤 | Plate, Round 4 x 4 | 淺藍灰 (Light Bluish Gray) | #194 | **2** |
 | `6636` | 1×6 長條光磚 | Tile 1 x 6 | 沙藍色 (Sand Blue) | #135 | **2** |
@@ -181,10 +190,10 @@
 | `3032` | 4×6 薄板 | Plate 4 x 6 | 鮮綠 (Bright Green) | #37 | **1** |
 | `3034` | 2×8 長薄板 | Plate 2 x 8 | 紅棕 (Reddish Brown) | #192 | **1** |
 | `3035` | 4×8 薄板 | Plate 4 x 8 | 深松綠 (Dark Green) | #141 | **1** |
-| `3035` | 4×8 薄板 | Plate 4 x 8 | 深棕 (Dark Brown) | #308 | **1** |
 | `3036` | 6×8 薄板 | Plate 6 x 8 | 紅棕 (Reddish Brown) | #192 | **1** |
 | `3036` | 6×8 薄板 | Plate 6 x 8 | 深松綠 (Dark Green) | #141 | **1** |
 | `3039pr01` | 2×2 斜面印刷磚 (張忠謀大樓) | Slope 2 x 2 (張忠謀大樓 銘牌) | 淺藍灰 (Light Bluish Gray) | #194 | **1** |
+| `3039pr02` | 2×2 斜面印刷磚 (臺中國家歌劇院) | Slope 2 x 2 (臺中國家歌劇院 銘牌) | 曜石黑 (Black) | #26 | **1** |
 | `3068bpr01` | 2×2 立面印刷磚 (TSMC 晶圓標) | Tile 2 x 2 SNOT (TSMC Wafer Logo) | 純白 (White) | #1 | **1** |
 | `3069b` | 1×2 光磚 | Tile 1 x 2 | 淺藍灰 (Light Bluish Gray) | #194 | **1** |
 | `3069bpr02` | 1×2 立面印刷磚 (Jasm 標誌) | Tile 1 x 2 SNOT (Printed JASM) | 純白 (White) | #1 | **1** |

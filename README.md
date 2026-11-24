@@ -4,7 +4,7 @@
 
 本專案依據台積電全球五大代表性廠區樂高建築參考圖，打造完整的 **Three.js 3D 互動樂高展示與組裝工坊**，包含真實樂高比例積木、頂部橫欄快速切換、典藏盒裝開箱、編號分包零件袋拆袋、官方風格組裝說明書與逐項核對的模型零件表。
 
-## 🏛️ 收錄五款 TSMC 樂高建築盒組（共 2,758 個模型配置；未驗證可實體組裝）
+## 🏛️ 收錄六款建築典藏盒組（共 14,658 個模型配置）
 
 | 編號 | 盒組名稱 | 底座 (凸點) | 總零件數 | 料號 × 顏色列 | 步驟 / 貼紙 | 說明書 / BOM / LDraw |
 | :---: | :--- | :---: | :---: | :---: | :---: | :--- |
@@ -13,6 +13,7 @@
 | **#21037** | 台積電亞利桑那州廠 (`TSMC Arizona Fab 21`) | **48 × 28** | **357** | 41 | 15 步 / 1 貼紙 | [MD](./docs/SET03_21037_ARIZONA_MANUAL.md) · [CSV](./docs/SET03_21037_ARIZONA_BOM.csv) · [LDR](./docs/SET03_21037_ARIZONA.ldr) |
 | **#21038** | 台積總部及晶圓十二A廠・張忠謀大樓 (`TSMC HQ & Fab 12A`) | **32 × 32** | **865** | 95 | 24 步 / 4 貼紙 | [MD](./docs/SET04_21038_MORRIS_MANUAL.md) · [CSV](./docs/SET04_21038_MORRIS_BOM.csv) · [LDR](./docs/SET04_21038_MORRIS.ldr) |
 | **#21039** | 台積電全球研發中心 (`Global R&D Center`) | **52 × 32** | **475** | 60 | 16 步 / 1 貼紙 | [MD](./docs/SET05_21039_RD_MANUAL.md) · [CSV](./docs/SET05_21039_RD_BOM.csv) · [LDR](./docs/SET05_21039_RD.ldr) |
+| **#21040** | **臺中國家歌劇院 UCS 典藏版 (`National Taichung Theater`)** | **64 × 48** | **11,900** | 28 | 28 步 / 6 包 / 1 貼紙 | [MD](./docs/SET06_21040_TAICHUNG_OPERA_MANUAL.md) · [CSV](./docs/SET06_21040_TAICHUNG_OPERA_BOM.csv) · [LDR](./docs/SET06_21040_TAICHUNG_OPERA.ldr) |
 
 👉 [五廠區料號核對摘要](./docs/TSMC_LEGO_BOM_AUDIT.md) · [合併核對 CSV](./docs/TSMC_LEGO_BOM_AUDIT.csv) · [設計總覽](./docs/TSMC_LEGO_MASTER_DESIGN.md)
 

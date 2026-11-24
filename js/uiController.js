@@ -230,7 +230,8 @@ export class UIController {
         set02_jasm: 'docs/SET02_21036_JASM.ldr',
         set03_arizona: 'docs/SET03_21037_ARIZONA.ldr',
         set04_morris: 'docs/SET04_21038_MORRIS.ldr',
-        set05_rd: 'docs/SET05_21039_RD.ldr'
+        set05_rd: 'docs/SET05_21039_RD.ldr',
+        set06_ntt: 'docs/SET06_21040_TAICHUNG_OPERA.ldr'
       };
       const href = ldrMap[this.currentSet.id];
       if (!href) return;
@@ -633,11 +634,15 @@ export class UIController {
     this.bomBagFilter = String(bagFilter);
     this.el.bomModalTitle.textContent = `#${this.currentSet.setNumber} ${this.currentSet.name} — 零件 BOM 表`;
     const totalBom = computeBOM(this.currentSet.bricks);
-    this.el.bomModalSub.textContent = `共 ${totalBom.totalCount} 個模型零件；自訂與未核實料號不可直接下單。`;
+    this.el.bomModalSub.textContent = `共 ${totalBom.totalCount} 件積木・分 ${this.currentSet.bags.length} 包封裝（自訂與未核實料號不可直接下單）`;
 
-    this.el.bomFilters.querySelectorAll('.filter-pill').forEach(p => {
-      p.classList.toggle('active', p.dataset.bag === this.bomBagFilter);
-    });
+    // Dynamically render filter pills for 4-bag or 6-bag sets
+    this.el.bomFilters.innerHTML = [
+      `<button class="filter-pill ${this.bomBagFilter === 'all' ? 'active' : ''}" data-bag="all">全部零件</button>`,
+      ...this.currentSet.bags.map(bag =>
+        `<button class="filter-pill ${this.bomBagFilter === String(bag.id) ? 'active' : ''}" data-bag="${bag.id}">第 ${bag.id} 包</button>`
+      )
+    ].join('');
 
     this._renderBOMTable();
     this.el.bomModal.classList.remove('hidden');

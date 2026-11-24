@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#EEF2F6"/>
+      <stop offset="100%" stop-color="#DCE3EC"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#5FD4F4"/>
+      <stop offset="50%" stop-color="#1E9BD7"/>
+      <stop offset="100%" stop-color="#0F5F99"/>
+    </linearGradient>
+    <linearGradient id="water" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#3AC5ED"/>
+      <stop offset="50%" stop-color="#0D8ECF"/>
+      <stop offset="100%" stop-color="#3AC5ED"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <!-- Collector Black Baseplate -->
+  <polygon points="80,455 400,565 720,455 400,355" fill="#1D2024"/>
+  <polygon points="80,455 400,565 400,582 80,472" fill="#111317"/>
+  <polygon points="720,455 400,565 400,582 720,472" fill="#2A2F36"/>
+  <!-- Plaza & Curving Water Pools -->
+  <polygon points="105,450 400,548 695,450 400,362" fill="#A8AEB4"/>
+  <path d="M165,458 Q240,492 335,488 Q300,512 205,485 Z" fill="url(#water)" opacity="0.88"/>
+  <path d="M465,488 Q560,492 635,458 Q595,485 500,512 Z" fill="url(#water)" opacity="0.88"/>
+  <!-- Main White Building Shell (Isometric Toyo Ito Volume) -->
+  <!-- Left Facade -->
+  <polygon points="170,220 400,295 400,470 170,395" fill="#F6F7F9" stroke="#CBD5E1" stroke-width="2"/>
+  <!-- Right Facade -->
+  <polygon points="400,295 630,220 630,395 400,470" fill="#E6EBF1" stroke="#CBD5E1" stroke-width="2"/>
+  <!-- Iconic Hourglass Glass Openings on Front-Left Facade -->
+  <path d="M196,245 Q214,322 196,388 L244,404 Q226,334 244,261 Z" fill="url(#glass)" stroke="#334155" stroke-width="2"/>
+  <path d="M268,269 Q286,346 268,412 L316,428 Q298,358 316,285 Z" fill="url(#glass)" stroke="#334155" stroke-width="2"/>
+  <path d="M338,292 Q356,368 338,435 L384,450 Q366,382 384,308 Z" fill="url(#glass)" stroke="#334155" stroke-width="2"/>
+  <!-- Iconic Hourglass Glass Openings on Front-Right Facade -->
+  <path d="M424,306 Q442,374 424,446 L486,426 Q468,358 486,286 Z" fill="url(#glass)" stroke="#334155" stroke-width="2"/>
+  <path d="M518,275 Q536,342 518,415 L582,394 Q564,326 582,254 Z" fill="url(#glass)" stroke="#334155" stroke-width="2"/>
+  <!-- Sky Garden Green Roof -->
+  <polygon points="170,220 400,152 630,220 400,295" fill="#1D8F44" stroke="#F6F7F9" stroke-width="6"/>
+  <!-- Winding Sky Garden Path -->
+  <path d="M235,222 Q330,192 405,225 Q485,252 565,218" fill="none" stroke="#DCE3EC" stroke-width="14" stroke-linecap="round"/>
+  <!-- 6 Sculpted White Volcano Skylights -->
+  <g fill="#F6F7F9" stroke="#CBD5E1" stroke-width="1.5">
+    <ellipse cx="310" cy="195" rx="22" ry="11"/><ellipse cx="310" cy="192" rx="9" ry="4" fill="#3AC5ED"/>
+    <ellipse cx="400" cy="182" rx="24" ry="12"/><ellipse cx="400" cy="179" rx="10" ry="4.5" fill="#3AC5ED"/>
+    <ellipse cx="490" cy="196" rx="22" ry="11"/><ellipse cx="490" cy="193" rx="9" ry="4" fill="#3AC5ED"/>
+    <ellipse cx="335" cy="242" rx="20" ry="10"/><ellipse cx="335" cy="239" rx="8" ry="3.8" fill="#3AC5ED"/>
+    <ellipse cx="465" cy="244" rx="20" ry="10"/><ellipse cx="465" cy="241" rx="8" ry="3.8" fill="#3AC5ED"/>
+  </g>
+  <!-- Title Badge -->
+  <rect x="260" y="42" width="280" height="58" rx="12" fill="#14181F"/>
+  <text x="400" y="68" text-anchor="middle" fill="#FFFFFF" font-family="sans-serif" font-weight="800" font-size="20">臺中國家歌劇院 UCS</text>
+  <text x="400" y="88" text-anchor="middle" fill="#F5CD2F" font-family="monospace" font-weight="700" font-size="12">NATIONAL TAICHUNG THEATER • 6,000+ PCS</text>
+</svg>

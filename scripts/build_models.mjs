@@ -1168,23 +1168,370 @@ function buildSetRD() {
 }
 
 // ============================================================================
-// GENERATE ALL 5 SETS + VALIDATE + WRITE JSON, LDRAW (.ldr), CSV & MD MANUALS
+// SET 06: 臺中國家歌劇院 UCS 典藏版 (64 × 48 studs, 6,200+ bricks, 6 Bags, 30 Steps)
+// Toyo Ito's iconic Curvilinear "Sound Cave" Hourglass Facades + Sky Garden
+// ============================================================================
+function buildSetTaichungOpera() {
+  const b = new LegoBuilder({
+    id: 'set06_ntt',
+    setNumber: '21040',
+    shortName: '臺中國家歌劇院',
+    name: '臺中國家歌劇院 UCS 典藏版',
+    englishName: 'National Taichung Theater — UCS Collector Edition',
+    location: '台灣・臺中市西屯區七期重劃區 (Taichung, Taiwan)',
+    footprint: '64 × 48',
+    age: '18+',
+    year: '2026',
+    refImage: 'assets/ref/set06.svg',
+    accentColor: '#C91A09',
+    cameraPos: [56, 38, 62],
+    cameraTarget: [0, 7.5, 0],
+    description: '超過 6,000 塊零重疊樂高積木打造的博物館旗艦 UCS「臺中國家歌劇院」！致敬建築大師伊東豊雄「美聲涵洞 (Sound Cave)」曲牆奇蹟：採用 64×48 黑色典藏底座、前庭曲水流觴透藍水景廣場、內部大劇院紅色階梯觀眾席與曲牆大廳、四面逐層薄板雕塑出的標誌性沙漏壺中居玻璃帷幕，以及屋頂波浪草坡空中花園與 6 座白色火山口採光天窗。',
+    bags: [
+      { id: 1, title: '第 1 包：64×48 典藏底座、曲水廣場與銘牌',   subtitle: '64x48 Base, Curving Water Plaza & Plaque', color: '#1D2024' },
+      { id: 2, title: '第 2 包：大廳曲牆內腔與大劇院紅色觀眾席', subtitle: 'Sound Cave Atrium & Red Grand Theater', color: '#C91A09' },
+      { id: 3, title: '第 3 包：前後立面沙漏壺中居曲牆與藍帷幕', subtitle: 'Front & Rear Hourglass Catenoid Facades', color: '#F6F7F9' },
+      { id: 4, title: '第 4 包：左右側壺中居曲牆與室內曲樑結構', subtitle: 'East/West Hourglass Facades & Ribs', color: '#3AC5ED' },
+      { id: 5, title: '第 5 包：屋頂結構平台與空中花園起伏草坡', subtitle: 'Roof Deck & Undulating Sky Garden Hills', color: '#1D8F44' },
+      { id: 6, title: '第 6 包：6 座白色火山口天窗與花園林蔭',   subtitle: '6 Sculpted Volcano Skylights & Trees', color: '#9FC33A' }
+    ]
+  });
+
+  // -------------------------------------------------------------------------
+  // BAG 1: 64 x 48 UCS Baseplate (-32..32, -24..24) + Curving Water Plaza
+  // -------------------------------------------------------------------------
+  b.beginStep(1, '拼合 64×48 曜石黑旗艦典藏展示底板', '以 12 塊 16×16 曜石黑基礎薄板無縫拼出 64×48 超大底座。');
+  for (let x = -32; x < 32; x += 16) {
+    for (let z = -24; z < 24; z += 16) {
+      b.place('plate_16x16', 'BLACK', x, 0, z);
+    }
+  }
+
+  b.beginStep(1, '鋪設 62×46 淺藍灰廣場地基與石材步道', '內縮一格鋪設淺灰結構底板，保留四周典藏黑框邊界。');
+  b.fillRect(-31, 31, -23, 23, 1, 'LIGHT_BLUISH_GRAY', 'plate');
+
+  b.beginStep(1, '鋪設前庭曲水流觴透藍景觀水池 (東／西雙池)', '以 1×1 透亮水藍與透海藍光磚細緻拼出歌劇院招牌蜿蜒曲水池。');
+  for (let x = -30; x < 30; x++) {
+    for (let z = 13; z < 22; z++) {
+      // Two sweeping organic water channels flanking the central grand entrance bridge
+      const inBridge = Math.abs(x) <= 5;
+      const wave = Math.sin(x * 0.22) * 1.6 + 17.5;
+      const dist = Math.abs(z - wave);
+      if (!inBridge && dist < 2.2) {
+        const col = dist < 1.1 ? 'TRANS_MEDIUM_BLUE' : 'TRANS_LIGHT_BLUE';
+        b.place('tile_1x1', col, x, 2, z);
+      } else if (!inBridge && dist < 3.1) {
+        b.place('tile_1x1', 'LIGHT_BLUISH_GRAY', x, 2, z);
+      } else if (inBridge) {
+        b.place('tile_1x1', (Math.abs(x) === 5 ? 'DARK_BLUISH_GRAY' : 'LIGHT_BLUISH_GRAY'), x, 2, z);
+      }
+    }
+  }
+
+  b.beginStep(1, '鋪設兩側與後方環繞曲水溝渠及石材廣場', '沿東西兩側延伸透水藍景觀水帶，鋪平廣場光磚。');
+  for (let z = -19; z <= 13; z++) {
+    const waveL = -27.5 + Math.sin(z * 0.25) * 1.2;
+    const waveR =  27.5 - Math.sin(z * 0.25) * 1.2;
+    for (let x = -30; x <= -25; x++) {
+      if (Math.abs(x - waveL) < 1.3) b.place('tile_1x1', 'TRANS_LIGHT_BLUE', x, 2, z);
+      else b.place('tile_1x1', 'DARK_BLUISH_GRAY', x, 2, z);
+    }
+    for (let x = 25; x <= 29; x++) {
+      if (Math.abs(x - waveR) < 1.3) b.place('tile_1x1', 'TRANS_LIGHT_BLUE', x, 2, z);
+      else b.place('tile_1x1', 'DARK_BLUISH_GRAY', x, 2, z);
+    }
+  }
+  b.fillRect(-30, 30, -22, -17, 2, 'DARK_BLUISH_GRAY', 'tile');
+
+  b.beginStep(1, '安裝「臺中國家歌劇院」典藏銘牌與 20 棵林蔭喬木', '正前方扣上專屬中英文斜面銘牌，並於廣場四周種植多層次喬木。', 'ntt_plaque');
+  b.addDecal('ntt_plaque', '廣場正前方・臺中國家歌劇院銘牌', 'slope_ntt_2x2', 'BLACK', -1, 2, 21, 0, [0, 4, 10]);
+  const plazaTrees = [
+    [-29, 21], [-23, 21], [-17, 21], [-11, 21], [11, 21], [17, 21], [23, 21], [28, 21],
+    [-29, -20], [-20, -20], [-10, -20], [0, -20], [10, -20], [20, -20], [28, -20],
+    [-30, -8], [-30, 4], [29, -8], [29, 4], [29, 14]
+  ];
+  for (const [tx, tz] of plazaTrees) {
+    b.place('round_brick_1x1', 'REDDISH_BROWN', tx, 2, tz);
+    b.place('flower_1x1', 'DARK_GREEN', tx, 5, tz);
+    b.place('flower_1x1', 'BRIGHT_GREEN', tx, 6, tz);
+    b.place('flower_1x1', 'LIME', tx, 7, tz);
+  }
+
+  // -------------------------------------------------------------------------
+  // BAG 2: Interior Foyer, Sound Cave Pillars & Red Grand Theater (-24..24, -16..12)
+  // -------------------------------------------------------------------------
+  b.beginStep(2, '鋪設 1F 曲牆大廳溫潤米色與純白地坪', '於 48×28 主建築地基滿鋪米色與白色大廳地磚。');
+  b.fillRect(-24, 24, -16, 12, 2, 'TAN', 'tile');
+
+  b.beginStep(2, '建置大劇院階梯式紅色絨布觀眾席 (下段)', '於建築中央核心砌築經典台中國家歌劇院紅色大劇院觀眾席。');
+  for (let row = 0; row < 5; row++) {
+    const rz = -2 - row * 2;
+    const ry = 3 + row * 2;
+    for (let x = -11; x < 11; x += 2) {
+      b.place('plate_2x2', 'RED', x, ry, rz);
+      b.place('tile_1x2',  'RED', x, ry + 1, rz, 1);
+    }
+  }
+
+  b.beginStep(2, '建置大劇院深棕舞台、樂池與溫潤木質聲學背牆', '完成大劇院主舞台與後方聲學牆面結構。');
+  b.fillRect(-12, 12, -14, -10, 3, 'DARK_BROWN', 'plate');
+  b.fillRect(-12, 12, -14, -10, 4, 'DARK_BROWN', 'tile');
+  for (let y = 5; y <= 20; y += 3) {
+    b.spanX(-12, 12, y, -14, 'TAN', 'brick', y % 6 === 0);
+  }
+
+  b.beginStep(2, '雕塑大廳內部「美聲涵洞」雙曲線白柱群', '於大廳左右兩側逐層雕塑出向上展開的白色曲牆涵洞支撐柱。');
+  const cavePillars = [[-16, 2], [-16, -8], [15, 2], [15, -8]];
+  for (const [cx, cz] of cavePillars) {
+    for (let y = 3; y <= 33; y += 2) {
+      const t = (y - 18) / 15; // -1..1
+      const spread = Math.round(1 + t * t * 2.2);
+      for (let dx = -spread; dx <= spread; dx++) {
+        for (let dz = -1; dz <= 1; dz++) {
+          if (Math.abs(dx) === spread || Math.abs(dz) === 1) {
+            b.place('plate_1x1', 'WHITE', cx + dx, y, cz + dz);
+            b.place('plate_1x1', 'WHITE', cx + dx, y + 1, cz + dz);
+          }
+        }
+      }
+    }
+  }
+
+  b.beginStep(2, '建造大廳中央雙向弧形迎賓大階梯', '以淺藍灰與純白薄板堆疊出從 1F 大廳盤旋向上的迎賓樓梯。');
+  for (let s = 0; s < 10; s++) {
+    const sy = 3 + s;
+    const sz = 8 - s;
+    b.spanX(-4, 4, sy, sz, s % 2 === 0 ? 'WHITE' : 'LIGHT_BLUISH_GRAY', 'plate');
+  }
+
+  // -------------------------------------------------------------------------
+  // BAG 3: Front (Z = 10..12) & Rear (Z = -16..-14) Iconic Hourglass Curvilinear Facades
+  // 34 plate layers (Y = 3..37), using fine 1x1 & 1x2 plates for smooth Toyo Ito curves!
+  // -------------------------------------------------------------------------
+  const H_START = 3, H_END = 37; // 34 plate layers tall
+  const MID_Y = (H_START + H_END) / 2;
+  const HALF_H = (H_END - H_START) / 2;
+
+  const isInFrontHourglass = (x, y) => {
+    const centers = [-15.5, 0, 15.5];
+    const normY = (y - MID_Y) / HALF_H; // -1..1
+    const halfW = 3.2 + 2.8 * normY * normY; // pinched at center, wide at top & bottom!
+    for (const c of centers) {
+      if (Math.abs(x - c) <= halfW && y >= H_START + 1 && y <= H_END - 2) return true;
+    }
+    return false;
+  };
+
+  // Build Front Facade in 3 vertical stages (Bag 3 Steps 11-13)
+  const frontBands = [
+    [3, 14,  '雕塑正面「壺中居」下段沙漏曲牆與藍玻璃帷幕 (1–11 層)', '逐層以 1×1／1×2 純白薄板砌出三個向內收束的優美曲牆開口，內嵌透亮水藍玻璃。'],
+    [14, 26, '雕塑正面「壺中居」中段收腰曲牆與深灰窗框 (12–23 層)', '曲牆於建築腰部達到最優美弧度收束，玻璃帷幕加入深藍灰水平與垂直窗櫺。'],
+    [26, 37, '雕塑正面「壺中居」上段展開曲牆與挑簷 (24–34 層)',     '曲牆向上流暢展開合攏，完整重現伊東豊雄招牌沙漏立面輪廓！']
+  ];
+  for (const [y1, y2, title, tip] of frontBands) {
+    b.beginStep(3, title, tip);
+    for (let y = y1; y < y2; y++) {
+      for (let x = -24; x < 24; x++) {
+        if (isInFrontHourglass(x, y)) {
+          // Recessed glass curtain wall at Z=10 with dark-gray mullions every 5 studs / 8 plates
+          const isMullion = ((x + 24) % 5 === 0) || (y % 8 === 0);
+          b.place('plate_1x1', isMullion ? 'DARK_BLUISH_GRAY' : 'TRANS_LIGHT_BLUE', x, y, 10);
+        } else {
+          // Sculpted 2-stud-thick white concrete catenoid shell (Z=10 & Z=11)
+          b.place('plate_1x1', 'WHITE', x, y, 11);
+          b.place('plate_1x1', 'WHITE', x, y, 10);
+        }
+      }
+    }
+  }
+
+  // Build Rear Facade in 3 vertical stages (Bag 3 Steps 14-16)
+  const rearBands = [
+    [3, 14,  '雕塑背面「壺中居」下段曲牆與玻璃帷幕 (1–11 層)',   '於歌劇院後立面對稱砌出三個曲牆玻璃大開口。'],
+    [14, 26, '雕塑背面「壺中居」中段收腰曲牆 (12–23 層)',        '持續逐層收束白色曲牆並內嵌透藍玻璃與窗櫺。'],
+    [26, 37, '雕塑背面「壺中居」上段合攏曲牆 (24–34 層)',        '完成背面曲牆合攏結構，四面視角皆具建築雕塑感。']
+  ];
+  for (const [y1, y2, title, tip] of rearBands) {
+    b.beginStep(3, title, tip);
+    for (let y = y1; y < y2; y++) {
+      for (let x = -24; x < 24; x++) {
+        if (isInFrontHourglass(x, y)) {
+          const isMullion = ((x + 24) % 5 === 0) || (y % 8 === 0);
+          b.place('plate_1x1', isMullion ? 'DARK_BLUISH_GRAY' : 'TRANS_LIGHT_BLUE', x, y, -15);
+        } else {
+          b.place('plate_1x1', 'WHITE', x, y, -16);
+          b.place('plate_1x1', 'WHITE', x, y, -15);
+        }
+      }
+    }
+  }
+
+  // -------------------------------------------------------------------------
+  // BAG 4: East (X = 22..24) & West (X = -24..-22) Hourglass Curvilinear Facades
+  // 2 sweeping hourglass glass openings per side (centered at Z = -9 & Z = +3)
+  // -------------------------------------------------------------------------
+  const isInSideHourglass = (z, y) => {
+    const centers = [-8.5, 3.5];
+    const normY = (y - MID_Y) / HALF_H;
+    const halfW = 2.6 + 2.4 * normY * normY;
+    for (const c of centers) {
+      if (Math.abs(z - c) <= halfW && y >= H_START + 1 && y <= H_END - 2) return true;
+    }
+    return false;
+  };
+
+  const westBands = [
+    [3, 20,  '雕塑西側立面雙沙漏曲牆下半部 (1–17 層)', '於西側立面構築兩座流線型壺中居玻璃帷幕。'],
+    [20, 37, '雕塑西側立面雙沙漏曲牆上半部 (18–34 層)', '向上展開並合攏西側純白曲牆外殼。']
+  ];
+  for (const [y1, y2, title, tip] of westBands) {
+    b.beginStep(4, title, tip);
+    for (let y = y1; y < y2; y++) {
+      for (let z = -14; z < 10; z++) {
+        if (isInSideHourglass(z, y)) {
+          const isMullion = ((z + 16) % 4 === 0) || (y % 8 === 0);
+          b.place('plate_1x1', isMullion ? 'DARK_BLUISH_GRAY' : 'TRANS_LIGHT_BLUE', -23, y, z);
+        } else {
+          b.place('plate_1x1', 'WHITE', -24, y, z);
+          b.place('plate_1x1', 'WHITE', -23, y, z);
+        }
+      }
+    }
+  }
+
+  const eastBands = [
+    [3, 20,  '雕塑東側立面雙沙漏曲牆下半部 (1–17 層)', '於東側立面對稱構築兩座壺中居玻璃帷幕。'],
+    [20, 37, '雕塑東側立面雙沙漏曲牆上半部 (18–34 層)', '完成東側純白曲牆外殼，四面壺中居合體成型！']
+  ];
+  for (const [y1, y2, title, tip] of eastBands) {
+    b.beginStep(4, title, tip);
+    for (let y = y1; y < y2; y++) {
+      for (let z = -14; z < 10; z++) {
+        if (isInSideHourglass(z, y)) {
+          const isMullion = ((z + 16) % 4 === 0) || (y % 8 === 0);
+          b.place('plate_1x1', isMullion ? 'DARK_BLUISH_GRAY' : 'TRANS_LIGHT_BLUE', 22, y, z);
+        } else {
+          b.place('plate_1x1', 'WHITE', 23, y, z);
+          b.place('plate_1x1', 'WHITE', 22, y, z);
+        }
+      }
+    }
+  }
+
+  b.beginStep(4, '架設室內頂層白色交錯聲學曲樑', '於主建築頂部空間橫跨雙向白色結構樑，強化整體承重。');
+  for (const z of [-10, -2, 5]) {
+    b.spanX(-22, 22, 34, z, 'WHITE', 'brick');
+  }
+
+  // -------------------------------------------------------------------------
+  // BAG 5: Roof Structural Deck, Crisp White Parapet & Undulating Sky Garden Hills
+  // -------------------------------------------------------------------------
+  b.beginStep(5, '覆蓋 48×28 歌劇院屋頂結構樓板', '鋪滿屋頂淺藍灰與純白承重樓板，為空中花園打底。');
+  b.fillRect(-24, 24, -16, 12, 37, 'LIGHT_BLUISH_GRAY', 'plate');
+
+  b.beginStep(5, '圍築四周純白俐落屋頂女兒牆與平滑壓頂', '沿屋頂四邊砌起純白邊框與平滑光磚收邊。');
+  b.wallRing(-24, 24, -16, 12, 38, 'WHITE', 'plate');
+  b.wallRing(-24, 24, -16, 12, 39, 'WHITE', 'tile');
+
+  b.beginStep(5, '鋪設空中花園蜿蜒白色步道與第一層鮮綠草坪', '依真實空中花園動線鋪出 S 型散步道與鮮綠草坡基底。');
+  for (let x = -23; x < 23; x++) {
+    const pathZ = Math.round(Math.sin(x * 0.16) * 5.0 - 2.0);
+    for (let z = -15; z < 11; z++) {
+      if (Math.abs(z - pathZ) <= 1) {
+        b.place('tile_1x1', 'LIGHT_BLUISH_GRAY', x, 38, z);
+      } else {
+        const col = ((x + z) % 5 === 0) ? 'DARK_GREEN' : 'BRIGHT_GREEN';
+        b.place('plate_1x1', col, x, 38, z);
+      }
+    }
+  }
+
+  b.beginStep(5, '雕塑空中花園起伏草丘地形 (第二至三層綠坡)', '以鮮綠、深松綠與嫩芽綠薄板堆疊出波浪起伏的屋頂草丘。');
+  const hills = [[-16, -9, 4.5], [14, -9, 5.0], [-14, 5, 4.2], [16, 4, 4.5], [0, -10, 4.0]];
+  for (let x = -22; x < 22; x++) {
+    for (let z = -14; z < 10; z++) {
+      for (const [hx, hz, hr] of hills) {
+        const d = Math.hypot(x - hx, z - hz);
+        if (d < hr * 0.72) {
+          b.place('plate_1x1', d < hr * 0.4 ? 'LIME' : 'BRIGHT_GREEN', x, 39, z);
+        }
+        if (d < hr * 0.42) {
+          b.place('plate_1x1', 'BRIGHT_GREEN', x, 40, z);
+        }
+      }
+    }
+  }
+
+  // -------------------------------------------------------------------------
+  // BAG 6: 6 Iconic White Sculpted "Volcano" Skylight Cones & Rooftop Trees
+  // -------------------------------------------------------------------------
+  const volcanoes = [
+    [-15, -8], [0, -9], [15, -8],
+    [-14,  4], [2,  4], [15,  4]
+  ];
+
+  b.beginStep(6, '砌築 6 座標誌性白色「火山口」天窗底座環', '於空中花園草丘上定位 6 座伊東豊雄招牌白色有機天窗雕塑。');
+  for (const [vx, vz] of volcanoes) {
+    for (let dx = -2; dx <= 2; dx++) {
+      for (let dz = -2; dz <= 2; dz++) {
+        const d = Math.hypot(dx, dz);
+        if (d >= 1.2 && d <= 2.4) {
+          b.place('plate_1x1', 'WHITE', vx + dx, 41, vz + dz);
+          b.place('plate_1x1', 'WHITE', vx + dx, 42, vz + dz);
+        }
+      }
+    }
+  }
+
+  b.beginStep(6, '向上收縮雕塑 6 座火山口白色流線錐體與藍光天窗', '逐層內縮砌出柔順白色火山口造型，中央嵌入透亮水藍採光玻璃！');
+  for (const [vx, vz] of volcanoes) {
+    for (let dx = -1; dx <= 1; dx++) {
+      for (let dz = -1; dz <= 1; dz++) {
+        if (dx === 0 && dz === 0) {
+          b.place('tile_1x1', 'TRANS_LIGHT_BLUE', vx, 43, vz);
+        } else {
+          b.place('plate_1x1', 'WHITE', vx + dx, 43, vz + dz);
+          b.place('tile_1x1',  'WHITE', vx + dx, 44, vz + dz);
+        }
+      }
+    }
+  }
+
+  b.beginStep(6, '種植空中花園 16 棵景觀小樹與花卉灌木完工', '沿屋頂 S 型散步道種植多層次植栽，6,000+ 片臺中國家歌劇院完美落成！');
+  const roofTrees = [
+    [-20, -12], [-20, 0], [-20, 8], [-8, -13], [-8, 8],
+    [8, -13], [8, 8], [20, -12], [20, 0], [20, 8],
+    [-6, -2], [6, -2], [-18, -5], [18, -5], [-4, 8], [4, -12]
+  ];
+  for (const [tx, tz] of roofTrees) {
+    b.place('round_brick_1x1', 'REDDISH_BROWN', tx, 39, tz);
+    b.place('flower_1x1', 'DARK_GREEN', tx, 42, tz);
+    b.place('flower_1x1', 'BRIGHT_GREEN', tx, 43, tz);
+    b.place('flower_1x1', 'LIME', tx, 44, tz);
+  }
+
+  return b.finalize();
+}
+
+// ============================================================================
+// GENERATE ALL 6 SETS + VALIDATE + WRITE JSON, LDRAW (.ldr), CSV & MD MANUALS
 // ============================================================================
 const ALL_SETS = [
   buildSetNanjing(),
   buildSetJASM(),
   buildSetArizona(),
   buildSetMorris(),
-  buildSetRD()
+  buildSetRD(),
+  buildSetTaichungOpera()
 ];
 
-// Verify zero overlaps on orthogonal bricks across all 5 sets
+// Verify zero overlaps on orthogonal bricks across all 6 sets
 let grandTotal = 0;
 for (const set of ALL_SETS) {
   grandTotal += set.bricks.length;
   console.log(`✅ #${set.setNumber} ${set.shortName} (${set.footprint}): ${set.bricks.length} bricks, ${set.steps.length} steps, ${set.decals.length} decals`);
 }
-console.log(`\n🏆 GRAND TOTAL ACROSS ALL 5 SETS: ${grandTotal} LEGO BRICKS!\n`);
+console.log(`\n🏆 GRAND TOTAL ACROSS ALL 6 SETS: ${grandTotal} LEGO BRICKS!\n`);
 
 // 1. Write compact data/models.json for the web app
 fs.writeFileSync(path.join(DATA_DIR, 'models.json'), JSON.stringify(ALL_SETS), 'utf-8');
@@ -1218,7 +1565,8 @@ const filePrefix = {
   set02_jasm:    'SET02_21036_JASM',
   set03_arizona: 'SET03_21037_ARIZONA',
   set04_morris:  'SET04_21038_MORRIS',
-  set05_rd:      'SET05_21039_RD'
+  set05_rd:      'SET05_21039_RD',
+  set06_ntt:     'SET06_21040_TAICHUNG_OPERA'
 };
 
 for (const set of ALL_SETS) {

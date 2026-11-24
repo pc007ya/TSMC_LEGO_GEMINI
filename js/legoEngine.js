@@ -32,9 +32,9 @@ export class LegoEngine {
     this.controls.dampingFactor = 0.06;
     this.controls.maxPolarAngle = Math.PI / 2 - 0.03;
     this.controls.minDistance = 6;
-    this.controls.maxDistance = 135;
+    this.controls.maxDistance = 185;
     this.controls.autoRotate = false;
-    this.controls.autoRotateSpeed = 0.85;
+    this.controls.autoRotateSpeed = 0.80;
 
     this._setupLighting();
     this._setupStudioFloor();
@@ -45,16 +45,19 @@ export class LegoEngine {
     this.highlightGroup = new THREE.Group();
     this.scene.add(this.highlightGroup);
 
-    // Caches (shared geometries keep 900+ brick sets silky smooth at 60fps)
+    // Caches (shared geometries + InstancedMesh fast-path keep 6,500+ brick UCS sets at 60fps)
     this.materialCache = new Map();
     this.printTextureCache = new Map();
     this.boxGeoCache = new Map();
     this.edgeGeoCache = new Map();
-    this.studGeom = new THREE.CylinderGeometry(STUD_R, STUD_R, STUD_H, 12);
+    this.unitBoxGeo = new THREE.BoxGeometry(1, 1, 1);
+    this.studGeom = new THREE.CylinderGeometry(STUD_R, STUD_R, STUD_H, 10);
     this.edgeMat = new THREE.LineBasicMaterial({ color: '#1E242B', transparent: true, opacity: 0.11 });
 
     this.currentSet = null;
     this.brickEntries = [];
+    this.instancedMeshes = [];
+    this._dummy = new THREE.Object3D();
     this.explodeFactor = 0;
     this.cameraTween = null;
     this.clock = new THREE.Clock();
@@ -67,17 +70,17 @@ export class LegoEngine {
 
   _setupLighting() {
     const hemi = new THREE.HemisphereLight('#FFFFFF', '#CFD6E0', 0.90);
-    hemi.position.set(0, 60, 0);
+    hemi.position.set(0, 75, 0);
     this.scene.add(hemi);
 
     const key = new THREE.DirectionalLight('#FFFDF8', 1.38);
-    key.position.set(32, 52, 34);
+    key.position.set(42, 68, 44);
     key.castShadow = true;
     key.shadow.mapSize.width = 2048;
     key.shadow.mapSize.height = 2048;
     key.shadow.camera.near = 5;
-    key.shadow.camera.far = 140;
-    const d = 38;
+    key.shadow.camera.far = 185;
+    const d = 52;
     key.shadow.camera.left = -d;
     key.shadow.camera.right = d;
     key.shadow.camera.top = d;
@@ -86,16 +89,16 @@ export class LegoEngine {
     this.scene.add(key);
 
     const fill = new THREE.DirectionalLight('#DCEBFF', 0.48);
-    fill.position.set(-34, 24, -22);
+    fill.position.set(-44, 30, -28);
     this.scene.add(fill);
 
     const rim = new THREE.DirectionalLight('#FFFFFF', 0.35);
-    rim.position.set(0, 18, -42);
+    rim.position.set(0, 22, -52);
     this.scene.add(rim);
   }
 
   _setupStudioFloor() {
-    const floorGeo = new THREE.PlaneGeometry(240, 240);
+    const floorGeo = new THREE.PlaneGeometry(320, 320);
     const floorMat = new THREE.ShadowMaterial({ opacity: 0.16 });
     const floor = new THREE.Mesh(floorGeo, floorMat);
     floor.rotation.x = -Math.PI / 2;
@@ -103,8 +106,8 @@ export class LegoEngine {
     floor.receiveShadow = true;
     this.scene.add(floor);
 
-    const ringGeo = new THREE.RingGeometry(27.5, 27.7, 96);
-    const ringMat = new THREE.MeshBasicMaterial({ color: '#CBD3DF', side: THREE.DoubleSide, transparent: true, opacity: 0.45 });
+    const ringGeo = new THREE.RingGeometry(38.0, 38.25, 96);
+    const ringMat = new THREE.MeshBasicMaterial({ color: '#CBD3DF', side: THREE.DoubleSide, transparent: true, opacity: 0.42 });
     const ring = new THREE.Mesh(ringGeo, ringMat);
     ring.rotation.x = -Math.PI / 2;
     ring.position.y = 0.005;
@@ -251,6 +254,19 @@ export class LegoEngine {
       ctx.fillText('張忠謀大樓', 256, 104);
       ctx.font = '700 28px "Inter", sans-serif';
       ctx.fillText('Morris Chang Building', 256, 174);
+    } else if (printKey === 'NTT_PLAQUE') {
+      ctx.fillStyle = '#1E2124';
+      ctx.fillRect(0, 0, 512, 256);
+      ctx.fillStyle = '#F6F7F9';
+      ctx.font = '800 62px "Noto Sans TC", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('臺中國家歌劇院', 256, 102);
+      ctx.font = '600 26px "Inter", sans-serif';
+      ctx.fillStyle = '#CBD5E1';
+      ctx.fillText('National Taichung Theater', 256, 174);
+      ctx.fillStyle = '#C91A09';
+      ctx.fillRect(56, 218, 400, 12);
     }
 
     const tex = new THREE.CanvasTexture(canvas);
@@ -529,27 +545,185 @@ export class LegoEngine {
     return { mesh: group, basePos };
   }
 
+  _writeEntryTransform(entry, yPos, visible) {
+    if (entry.kind === 'mesh') {
+      entry.mesh.visible = visible;
+      if (visible) entry.mesh.position.set(entry.basePos.x, yPos, entry.basePos.z);
+      return;
+    }
+    const d = this._dummy;
+    if (!visible) {
+      d.position.set(0, -9999, 0);
+      d.scale.set(0, 0, 0);
+      d.rotation.set(0, 0, 0);
+      d.updateMatrix();
+      entry.bodyMesh.setMatrixAt(entry.bodyIdx, d.matrix);
+      entry.bodyMesh.instanceMatrix.needsUpdate = true;
+      if (entry.studMesh && entry.studIndices.length) {
+        for (const si of entry.studIndices) entry.studMesh.setMatrixAt(si, d.matrix);
+        entry.studMesh.instanceMatrix.needsUpdate = true;
+      }
+      return;
+    }
+    d.position.set(entry.basePos.x, yPos + entry.bh / 2, entry.basePos.z);
+    d.rotation.set(0, entry.rotY, 0);
+    d.scale.set(entry.bw, entry.bh, entry.bd);
+    d.updateMatrix();
+    entry.bodyMesh.setMatrixAt(entry.bodyIdx, d.matrix);
+    entry.bodyMesh.instanceMatrix.needsUpdate = true;
+
+    if (entry.studMesh && entry.studOffsets.length) {
+      d.rotation.set(0, 0, 0);
+      d.scale.set(1, 1, 1);
+      for (let i = 0; i < entry.studOffsets.length; i++) {
+        const off = entry.studOffsets[i];
+        d.position.set(entry.basePos.x + off[0], yPos + entry.bh + STUD_H / 2, entry.basePos.z + off[1]);
+        d.updateMatrix();
+        entry.studMesh.setMatrixAt(entry.studIndices[i], d.matrix);
+      }
+      entry.studMesh.instanceMatrix.needsUpdate = true;
+    }
+  }
+
   loadSet(setData, mode = 'showcase') {
     while (this.modelGroup.children.length > 0) {
       this.modelGroup.remove(this.modelGroup.children[0]);
     }
+    for (const im of this.instancedMeshes) im.dispose?.();
+    this.instancedMeshes = [];
     this.brickEntries = [];
     this.currentSet = setData;
     this.explodeFactor = 0;
 
-    for (const b of setData.bricks) {
-      const built = this._buildBrickMesh(b);
-      if (!built) continue;
-      this.modelGroup.add(built.mesh);
-      this.brickEntries.push({
-        mesh: built.mesh,
-        data: b,
-        basePos: built.basePos.clone(),
-        animStart: 0,
-        animDuration: 0.45,
-        isAnimating: false,
-        dropOffset: 0
-      });
+    const useInstancing = setData.bricks.length > 1200;
+
+    if (!useInstancing) {
+      for (const b of setData.bricks) {
+        const built = this._buildBrickMesh(b);
+        if (!built) continue;
+        this.modelGroup.add(built.mesh);
+        this.brickEntries.push({
+          kind: 'mesh',
+          mesh: built.mesh,
+          data: b,
+          basePos: built.basePos.clone(),
+          animStart: 0,
+          animDuration: 0.45,
+          isAnimating: false,
+          dropOffset: 0
+        });
+      }
+    } else {
+      // High-performance InstancedMesh path for 6,000+ piece UCS models (30 draw calls, 60 FPS!)
+      const boxShapes = new Set(['brick', 'plate', 'tile', 'grille', 'vent_brick']);
+      const bodyCounts = new Map();
+      const studCounts = new Map();
+
+      for (const b of setData.bricks) {
+        const p = PARTS[b.part];
+        if (!p) continue;
+        if (boxShapes.has(p.shape) && !p.print) {
+          bodyCounts.set(b.color, (bodyCounts.get(b.color) || 0) + 1);
+          if (p.studs && p.w * p.d <= 8) {
+            studCounts.set(b.color, (studCounts.get(b.color) || 0) + p.w * p.d);
+          }
+        }
+      }
+
+      const bodyIMs = new Map();
+      const studIMs = new Map();
+      const bodyCursor = new Map();
+      const studCursor = new Map();
+
+      for (const [colorKey, count] of bodyCounts.entries()) {
+        const mat = this._getMaterial(colorKey);
+        const im = new THREE.InstancedMesh(this.unitBoxGeo, mat, count);
+        im.castShadow = !COLORS[colorKey]?.transparent;
+        im.receiveShadow = true;
+        im.frustumCulled = false;
+        this.modelGroup.add(im);
+        this.instancedMeshes.push(im);
+        bodyIMs.set(colorKey, im);
+        bodyCursor.set(colorKey, 0);
+      }
+
+      for (const [colorKey, count] of studCounts.entries()) {
+        const mat = this._getMaterial(colorKey);
+        const im = new THREE.InstancedMesh(this.studGeom, mat, count);
+        im.castShadow = false;
+        im.receiveShadow = true;
+        im.frustumCulled = false;
+        this.modelGroup.add(im);
+        this.instancedMeshes.push(im);
+        studIMs.set(colorKey, im);
+        studCursor.set(colorKey, 0);
+      }
+
+      for (const b of setData.bricks) {
+        const p = PARTS[b.part];
+        if (!p) continue;
+        const basePos = new THREE.Vector3(b.x * STUD, b.y * PLATE, b.z * STUD);
+
+        if (boxShapes.has(p.shape) && !p.print) {
+          const bodyMesh = bodyIMs.get(b.color);
+          const bodyIdx = bodyCursor.get(b.color);
+          bodyCursor.set(b.color, bodyIdx + 1);
+
+          const rotY = (b.rotDeg !== undefined) ? (b.rotDeg * Math.PI / 180) : (b.rot || 0) * (Math.PI / 2);
+          const bw = p.w * STUD - GAP * 2;
+          const bh = p.h * PLATE - 0.008;
+          const bd = p.d * STUD - GAP * 2;
+
+          const studMesh = studIMs.get(b.color) || null;
+          const studIndices = [];
+          const studOffsets = [];
+          if (studMesh && p.studs && p.w * p.d <= 8) {
+            const halfW = (p.w - 1) / 2;
+            const halfD = (p.d - 1) / 2;
+            const cos = Math.cos(rotY), sin = Math.sin(rotY);
+            for (let ix = 0; ix < p.w; ix++) {
+              for (let iz = 0; iz < p.d; iz++) {
+                const lx = (ix - halfW) * STUD;
+                const lz = (iz - halfD) * STUD;
+                const wx = lx * cos + lz * sin;
+                const wz = -lx * sin + lz * cos;
+                const si = studCursor.get(b.color);
+                studCursor.set(b.color, si + 1);
+                studIndices.push(si);
+                studOffsets.push([wx, wz]);
+              }
+            }
+          }
+
+          const entry = {
+            kind: 'instanced',
+            bodyMesh, bodyIdx, studMesh, studIndices, studOffsets,
+            bw, bh, bd, rotY,
+            data: b,
+            basePos,
+            animStart: 0,
+            animDuration: 0.42,
+            isAnimating: false,
+            dropOffset: 0
+          };
+          this._writeEntryTransform(entry, basePos.y, true);
+          this.brickEntries.push(entry);
+        } else {
+          const built = this._buildBrickMesh(b);
+          if (!built) continue;
+          this.modelGroup.add(built.mesh);
+          this.brickEntries.push({
+            kind: 'mesh',
+            mesh: built.mesh,
+            data: b,
+            basePos: built.basePos.clone(),
+            animStart: 0,
+            animDuration: 0.42,
+            isAnimating: false,
+            dropOffset: 0
+          });
+        }
+      }
     }
 
     this.resetCamera(setData);
@@ -563,21 +737,20 @@ export class LegoEngine {
     for (const entry of this.brickEntries) {
       const s = entry.data.step;
       if (s <= stepNum) {
-        entry.mesh.visible = true;
         if (animateNew && s === stepNum) {
           entry.isAnimating = true;
-          entry.animStart = now + Math.min(staggerIndex * 0.018, 0.55);
-          entry.animDuration = 0.40;
-          entry.dropOffset = 5.5 + (staggerIndex % 4) * 0.35;
-          entry.mesh.position.set(entry.basePos.x, entry.basePos.y + entry.dropOffset, entry.basePos.z);
+          entry.animStart = now + Math.min(staggerIndex * 0.008, 0.48);
+          entry.animDuration = 0.38;
+          entry.dropOffset = 6.0 + (staggerIndex % 4) * 0.35;
+          this._writeEntryTransform(entry, entry.basePos.y + entry.dropOffset, true);
           staggerIndex++;
         } else {
           entry.isAnimating = false;
-          entry.mesh.position.copy(entry.basePos);
+          this._writeEntryTransform(entry, entry.basePos.y, true);
         }
       } else {
-        entry.mesh.visible = false;
         entry.isAnimating = false;
+        this._writeEntryTransform(entry, entry.basePos.y, false);
       }
     }
   }
@@ -585,11 +758,10 @@ export class LegoEngine {
   showAllBricks() {
     this.clearHighlight();
     for (const entry of this.brickEntries) {
-      entry.mesh.visible = true;
       entry.isAnimating = false;
-      entry.mesh.position.copy(entry.basePos);
+      const lift = entry.data.y * PLATE * this.explodeFactor * 1.15;
+      this._writeEntryTransform(entry, entry.basePos.y + lift, true);
     }
-    this.setExplodeFactor(this.explodeFactor);
   }
 
   clearHighlight() {
@@ -647,7 +819,7 @@ export class LegoEngine {
     for (const entry of this.brickEntries) {
       if (entry.isAnimating) continue;
       const lift = entry.data.y * PLATE * factor * 1.15;
-      entry.mesh.position.set(entry.basePos.x, entry.basePos.y + lift, entry.basePos.z);
+      this._writeEntryTransform(entry, entry.basePos.y + lift, true);
     }
   }
 
@@ -692,10 +864,10 @@ export class LegoEngine {
       const t = Math.min(elapsed / entry.animDuration, 1);
       const ease = 1 - Math.pow(1 - t, 3);
       const y = entry.basePos.y + entry.dropOffset * (1 - ease);
-      entry.mesh.position.set(entry.basePos.x, y, entry.basePos.z);
+      this._writeEntryTransform(entry, y, true);
       if (t >= 1) {
         entry.isAnimating = false;
-        entry.mesh.position.copy(entry.basePos);
+        this._writeEntryTransform(entry, entry.basePos.y, true);
       }
     }
 
