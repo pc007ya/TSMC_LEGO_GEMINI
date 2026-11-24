@@ -257,11 +257,11 @@
         <div class="modal-header">
           <div>
             <h2 id="bomModalTitle">零件清單 BOM (Bill of Materials)</h2>
-            <p class="modal-sub" id="bomModalSub">精準對應 3D 模型之每一塊樂高積木與官方料號</p>
+            <p class="modal-sub" id="bomModalSub">清單包含模型代碼、自訂件及未確認配色，請先下載核對表。</p>
           </div>
           <div class="modal-header-actions">
-            <button class="btn btn-ghost" id="btnExportLDR">🧱 下載 LDraw (.ldr)</button>
-            <button class="btn btn-ghost" id="btnExportCSV">⬇ 匯出 CSV</button>
+            <button class="btn btn-ghost" id="btnExportLDR">🧱 下載預覽 LDraw (.ldr)</button>
+            <button class="btn btn-ghost" id="btnExportCSV">⬇ 下載核對 CSV</button>
             <button class="icon-close" id="btnCloseBOM" aria-label="關閉">✕</button>
           </div>
         </div>
@@ -279,7 +279,7 @@
             <thead>
               <tr>
                 <th>圖示</th>
-                <th>官方料號</th>
+                <th>模型料號</th>
                 <th>零件名稱 (中 / 英)</th>
                 <th>顏色 (Color ID)</th>
                 <th class="num">數量</th>
@@ -298,3 +298,4 @@
   <script type="module" src="js/main.js"></script>
 </body>
 </html>
+

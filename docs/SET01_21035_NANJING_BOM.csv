@@ -1,47 +1,47 @@
-﻿Set,LEGO_Part_ID,Part_Name_EN,Part_Name_ZH,Color_ID,Color_EN,Color_ZH,Qty
-21035,3004,"Brick 1 x 2","1×2 標準磚",1,"White","純白",82
-21035,3070b,"Tile 1 x 1","1×1 單格光磚",43,"Trans-Medium Blue","透海藍",65
-21035,3003,"Brick 2 x 2","2×2 方磚",135,"Sand Blue","沙藍色",64
-21035,2412b,"Tile, Modified 1 x 2 Grille","1×2 散熱格柵光磚",1,"White","純白",44
-21035,3003,"Brick 2 x 2","2×2 方磚",1,"White","純白",44
-21035,11477,"Slope, Curved 2 x 1","1×2 弧形立面磚",1,"White","純白",42
-21035,3070b,"Tile 1 x 1","1×1 單格光磚",194,"Light Bluish Gray","淺藍灰",35
-21035,3022,"Plate 2 x 2","2×2 薄板",194,"Light Bluish Gray","淺藍灰",25
-21035,3024,"Plate 1 x 1","1×1 單點薄板",194,"Light Bluish Gray","淺藍灰",25
-21035,3004,"Brick 1 x 2","1×2 標準磚",194,"Light Bluish Gray","淺藍灰",15
-21035,30374,"Bar 4L (MEP Pipe)","4L 管線圓桿",315,"Flat Silver","金屬銀",13
-21035,92438,"Plate 8 x 16","8×16 基礎薄板",194,"Light Bluish Gray","淺藍灰",10
-21035,3024,"Plate 1 x 1","1×1 單點薄板",37,"Bright Green","鮮綠",9
-21035,3004v,"Support V-Pillar 1 x 2","1×2 V型斜撐柱",1,"White","純白",8
-21035,3069b,"Tile 1 x 2","1×2 光磚",42,"Trans-Light Blue","透亮水藍",8
-21035,3741,"Plant Flower Stem","園藝植栽樹苗",37,"Bright Green","鮮綠",8
-21035,87079,"Tile 2 x 4","2×4 平面光磚",199,"Dark Bluish Gray","深藍灰",8
-21035,98138f,"Tile, Round 1 x 1 Cooling Fan","1×1 冷卻風扇圓磚",315,"Flat Silver","金屬銀",8
-21035,3005,"Brick 1 x 1","1×1 柱磚",1,"White","純白",7
-21035,3024,"Plate 1 x 1","1×1 單點薄板",141,"Dark Green","深松綠",7
-21035,4073,"Plate, Round 1 x 1","1×1 圓薄片",192,"Reddish Brown","紅棕",6
-21035,24866,"Plate, Round 1 x 1 Flower","1×1 樹冠花葉片",37,"Bright Green","鮮綠",5
-21035,3005,"Brick 1 x 1","1×1 柱磚",194,"Light Bluish Gray","淺藍灰",5
-21035,3010,"Brick 1 x 4","1×4 牆磚",194,"Light Bluish Gray","淺藍灰",5
-21035,3622,"Brick 1 x 3","1×3 牆磚",194,"Light Bluish Gray","淺藍灰",5
-21035,24866,"Plate, Round 1 x 1 Flower","1×1 樹冠花葉片",141,"Dark Green","深松綠",4
-21035,6636,"Tile 1 x 6","1×6 長條光磚",199,"Dark Bluish Gray","深藍灰",4
-21035,87079,"Tile 2 x 4","2×4 平面光磚",1,"White","純白",4
-21035,3062b,"Brick, Round 1 x 1","1×1 圓柱磚",194,"Light Bluish Gray","淺藍灰",3
-21035,4073,"Plate, Round 1 x 1","1×1 圓薄片",315,"Flat Silver","金屬銀",3
-21035,26603,"Tile 2 x 3","2×3 平面光磚",140,"Dark Blue","海軍深藍",2
-21035,4032,"Plate, Round 2 x 2","2×2 圓薄板",199,"Dark Bluish Gray","深藍灰",2
-21035,2431,"Tile 1 x 4","1×4 光磚",199,"Dark Bluish Gray","深藍灰",1
-21035,3023,"Plate 1 x 2","1×2 薄板",141,"Dark Green","深松綠",1
-21035,3034,"Plate 2 x 8","2×8 長薄板",192,"Reddish Brown","紅棕",1
-21035,3035,"Plate 4 x 8","4×8 薄板",141,"Dark Green","深松綠",1
-21035,3035,"Plate 4 x 8","4×8 薄板",308,"Dark Brown","深棕",1
-21035,3036,"Plate 6 x 8","6×8 薄板",192,"Reddish Brown","紅棕",1
-21035,3036,"Plate 6 x 8","6×8 薄板",141,"Dark Green","深松綠",1
-21035,3069bpr01,"Tile 1 x 2 SNOT (Printed TSMC)","1×2 立面印刷磚 (tsmc 紅標)",1,"White","純白",1
-21035,3795,"Plate 2 x 6","2×6 薄板",141,"Dark Green","深松綠",1
-21035,3941,"Brick, Round 2 x 2","2×2 圓塔磚",194,"Light Bluish Gray","淺藍灰",1
-21035,3941,"Brick, Round 2 x 2","2×2 圓塔磚",1,"White","純白",1
-21035,3960,"Dish 4 x 4 Inverted","4×4 圓弧穹頂蓋",1,"White","純白",1
-21035,60474,"Plate, Round 4 x 4","4×4 大圓盤",308,"Dark Brown","深棕",1
-21035,60474,"Plate, Round 4 x 4","4×4 大圓盤",1,"White","純白",1
+﻿Set,LEGO_Part_ID,Part_Name_EN,Part_Name_ZH,Color_ID,Color_EN,Color_ZH,Qty,LEGO_Color_ID,LDraw_Part_Key,LDraw_Color_ID,Rebrickable_Part_ID,Rebrickable_Color_ID,Verified_LEGO_Design_ID,Verified_LEGO_Element_ID,Rebrickable_Historical_Design_Element_Alternatives,Audit_Status,LEGO_Evidence_URL,LDraw_Evidence_URL,Audit_Note
+21035,3004,Brick 1 x 2,1×2 標準磚,1,White,純白,82,1,3004,15,3004,15,3004,300401,3004/300401; 3004/6548257; 93792/4613964,原廠資料×Rebrickable 雙核對；台灣庫存未核實,https://www.lego.com/en-gb/pick-and-build/pick-a-brick?appearsIn=10318&perPage=200,https://github.com/kulits/ldraw-parts/blob/master/ldraw/parts/3004.dat,現有 LDraw 檔仍使用原色碼；本表只列正確碼，未改 CAD。
+21035,3070b,Tile 1 x 1,1×1 單格光磚,43,Trans-Medium Blue,透海藍,65,143,3070b,41,3070b,143,,,,無尺寸與指定色的已核實 Element ID；先不要下單,,https://github.com/kulits/ldraw-parts/blob/master/ldraw/parts/3070b.dat,舊欄色碼 43 與色名衝突；依設計色名用 LEGO 143 / LDraw 41。 現有 LDraw 檔仍使用原色碼；本表只列正確碼，未改 CAD。
+21035,3003,Brick 2 x 2,2×2 方磚,135,Sand Blue,沙藍色,64,135,3003,379,3003,379,,,3003/4196738; 3003/6506825,Rebrickable 歷史色件對照；原廠未逐項核實,,https://github.com/kulits/ldraw-parts/blob/master/ldraw/parts/3003.dat,現有 LDraw 檔仍使用原色碼；本表只列正確碼，未改 CAD。
+21035,2412b,"Tile, Modified 1 x 2 Grille",1×2 散熱格柵光磚,1,White,純白,44,1,2412b,15,2412b,15,2412,241201,2412/241201; 2412/6601902,原廠資料×Rebrickable 雙核對；台灣庫存未核實,https://www.lego.com/en-gb/pick-and-build/pick-a-brick?appearsIn=910023&perPage=200,https://github.com/kulits/ldraw-parts/blob/master/ldraw/parts/2412b.dat,現有 LDraw 檔仍使用原色碼；本表只列正確碼，未改 CAD。
+21035,3003,Brick 2 x 2,2×2 方磚,1,White,純白,44,1,3003,15,3003,15,3003,300301,3003/300301; 3003/6548256,原廠資料×Rebrickable 雙核對；台灣庫存未核實,https://www.lego.com/en-gb/pick-and-build/pick-a-brick?appearsIn=40174&perPage=200,https://github.com/kulits/ldraw-parts/blob/master/ldraw/parts/3003.dat,現有 LDraw 檔仍使用原色碼；本表只列正確碼，未改 CAD。
+21035,11477,"Slope, Curved 2 x 1",1×2 弧形立面磚,1,White,純白,42,1,11477,15,11477,15,11477,6034044,11477/6034044; 11477/6548276,原廠資料×Rebrickable 雙核對；台灣庫存未核實,https://www.lego.com/en-gb/pick-and-build/pick-a-brick?appearsIn=10318&perPage=200,https://github.com/kulits/ldraw-parts/blob/master/ldraw/parts/11477.dat,現有 LDraw 檔仍使用原色碼；本表只列正確碼，未改 CAD。
+21035,3070b,Tile 1 x 1,1×1 單格光磚,194,Light Bluish Gray,淺藍灰,35,194,3070b,71,3070b,71,3070,4211415,3070/4211415,原廠資料×Rebrickable 雙核對；台灣庫存未核實,https://www.lego.com/en-gb/pick-and-build/pick-a-brick?appearsIn=10318&perPage=200,https://github.com/kulits/ldraw-parts/blob/master/ldraw/parts/3070b.dat,現有 LDraw 檔仍使用原色碼；本表只列正確碼，未改 CAD。
+21035,3022,Plate 2 x 2,2×2 薄板,194,Light Bluish Gray,淺藍灰,25,194,3022,71,3022,71,3022,4211397,3022/4211397,原廠資料×Rebrickable 雙核對；台灣庫存未核實,https://www.lego.com/en-gb/pick-and-build/pick-a-brick?appearsIn=10318&perPage=200,https://github.com/kulits/ldraw-parts/blob/master/ldraw/parts/3022.dat,現有 LDraw 檔仍使用原色碼；本表只列正確碼，未改 CAD。
+21035,3024,Plate 1 x 1,1×1 單點薄板,194,Light Bluish Gray,淺藍灰,25,194,3024,71,3024,71,3024,4211399,3024/4211399,原廠資料×Rebrickable 雙核對；台灣庫存未核實,https://www.lego.com/en-gb/pick-and-build/pick-a-brick?appearsIn=21333&perPage=200,https://github.com/kulits/ldraw-parts/blob/master/ldraw/parts/3024.dat,現有 LDraw 檔仍使用原色碼；本表只列正確碼，未改 CAD。
+21035,3004,Brick 1 x 2,1×2 標準磚,194,Light Bluish Gray,淺藍灰,15,194,3004,71,3004,71,3004,4211388,3004/4211388,原廠資料×Rebrickable 雙核對；台灣庫存未核實,https://www.lego.com/en-gb/pick-and-build/pick-a-brick?appearsIn=75331&perPage=200,https://github.com/kulits/ldraw-parts/blob/master/ldraw/parts/3004.dat,現有 LDraw 檔仍使用原色碼；本表只列正確碼，未改 CAD。
+21035,30374,Bar 4L (MEP Pipe),4L 管線圓桿,315,Flat Silver,金屬銀,13,315,30374,315,30374,179,,,,無尺寸與指定色的已核實 Element ID；先不要下單,,https://github.com/kulits/ldraw-parts/blob/master/ldraw/parts/30374.dat,
+21035,92438,Plate 8 x 16,8×16 基礎薄板,194,Light Bluish Gray,淺藍灰,10,194,92438,71,92438,71,,,92438/4598522,Rebrickable 歷史色件對照；原廠未逐項核實,,https://github.com/kulits/ldraw-parts/blob/master/ldraw/parts/92438.dat,現有 LDraw 檔仍使用原色碼；本表只列正確碼，未改 CAD。
+21035,3024,Plate 1 x 1,1×1 單點薄板,37,Bright Green,鮮綠,9,37,3024,10,3024,10,,,3024/6223741; 3024/6401817,Rebrickable 歷史色件對照；原廠未逐項核實,,https://github.com/kulits/ldraw-parts/blob/master/ldraw/parts/3024.dat,現有 LDraw 檔仍使用原色碼；本表只列正確碼，未改 CAD。
+21035,3004v,Support V-Pillar 1 x 2,1×2 V型斜撐柱,1,White,純白,8,1,,15,,15,,,,自繪模型，勿以原料號採購,,,專案自繪 V 型斜撐，不能當 LEGO 3004 買；先決定用鉸鏈或其他實體結構，重新出圖與計數。 現有 LDraw 檔仍使用原色碼；本表只列正確碼，未改 CAD。
+21035,3069b,Tile 1 x 2,1×2 光磚,42,Trans-Light Blue,透亮水藍,8,42,3069b,43,3069b,41,,,30070/4585132; 30070/4667222; 35386/6251295; 35386/6514224,Rebrickable 歷史色件對照；原廠未逐項核實,,https://github.com/kulits/ldraw-parts/blob/master/ldraw/parts/3069b.dat,現有 LDraw 檔仍使用原色碼；本表只列正確碼，未改 CAD。
+21035,3741,Plant Flower Stem,園藝植栽樹苗,37,Bright Green,鮮綠,8,37,3741,10,3741,10,,,3741/4114429,Rebrickable 歷史色件對照；原廠未逐項核實,,https://github.com/kulits/ldraw-parts/blob/master/ldraw/parts/3741.dat,LDraw 標記舊版停用；有歷史對應不代表現售，改版零件須查實兼容性。 現有 LDraw 檔仍使用原色碼；本表只列正確碼，未改 CAD。
+21035,87079,Tile 2 x 4,2×4 平面光磚,199,Dark Bluish Gray,深藍灰,8,199,87079,72,87079,72,,,87079/4560184,Rebrickable 歷史色件對照；原廠未逐項核實,,https://github.com/kulits/ldraw-parts/blob/master/ldraw/parts/87079.dat,現有 LDraw 檔仍使用原色碼；本表只列正確碼，未改 CAD。
+21035,98138f,"Tile, Round 1 x 1 Cooling Fan",1×1 冷卻風扇圓磚,315,Flat Silver,金屬銀,8,315,,315,,179,,,,自繪模型，勿以原料號採購,,,專案自繪風扇面，沒有同號實件。98138 未印刷底件僅供改用貼花；要另作面印且顏色仍須核對。
+21035,3005,Brick 1 x 1,1×1 柱磚,1,White,純白,7,1,3005,15,3005,15,3005,300501,3005/300501; 3005/6548258,原廠資料×Rebrickable 雙核對；台灣庫存未核實,https://www.lego.com/en-gb/pick-and-build/pick-a-brick?appearsIn=40898,https://github.com/kulits/ldraw-parts/blob/master/ldraw/parts/3005.dat,現有 LDraw 檔仍使用原色碼；本表只列正確碼，未改 CAD。
+21035,3024,Plate 1 x 1,1×1 單點薄板,141,Dark Green,深松綠,7,141,3024,288,3024,288,3024,6055169,3024/6055169; 3024/6618077,原廠資料×Rebrickable 雙核對；台灣庫存未核實,https://www.lego.com/en-gb/pick-and-build/pick-a-brick?appearsIn=21333&perPage=200,https://github.com/kulits/ldraw-parts/blob/master/ldraw/parts/3024.dat,現有 LDraw 檔仍使用原色碼；本表只列正確碼，未改 CAD。
+21035,4073,"Plate, Round 1 x 1",1×1 圓薄片,192,Reddish Brown,紅棕,6,192,6141,70,6141,70,6141,4216581,6141/4216581,原廠資料×Rebrickable 雙核對；台灣庫存未核實,https://www.lego.com/es-es/pick-and-build/pick-a-brick?appearsIn=40901,https://github.com/kulits/ldraw-parts/blob/master/ldraw/parts/4073.dat,LDraw 遷移至 6141，同類圓片按已核實設計／顏色。 現有 LDraw 檔仍使用原色碼；本表只列正確碼，未改 CAD。
+21035,24866,"Plate, Round 1 x 1 Flower",1×1 樹冠花葉片,37,Bright Green,鮮綠,5,37,24866,10,24866,10,24866,6206150,24866/6206150,原廠資料×Rebrickable 雙核對；台灣庫存未核實,https://www.lego.com/en-gb/pick-and-build/pick-a-brick?appearsIn=910053&perPage=200,https://github.com/kulits/ldraw-parts/blob/master/ldraw/parts/24866.dat,現有 LDraw 檔仍使用原色碼；本表只列正確碼，未改 CAD。
+21035,3005,Brick 1 x 1,1×1 柱磚,194,Light Bluish Gray,淺藍灰,5,194,3005,71,3005,71,3005,4211389,3005/4211389,原廠資料×Rebrickable 雙核對；台灣庫存未核實,https://www.lego.com/en-gb/pick-and-build/pick-a-brick?appearsIn=40898,https://github.com/kulits/ldraw-parts/blob/master/ldraw/parts/3005.dat,現有 LDraw 檔仍使用原色碼；本表只列正確碼，未改 CAD。
+21035,3010,Brick 1 x 4,1×4 牆磚,194,Light Bluish Gray,淺藍灰,5,194,3010,71,3010,71,3010,4211394,3010/4211394,原廠資料×Rebrickable 雙核對；台灣庫存未核實,https://www.lego.com/en-gb/pick-and-build/pick-a-brick?appearsIn=21341&perPage=200,https://github.com/kulits/ldraw-parts/blob/master/ldraw/parts/3010.dat,現有 LDraw 檔仍使用原色碼；本表只列正確碼，未改 CAD。
+21035,3622,Brick 1 x 3,1×3 牆磚,194,Light Bluish Gray,淺藍灰,5,194,3622,71,3622,71,3622,4211428,3622/4211428,原廠資料×Rebrickable 雙核對；台灣庫存未核實,https://www.lego.com/fr-fr/pick-and-build/pick-a-brick?appearsIn=40782,https://github.com/kulits/ldraw-parts/blob/master/ldraw/parts/3622.dat,現有 LDraw 檔仍使用原色碼；本表只列正確碼，未改 CAD。
+21035,24866,"Plate, Round 1 x 1 Flower",1×1 樹冠花葉片,141,Dark Green,深松綠,4,141,24866,288,24866,288,24866,6446790,24866/6446790,原廠資料×Rebrickable 雙核對；台灣庫存未核實,https://www.lego.com/en-gb/pick-and-build/pick-a-brick?appearsIn=40898,https://github.com/kulits/ldraw-parts/blob/master/ldraw/parts/24866.dat,現有 LDraw 檔仍使用原色碼；本表只列正確碼，未改 CAD。
+21035,6636,Tile 1 x 6,1×6 長條光磚,199,Dark Bluish Gray,深藍灰,4,199,6636,72,6636,72,6636,4210651,6636/4210651,原廠資料×Rebrickable 雙核對；台灣庫存未核實,https://www.lego.com/en-gb/pick-and-build/pick-a-brick?appearsIn=8038&perPage=200,https://github.com/kulits/ldraw-parts/blob/master/ldraw/parts/6636.dat,現有 LDraw 檔仍使用原色碼；本表只列正確碼，未改 CAD。
+21035,87079,Tile 2 x 4,2×4 平面光磚,1,White,純白,4,1,87079,15,87079,15,87079,4560178,87079/4560178; 87079/6548271,原廠資料×Rebrickable 雙核對；台灣庫存未核實,https://www.lego.com/en-gb/pick-and-build/pick-a-brick?appearsIn=76392&perPage=200,https://github.com/kulits/ldraw-parts/blob/master/ldraw/parts/87079.dat,現有 LDraw 檔仍使用原色碼；本表只列正確碼，未改 CAD。
+21035,3062b,"Brick, Round 1 x 1",1×1 圓柱磚,194,Light Bluish Gray,淺藍灰,3,194,3062b,71,3062b,71,3062,4211412,3062/4211412,原廠資料×Rebrickable 雙核對；台灣庫存未核實,https://www.lego.com/en-gb/pick-and-build/pick-a-brick?appearsIn=21341&perPage=200,https://github.com/kulits/ldraw-parts/blob/master/ldraw/parts/3062b.dat,現有 LDraw 檔仍使用原色碼；本表只列正確碼，未改 CAD。
+21035,4073,"Plate, Round 1 x 1",1×1 圓薄片,315,Flat Silver,金屬銀,3,315,6141,315,6141,179,6141,4633691,6141/4633691,原廠資料×Rebrickable 雙核對；台灣庫存未核實,https://www.lego.com/en-gb/pick-and-build/pick-a-brick?appearsIn=40174&perPage=200,https://github.com/kulits/ldraw-parts/blob/master/ldraw/parts/4073.dat,LDraw 遷移至 6141，同類圓片按已核實設計／顏色。
+21035,26603,Tile 2 x 3,2×3 平面光磚,140,Dark Blue,海軍深藍,2,140,26603,272,26603,272,,,26603/6186974,Rebrickable 歷史色件對照；原廠未逐項核實,,https://github.com/kulits/ldraw-parts/blob/master/ldraw/parts/26603.dat,現有 LDraw 檔仍使用原色碼；本表只列正確碼，未改 CAD。
+21035,4032,"Plate, Round 2 x 2",2×2 圓薄板,199,Dark Bluish Gray,深藍灰,2,199,4032a,72,4032a,72,4032,4211042,4032/4211042,原廠資料×Rebrickable 雙核對；台灣庫存未核實,https://www.lego.com/en-gb/pick-and-build/pick-a-brick?appearsIn=8038&perPage=200,https://github.com/kulits/ldraw-parts/blob/master/ldraw/parts/4032.dat,LDraw 遷移至 4032a；實件需核對中央孔型。 現有 LDraw 檔仍使用原色碼；本表只列正確碼，未改 CAD。
+21035,2431,Tile 1 x 4,1×4 光磚,199,Dark Bluish Gray,深藍灰,1,199,2431,72,2431,72,2431,4211053,2431/4211053,原廠資料×Rebrickable 雙核對；台灣庫存未核實,https://www.lego.com/en-gb/pick-and-build/pick-a-brick?appearsIn=21341&perPage=200,https://github.com/kulits/ldraw-parts/blob/master/ldraw/parts/2431.dat,現有 LDraw 檔仍使用原色碼；本表只列正確碼，未改 CAD。
+21035,3023,Plate 1 x 2,1×2 薄板,141,Dark Green,深松綠,1,141,3023b,288,3023,288,3023,6013102,3023/4264404; 3023/6013102; 3023/6618076,原廠資料×Rebrickable 雙核對；台灣庫存未核實,https://www.lego.com/es-es/pick-and-build/pick-a-brick?appearsIn=40901,https://github.com/kulits/ldraw-parts/blob/master/ldraw/parts/3023.dat,LDraw 遷移至 3023b，同類平板購買需按已核實設計／顏色。 現有 LDraw 檔仍使用原色碼；本表只列正確碼，未改 CAD。
+21035,3034,Plate 2 x 8,2×8 長薄板,192,Reddish Brown,紅棕,1,192,3034,70,3034,70,3034,4211211,3034/4211211,原廠資料×Rebrickable 雙核對；台灣庫存未核實,https://www.lego.com/en-gb/pick-and-build/pick-a-brick?appearsIn=10273&perPage=200,https://github.com/kulits/ldraw-parts/blob/master/ldraw/parts/3034.dat,現有 LDraw 檔仍使用原色碼；本表只列正確碼，未改 CAD。
+21035,3035,Plate 4 x 8,4×8 薄板,141,Dark Green,深松綠,1,141,3035,288,3035,288,,,3035/4505051,Rebrickable 歷史色件對照；原廠未逐項核實,,https://github.com/kulits/ldraw-parts/blob/master/ldraw/parts/3035.dat,現有 LDraw 檔仍使用原色碼；本表只列正確碼，未改 CAD。
+21035,3035,Plate 4 x 8,4×8 薄板,308,Dark Brown,深棕,1,308,3035,308,3035,308,3035,6447571,3035/6447571,原廠資料×Rebrickable 雙核對；台灣庫存未核實,https://www.lego.com/en-gb/pick-and-build/pick-a-brick?appearsIn=21341&perPage=200,https://github.com/kulits/ldraw-parts/blob/master/ldraw/parts/3035.dat,
+21035,3036,Plate 6 x 8,6×8 薄板,192,Reddish Brown,紅棕,1,192,3036,70,3036,70,3036,4223729,3036/4223729,原廠資料×Rebrickable 雙核對；台灣庫存未核實,https://www.lego.com/en-gb/pick-and-build/pick-a-brick?appearsIn=10273&perPage=200,https://github.com/kulits/ldraw-parts/blob/master/ldraw/parts/3036.dat,現有 LDraw 檔仍使用原色碼；本表只列正確碼，未改 CAD。
+21035,3036,Plate 6 x 8,6×8 薄板,141,Dark Green,深松綠,1,141,3036,288,3036,288,,,3036/6605068,Rebrickable 歷史色件對照；原廠未逐項核實,,https://github.com/kulits/ldraw-parts/blob/master/ldraw/parts/3036.dat,現有 LDraw 檔仍使用原色碼；本表只列正確碼，未改 CAD。
+21035,3069bpr01,Tile 1 x 2 SNOT (Printed TSMC),1×2 立面印刷磚 (tsmc 紅標),1,White,純白,1,1,,15,,15,,,,自訂圖樣，勿以原料號採購,,,專案圖樣，非可下單的官方印刷件；3069b 為裸件參考，貼花另作；立式 SNOT 支架/固定需另外驗證。 現有 LDraw 檔仍使用原色碼；本表只列正確碼，未改 CAD。
+21035,3795,Plate 2 x 6,2×6 薄板,141,Dark Green,深松綠,1,141,3795,288,3795,288,,,3795/4245554; 3795/6253283; 3795/6618084,Rebrickable 歷史色件對照；原廠未逐項核實,,https://github.com/kulits/ldraw-parts/blob/master/ldraw/parts/3795.dat,現有 LDraw 檔仍使用原色碼；本表只列正確碼，未改 CAD。
+21035,3941,"Brick, Round 2 x 2",2×2 圓塔磚,194,Light Bluish Gray,淺藍灰,1,194,3941,71,3941,71,6143,4211526,6143/4211526,原廠資料×Rebrickable 雙核對；台灣庫存未核實,https://www.lego.com/en-gb/pick-and-build/pick-a-brick?appearsIn=8038&perPage=200,https://github.com/kulits/ldraw-parts/blob/master/ldraw/parts/3941.dat,現有 LDraw 檔仍使用原色碼；本表只列正確碼，未改 CAD。
+21035,3941,"Brick, Round 2 x 2",2×2 圓塔磚,1,White,純白,1,1,3941,15,3941,15,6143,614301,3941/394101; 6143/614301; 6143/6601920,原廠資料×Rebrickable 雙核對；台灣庫存未核實,https://www.lego.com/en-gb/pick-and-build/pick-a-brick?appearsIn=21050&perPage=200,https://github.com/kulits/ldraw-parts/blob/master/ldraw/parts/3941.dat,現有 LDraw 檔仍使用原色碼；本表只列正確碼，未改 CAD。
+21035,3960,Dish 4 x 4 Inverted,4×4 圓弧穹頂蓋,1,White,純白,1,1,3960,15,3960,15,3960,396001,3960/396001,原廠資料×Rebrickable 雙核對；台灣庫存未核實,https://www.lego.com/en-gb/pick-and-build/pick-a-brick?appearsIn=75187&perPage=200,https://github.com/kulits/ldraw-parts/blob/master/ldraw/parts/3960.dat,現有 LDraw 檔仍使用原色碼；本表只列正確碼，未改 CAD。
+21035,60474,"Plate, Round 4 x 4",4×4 大圓盤,308,Dark Brown,深棕,1,308,60474,308,60474,308,,,60474/6005030,Rebrickable 歷史色件對照；原廠未逐項核實,,https://github.com/kulits/ldraw-parts/blob/master/ldraw/parts/60474.dat,
+21035,60474,"Plate, Round 4 x 4",4×4 大圓盤,1,White,純白,1,1,60474,15,60474,15,60474,4515347,60474/4515347; 60474/6564904,原廠資料×Rebrickable 雙核對；台灣庫存未核實,https://www.lego.com/en-gb/pick-and-build/pick-a-brick?appearsIn=21050&perPage=200,https://github.com/kulits/ldraw-parts/blob/master/ldraw/parts/60474.dat,現有 LDraw 檔仍使用原色碼；本表只列正確碼，未改 CAD。

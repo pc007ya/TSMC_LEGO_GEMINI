@@ -1,4 +1,4 @@
-import { computeBOM, computeBagSummaries, renderPartSVG, exportBOMToCSV } from './bomGenerator.js';
+import { computeBOM, computeBagSummaries, renderPartSVG } from './bomGenerator.js';
 
 /**
  * Lightweight Web Audio API sound synthesizer for tactile LEGO feedback
@@ -238,19 +238,24 @@ export class UIController {
       a.href = href;
       a.download = `TSMC_LEGO_${this.currentSet.setNumber}.ldr`;
       a.click();
-      this.showToast(`已下載 #${this.currentSet.setNumber} LDraw 3D 積木檔 (.ldr)`);
+      this.showToast(`已下載模型預覽 LDraw；含專案代碼及未修正色碼，不是採購清單。`);
     });
 
     this.el.btnExportCSV.addEventListener('click', () => {
-      const csv = exportBOMToCSV(this.currentSet);
-      const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
-      const url = URL.createObjectURL(blob);
+      const files = {
+        set01_hq: 'SET01_21035_NANJING_BOM.csv',
+        set02_jasm: 'SET02_21036_JASM_BOM.csv',
+        set03_arizona: 'SET03_21037_ARIZONA_BOM.csv',
+        set04_morris: 'SET04_21038_MORRIS_BOM.csv',
+        set05_rd: 'SET05_21039_RD_BOM.csv'
+      };
+      const filename = files[this.currentSet.id];
+      if (!filename) return;
       const a = document.createElement('a');
-      a.href = url;
-      a.download = `TSMC_LEGO_${this.currentSet.setNumber}_BOM.csv`;
+      a.href = `docs/${filename}`;
+      a.download = `TSMC_LEGO_${this.currentSet.setNumber}_BOM_AUDITED.csv`;
       a.click();
-      URL.revokeObjectURL(url);
-      this.showToast(`已匯出 #${this.currentSet.setNumber} 完整零件 BOM (CSV)`);
+      this.showToast('已下載整組模型料號核對表；請勿將未核實項目當作採購料號。');
     });
 
     // Showcase 3D Controls
@@ -628,7 +633,7 @@ export class UIController {
     this.bomBagFilter = String(bagFilter);
     this.el.bomModalTitle.textContent = `#${this.currentSet.setNumber} ${this.currentSet.name} — 零件 BOM 表`;
     const totalBom = computeBOM(this.currentSet.bricks);
-    this.el.bomModalSub.textContent = `共 ${totalBom.totalCount} 件積木・${totalBom.uniqueCount} 種獨立零件・分 4 包封裝`;
+    this.el.bomModalSub.textContent = `共 ${totalBom.totalCount} 個模型零件；自訂與未核實料號不可直接下單。`;
 
     this.el.bomFilters.querySelectorAll('.filter-pill').forEach(p => {
       p.classList.toggle('active', p.dataset.bag === this.bomBagFilter);
@@ -670,3 +675,4 @@ export class UIController {
     }, 3200);
   }
 }
+
