@@ -1,0 +1,1560 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2020–2026 自行車頭管「培林外／內走線」工程圖鑑與技術報告｜BEARING STUDY</title>
+  <style>
+    :root {
+      --bg: #0b1018;
+      --bg-elev: #111826;
+      --card: #151e2e;
+      --card-2: #1a2538;
+      --border: #26344d;
+      --border-soft: #1e2a40;
+      --fg: #eef3fb;
+      --muted: #99a9c4;
+      --primary: #38bdf8;
+      --primary-fg: #06131f;
+      --accent: #818cf8;
+      --success: #34d399;
+      --warning: #fbbf24;
+      --danger: #f87171;
+      --chart-1: #38bdf8;
+      --chart-2: #34d399;
+      --chart-3: #a78bfa;
+      --chart-4: #fb923c;
+      --chart-5: #f472b6;
+      --shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+      --img-bg: #ffffff;
+    }
+    [data-theme="light"] {
+      --bg: #f4f7fb;
+      --bg-elev: #ffffff;
+      --card: #ffffff;
+      --card-2: #f8fafd;
+      --border: #d5dfed;
+      --border-soft: #e5ecf5;
+      --fg: #0f172a;
+      --muted: #475569;
+      --primary: #0284c7;
+      --primary-fg: #ffffff;
+      --accent: #4f46e5;
+      --success: #059669;
+      --warning: #d97706;
+      --danger: #dc2626;
+      --chart-1: #0284c7;
+      --chart-2: #059669;
+      --chart-3: #7c3aed;
+      --chart-4: #ea580c;
+      --chart-5: #db2777;
+      --shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+      --img-bg: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", "Segoe UI", Roboto, sans-serif;
+      font-size: 14px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+
+    /* Top Nav */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(12px);
+      background: color-mix(in srgb, var(--bg) 86%, transparent);
+      border-bottom: 1px solid var(--border);
+    }
+    .topbar-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--fg);
+    }
+    .brand-badge {
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      background: color-mix(in srgb, var(--primary) 18%, transparent);
+      color: var(--primary);
+      border: 1px solid color-mix(in srgb, var(--primary) 40%, transparent);
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .nav-links a, .btn-ghost {
+      padding: 5px 10px;
+      border-radius: 7px;
+      font-size: 12px;
+      color: var(--muted);
+      border: 1px solid transparent;
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .nav-links a:hover, .btn-ghost:hover {
+      color: var(--fg);
+      background: var(--card-2);
+      border-color: var(--border);
+      text-decoration: none;
+    }
+
+    /* Layout */
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 24px 20px 64px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+    .section-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      padding-bottom: 16px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--border-soft);
+    }
+    .section-head h2 {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+    }
+    .section-head p {
+      margin: 5px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* Hero */
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      background: var(--card-2);
+      color: var(--muted);
+    }
+    .pill.ok {
+      color: var(--success);
+      border-color: color-mix(in srgb, var(--success) 40%, transparent);
+      background: color-mix(in srgb, var(--success) 13%, transparent);
+    }
+    .pill.warn {
+      color: var(--warning);
+      border-color: color-mix(in srgb, var(--warning) 40%, transparent);
+      background: color-mix(in srgb, var(--warning) 13%, transparent);
+    }
+    .pill.err {
+      color: var(--danger);
+      border-color: color-mix(in srgb, var(--danger) 40%, transparent);
+      background: color-mix(in srgb, var(--danger) 13%, transparent);
+    }
+    .pill.info {
+      color: var(--primary);
+      border-color: color-mix(in srgb, var(--primary) 40%, transparent);
+      background: color-mix(in srgb, var(--primary) 13%, transparent);
+    }
+    .pill.purple {
+      color: var(--chart-3);
+      border-color: color-mix(in srgb, var(--chart-3) 40%, transparent);
+      background: color-mix(in srgb, var(--chart-3) 14%, transparent);
+    }
+
+    .hero h1 {
+      margin: 0 0 10px;
+      font-size: clamp(24px, 3vw, 34px);
+      line-height: 1.25;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+    }
+    .hero-lead {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14.5px;
+      max-width: 960px;
+    }
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .kpi {
+      background: var(--card-2);
+      border: 1px solid var(--border-soft);
+      border-radius: 12px;
+      padding: 14px 16px;
+    }
+    .kpi-label { font-size: 12px; color: var(--muted); }
+    .kpi-val { font-size: 19px; font-weight: 800; margin-top: 4px; color: var(--fg); }
+    .kpi-sub { font-size: 12px; color: var(--muted); margin-top: 3px; }
+
+    /* Buttons & Tabs */
+    .btn-group { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tab-btn {
+      padding: 7px 13px;
+      border-radius: 9px;
+      border: 1px solid var(--border);
+      background: var(--card-2);
+      color: var(--fg);
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .tab-btn:hover { border-color: var(--primary); }
+    .tab-btn[data-active="true"] {
+      background: var(--primary);
+      color: var(--primary-fg);
+      border-color: var(--primary);
+    }
+
+    /* Showdown 3-Column Comparison Cards */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .compare-card {
+      background: var(--card-2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .compare-card.highlight {
+      border-color: color-mix(in srgb, var(--success) 65%, transparent);
+      box-shadow: 0 0 0 1px color-mix(in srgb, var(--success) 35%, transparent);
+    }
+    .media-box {
+      position: relative;
+      background: var(--img-bg);
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      cursor: zoom-in;
+      border-bottom: 1px solid var(--border-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .media-box.tall { aspect-ratio: 3 / 3.4; }
+    .media-box.dark-bg { background: #0a0d12; }
+    .media-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      transition: transform 0.25s ease;
+    }
+    .media-box:hover img { transform: scale(1.03); }
+    .zoom-hint {
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      background: rgba(11, 16, 24, 0.78);
+      color: #f8fafc;
+      pointer-events: none;
+    }
+    .compare-body {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+    }
+    .compare-body h3 { margin: 0; font-size: 16px; font-weight: 800; }
+    .compare-body p { margin: 0; font-size: 12.5px; color: var(--muted); }
+    .spec-list {
+      margin: 4px 0 0;
+      padding: 10px 12px;
+      background: var(--card);
+      border: 1px solid var(--border-soft);
+      border-radius: 9px;
+      font-size: 12px;
+      display: grid;
+      gap: 4px;
+    }
+    .spec-row { display: flex; justify-content: space-between; gap: 8px; }
+    .spec-row span:first-child { color: var(--muted); }
+    .spec-row span:last-child { font-weight: 600; text-align: right; }
+
+    /* Interactive Explorer */
+    .explorer-grid {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 20px;
+      align-items: stretch;
+    }
+    .svg-card {
+      background: var(--card-2);
+      border: 1px solid var(--border-soft);
+      border-radius: 14px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px 14px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border-soft);
+      font-size: 11.5px;
+      color: var(--muted);
+    }
+    .legend span { display: inline-flex; align-items: center; gap: 5px; }
+    .swatch { width: 11px; height: 11px; border-radius: 3px; display: inline-block; }
+
+    .detail-box {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .pro-con {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .subcard {
+      background: var(--card-2);
+      border: 1px solid var(--border-soft);
+      border-radius: 12px;
+      padding: 14px;
+    }
+    .subcard ul {
+      margin: 6px 0 0;
+      padding-left: 18px;
+      font-size: 12.5px;
+      color: var(--fg);
+      display: grid;
+      gap: 4px;
+    }
+    .ref-strip {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 14px;
+      background: var(--card-2);
+      border: 1px solid var(--border-soft);
+      border-radius: 12px;
+      padding: 12px;
+      align-items: center;
+    }
+    .ref-thumb {
+      background: #ffffff;
+      border-radius: 8px;
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      cursor: zoom-in;
+      border: 1px solid var(--border);
+    }
+    .ref-thumb img { width: 100%; height: 100%; object-fit: contain; display: block; }
+
+    /* Visual Gallery */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .gal-card {
+      background: var(--card-2);
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.18s, border-color 0.18s;
+    }
+    .gal-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--primary);
+    }
+    .gal-body {
+      padding: 13px 15px 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex: 1;
+    }
+    .gal-title { font-size: 14px; font-weight: 800; color: var(--fg); line-height: 1.35; }
+    .gal-desc { font-size: 12px; color: var(--muted); line-height: 1.55; }
+    .gal-foot {
+      margin-top: auto;
+      padding-top: 8px;
+      border-top: 1px solid var(--border-soft);
+      font-size: 11px;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    /* Metrics */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .bar-track {
+      height: 8px;
+      border-radius: 999px;
+      background: var(--border-soft);
+      overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%;
+      border-radius: 999px;
+    }
+
+    /* Timeline */
+    .timeline {
+      position: relative;
+      padding-left: 26px;
+      border-left: 2px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .tl-item {
+      position: relative;
+      background: var(--card-2);
+      border: 1px solid var(--border-soft);
+      border-radius: 12px;
+      padding: 14px 16px;
+    }
+    .tl-dot {
+      position: absolute;
+      left: -34px;
+      top: 16px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 3px solid var(--card);
+    }
+
+    /* Table */
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+    .input, .select {
+      padding: 7px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--card-2);
+      color: var(--fg);
+      font-size: 12.5px;
+    }
+    .input { min-width: 240px; }
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--border-soft);
+      border-radius: 12px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12.5px;
+    }
+    thead th {
+      background: var(--card-2);
+      color: var(--muted);
+      font-weight: 700;
+      text-align: left;
+      padding: 11px 12px;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    tbody td {
+      padding: 12px;
+      border-bottom: 1px solid var(--border-soft);
+      vertical-align: top;
+    }
+    tbody tr:hover { background: var(--card-2); }
+    .mini-thumb {
+      width: 54px;
+      height: 42px;
+      object-fit: contain;
+      background: #ffffff;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      cursor: zoom-in;
+      display: block;
+    }
+
+    /* Lightbox Modal */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: rgba(5, 9, 16, 0.92);
+      backdrop-filter: blur(8px);
+      display: none;
+      flex-direction: column;
+      padding: 16px;
+    }
+    .lightbox.open { display: flex; }
+    .lb-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      color: #f1f5f9;
+      padding-bottom: 10px;
+      flex-wrap: wrap;
+    }
+    .lb-actions { display: flex; gap: 8px; align-items: center; }
+    .lb-btn {
+      padding: 6px 12px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.22);
+      background: rgba(255,255,255,0.08);
+      color: #f8fafc;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .lb-btn:hover { background: rgba(255,255,255,0.18); }
+    .lb-stage {
+      flex: 1;
+      overflow: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 12px;
+    }
+    .lb-stage img {
+      max-width: 100%;
+      max-height: 78vh;
+      object-fit: contain;
+      background: #ffffff;
+      border-radius: 8px;
+      transition: transform 0.2s;
+    }
+    .lb-stage.zoomed {
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+    .lb-stage.zoomed img {
+      max-width: none;
+      max-height: none;
+      width: 165%;
+      cursor: zoom-out;
+    }
+    .lb-caption {
+      margin-top: 10px;
+      color: #cbd5e1;
+      font-size: 13px;
+      text-align: center;
+      max-width: 960px;
+      align-self: center;
+    }
+
+    @media (max-width: 980px) {
+      .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+      .grid-3, .gallery-grid, .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+      .explorer-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .kpi-grid, .grid-3, .grid-2, .gallery-grid, .metrics-grid, .pro-con, .ref-strip {
+        grid-template-columns: 1fr;
+      }
+      .panel { padding: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <span class="brand-badge mono">/BEARING STUDY</span>
+        <span>自行車頭管培林外／內走線技術報告（2020–2026）</span>
+      </div>
+      <div class="nav-links">
+        <a href="#showdown">實品 vs CAD對照</a>
+        <a href="#explorer">剖面圖解</a>
+        <a href="#gallery">真實圖與技術圖庫</a>
+        <a href="#metrics">工程評比</a>
+        <a href="#timeline">六年演進</a>
+        <a href="#database">系統專利表</a>
+        <a href="../">← 返回樂高主頁</a>
+        <button type="button" class="btn-ghost" id="theme-toggle" title="切換深色／淺色模式">☀ 淺色</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+
+    <!-- HERO -->
+    <section class="panel hero">
+      <div class="hero-meta">
+        <span class="pill info">實品圖 ＋ 原廠 CAD 工程圖 ＋ 美國專利圖</span>
+        <span class="pill mono">收錄區間：2020.11 – 2026.11（近 6 年）</span>
+        <span class="pill ok">支援點擊放大檢視 1:1 CAD 尺寸公差</span>
+      </div>
+      <h1>近六年自行車頭管「培林外／內走線」真實圖鑑與工程技術報告</h1>
+      <p class="hero-lead">
+        全隱藏內走線（ICR）已主導 2020–2026 年中高階自行車設計，而線管究竟是<strong>「繞過上培林外徑（培林外內走線）」</strong>還是<strong>「貫穿上培林內圈（培林內走線）」</strong>，直接決定了頭管迎風面積、碳纖舵管壽命與更換培林是否必須拆剪油壓煞車管。本報告彙整台灣頭碗廠（First Components 輪鋒、Token 泰億）、歐美專利與成車原廠（Chris King、Cervélo、Colnago、Specialized、Cannondale、Cane Creek、CeramicSpeed）之<strong>真實實品照、1:1 CAD 工程圖與原廠手冊剖面圖</strong>，進行系統化工程解析。
+      </p>
+
+      <div class="kpi-grid">
+        <div class="kpi">
+          <div class="kpi-label">培林外走線最新代表（2026）</div>
+          <div class="kpi-val">First S561A</div>
+          <div class="kpi-sub">上培林縮為 Ø39mm，碗座外緣開 4×Ø5.8mm 孔</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">收錄真實圖與原廠技術圖</div>
+          <div class="kpi-val mono">19 張</div>
+          <div class="kpi-sub">含輪鋒 CAD 藍圖、US 12,337,923 B2 專利圖、原廠透視圖</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">刺刀前叉半繞過方案</div>
+          <div class="kpi-val">S5 / Y1Rs / ONE</div>
+          <div class="kpi-sub">前煞油管走外置前叉前腔，完全繞過頭碗培林</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">2025–2026 兩極化趨勢</div>
+          <div class="kpi-val">MTB 回潮 × 公路偏心</div>
+          <div class="kpi-sub">MTB 恢復培林外側孔；Tarmac SL9 偏心舵管再窄 4mm</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 1: SIDE-BY-SIDE REAL PHOTO vs 1:1 CAD BLUEPRINT SHOWDOWN -->
+    <section class="panel" id="showdown">
+      <div class="section-head">
+        <div>
+          <h2>一、一張圖看懂本質差異：培林外走線 vs 培林內走線（實品剖面 × 1:1 原廠 CAD 工程圖）</h2>
+          <p>以台灣輪鋒工業（First Components）2026 台北展同步發表的三款代表頭碗為對照組，點選右上按鈕即可在「真實剖面實品圖」與「1:1 CAD 工程藍圖（含完整 BOM 與公差）」之間即時切換，點擊圖片可全螢幕放大。</p>
+        </div>
+        <div class="btn-group" id="showdown-mode">
+          <button type="button" class="tab-btn" data-mode="photo" data-active="true">切換：真實剖面實品圖</button>
+          <button type="button" class="tab-btn" data-mode="cad" data-active="false">切換：1:1 原廠 CAD 工程圖</button>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <!-- Card 1: S561A Outside Bearing -->
+        <article class="compare-card highlight">
+          <div class="media-box tall" data-lb-src="./images/first-s561-outside-cutaway.jpg" data-lb-title="First Components S561A — 培林外內走線剖面實品圖（2026）" data-lb-cap="清楚可見綠／黃四條線管完全走在上培林（D390，Ø30.2×39×6.5mm）外圈之外的碗座孔道中，拆換上培林無需拆剪液壓油管。來源：First Components（輪鋒工業）">
+            <img class="showdown-img" data-photo="./images/first-s561-outside-cutaway.jpg" data-cad="./images/cad-first-s561a-blueprint.png" data-photo-title="First Components S561A — 培林外內走線剖面實品圖（2026）" data-cad-title="First Components S561A — 輪鋒工業 1:1 原廠 CAD 工程組裝圖（2026/04/28 A2 版）" data-photo-cap="四條線管通過上碗外緣孔洞，完全不經過滾珠培林內圈。來源：First Components" data-cad-cap="CAD 圖揭露核心幾何：頭管上口 Ø52.2mm，上培林縮小為 D390（Ø30.2×39×6.5mm），利用 Ø39～Ø52.2mm 環形壁厚開出 4 個 Ø5.8mm 培林外過線孔，總堆高 17.2mm。來源：輪鋒工業股份有限公司" src="./images/first-s561-outside-cutaway.jpg" alt="First Components S561A 培林外走線剖面圖" />
+            <span class="zoom-hint">點擊放大</span>
+          </div>
+          <div class="compare-body">
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <span class="pill ok">培林外內走線（Outside Bearing）</span>
+              <span class="pill mono">2026</span>
+            </div>
+            <h3>First S561A（碗座外緣 4 孔走線）</h3>
+            <p><strong>關鍵設計密碼：</strong>將上培林縮小至 Ø39mm（D390），裝於 Ø52.2mm 鋁合金上碗中央，騰出外圍環壁開設 4×Ø5.8mm 穿線孔，徹底解耦培林與線管。</p>
+            <div class="spec-list">
+              <div class="spec-row"><span>頭管規格</span><span class="mono">ZS52/28.6 上 ｜ IS52/40 下</span></div>
+              <div class="spec-row"><span>上培林尺寸</span><span class="mono">Ø30.2 × Ø39 × 6.5 (D390)</span></div>
+              <div class="spec-row"><span>線管路徑</span><span style="color:var(--success)">培林外緣 4 × Ø5.8mm 孔</span></div>
+              <div class="spec-row"><span>重量 / 堆高</span><span class="mono">126 g / 17.2 mm</span></div>
+              <div class="spec-row"><span>換培林免斷油管</span><span style="color:var(--success)">✓ 是（完全免剪免排氣）</span></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 2: R554A-1 Inside Bearing -->
+        <article class="compare-card">
+          <div class="media-box tall" data-lb-src="./images/first-r554a1-inside-cutaway.jpg" data-lb-title="First Components R554A-1 — 培林內全隱藏走線剖面實品圖（2026）" data-lb-cap="典型全內走線對照組：四條線管由上蓋進入後直接貫穿 Ø40×52×7mm 上培林內圈（位於培林與 Ø28.6 舵管之間），相容 ENVE IN-Route 龍頭。來源：First Components">
+            <img class="showdown-img" data-photo="./images/first-r554a1-inside-cutaway.jpg" data-cad="./images/cad-first-r554a1-blueprint.png" data-photo-title="First Components R554A-1 — 培林內全隱藏走線剖面實品圖（2026）" data-cad-title="First Components R554A-1 — 輪鋒工業 1:1 原廠 CAD 工程組裝圖（A3 版）" data-photo-cap="線管由特規上蓋導入後直接穿過 Ø40×52×7mm 上培林內圈。來源：First Components" data-cad-cap="CAD 圖顯示上、下皆為 Ø40×52×7mm 培林（45°×45° ACB），線管穿過上塞 Ø6.8/8mm 開槽並通過上培林內徑進入頭管，總堆高 22.8mm。來源：輪鋒工業股份有限公司" src="./images/first-r554a1-inside-cutaway.jpg" alt="First Components R554A-1 培林內走線剖面圖" />
+            <span class="zoom-hint">點擊放大</span>
+          </div>
+          <div class="compare-body">
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <span class="pill warn">培林內走線（Through Bearing）</span>
+              <span class="pill mono">2026</span>
+            </div>
+            <h3>First R554A-1（IS52 培林內全隱藏）</h3>
+            <p><strong>主流全隱藏對照組：</strong>線管全程藏於龍頭與頭管內無外露，但須由 1.5" 超大上培林（Ø40×52mm）內圈穿過，相容 ENVE IN-Route 整合座艙。</p>
+            <div class="spec-list">
+              <div class="spec-row"><span>頭管規格</span><span class="mono">IS52/28.6 上 ｜ EC49/40 下</span></div>
+              <div class="spec-row"><span>上培林尺寸</span><span class="mono">Ø40 × Ø52 × 7.0 (ACB)</span></div>
+              <div class="spec-row"><span>線管路徑</span><span style="color:var(--warning)">穿過培林內圈與舵管間隙</span></div>
+              <div class="spec-row"><span>重量 / 堆高</span><span class="mono">141 g / 22.8 mm</span></div>
+              <div class="spec-row"><span>換培林免斷油管</span><span style="color:var(--danger)">✗ 否（須拆斷油管重排氣）</span></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 3: T522A-4 ZS44 Retrofit -->
+        <article class="compare-card">
+          <div class="media-box tall" data-lb-src="./images/first-t522a4-ec44-cutaway.jpg" data-lb-title="First Components T522A-4 — ZS44 窄頭管外置 EC44 內走線實品圖（2026）" data-lb-cap="為傳統鋼管／鈦合金 ZS44（內徑 44mm）非內走線車架打造的改裝方案：將培林外移至 EC44 外置鋁碗內以騰出培林內過線空間。來源：First Components">
+            <img class="showdown-img" data-photo="./images/first-t522a4-ec44-cutaway.jpg" data-cad="./images/cad-first-t522a4-blueprint.png" data-photo-title="First Components T522A-4 — ZS44 窄頭管外置 EC44 內走線實品圖（2026）" data-cad-title="First Components T522A-4 — 輪鋒工業 1:1 原廠 CAD 工程組裝圖（A1 版）" data-photo-cap="透過外置 EC44 上碗座，讓原本僅有 44mm 內徑的傳統頭管得以在培林內側走線。來源：First Components" data-cad-cap="CAD 圖清楚標示 EC44 上下鋁碗外置結構，總堆高 39.4mm（換取窄頭管的過線淨空）。來源：輪鋒工業股份有限公司" src="./images/first-t522a4-ec44-cutaway.jpg" alt="First Components T522A-4 外置碗內走線剖面圖" />
+            <span class="zoom-hint">點擊放大</span>
+          </div>
+          <div class="compare-body">
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <span class="pill purple">舊框改裝：外置碗培林內</span>
+              <span class="pill mono">2026</span>
+            </div>
+            <h3>First T522A-4（ZS44 舊框外置改裝）</h3>
+            <p><strong>空間物理妥協解：</strong>針對內徑僅 44mm（單邊空隙僅 7.7mm）的鋼／鈦車架，將大培林外移至頭管上方 EC44 鋁碗，以較高堆高換取隱藏走線。</p>
+            <div class="spec-list">
+              <div class="spec-row"><span>頭管規格</span><span class="mono">EC44/28.6 上 ｜ EC44/40 下</span></div>
+              <div class="spec-row"><span>適用車架</span><span class="mono">傳統 ZS44 窄口徑頭管</span></div>
+              <div class="spec-row"><span>線管路徑</span><span style="color:var(--warning)">經外置碗培林內圈下潛</span></div>
+              <div class="spec-row"><span>重量 / 堆高</span><span class="mono">183 g / 39.4 mm</span></div>
+              <div class="spec-row"><span>換培林免斷油管</span><span style="color:var(--danger)">✗ 否（須拆斷油管）</span></div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SECTION 2: INTERACTIVE ARCHITECTURE CROSS-SECTION EXPLORER -->
+    <section class="panel" id="explorer">
+      <div class="section-head">
+        <div>
+          <h2>二、四大頭管走線架構互動剖面圖解（俯視幾何 × 原廠技術圖聯動）</h2>
+          <p>點選不同技術路線，比對「舵管、上培林、線管」的俯視幾何配置，並直接對照該架構的真實原廠工程圖。</p>
+        </div>
+        <div class="btn-group" id="arch-tabs">
+          <button type="button" class="tab-btn" data-arch="cup-outside" data-active="true">1A. 培林外：碗座外孔式</button>
+          <button type="button" class="tab-btn" data-arch="frame-cavity" data-active="false">1B. 培林外：前置腔／側孔</button>
+          <button type="button" class="tab-btn" data-arch="bayonet" data-active="false">1C. 刺刀前叉分流式</button>
+          <button type="button" class="tab-btn" data-arch="through-bearing" data-active="false">2. 培林內：大培林／異形舵管</button>
+        </div>
+      </div>
+
+      <div class="explorer-grid">
+        <div class="svg-card">
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px;">
+            <strong style="color:var(--fg)">上頭碗俯視剖面示意（Top View）</strong>
+            <span class="mono">↑ 車頭前方</span>
+          </div>
+          <svg id="arch-svg" viewBox="0 0 320 260" style="width:100%;height:auto;display:block;" aria-label="頭管剖面圖"></svg>
+          <div class="legend">
+            <span><i class="swatch" style="background:var(--chart-1)"></i>上培林</span>
+            <span><i class="swatch" style="background:var(--chart-2)"></i>前叉舵管</span>
+            <span><i class="swatch" style="background:var(--chart-4);border-radius:50%"></i>油管／變速線</span>
+            <span><i class="swatch" style="background:var(--border)"></i>頭管／碗座</span>
+          </div>
+        </div>
+
+        <div class="detail-box">
+          <div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px;">
+              <span id="arch-badge" class="pill"></span>
+              <span id="arch-service-tag" class="pill"></span>
+            </div>
+            <h3 id="arch-title" style="margin:0 0 8px;font-size:19px;font-weight:800;"></h3>
+            <p id="arch-desc" style="margin:0;color:var(--muted);font-size:13.5px;"></p>
+          </div>
+
+          <div class="pro-con">
+            <div class="subcard">
+              <div style="font-size:12px;font-weight:700;color:var(--success)">工程優勢</div>
+              <ul id="arch-pros"></ul>
+            </div>
+            <div class="subcard">
+              <div style="font-size:12px;font-weight:700;color:var(--warning)">設計取捨與限制</div>
+              <ul id="arch-cons"></ul>
+            </div>
+          </div>
+
+          <div class="ref-strip">
+            <div class="ref-thumb" id="arch-ref-box" data-lb-src="" data-lb-title="" data-lb-cap="">
+              <img id="arch-ref-img" src="" alt="架構實例技術圖" />
+            </div>
+            <div>
+              <div style="font-size:11.5px;color:var(--primary);font-weight:700;">對應原廠真實技術圖（點擊左側放大）</div>
+              <div id="arch-ref-name" style="font-size:14px;font-weight:800;margin:2px 0 4px;"></div>
+              <div id="arch-bearing-spec" class="mono" style="font-size:12px;color:var(--muted);margin-bottom:8px;"></div>
+              <div id="arch-examples" style="display:flex;flex-wrap:wrap;gap:6px;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: FULL REAL PHOTO & TECHNICAL DRAWING GALLERY -->
+    <section class="panel" id="gallery">
+      <div class="section-head">
+        <div>
+          <h2>三、真實圖片與原廠技術圖／專利圖全覽（2020–2026）</h2>
+          <p>收錄 15 張精選實品照、1:1 CAD 藍圖、USPTO 美國專利工程圖與原廠透視手冊圖。點擊任意圖片可開啟高解析度燈箱並支援 165% 縮放細看標註。</p>
+        </div>
+        <div class="btn-group" id="gallery-filters">
+          <button type="button" class="tab-btn" data-gcat="all" data-active="true">全部圖鑑 (15)</button>
+          <button type="button" class="tab-btn" data-gcat="cad-patent" data-active="false">CAD 藍圖與專利技術圖</button>
+          <button type="button" class="tab-btn" data-gcat="outside" data-active="false">培林外／刺刀繞過方案</button>
+          <button type="button" class="tab-btn" data-gcat="inside-service" data-active="false">培林內異形舵管與防鏽套件</button>
+        </div>
+      </div>
+
+      <div class="gallery-grid" id="gallery-grid"></div>
+    </section>
+
+    <!-- SECTION 4: ENGINEERING TRADE-OFF METRICS -->
+    <section class="panel" id="metrics">
+      <div class="section-head">
+        <div>
+          <h2>四、六大工程指標量化評比（滿分 10 分）</h2>
+          <p>綜合氣動風阻、更換培林維修工時、Fitting 相容性、防水防鏽耐久度、結構剛性與模具／組裝成本。</p>
+        </div>
+        <div style="display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--muted);">
+          <span><i class="swatch" style="background:var(--chart-1)"></i> 1A 碗座外孔</span>
+          <span><i class="swatch" style="background:var(--chart-2)"></i> 1B 前置腔/側孔</span>
+          <span><i class="swatch" style="background:var(--chart-3)"></i> 1C 刺刀分流</span>
+          <span><i class="swatch" style="background:var(--chart-4)"></i> 2 培林內走線</span>
+        </div>
+      </div>
+      <div class="metrics-grid" id="metrics-grid"></div>
+    </section>
+
+    <!-- SECTION 5: 6-YEAR TIMELINE -->
+    <section class="panel" id="timeline">
+      <div class="section-head">
+        <div>
+          <h2>五、2020–2026 頭管培林走線六年演進時間軸</h2>
+          <p>從「全面導入培林內走線」→「維修噩夢催生 SLT 防鏽培林與專利頭碗」→「2025–2026 培林外走線反撲與偏心舵管極致化」。</p>
+        </div>
+      </div>
+      <div class="timeline" id="timeline-container"></div>
+    </section>
+
+    <!-- SECTION 6: FILTERABLE ENGINEERING DATABASE -->
+    <section class="panel" id="database">
+      <div class="section-head">
+        <div>
+          <h2>六、2020–2026 代表系統、車款與專利明細表（19 項）</h2>
+          <p>點選左側縮圖即可放大檢視對應實品或技術圖，並支援依走線類型、車種與關鍵字即時篩選。</p>
+        </div>
+      </div>
+
+      <div class="controls">
+        <input id="search-input" class="input" type="search" placeholder="搜尋品牌、型號、培林尺寸或專利號..." />
+        <select id="discipline-filter" class="select">
+          <option value="all">全部車種</option>
+          <option value="公路車">公路車 (Road)</option>
+          <option value="登山車">登山車 (MTB / E-MTB)</option>
+          <option value="礫石/通用">礫石 / 通用零件</option>
+        </select>
+        <div class="btn-group" id="table-cat-filters">
+          <button type="button" class="tab-btn" data-tcat="all" data-active="true">全部</button>
+          <button type="button" class="tab-btn" data-tcat="outside" data-active="false">培林外走線</button>
+          <button type="button" class="tab-btn" data-tcat="bayonet" data-active="false">刺刀前叉分流</button>
+          <button type="button" class="tab-btn" data-tcat="inside-oversize" data-active="false">培林內：IS52</button>
+          <button type="button" class="tab-btn" data-tcat="inside-shaped" data-active="false">培林內：異形舵管</button>
+          <button type="button" class="tab-btn" data-tcat="service-tech" data-active="false">防鏽／專利配套</button>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>圖示</th>
+              <th>年份</th>
+              <th>品牌／系統／專利</th>
+              <th>走線分類</th>
+              <th>頭管與上培林規格</th>
+              <th>換培林免斷油管？</th>
+              <th>核心工程機制與設計亮點</th>
+            </tr>
+          </thead>
+          <tbody id="systems-tbody"></tbody>
+        </table>
+      </div>
+      <div id="empty-state" style="display:none;text-align:center;padding:24px;color:var(--muted);">查無符合條件的紀錄，請調整篩選條件。</div>
+    </section>
+
+    <!-- SECTION 7: CONCLUSIONS & SOURCES -->
+    <section class="grid-3">
+      <div class="panel" style="padding:20px;">
+        <div class="pill ok" style="margin-bottom:10px;">車架廠 OEM / ODM 觀點</div>
+        <h3 style="margin:0 0 8px;font-size:15.5px;">培林外走線在 2026 的商業價值</h3>
+        <p style="margin:0;color:var(--muted);font-size:13px;">
+          從輪鋒 S561A 的 1:1 CAD 可證，只要將上培林適度縮徑為 Ø39mm 並善用 Ø52.2mm 頭管外徑，即可在不綁定專用一體把的前提下實現 4 孔培林外走線。對通勤電輔車、礫石車與登山車而言，將大幅降低經銷商售後工時與客訴率。
+        </p>
+      </div>
+      <div class="panel" style="padding:20px;">
+        <div class="pill info" style="margin-bottom:10px;">頂級公路競賽車觀點</div>
+        <h3 style="margin:0 0 8px;font-size:15.5px;">極致窄化 × 終身防鏽培林並行</h3>
+        <p style="margin:0;color:var(--muted);font-size:13px;">
+          2025–2026 世巡賽戰駒分化為「刺刀前叉（Y1Rs / S5 / ONE）」與「異形偏心舵管（Tarmac SL9 / Delta Steerer）」兩大派系；既然短期內難以完全捨棄培林內走線，標配 CeramicSpeed OHD SLT 或鍍鈦不鏽鋼培林已成為標準解方。
+        </p>
+      </div>
+      <div class="panel" style="padding:20px;">
+        <div class="pill purple" style="margin-bottom:10px;">專利與供應鏈重點</div>
+        <h3 style="margin:0 0 8px;font-size:15.5px;">台灣零件廠與歐美專利佈局</h3>
+        <p style="margin:0;color:var(--muted);font-size:13px;">
+          美國專利 <span class="mono">US 12,337,923 B2</span>（Chris King GripLock 內走線頭碗）保護的是多件應力隔離結構；台灣廠如 First Components、Token（專利星形迫緊環）、FSA 則在跨相容性（4-in-1 套件）與培林外孔（S561A）領域展現高度彈性。
+        </p>
+      </div>
+    </section>
+
+    <footer class="panel" style="padding:20px;">
+      <h2 style="margin:0 0 10px;font-size:15px;">主要技術文獻與原廠圖片來源</h2>
+      <div class="grid-2" style="gap:6px 24px;font-size:12px;">
+        <a target="_blank" rel="noopener noreferrer" href="https://www.firstcomponents.com/3-new-headsets-1-bottom-bracket-2026/">1. First Components 輪鋒工業 (2026) — S561A / R554A-1 / T522A-4 產品發表與 1:1 CAD 組裝藍圖</a>
+        <a target="_blank" rel="noopener noreferrer" href="https://patents.google.com/patent/US12337923B2/en">2. USPTO Patent US 12,337,923 B2 (2025.06) — Chris King Internally Routed GripLock Headset</a>
+        <a target="_blank" rel="noopener noreferrer" href="https://a.storyblok.com/f/263970/x/e2b02bd4f4/2025-05-y1rs-mounting-support-manual-en.pdf">3. Colnago Official Mounting Support Manual (2025.05) — Y1Rs Bayonet Fork &amp; Headset Routing</a>
+        <a target="_blank" rel="noopener noreferrer" href="https://azuma-1911.jp/cervelo/wp-content/uploads/2023/10/S5_2023_manual_v3.1_web.pdf">4. Cervélo S5 Retailer Assembly Manual — Bayonet Fork Exploded View &amp; Hose Routing</a>
+        <a target="_blank" rel="noopener noreferrer" href="https://www.pyorakauppa.fi/wp-content/uploads/2025/02/2024_TARMAC_SL8_SCHEMATIC.pdf">5. Specialized Tarmac SL8 Official Schematic — Fork, Bearings &amp; Compression Ring</a>
+        <a target="_blank" rel="noopener noreferrer" href="https://bikerumor.com/specialized-tarmac-sl9-drops-just-in-time-for-the-tour-de-france/">6. Bikerumor (2026.06) — Specialized Tarmac SL9 &amp; Patent-Pending Offset Steerer</a>
+        <a target="_blank" rel="noopener noreferrer" href="https://www.cannondale.com/en/technology/delta-steerer">7. Cannondale Official Technology — Delta Steerer Triangular Fork Column</a>
+        <a target="_blank" rel="noopener noreferrer" href="https://www.canecreek.com/products/hcr-stem-headset-system">8. Cane Creek Official (2026.01) — HCR Hidden Cable Routing Stem &amp; Headset</a>
+        <a target="_blank" rel="noopener noreferrer" href="https://www.tokenproducts.com/headsets/cable-box/a-box">9. TOKEN Cycling Products 泰億 — A-Box / S-Box Cable Box Exploded Parts</a>
+        <a target="_blank" rel="noopener noreferrer" href="https://www.bikeradar.com/features/opinion/5-ways-race-bikes-will-improve-in-2026">10. BikeRadar (2025.09) &amp; MBR (2026.05) — Bypassing Headset Bearings &amp; MTB Return to Frame Ports</a>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Lightbox Modal -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+    <div class="lb-bar">
+      <strong id="lb-title" style="font-size:14px;"></strong>
+      <div class="lb-actions">
+        <button type="button" class="lb-btn" id="lb-zoom">🔍 放大 165%（檢視 CAD 標註）</button>
+        <a class="lb-btn" id="lb-raw" target="_blank" rel="noopener noreferrer" href="#">開啟原圖 ↗</a>
+        <button type="button" class="lb-btn" id="lb-close">✕ 關閉 (Esc)</button>
+      </div>
+    </div>
+    <div class="lb-stage" id="lb-stage">
+      <img id="lb-img" src="" alt="" />
+    </div>
+    <div class="lb-caption" id="lb-caption"></div>
+  </div>
+
+  <script>
+    // ---------- Theme Toggle ----------
+    const themeBtn = document.getElementById('theme-toggle');
+    themeBtn.addEventListener('click', () => {
+      const root = document.documentElement;
+      const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      themeBtn.textContent = next === 'dark' ? '☀ 淺色' : '☾ 深色';
+    });
+
+    // ---------- Lightbox Controller ----------
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lb-img');
+    const lbTitle = document.getElementById('lb-title');
+    const lbCap = document.getElementById('lb-caption');
+    const lbStage = document.getElementById('lb-stage');
+    const lbZoom = document.getElementById('lb-zoom');
+    const lbRaw = document.getElementById('lb-raw');
+
+    function openLightbox(src, title, cap) {
+      lbImg.src = src;
+      lbImg.alt = title || '';
+      lbTitle.textContent = title || '';
+      lbCap.textContent = cap || '';
+      lbRaw.href = src;
+      lbStage.classList.remove('zoomed');
+      lbZoom.textContent = '🔍 放大 165%（檢視 CAD 標註）';
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      lb.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    lbZoom.addEventListener('click', () => {
+      const z = lbStage.classList.toggle('zoomed');
+      lbZoom.textContent = z ? '🔍 還原符合視窗' : '🔍 放大 165%（檢視 CAD 標註）';
+    });
+    lbImg.addEventListener('click', () => lbZoom.click());
+    document.getElementById('lb-close').addEventListener('click', closeLightbox);
+    lb.addEventListener('click', (e) => { if (e.target === lb) closeLightbox(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && lb.classList.contains('open')) closeLightbox(); });
+
+    // Delegate lightbox clicks
+    document.addEventListener('click', (e) => {
+      const target = e.target.closest('[data-lb-src]');
+      if (!target) return;
+      openLightbox(target.dataset.lbSrc, target.dataset.lbTitle, target.dataset.lbCap);
+    });
+
+    // ---------- Section 1: Showdown Photo vs CAD Switcher ----------
+    document.querySelectorAll('#showdown-mode .tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const mode = btn.dataset.mode;
+        document.querySelectorAll('#showdown-mode .tab-btn').forEach(b => b.dataset.active = (b === btn) ? 'true' : 'false');
+        document.querySelectorAll('.showdown-img').forEach(img => {
+          const newSrc = img.dataset[mode];
+          img.src = newSrc;
+          const box = img.closest('.media-box');
+          box.dataset.lbSrc = newSrc;
+          box.dataset.lbTitle = img.dataset[mode + 'Title'];
+          box.dataset.lbCap = img.dataset[mode + 'Cap'];
+        });
+      });
+    });
+
+    // ---------- Section 2: Interactive Cross-Section Explorer ----------
+    const ARCHITECTURES = {
+      'cup-outside': {
+        badge: '培林外內走線｜類型 1A',
+        badgeClass: 'pill ok',
+        serviceTag: '換上培林：完全免斷油管 ✓',
+        serviceClass: 'pill ok',
+        title: '碗座外側通道式（Outside-the-Bearing Cup Ports）',
+        desc: '以 2026 台灣輪鋒 First Components S561A 為最新工程突破：將上培林適度縮為 D390（Ø30.2×39×6.5mm）裝於 Ø52.2mm 鋁上碗內，在培林外徑之外的碗座環壁開出 4 個 Ø5.8mm 穿線孔。線管繞過培林外側進入頭管，使培林與迫緊環維持完整 360° 環形，拆裝保養完全不碰液壓油管。',
+        pros: [
+          '培林拆裝與煞車油管 100% 解耦，更換上培林僅需數分鐘、免剪油管與排氣',
+          '無須開槽切削迫緊環，360° 均勻預壓降低異音與舵管咬傷',
+          '相容標準 1-1/8" 圓舵管與市售常規龍頭，免綁定高價專用一體把',
+          '重量僅 126g、堆高 17.2mm，兼顧輕量與低把位幾何'
+        ],
+        cons: [
+          '把立與頭碗上碗之間仍有一小段外露線管（半內走線 Semi-Internal）',
+          '頭管上端需具備 52mm 以上內徑以容納培林＋外圍線孔壁厚',
+          '極致純氣動風洞數據略遜於全隱藏一體把'
+        ],
+        bearingSpec: '上培林 Ø30.2×39×6.5 ｜ 頭管上口 Ø52.2 ｜ 4×Ø5.8mm 外孔',
+        examples: ['First Components S561A (2026)', 'ZS52/ZS56 培林外穿線改裝碗組'],
+        refImg: './images/cad-first-s561a-blueprint.png',
+        refName: '輪鋒工業 First S561A 1:1 CAD 工程圖（A2 版）',
+        refCap: '圖面明確標註 Ø39mm D390 培林居於中央，四個 Ø5.8mm 過線孔分布於外圈 Ø46–56mm 碗座區域。',
+        svg: `
+          <circle cx="160" cy="130" r="98" fill="var(--card)" stroke="var(--border)" stroke-width="2"/>
+          <circle cx="160" cy="130" r="85" fill="var(--card-2)" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <g fill="var(--chart-4)" stroke="var(--bg)" stroke-width="2">
+            <circle cx="114" cy="72" r="9"/>
+            <circle cx="206" cy="72" r="9"/>
+            <circle cx="96" cy="114" r="9"/>
+            <circle cx="224" cy="114" r="9"/>
+          </g>
+          <circle cx="160" cy="130" r="54" fill="var(--chart-1)" fill-opacity="0.28" stroke="var(--chart-1)" stroke-width="10"/>
+          <circle cx="160" cy="130" r="38" fill="none" stroke="var(--fg)" stroke-width="3" stroke-opacity="0.6"/>
+          <circle cx="160" cy="130" r="28" fill="var(--chart-2)" fill-opacity="0.32" stroke="var(--chart-2)" stroke-width="3"/>
+          <circle cx="160" cy="130" r="18" fill="var(--card)" stroke="var(--chart-2)" stroke-width="1.5"/>
+          <text x="160" y="134" text-anchor="middle" font-size="10" font-weight="700" fill="var(--fg)">Ø28.6 圓舵管</text>
+          <text x="160" y="19" text-anchor="middle" font-size="11" font-weight="700" fill="var(--chart-4)">4×Ø5.8mm 線孔位於 Ø39 培林外緣</text>
+          <line x1="160" y1="24" x2="119" y2="63" stroke="var(--chart-4)" stroke-width="1.4"/>
+          <line x1="160" y1="24" x2="201" y2="63" stroke="var(--chart-4)" stroke-width="1.4"/>
+          <text x="160" y="248" text-anchor="middle" font-size="10.5" fill="var(--success)">培林內圈零線管穿過 → 可獨立快拆保養</text>
+        `
+      },
+      'frame-cavity': {
+        badge: '培林外內走線｜類型 1B',
+        badgeClass: 'pill ok',
+        serviceTag: '換上培林：完全免斷油管 ✓',
+        serviceClass: 'pill ok',
+        title: '頭管前置腔體／車架側孔繞過式（Head Tube Cavity / Frame Ports）',
+        desc: '在碳纖頭管前方塑造獨立隔牆走線腔（如 Cannondale SuperSix EVO Gen 3），或於頭管兩側開設進線座（如 2025 Orbea Occam、2026 Canyon Strive:ON）。線管於培林本體之外直接進入下管，是 MTB／E-MTB 在 2025–2026 強力回歸的主流可靠方案。',
+        pros: [
+          '頭碗培林與所有線管完全物理隔離，泥水／汗水不會沿線槽灌入培林',
+          '換培林僅需 3–5 分鐘，無須動到任何油管、升降座管或避震線控',
+          '自由更換市售龍頭、車把與角度碗組，Fitting 零限制'
+        ],
+        cons: [
+          '公路車前置腔設計會增加頭管前後寬度，且需配轉向限位塊防剪線',
+          '頭管開側孔處需碳布局部補強，微增車架重量（約 15–30g）',
+          '公路車側孔外觀不如全隱藏簡潔'
+        ],
+        bearingSpec: '標準 IS42/IS52 或 ZS44/ZS56（線管走頭管隔腔或側孔）',
+        examples: ['Cannondale SuperSix EVO Gen 3', 'Orbea Occam SL/LT (2025)', 'Canyon Strive:ON (2026)', 'Specialized Stumpjumper 15 (2024)'],
+        refImg: './images/first-s561-outside-cutaway.jpg',
+        refName: '培林與線管隔離示意（參考 S561 培林外路徑）',
+        refCap: '與頭管側孔／前置腔核心精神一致：讓上頭碗培林獨立承載轉向負荷，不受管線干涉。',
+        svg: `
+          <path d="M 160 22 C 202 22, 232 76, 232 138 C 232 188, 200 218, 160 218 C 120 218, 88 188, 88 138 C 88 76, 118 22, 160 22 Z" fill="var(--card)" stroke="var(--border)" stroke-width="2"/>
+          <path d="M 160 34 C 182 34, 196 54, 194 72 C 172 66, 148 66, 126 72 C 124 54, 138 34, 160 34 Z" fill="var(--card-2)" stroke="var(--chart-4)" stroke-width="1.5" stroke-dasharray="3 2"/>
+          <circle cx="148" cy="54" r="8" fill="var(--chart-4)" stroke="var(--bg)" stroke-width="2"/>
+          <circle cx="172" cy="54" r="8" fill="var(--chart-4)" stroke="var(--bg)" stroke-width="2"/>
+          <rect x="78" y="132" width="14" height="16" rx="3" fill="var(--chart-4)" fill-opacity="0.35" stroke="var(--chart-4)" stroke-width="1.5"/>
+          <rect x="228" y="132" width="14" height="16" rx="3" fill="var(--chart-4)" fill-opacity="0.35" stroke="var(--chart-4)" stroke-width="1.5"/>
+          <circle cx="160" cy="144" r="54" fill="var(--chart-1)" fill-opacity="0.28" stroke="var(--chart-1)" stroke-width="10"/>
+          <circle cx="160" cy="144" r="28" fill="var(--chart-2)" fill-opacity="0.32" stroke="var(--chart-2)" stroke-width="3"/>
+          <circle cx="160" cy="144" r="18" fill="var(--card)" stroke="var(--chart-2)" stroke-width="1.5"/>
+          <text x="160" y="148" text-anchor="middle" font-size="10" font-weight="700" fill="var(--fg)">標準圓舵管</text>
+          <text x="160" y="14" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--chart-4)">前置獨立走線腔（培林前方）</text>
+          <text x="44" y="144" text-anchor="middle" font-size="9.5" fill="var(--muted)">MTB側孔</text>
+          <text x="276" y="144" text-anchor="middle" font-size="9.5" fill="var(--muted)">MTB側孔</text>
+          <text x="160" y="248" text-anchor="middle" font-size="10.5" fill="var(--success)">碳纖隔牆或側孔隔離線管 → 防水與維修表現最佳</text>
+        `
+      },
+      'bayonet': {
+        badge: '半培林外分流｜類型 1C',
+        badgeClass: 'pill purple',
+        serviceTag: '前煞繞過培林 ／ 後煞經軸區',
+        serviceClass: 'pill warn',
+        title: '刺刀前叉外鉸鏈分流式（Bayonet Fork Front-Channel Bypass）',
+        desc: '2024–2026 世巡賽頂級氣動戰駒（Cervélo S5、Colnago Y1Rs、Factor ONE）採用雙柱外置刺刀前叉：前煞車油管完全走在前叉前緣獨立空腔中、繞過上下培林；後煞油管則穿過內部主軸區，使頭管得以採用超窄 1-1/8" 或 1-3/8" 小徑培林並大幅降低風阻。',
+        pros: [
+          '前煞車油管完全繞過頭碗培林，大幅簡化前叉端配線空間',
+          '內外雙柱結構剛性極高，允許頭碗培林縮小至 1-1/8"（Factor ONE / Cervélo S5 上培林）',
+          '達成目前 UCI 規範下最低迎風面積與最佳側風氣動表現'
+        ],
+        cons: [
+          '後煞油管仍穿過頭管主軸／上培林區，整組更換仍具高門檻',
+          '高度專屬化系統（專用一體把、V 型把立、拉桿預壓與限位塊），無法混用他牌',
+          '僅支援電子變速，車架組單價最高'
+        ],
+        bearingSpec: 'S5：1-1/8" 上 + 1-3/8" 下 ｜ Y1Rs：ID35×OD47 SLT ｜ ONE：1-1/8"',
+        examples: ['Cervélo S5 (2022 / 2025)', 'Colnago Y1Rs (2024.12 / 2025)', 'Factor ONE (2025–2026)'],
+        refImg: './images/tech-cervelo-s5-routing.png',
+        refName: 'Cervélo S5 原廠手冊：刺刀前叉油管分流技術圖',
+        refCap: '官方手冊清楚繪出前煞油管由前叉前孔直下（完全繞過培林），後煞油管則由 8 字形軸孔上行進入把立。',
+        svg: `
+          <path d="M 160 16 C 186 24, 198 62, 194 94 L 126 94 C 122 62, 134 24, 160 16 Z" fill="var(--chart-2)" fill-opacity="0.22" stroke="var(--chart-2)" stroke-width="2.5"/>
+          <circle cx="160" cy="54" r="9" fill="var(--chart-4)" stroke="var(--bg)" stroke-width="2"/>
+          <path d="M 122 98 L 198 98 C 204 148, 196 208, 160 222 C 124 208, 116 148, 122 98 Z" fill="var(--card)" stroke="var(--border)" stroke-width="2"/>
+          <circle cx="160" cy="148" r="36" fill="var(--chart-1)" fill-opacity="0.3" stroke="var(--chart-1)" stroke-width="8"/>
+          <circle cx="160" cy="148" r="20" fill="var(--chart-2)" fill-opacity="0.35" stroke="var(--chart-2)" stroke-width="2.5"/>
+          <circle cx="160" cy="126" r="6.5" fill="var(--chart-4)" stroke="var(--bg)" stroke-width="1.5"/>
+          <text x="256" y="48" text-anchor="middle" font-size="10" font-weight="700" fill="var(--chart-4)">前煞油管走刺刀前腔</text>
+          <text x="256" y="61" text-anchor="middle" font-size="9.5" fill="var(--muted)">（完全繞過培林）</text>
+          <line x1="205" y1="54" x2="171" y2="54" stroke="var(--chart-4)" stroke-width="1.3"/>
+          <text x="64" y="130" text-anchor="middle" font-size="10" font-weight="700" fill="var(--fg)">後煞油管</text>
+          <text x="64" y="143" text-anchor="middle" font-size="9.5" fill="var(--muted)">經小徑主軸</text>
+          <line x1="96" y1="130" x2="152" y2="126" stroke="var(--muted)" stroke-width="1.2" stroke-dasharray="3 2"/>
+          <text x="160" y="248" text-anchor="middle" font-size="10.5" fill="var(--chart-3)">雙柱高剛性＋極窄迎風面，代表頂級氣動極限</text>
+        `
+      },
+      'through-bearing': {
+        badge: '培林內走線｜類型 2（市場主流）',
+        badgeClass: 'pill warn',
+        serviceTag: '換上培林：須拆剪油管並排氣 ⚠',
+        serviceClass: 'pill err',
+        title: '穿過上培林內圈式（IS52 大培林 ／ D 型・Delta・2026 SL9 偏心舵管）',
+        desc: '2020–2026 公路車市佔最高方案。以 1.5" 超大上培林（FSA ACR / Token A-Box / Deda DCR / Chris King AeroSet）或切削異形舵管（Giant D 型、Cannondale 三角 Delta、2026 Specialized Tarmac SL9 單側偏心舵管）讓所有線管直接由上培林內圈貫穿。',
+        pros: [
+          '全隱藏極簡外觀與極佳氣動效率（Tarmac SL9 偏心設計將頭管縮窄 4mm、省 4W）',
+          '車架頭管無須側邊開孔，維持碳纖維管壁連續強度與輕量化',
+          'IS52 零組件生態成熟，並有 SLT 固體潤滑培林與 HCR 易調系統補強壽命與 Fitting'
+        ],
+        cons: [
+          '核心痛點：更換上培林須拆剪油管、重抽穿線與重新排氣（維修工時 2–4 小時）',
+          '汗水與雨水易由墊圈隙縫滲入上培林，標準鉻鋼培林 1–2 年即易鏽蝕卡頓',
+          '開槽迫緊環若精度不佳易導致轉向阻力或咬傷碳纖舵管（Chris King US 12,337,923 B2 即針對此點改良）'
+        ],
+        bearingSpec: 'IS52 (40×51.8) ／ Giant (37×46.9) ／ Tarmac SL8 (40.5×49.5)',
+        examples: ['Specialized Tarmac SL8 / SL9 (2026)', 'Cannondale Delta Steerer', 'Giant OverDrive Aero', 'Token A-Box & FSA ACR', 'Chris King AeroSet (US 12,337,923 B2)'],
+        refImg: './images/tech-tarmac-sl8-bearing-schematic.jpg',
+        refName: 'Specialized Tarmac SL8 原廠 3D 透視技術圖',
+        refCap: '清楚顯示前煞（紫）與後煞（紅）油管如何通過開槽迫緊環（C）與上培林（B）內圈進入頭管與前叉。',
+        svg: `
+          <circle cx="160" cy="130" r="88" fill="var(--card)" stroke="var(--border)" stroke-width="2"/>
+          <circle cx="160" cy="130" r="68" fill="var(--chart-1)" fill-opacity="0.28" stroke="var(--chart-1)" stroke-width="12"/>
+          <path d="M 118 112 A 48 48 0 1 0 202 112" fill="none" stroke="var(--fg)" stroke-width="4" stroke-opacity="0.65"/>
+          <path d="M 134 114 L 186 114 A 30 30 0 1 1 134 114 Z" fill="var(--chart-2)" fill-opacity="0.34" stroke="var(--chart-2)" stroke-width="3"/>
+          <circle cx="146" cy="96" r="8.5" fill="var(--chart-4)" stroke="var(--bg)" stroke-width="2"/>
+          <circle cx="174" cy="96" r="8.5" fill="var(--chart-4)" stroke="var(--bg)" stroke-width="2"/>
+          <circle cx="160" cy="130" r="56" fill="none" stroke="var(--warning)" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <text x="160" y="142" text-anchor="middle" font-size="10" font-weight="700" fill="var(--fg)">D型 / 偏心 / 圓舵管</text>
+          <text x="160" y="20" text-anchor="middle" font-size="11" font-weight="700" fill="var(--chart-4)">油管貫穿培林內圈與舵管之間</text>
+          <line x1="160" y1="25" x2="148" y2="87" stroke="var(--chart-4)" stroke-width="1.3"/>
+          <line x1="160" y1="25" x2="172" y2="87" stroke="var(--chart-4)" stroke-width="1.3"/>
+          <text x="160" y="248" text-anchor="middle" font-size="10.5" fill="var(--warning)">油管穿過培林圓環內部 → 換培林必須拆斷油管</text>
+        `
+      }
+    };
+
+    function renderArch(key) {
+      const d = ARCHITECTURES[key];
+      document.querySelectorAll('#arch-tabs .tab-btn').forEach(b => b.dataset.active = (b.dataset.arch === key) ? 'true' : 'false');
+      const bEl = document.getElementById('arch-badge');
+      bEl.className = d.badgeClass; bEl.textContent = d.badge;
+      const sEl = document.getElementById('arch-service-tag');
+      sEl.className = d.serviceClass; sEl.textContent = d.serviceTag;
+      document.getElementById('arch-title').textContent = d.title;
+      document.getElementById('arch-desc').textContent = d.desc;
+      document.getElementById('arch-svg').innerHTML = d.svg;
+      document.getElementById('arch-pros').innerHTML = d.pros.map(x => `<li>${x}</li>`).join('');
+      document.getElementById('arch-cons').innerHTML = d.cons.map(x => `<li>${x}</li>`).join('');
+      document.getElementById('arch-bearing-spec').textContent = d.bearingSpec;
+      document.getElementById('arch-examples').innerHTML = d.examples.map(x => `<span class="pill">${x}</span>`).join('');
+      document.getElementById('arch-ref-img').src = d.refImg;
+      document.getElementById('arch-ref-name').textContent = d.refName;
+      const box = document.getElementById('arch-ref-box');
+      box.dataset.lbSrc = d.refImg;
+      box.dataset.lbTitle = d.refName;
+      box.dataset.lbCap = d.refCap;
+    }
+    document.querySelectorAll('#arch-tabs .tab-btn').forEach(b => b.addEventListener('click', () => renderArch(b.dataset.arch)));
+
+    // ---------- Section 3: Visual Gallery (15 Real Photos + CAD/Patent/OEM Tech Drawings) ----------
+    const GALLERY = [
+      {
+        src: './images/cad-first-s561a-blueprint.png',
+        gcat: ['cad-patent', 'outside'],
+        tag: '1:1 原廠 CAD 工程圖',
+        tagClass: 'pill ok',
+        title: '輪鋒工業 First S561A 培林外走線 CAD 藍圖（2026/04/28）',
+        desc: '標示完整尺寸與 BOM：Ø52.2 頭管上口內裝縮小版 D390 培林（Ø30.2×39×6.5），於碗座外圈開出 4×Ø5.8mm 穿線孔，徹底避開培林內圈。',
+        source: 'First Components（台灣輪鋒工業）',
+        year: '2026'
+      },
+      {
+        src: './images/first-s561-outside-cutaway.jpg',
+        gcat: ['outside'],
+        tag: '真實剖面實品圖',
+        tagClass: 'pill ok',
+        title: 'First Components S561A 培林外走線 3D 剖面實照',
+        desc: '清楚呈現滾珠培林位於中央鋁碗內，而四條線管由培林「外圈之外」穿入碳纖頭管，換培林免剪油管。',
+        source: 'First Components（2026 台北展）',
+        year: '2026'
+      },
+      {
+        src: './images/patent-us12337923-chrisking-fig3.png',
+        gcat: ['cad-patent', 'inside-service'],
+        tag: 'USPTO 美國專利工程圖',
+        tagClass: 'pill info',
+        title: 'Chris King AeroSet — 美國專利 US 12,337,923 B2 Fig. 3',
+        desc: '正式專利剖面圖：線管 (180) 穿過龍頭 (170)、墊圈 (166)、上蓋 (156) 與多件式 GripLock (130/140) 進入上培林 (114)，隔離軸向預壓與夾持應力。',
+        source: 'USPTO / Google Patents (2025.06.24)',
+        year: '2025'
+      },
+      {
+        src: './images/chrisking-aeroset1-photo.jpg',
+        gcat: ['inside-service'],
+        tag: '真實產品照',
+        tagClass: 'pill info',
+        title: 'Chris King AeroSet 1（IS52 專利內走線頭碗實品）',
+        desc: '陽極鋁合金上蓋前端設有專屬過線通道與定位銷，搭配美國波特蘭自製不鏽鋼 52mm 角接觸培林與終身保固。',
+        source: 'Chris King Precision Components',
+        year: '2025'
+      },
+      {
+        src: './images/tech-cervelo-s5-routing.png',
+        gcat: ['cad-patent', 'outside'],
+        tag: '原廠手冊技術圖',
+        tagClass: 'pill purple',
+        title: 'Cervélo S5 刺刀前叉油管分流技術圖',
+        desc: '前煞油管由前叉左腿直上刺刀前叉前孔（完全不經頭碗培林）；後煞油管經由頭管 8 字形上口進入整合把立。',
+        source: 'Cervélo S5 Retailer Assembly Manual',
+        year: '2023–2025'
+      },
+      {
+        src: './images/tech-cervelo-s5-headset-exploded.png',
+        gcat: ['cad-patent', 'outside'],
+        tag: '原廠零件爆炸圖',
+        tagClass: 'pill purple',
+        title: 'Cervélo S5 刺刀前叉與頭碗培林爆炸圖',
+        desc: '上培林僅 1-1/8"（36°×45°）、下培林 1-3/8"（36°×45°），以 Tension Rod 拉桿＋Preload Cone 取代傳統開槽迫緊環。',
+        source: 'Cervélo S5 Retailer Assembly Manual',
+        year: '2023–2025'
+      },
+      {
+        src: './images/tech-colnago-y1rs-headset.png',
+        gcat: ['cad-patent', 'outside'],
+        tag: '原廠手冊技術圖',
+        tagClass: 'pill purple',
+        title: 'Colnago Y1Rs 刺刀前叉、預壓齒輪與 JP 轉向限位塊',
+        desc: '2025 年 5 月官方手冊：展示 Y1Rs 外置刺刀前叉上板、Preload Gear (N.19)、五角形 JP Steering Block (N.16) 與上下培林安裝順序。',
+        source: 'Colnago Y1Rs Mounting Manual (2025.05)',
+        year: '2025'
+      },
+      {
+        src: './images/tech-colnago-y1rs-routing.png',
+        gcat: ['cad-patent', 'outside'],
+        tag: '原廠走線透視圖',
+        tagClass: 'pill purple',
+        title: 'Colnago Y1Rs 油壓煞車管線內部路徑圖',
+        desc: '後煞油管加包吸音棉經由頭管預壓螺絲孔道上行，前煞油管則循刺刀前叉前緣獨立走線，與上培林分流。',
+        source: 'Colnago Y1Rs Mounting Manual (2025.05)',
+        year: '2025'
+      },
+      {
+        src: './images/factor-one-bayonet.jpg',
+        gcat: ['outside'],
+        tag: '實車照（2025–2026）',
+        tagClass: 'pill purple',
+        title: 'Factor ONE 寬距刺刀前叉＋Chin Fairing 實車',
+        desc: '運用 UCI 新規打造的超寬刺刀前叉與下巴整流罩，採 FSA 1-1/8" 小徑上下培林並將前煞管路收於外置叉柱內。',
+        source: 'Factor Bikes Official',
+        year: '2025–2026'
+      },
+      {
+        src: './images/tech-tarmac-sl8-bearing-schematic.jpg',
+        gcat: ['cad-patent', 'inside-service'],
+        tag: '原廠 3D 透視技術圖',
+        tagClass: 'pill warn',
+        title: 'Specialized Tarmac SL8 頭碗培林與迫緊環透視圖',
+        desc: '明確標示前煞（紫）與後煞（紅）油管如何通過開槽迫緊環（C）與 40.5×49.5×6.5mm 上培林（B）內圈進入 Speed Sniffer 頭管。',
+        source: 'Specialized Tarmac SL8 Schematic',
+        year: '2023–2025'
+      },
+      {
+        src: './images/specialized-tarmac-sl9.jpg',
+        gcat: ['inside-service'],
+        tag: '實車照（2026.06）',
+        tagClass: 'pill warn',
+        title: 'Specialized Tarmac SL9（偏心舵管窄化 4mm 頭管）',
+        desc: '2026 年 6 月發表之最新演進：專利申請中 Offset Steerer 將雙油管併排至舵管右側，令頭管迎風面積再減 10%、45km/h 省 4W。',
+        source: 'Specialized / Sigma Sports (2026)',
+        year: '2026'
+      },
+      {
+        src: './images/cannondale-delta-steerer.jpg',
+        gcat: ['inside-service'],
+        tag: '真實微距實拍圖',
+        tagClass: 'pill warn',
+        title: 'Cannondale Delta Steerer 碳纖三角舵管實拍',
+        desc: '捨棄 Gen 3 的培林外前置腔後，Gen 4/5 透過三角形碳纖舵管兩側平切面讓油管穿過 1-1/8"–1-1/4" 纖細頭管。',
+        source: 'Cannondale Official',
+        year: '2023–2026'
+      },
+      {
+        src: './images/token-abox-exploded.jpg',
+        gcat: ['inside-service'],
+        tag: '原廠零件爆炸圖',
+        tagClass: 'pill warn',
+        title: '台灣泰億 Token A-Box IS52 專利星形迫緊環爆炸圖',
+        desc: '展示 PA+GF 強化星形迫緊環、雙 Ø51.8×40×7mm 培林與防水密封結構，2026 年並推出相容四品牌的 Prime 4-in-1 鍍鈦防鏽組。',
+        source: 'TOKEN Cycling Products（泰億）',
+        year: '2021–2026'
+      },
+      {
+        src: './images/canecreek-hcr-stem.jpg',
+        gcat: ['inside-service'],
+        tag: '真實產品照（2026.01）',
+        tagClass: 'pill info',
+        title: 'Cane Creek HCR 免拆油管龍頭與單片開槽墊圈',
+        desc: '油管藏於龍頭底部開放凹槽而非封閉管內，讓車友更換把立長度、調整墊圈堆高或出國裝箱皆免拆剪液壓煞車管。',
+        source: 'Cane Creek Official (2026.01)',
+        year: '2026'
+      },
+      {
+        src: './images/ceramicspeed-slt-cutaway.jpg',
+        gcat: ['cad-patent', 'inside-service'],
+        tag: '培林 3D 剖面技術圖',
+        tagClass: 'pill ok',
+        title: 'CeramicSpeed OHD SLT 固體潤滑防鏽培林剖面圖',
+        desc: '白色含油微孔固態聚合物填滿不鏽鋼培林內部，阻絕汗水與雨淋鏽蝕並提供終身保固，成為頂級培林內走線車架化解維修焦慮的標配。',
+        source: 'CeramicSpeed Official',
+        year: '2021–2026'
+      }
+    ];
+
+    let activeGcat = 'all';
+    function renderGallery() {
+      const grid = document.getElementById('gallery-grid');
+      const items = GALLERY.filter(g => activeGcat === 'all' || g.gcat.includes(activeGcat));
+      grid.innerHTML = items.map(g => `
+        <article class="gal-card">
+          <div class="media-box ${g.src.includes('cannondale') || g.src.includes('tarmac-sl9') ? 'dark-bg' : ''}" data-lb-src="${g.src}" data-lb-title="${g.title}" data-lb-cap="${g.desc}（來源：${g.source}）">
+            <img src="${g.src}" alt="${g.title}" loading="lazy" />
+            <span class="zoom-hint">放大檢視</span>
+          </div>
+          <div class="gal-body">
+            <div><span class="${g.tagClass}">${g.tag}</span></div>
+            <div class="gal-title">${g.title}</div>
+            <div class="gal-desc">${g.desc}</div>
+            <div class="gal-foot">
+              <span>${g.source}</span>
+              <span class="mono">${g.year}</span>
+            </div>
+          </div>
+        </article>
+      `).join('');
+    }
+    document.querySelectorAll('#gallery-filters .tab-btn').forEach(b => {
+      b.addEventListener('click', () => {
+        activeGcat = b.dataset.gcat;
+        document.querySelectorAll('#gallery-filters .tab-btn').forEach(x => x.dataset.active = (x === b) ? 'true' : 'false');
+        renderGallery();
+      });
+    });
+
+    // ---------- Section 4: Engineering Metrics ----------
+    const METRICS = [
+      { name: '培林更換維修性', note: '免斷油管、保養工時與耗材成本', scores: [9.2, 9.8, 5.5, 2.5] },
+      { name: '氣動與極簡外觀', note: '頭管迎風截面積與全隱藏整合', scores: [6.8, 6.2, 9.8, 9.4] },
+      { name: '龍頭／座艙相容性', note: '自由更換市售龍頭與 Fitting 調整', scores: [9.0, 9.5, 2.0, 5.8] },
+      { name: '培林防水防鏽壽命', note: '阻絕汗水滲入與避免偏載磨損', scores: [8.8, 9.4, 7.5, 5.0] },
+      { name: '頭管剛性與輕量化', note: '無車架開孔補強損失與結構剛性', scores: [8.2, 7.2, 9.2, 8.8] },
+      { name: '模具與組裝成本友善', note: '標準件取得、模具複雜度與組裝效率', scores: [8.6, 8.0, 3.2, 6.8] }
+    ];
+    function renderMetrics() {
+      const labels = ['1A 碗座外孔', '1B 前置腔/側孔', '1C 刺刀分流', '2 培林內走線'];
+      const colors = ['var(--chart-1)', 'var(--chart-2)', 'var(--chart-3)', 'var(--chart-4)'];
+      document.getElementById('metrics-grid').innerHTML = METRICS.map(m => `
+        <div class="subcard">
+          <div style="font-weight:800;font-size:14px;">${m.name}</div>
+          <div style="font-size:11.5px;color:var(--muted);margin-bottom:10px;">${m.note}</div>
+          <div style="display:grid;gap:7px;">
+            ${m.scores.map((s, i) => `
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:11.5px;margin-bottom:3px;">
+                  <span style="color:var(--muted)">${labels[i]}</span>
+                  <span class="mono" style="font-weight:700;">${s.toFixed(1)}</span>
+                </div>
+                <div class="bar-track"><div class="bar-fill" style="width:${s*10}%;background:${colors[i]}"></div></div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // ---------- Section 5: 6-Year Timeline ----------
+    const TIMELINE = [
+      { year: '2020', tag: '培林內普及元年', color: 'var(--chart-4)', title: 'FSA ACR / SMR、Deda DCR 與 Specialized Tarmac SL7 推動全面內走線', detail: 'IS52 超大上培林配標準圓舵管與半內走線 SMR（如 Merida Wire Port）成為全球車廠 OEM 標準，頭管內走線由頂級車快速普及至中階平台。' },
+      { year: '2021', tag: '防鏽配套關鍵突破', color: 'var(--success)', title: 'CeramicSpeed 發表 SLT 固體潤滑培林；Scott Spark 導入整合角度頭碗', detail: '針對培林內走線「上培林生鏽＝剪油管大修」痛點，CeramicSpeed 於 2021.11 發表含油固態聚合物 SLT 培林（終身保固）；Scott Spark RC 則將頭碗內走線與 ±0.6° 免剪線調角帶入 XC 賽場。' },
+      { year: '2022', tag: 'D型舵管與維修折衷', color: 'var(--chart-1)', title: 'Giant OverDrive Aero、Cervélo Soloist 與二代 S5 刺刀前叉', detail: 'Giant 以 D 型舵管縮減上培林至 46.9mm；Cervélo Soloist 採龍頭下方進線（換龍頭免斷油管）；Cervélo S5 強化刺刀前叉前煞繞過培林的分流設計。' },
+      { year: '2023', tag: '異形舵管大爆發', color: 'var(--chart-4)', title: 'Cannondale Delta 三角舵管、Tarmac SL8 鼻錐與 Specialized 限位頭碗專利', detail: 'SuperSix EVO Gen 4 捨棄 Gen 3 培林外前置腔改採 Delta 三角舵管；Tarmac SL8 以 Speed Sniffer 鼻錐後移舵管；Specialized 公開 Epic 轉向限位頭碗專利；MTB 社群對穿培林維修反彈升溫。' },
+      { year: '2024', tag: '刺刀前叉擴張', color: 'var(--chart-3)', title: 'Colnago Y1Rs（2024.12）發表；Giant TCR Gen 10 全面內走線化', detail: 'Colnago Y1Rs 結合外置雙柱刺刀前叉、JP 轉向限位與 CeramicSpeed SLT，前煞油管完全繞過頭碗培林。' },
+      { year: '2025', tag: '專利落地與 MTB 轉向', color: 'var(--success)', title: 'Chris King 獲頒 US 12,337,923 B2；Orbea Occam 恢復側孔；Factor ONE 登場', detail: 'Chris King AeroSet 取得美國專利；Orbea Occam SL/LT 順應車友呼聲新增頭管側孔（可繞過培林）；Factor ONE 以寬距刺刀前叉＋1-1/8" 小培林挑戰最速公路車。' },
+      { year: '2026', tag: '培林外創新 × 偏心極致化', color: 'var(--primary)', title: 'First S561A 培林外 4 孔碗組、Cane Creek HCR、Canyon 棄頭碗走線、Tarmac SL9 偏心舵管', detail: '輪鋒 S561A 以 Ø39 上培林＋Ø52.2 外碗 4×Ø5.8mm 孔實作培林外走線；Cane Creek 推出 HCR 免剪線換把立系統；Canyon Strive:ON 棄用頭碗走線回歸側孔；Specialized Tarmac SL9（2026.06）以專利申請中偏心舵管再縮頭管 4mm。' }
+    ];
+    function renderTimeline() {
+      document.getElementById('timeline-container').innerHTML = TIMELINE.map(t => `
+        <div class="tl-item">
+          <span class="tl-dot" style="background:${t.color}"></span>
+          <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:4px;">
+            <span class="pill mono" style="color:var(--fg);font-weight:800;">${t.year}</span>
+            <span style="font-size:12px;font-weight:700;color:${t.color}">${t.tag}</span>
+          </div>
+          <div style="font-weight:800;font-size:14.5px;margin-bottom:4px;">${t.title}</div>
+          <div style="font-size:12.5px;color:var(--muted);">${t.detail}</div>
+        </div>
+      `).join('');
+    }
+
+    // ---------- Section 6: Filterable 19-Item Engineering Database ----------
+    const SYSTEMS = [
+      { thumb: './images/first-s561-outside-cutaway.jpg', year: '2026', name: 'First Components S561A（台灣輪鋒工業）', cat: 'outside', catLabel: '培林外：碗座外孔', discipline: '礫石/通用', spec: 'ZS52/28.6 上（D390 Ø30.2×39×6.5）｜IS52/40 下｜126g', noBleed: 'yes', noBleedLabel: '✓ 完全免斷', detail: '2026 台北展發表。上培林縮徑至 Ø39mm，於 Ø52.2 鋁上碗外緣開出 4×Ø5.8mm 過線孔，線管完全繞過培林外圈，相容標準龍頭。' },
+      { thumb: '', year: '2026', name: 'Canyon Strive:ON（2026 改款）', cat: 'outside', catLabel: '培林外：頭管側孔', discipline: '登山車', spec: '標準頭碗＋頭管側邊進線孔（配 KIS）', noBleed: 'yes', noBleedLabel: '✓ 完全免斷', detail: '正式取消受詬病的頭碗培林走線，回歸頭管外部獨立進線孔，解決 E-MTB 泥水侵蝕與高頻更換培林痛點。' },
+      { thumb: '', year: '2025', name: 'Orbea Occam SL / LT（2025 更新）', cat: 'outside', catLabel: '培林外：雙走線可選', discipline: '登山車', spec: '±0.75° 可調頭碗＋車架側孔進線', noBleed: 'yes', noBleedLabel: '✓ 走側孔免斷', detail: '前代強制穿頭碗引發車主反彈，2025 改款於頭管兩側加回傳統內走線孔，車主可自由選擇繞過培林或穿過頭碗。' },
+      { thumb: '', year: '2020–2022', name: 'Cannondale SuperSix EVO Gen 3 / SystemSix', cat: 'outside', catLabel: '培林外：頭管前置腔', discipline: '公路車', spec: '頭管前方獨立走線腔＋轉向限位塊', noBleed: 'yes', noBleedLabel: '✓ 完全免斷', detail: '公路車罕見的培林外全內走線先驅：油管走上培林前方專屬碳纖腔室，不經培林內圈；因頭管較寬，2023 Gen 4 改回 Delta 舵管。' },
+      { thumb: '', year: '2023–2024', name: 'Specialized Epic World Cup / Epic 8 專利頭碗', cat: 'outside', catLabel: '非旋轉上蓋＋限位', discipline: '登山車', spec: '整合式轉向限位上蓋（2023.03 公開專利）', noBleed: 'partial', noBleedLabel: '△ 視配置', detail: '專利結合多線管導引與轉向限位機構，非旋轉上蓋降低轉向時對煞車與避震線控的擠壓與拉扯。' },
+      { thumb: './images/factor-one-bayonet.jpg', year: '2025–2026', name: 'Factor ONE（刺刀前叉＋Chin Fairing）', cat: 'bayonet', catLabel: '刺刀前叉分流', discipline: '公路車', spec: 'FSA 1-1/8" 上下小徑培林｜電子變速專用', noBleed: 'partial', noBleedLabel: '△ 前煞免斷', detail: '外置寬距刺刀前叉將前煞油管獨立導入前叉前腔（繞過培林），並靠雙柱剛性將頭管縮至 1-1/8" 極窄迎風面。' },
+      { thumb: './images/tech-colnago-y1rs-headset.png', year: '2024–2025', name: 'Colnago Y1Rs（2025 環法冠軍車）', cat: 'bayonet', catLabel: '刺刀前叉分流', discipline: '公路車', spec: 'ID35×OD47 36°/45° CeramicSpeed SLT＋JP 限位', noBleed: 'partial', noBleedLabel: '△ 前煞免斷', detail: '前煞油管走刺刀前叉前腔繞過培林；後煞油管經預壓螺絲軸孔上行，標配終身保固 SLT 培林與預壓齒輪。' },
+      { thumb: './images/tech-cervelo-s5-routing.png', year: '2022 / 2025', name: 'Cervélo S5（二代／三代改款）', cat: 'bayonet', catLabel: '刺刀前叉分流', discipline: '公路車', spec: '1-1/8" 上 ＋ 1-3/8" 下（36°×45°）｜無開槽迫緊環', noBleed: 'partial', noBleedLabel: '△ 前煞免斷', detail: '前煞油管直穿刺刀前叉前孔完全繞過培林；採拉桿與預壓錐鎖固，2025 改款於 50km/h 再省 6.3W。' },
+      { thumb: './images/specialized-tarmac-sl9.jpg', year: '2026', name: 'Specialized Tarmac SL9（Offset Steerer）', cat: 'inside-shaped', catLabel: '培林內：偏心舵管', discipline: '公路車', spec: '專利申請中偏心舵管｜頭管再窄 4mm', noBleed: 'no', noBleedLabel: '✗ 須拆油管', detail: '2026.06 發表。偏心舵管將雙油管併排至右側，迎風面積減 10%、45km/h 省 4W，標配 CeramicSpeed 培林。' },
+      { thumb: './images/tech-tarmac-sl8-bearing-schematic.jpg', year: '2023 / 2025', name: 'Specialized Tarmac SL8 & Aethos 2', cat: 'inside-shaped', catLabel: '培林內：鼻錐頭管', discipline: '公路車', spec: '上下同規 40.5×49.5×6.5mm（標配 SLT）', noBleed: 'no', noBleedLabel: '✗ 須拆油管', detail: 'SL8 採 Speed Sniffer 鼻錐後移舵管，前後油管仍經開槽迫緊環與上培林內圈進入；2025.10 Aethos 2 亦跟進同套內走線頭碗。' },
+      { thumb: './images/cannondale-delta-steerer.jpg', year: '2023–2026', name: 'Cannondale SuperSix EVO Gen 4 / Gen 5', cat: 'inside-shaped', catLabel: '培林內：三角舵管', discipline: '公路車', spec: '1-1/8"–1-1/4" 培林＋Delta 三角舵管', noBleed: 'no', noBleedLabel: '✗ 須拆油管', detail: '三角形碳纖舵管兩側平切面騰出過線通道，免用 IS52 粗壯頭管即可完成全內走線，並搭配 Conceal 分體龍頭方便調整。' },
+      { thumb: '', year: '2022–2025', name: 'Giant OverDrive Aero（Propel / Defy / TCR Gen 10）', cat: 'inside-shaped', catLabel: '培林內：D 型舵管', discipline: '公路車', spec: '37×46.9×7mm (45°/45°)＋D 型前切舵管', noBleed: 'no', noBleedLabel: '✗ 須拆油管', detail: '前叉舵管前緣切削為 D 形平面，線管沿平面穿過上培林內圈，搭配雙片開口墊圈便於微調高度。' },
+      { thumb: './images/first-r554a1-inside-cutaway.jpg', year: '2026', name: 'First Components R554A-1 & T522A-4', cat: 'inside-oversize', catLabel: '培林內：IS52 / EC44', discipline: '礫石/通用', spec: 'R554A-1 (IS52/EC49, 141g)｜T522A-4 (EC44, 183g)', noBleed: 'no', noBleedLabel: '✗ 須拆油管', detail: 'R554A-1 相容 ENVE IN-Route 全內走線；T522A-4 以 EC44 外置碗讓存量 ZS44 鋼／鈦車架升級內走線。' },
+      { thumb: '', year: '2020–2026', name: 'FSA ACR / SMR & Deda DCR / S-DCR', cat: 'inside-oversize', catLabel: '培林內：IS52 大培林', discipline: '礫石/通用', spec: 'IS52/28.6（51.9×40×8mm 45°/45°）｜80g', noBleed: 'no', noBleedLabel: '✗ 須拆油管', detail: '全球市佔最高標準。IS52 上培林配標準 1-1/8" 圓舵管容納 4 線管；SMR / S-DCR 採龍頭下進線提升相容性（Merida Wire Port 採用）。' },
+      { thumb: './images/token-abox-exploded.jpg', year: '2021–2026', name: 'Token A-Box / S-Box & Prime 4-in-1（台灣泰億）', cat: 'inside-oversize', catLabel: '培林內：IS52 大培林', discipline: '礫石/通用', spec: 'IS52（51.8×40×7mm）｜80g｜星形迫緊環', noBleed: 'no', noBleedLabel: '✗ 須拆油管', detail: '專利 PA+GF 星形迫緊環保護油管並下沈培林座緩和折彎；2026 推出 Prime 4-in-1 鍍鈦防鏽組跨相容 Token/FSA/Acros/Deda。' },
+      { thumb: '', year: '2021–2026', name: 'Scott Syncros / Acros ICR & OCT Gen2', cat: 'inside-oversize', catLabel: '培林內：可調角度', discipline: '登山車', spec: 'IS52 / ZS56＋±0.5°～0.6° 偏心碗座', noBleed: 'no', noBleedLabel: '△ 調角免斷', detail: '應用於 Spark RC（2021 & 2026 Gen5）與 Voltage eRIDE。可旋轉碗座調頭管角免剪線，2026 OCT Gen2 導入彩色編織護套防磨舵管。' },
+      { thumb: './images/patent-us12337923-chrisking-fig3.png', year: '2025', name: 'Chris King AeroSet 1/2/3（US 12,337,923 B2）', cat: 'service-tech', catLabel: '專利應力隔離頭碗', discipline: '礫石/通用', spec: 'IS52 (AeroSet 1/2) ｜ EC44 (AeroSet 3)', noBleed: 'no', noBleedLabel: '△ 壽命極長', detail: '2025.07 獲頒美國專利。將 GripLock 五件式結構融入內走線頭碗，分離舵管夾持力與培林軸向預壓，防止碳舵管受損並提供終身保固。' },
+      { thumb: './images/canecreek-hcr-stem.jpg', year: '2025–2026', name: 'Cane Creek HCR（2026）& Ritchey Switch（2025）', cat: 'service-tech', catLabel: '免斷線 Fitting 系統', discipline: '礫石/通用', spec: 'IS52 / EC44 ＋ 開放凹槽龍頭與開口鋁墊圈', noBleed: 'partial', noBleedLabel: '△ 換把立免斷', detail: 'HCR 將油管隱藏於龍頭底開放溝槽與單片開槽墊圈中，更換把立長度、調整高度或出國拆把完全不必放油排氣。' },
+      { thumb: './images/ceramicspeed-slt-cutaway.jpg', year: '2021–2026', name: 'CeramicSpeed OHD SLT 固體潤滑頭碗培林', cat: 'service-tech', catLabel: '防鏽免保養培林', discipline: '礫石/通用', spec: '不鏽鋼本體＋含油微孔固態聚合物（多規格）', noBleed: 'partial', noBleedLabel: '✓ 以長壽命化解', detail: '2021 年底發表，耐久度較傳統培林提升約 300% 並享終身保固，成為 Tarmac SL8/SL9、Colnago Y1Rs、Dogma F 等全內走線旗艦車標配。' }
+    ];
+
+    let activeTcat = 'all';
+    function renderTable() {
+      const q = document.getElementById('search-input').value.trim().toLowerCase();
+      const disc = document.getElementById('discipline-filter').value;
+      const rows = SYSTEMS.filter(s => {
+        const okCat = activeTcat === 'all' || s.cat === activeTcat;
+        const okDisc = disc === 'all' || s.discipline === disc;
+        const okQ = !q || [s.year, s.name, s.catLabel, s.discipline, s.spec, s.detail, s.noBleedLabel].join(' ').toLowerCase().includes(q);
+        return okCat && okDisc && okQ;
+      });
+      const tbody = document.getElementById('systems-tbody');
+      const empty = document.getElementById('empty-state');
+      if (!rows.length) { tbody.innerHTML = ''; empty.style.display = 'block'; return; }
+      empty.style.display = 'none';
+      const catStyle = { outside: 'pill ok', bayonet: 'pill purple', 'inside-oversize': 'pill warn', 'inside-shaped': 'pill warn', 'service-tech': 'pill info' };
+      const nbStyle = { yes: 'pill ok', partial: 'pill warn', no: 'pill err' };
+
+      tbody.innerHTML = rows.map(s => `
+        <tr>
+          <td>
+            ${s.thumb
+              ? `<img class="mini-thumb" src="${s.thumb}" alt="${s.name}" data-lb-src="${s.thumb}" data-lb-title="${s.name}" data-lb-cap="${s.detail}" loading="lazy" />`
+              : `<span style="color:var(--muted);font-size:11px;">—</span>`}
+          </td>
+          <td class="mono" style="font-weight:700;white-space:nowrap;">${s.year}</td>
+          <td>
+            <div style="font-weight:800;color:var(--fg);">${s.name}</div>
+            <div style="font-size:11.5px;color:var(--muted);">${s.discipline}</div>
+          </td>
+          <td><span class="${catStyle[s.cat] || 'pill'}">${s.catLabel}</span></td>
+          <td class="mono" style="font-size:11.5px;color:var(--muted);max-width:210px;">${s.spec}</td>
+          <td><span class="${nbStyle[s.noBleed]}">${s.noBleedLabel}</span></td>
+          <td style="color:var(--muted);min-width:240px;">${s.detail}</td>
+        </tr>
+      `).join('');
+    }
+    document.querySelectorAll('#table-cat-filters .tab-btn').forEach(b => {
+      b.addEventListener('click', () => {
+        activeTcat = b.dataset.tcat;
+        document.querySelectorAll('#table-cat-filters .tab-btn').forEach(x => x.dataset.active = (x === b) ? 'true' : 'false');
+        renderTable();
+      });
+    });
+    document.getElementById('search-input').addEventListener('input', renderTable);
+    document.getElementById('discipline-filter').addEventListener('change', renderTable);
+
+    // Init
+    renderArch('cup-outside');
+    renderGallery();
+    renderMetrics();
+    renderTimeline();
+    renderTable();
+  </script>
+</body>
+</html>
