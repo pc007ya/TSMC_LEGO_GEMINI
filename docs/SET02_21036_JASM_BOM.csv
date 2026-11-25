@@ -4,7 +4,7 @@
 21036,3009,"Brick 1 x 6","1×6 長牆磚",1,"White","純白",37
 21036,2412b,"Tile, Modified 1 x 2 Grille","1×2 散熱格柵光磚",199,"Dark Bluish Gray","深藍灰",36
 21036,3004,"Brick 1 x 2","1×2 標準磚",1,"White","純白",33
-21036,3023,"Plate 1 x 2","1×2 薄板",1,"White","純白",27
+21036,3023,"Plate 1 x 2","1×2 薄板",1,"White","純白",28
 21036,3460,"Plate 1 x 8","1×8 細長薄板",1,"White","純白",24
 21036,2454,"Brick 1 x 1 x 2","1×1×2 高柱磚",194,"Light Bluish Gray","淺藍灰",20
 21036,24866,"Plate, Round 1 x 1 Flower","1×1 樹冠花葉片",37,"Bright Green","鮮綠",18
@@ -28,6 +28,7 @@
 21036,4073,"Plate, Round 1 x 1","1×1 圓薄片",194,"Light Bluish Gray","淺藍灰",4
 21036,3023,"Plate 1 x 2","1×2 薄板",21,"Bright Red","台積紅",3
 21036,3035,"Plate 4 x 8","4×8 薄板",194,"Light Bluish Gray","淺藍灰",3
+21036,3005,"Brick 1 x 1","1×1 柱磚",1,"White","純白",2
 21036,3023,"Plate 1 x 2","1×2 薄板",23,"Bright Blue","寶藍",2
 21036,3023,"Plate 1 x 2","1×2 薄板",26,"Black","曜石黑",2
 21036,3028,"Plate 6 x 12","6×12 基礎薄板",1,"White","純白",2
@@ -42,4 +43,5 @@
 21036,3035,"Plate 4 x 8","4×8 薄板",1,"White","純白",1
 21036,3036,"Plate 6 x 8","6×8 薄板",199,"Dark Bluish Gray","深藍灰",1
 21036,3069bpr02,"Tile 1 x 2 SNOT (Printed JASM)","1×2 立面印刷磚 (Jasm 標誌)",1,"White","純白",1
+21036,3666,"Plate 1 x 6","1×6 細長薄板",199,"Dark Bluish Gray","深藍灰",1
 21036,3710,"Plate 1 x 4","1×4 薄板",37,"Bright Green","鮮綠",1

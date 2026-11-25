@@ -644,7 +644,7 @@ function buildSetNanjing() {
   // BAG 2: Circular Saucer Pavilion (left side: X -18..-10, Z -4..5)
   b.beginStep(2, '建置圓盤管制中心深棕廣場、藍綠花圃與水渠', '配置深棕圓形廣場、海軍藍花台與左側透水藍景觀溝渠。');
   b.place('round_plate_4x4', 'DARK_BROWN', -16, 1, -3);
-  b.fillRect(-18, -10, 3, 7, 1, 'DARK_BROWN', 'plate');
+  b.fillRect(-18, -9, 3, 7, 1, 'DARK_BROWN', 'plate');
   b.fillRect(-17, -14, 4, 6, 2, 'DARK_BLUE', 'tile');
   b.fillRect(-13, -10, 4, 6, 2, 'DARK_BLUE', 'tile');
   for (const [fx, fz] of [[-18, 6], [-16, 6], [-14, 6], [-12, 6], [-10, 6]]) {
@@ -807,7 +807,7 @@ function buildSetJASM() {
   }
 
   b.beginStep(1, '打造右側員工停車場與 10 輛微縮汽車', '鋪設深灰柏油停車場並停放雙排 10 輛紅、藍、白、黑微型車。');
-  b.fillRect(18, 24, -10, 10, 1, 'DARK_BLUISH_GRAY', 'plate');
+  b.fillRect(18, 24, -10, 11, 1, 'DARK_BLUISH_GRAY', 'plate');
   const carColors = ['RED', 'BLUE', 'WHITE', 'BLACK', 'RED', 'WHITE', 'BLUE', 'BLACK', 'RED', 'WHITE'];
   for (let i = 0; i < 5; i++) {
     b.place('plate_1x2', carColors[i],     19, 2, -8 + i * 4, 1);
@@ -877,10 +877,13 @@ function buildSetJASM() {
   }
 
   // BAG 4: JASM Entrance Bridge (X 3..7, Z -4..3) + 6-Story Glass Office Tower (X 7..17, Z -8..4)
-  b.beginStep(4, '建構 JASM 連接空橋門廳與「Jasm」印刷標誌', '組裝懸挑白色入口門廳，於正面垂直貼上專屬「Jasm」標誌。', 'jasm_logo');
+  b.beginStep(4, '建構 JASM 連接空橋門廳與「Jasm」印刷標誌', '組裝帶支撐柱的白色入口門廳，於正面垂直貼上專屬「Jasm」標誌。', 'jasm_logo');
   for (let y of [1, 4, 7]) b.wallRing(3, 7, -4, 2, y, 'WHITE', 'brick', y === 4);
   b.fillRect(3, 7, -4, 2, 10, 'WHITE', 'tile');
+  b.place('brick_1x1', 'WHITE', 3, 1, 3);
+  b.place('brick_1x1', 'WHITE', 6, 1, 3);
   b.fillRect(3, 7, 2, 4, 4, 'WHITE', 'plate');
+  b.place('plate_1x2', 'WHITE', 4, 5, 2, 1);
   b.addDecal('jasm_sign', '空橋正面・JASM 黑字紅條標誌', 'wall_jasm_1x2', 'WHITE', 4, 6, 2, 0, [0, 2, 9]);
 
   b.beginStep(4, '層疊六層透亮水藍玻璃辦公大樓 (1–3 樓)', '以 10×12 環繞透亮水藍與純白薄板交替疊出通透玻璃帷幕。');
@@ -964,12 +967,14 @@ function buildSetArizona() {
   b.wallRing(-19, 3, -10, 8, 11, 'LIGHT_BLUISH_GRAY', 'brick', true);
   b.fillRect(-19, 3, -10, 8, 14, 'DARK_BLUISH_GRAY', 'plate');
 
-  b.beginStep(2, '加裝正面三道深灰與側面四道曜石黑重型扶壁柱', '沿外牆立起 7 座雙格寬重型垂直結構柱，重現原圖工業堡壘氣勢。');
+  b.beginStep(2, '加裝正面三道深灰與側面四道曜石黑重型扶壁柱', '沿外牆立起 7 座落地雙格寬重型垂直結構柱，重現原圖工業堡壘氣勢。');
   for (const cx of [-16, -9, -2]) {
+    b.place('plate_1x2', 'DARK_BLUISH_GRAY', cx, 1, 8, 1);
     for (let y of [2, 8]) b.place('brick_1x2x2', 'DARK_BLUISH_GRAY', cx, y, 8, 1);
     b.place('tile_1x2', 'DARK_BLUISH_GRAY', cx, 14, 8, 1);
   }
   for (const cz of [-8, -4, 0, 4]) {
+    b.place('plate_1x2', 'BLACK', -20, 1, cz, 0);
     for (let y of [2, 8]) b.place('brick_1x2x2', 'BLACK', -20, y, cz, 0);
     b.place('tile_1x2', 'BLACK', -20, 14, cz, 0);
   }
@@ -1017,19 +1022,24 @@ function buildSetArizona() {
   }
 
   // BAG 4: Dual Skybridge (X 3..9) + CUP (X 9..19, Z -10..6)
-  b.beginStep(4, '搭設雙層跨棟管線空橋與下層廠務廊道', '建立上下兩條連接主廠房與右側 CUP 的 6 格長管線空橋。');
+  b.beginStep(4, '搭設雙層跨棟管線空橋與下層廠務廊道', '建立上下兩條帶支撐柱的連接主廠房與右側 CUP 管線空橋。');
   b.spanX(3, 9, 2,  2, 'DARK_BLUISH_GRAY', 'brick');
   b.spanX(3, 9, 2,  3, 'DARK_BLUISH_GRAY', 'brick');
   b.spanX(3, 9, 5,  2, 'LIGHT_BLUISH_GRAY', 'tile');
   b.spanX(3, 9, 5,  3, 'LIGHT_BLUISH_GRAY', 'tile');
+  for (const bx of [3, 8]) {
+    b.place('brick_1x1x2', 'DARK_BLUISH_GRAY', bx, 2, -4);
+    b.place('brick_1x1x2', 'DARK_BLUISH_GRAY', bx, 2, -3);
+  }
   b.spanX(3, 9, 8, -4, 'DARK_BLUISH_GRAY', 'brick');
   b.spanX(3, 9, 8, -3, 'DARK_BLUISH_GRAY', 'brick');
   b.spanX(3, 9, 11,-4, 'DARK_BLUISH_GRAY', 'tile');
   b.spanX(3, 9, 11,-3, 'DARK_BLUISH_GRAY', 'tile');
 
-  b.beginStep(4, '建造右側 10×16 中央公用系統廠 (CUP)', '堆疊深藍灰 CUP 主體牆並加上正面黑色扶壁柱與屋頂板。');
+  b.beginStep(4, '建造右側 10×16 中央公用系統廠 (CUP)', '堆疊深藍灰 CUP 主體牆並加上正面黑色落地扶壁柱與屋頂板。');
   for (let y of [2, 5, 8]) b.wallRing(9, 19, -10, 6, y, 'DARK_BLUISH_GRAY', 'brick', y === 5);
   b.fillRect(9, 19, -10, 6, 11, 'DARK_BLUISH_GRAY', 'plate');
+  b.place('plate_1x2', 'BLACK', 13, 1, 6, 1);
   for (let y of [2, 8]) b.place('brick_1x2x2', 'BLACK', 13, y, 6, 1);
 
   b.beginStep(4, '鋪設 CUP 前半部透亮水藍冷卻水池', '於 CUP 屋頂前側滿鋪透亮水藍光磚水池。');
@@ -1163,9 +1173,11 @@ function buildSetRD() {
   }
   b.fillRect(15, 22, 0, 8, 13, 'DARK_BLUISH_GRAY', 'tile');
 
-  b.beginStep(3, '架設 26×8 主廳深灰基座與透藍迎賓雨遮', '建立研發主廳結構底盤與前方雙層透藍玻璃邊飾雨遮。');
-  b.fillRect(-11, 15, 0, 8, 1, 'DARK_BLUISH_GRAY', 'plate');
-  b.wallRing(-11, 15, 0, 8, 2, 'DARK_BLUISH_GRAY', 'brick');
+  b.beginStep(3, '架設 26×9 主廳深灰基座與透藍迎賓雨遮', '建立研發主廳結構底盤、迎賓雨遮支撐柱與前方雙層透藍玻璃邊飾雨遮。');
+  b.fillRect(-11, 15, 0, 9, 1, 'DARK_BLUISH_GRAY', 'plate');
+  b.wallRing(-11, 15, 0, 9, 2, 'DARK_BLUISH_GRAY', 'brick');
+  b.place('brick_1x1', 'DARK_BLUISH_GRAY', 4, 1, 11);
+  b.place('brick_1x1', 'DARK_BLUISH_GRAY', 9, 1, 11);
   b.fillRect(4, 10, 9, 12, 4, 'TRANS_LIGHT_BLUE', 'plate');
   b.fillRect(4, 10, 9, 12, 5, 'WHITE', 'tile');
 
@@ -1177,18 +1189,21 @@ function buildSetRD() {
   }
   b.fillRect(-11, 15, 0, 8, 14, 'LIGHT_BLUISH_GRAY', 'plate');
 
-  b.beginStep(4, '扣上 12 根純白垂直立面格柵與中央凸出方盒', '精準交錯純白垂直立面柱與中央純白建築凸塊，還原原圖經典立面。');
+  b.beginStep(4, '扣上 12 根純白垂直立面格柵與中央凸出方盒', '精準交錯純白垂直立面柱（穩固坐落於深灰基座上）與中央純白建築凸塊。');
   for (let x = -9; x <= 13; x += 2) {
     b.place('brick_1x1x2', 'WHITE', x, 5, 8);
     b.place('brick_1x1',   'WHITE', x, 11, 8);
   }
-  // Protruding central white architectural box (X 0..4, Z 9..10, Y 7..13)
+  // Protruding central white architectural box (X 0..4, Z 9..10, Y 7..13) with vertical support ribs
+  b.place('brick_1x1x2', 'DARK_BLUISH_GRAY', 0, 1, 9);
+  b.place('brick_1x1x2', 'DARK_BLUISH_GRAY', 3, 1, 9);
   b.place('brick_1x4', 'WHITE', 0, 7, 9, 1);
   b.place('brick_1x4', 'WHITE', 0, 10, 9, 1);
   b.place('tile_1x4',  'WHITE', 0, 13, 9, 1);
 
-  b.beginStep(4, '砌築左側純白 C 型門柱與紅色「tsmc」立面標誌', '組裝左側純白外框面並垂直掛載紅色「tsmc」標誌。', 'rd_logo');
-  for (let y of [5, 8, 11]) {
+  b.beginStep(4, '砌築左側純白 C 型門柱與紅色「tsmc」立面標誌', '組裝從底板落地直上屋頂的左側純白外框門柱並垂直掛載紅色「tsmc」標誌。', 'rd_logo');
+  b.fillRect(-13, -11, 0, 8, 1, 'WHITE', 'plate');
+  for (let y of [2, 5, 8, 11]) {
     b.spanZ(-13, y, 0, 8, 'WHITE', 'brick', y === 8);
     b.spanZ(-12, y, 0, 8, 'WHITE', 'brick', y !== 8);
   }
@@ -1873,12 +1888,12 @@ function buildSetTaichungExpo() {
     }
   }
   // Inner Central Promenade walls (x=-7 on Phase 2, x=6 on Phase 1)
-  // Portal open at Z=-2..4, Y=9..15; above Y=16 rests on the extended skybridge roof!
+  // Portal column (Z=-2..4, Y>=9) is left open here and completed above the skybridge roof in Bag 5!
   for (const ix of [-7, 6]) {
     for (let z = -10; z < 10; z++) {
       const wallTop = roofY(ix, z) - 1;
       for (let y = 3; y < wallTop; y++) {
-        const inBridgePortal = (z >= -2 && z <= 4 && y >= 9 && y <= 16);
+        const inBridgePortal = (z >= -2 && z <= 4 && y >= 9);
         if (inBridgePortal) continue;
         const isMullion = (z % 4 === 0) || (y === 8);
         b.place('plate_1x1', isMullion ? 'WHITE' : 'TRANS_LIGHT_BLUE', ix, y, z);
@@ -1944,7 +1959,7 @@ function buildSetTaichungExpo() {
   b.fillRect(-6, 6, -3, 5, 8, 'DARK_BLUISH_GRAY', 'plate');
   b.fillRect(-6, 6, -3, 5, 9, 'TAN', 'tile');
 
-  b.beginStep(5, '安裝 2F 聯通空橋雙面全景透明玻璃帷幕與承重頂板', '空橋南北兩側包覆透亮水藍玻璃與白色桁架，頂板兩端延伸錨定進雙館內牆！');
+  b.beginStep(5, '安裝 2F 聯通空橋雙面全景透明玻璃帷幕與承重頂板', '空橋南北兩側包覆透亮水藍玻璃與白色桁架，頂板兩端延伸錨定並封合雙館上段內牆！');
   for (let x = -6; x < 6; x++) {
     for (let y = 10; y <= 15; y++) {
       const isTruss = ((x + 6) % 3 === 0) || (y === 10) || (y === 15);
@@ -1956,6 +1971,16 @@ function buildSetTaichungExpo() {
   // Skybridge roof slab extends X=-7..7 so both inner promenade walls above Y=16 rest solidly on it!
   b.fillRect(-7, 7, -3, 5, 16, 'WHITE', 'plate');
   b.fillRect(-6, 6, -2, 4, 17, 'FLAT_SILVER', 'tile');
+  // Complete inner promenade walls above skybridge roof (Y >= 17) now that Y=16 support exists!
+  for (const ix of [-7, 6]) {
+    for (let z = -2; z <= 4; z++) {
+      const wallTop = roofY(ix, z) - 1;
+      for (let y = 17; y < wallTop; y++) {
+        const isMullion = (z % 4 === 0);
+        b.place('plate_1x1', isMullion ? 'WHITE' : 'TRANS_LIGHT_BLUE', ix, y, z);
+      }
+    }
+  }
 
   // -------------------------------------------------------------------------
   // BAG 6: Giant "Silver Magic Carpet" Watertight Undulating Wave Roof (巨型銀色魔毯波浪屋頂)
