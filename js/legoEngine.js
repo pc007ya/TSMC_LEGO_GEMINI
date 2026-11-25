@@ -637,7 +637,7 @@ export class LegoEngine {
         if (!p) continue;
         if (boxShapes.has(p.shape) && !p.print) {
           bodyCounts.set(b.color, (bodyCounts.get(b.color) || 0) + 1);
-          if (p.studs && p.w * p.d <= 8) {
+          if (p.studs) {
             studCounts.set(b.color, (studCounts.get(b.color) || 0) + p.w * p.d);
           }
         }
@@ -690,7 +690,7 @@ export class LegoEngine {
           const studMesh = studIMs.get(b.color) || null;
           const studIndices = [];
           const studOffsets = [];
-          if (studMesh && p.studs && p.w * p.d <= 8) {
+          if (studMesh && p.studs) {
             const halfW = (p.w - 1) / 2;
             const halfD = (p.d - 1) / 2;
             const cos = Math.cos(rotY), sin = Math.sin(rotY);

@@ -257,6 +257,51 @@ class LegoBuilder {
   }
 
   finalize() {
+    // Real-LEGO Stud-Clutch Integrity Pass:
+    // Any smooth studless tile (tile_*, round_tile_*) that has another brick placed
+    // directly on top of it MUST be a studded plate (plate_*, round_plate_*) so the
+    // next assembly stage can physically snap onto studs!
+    const bottomCells = new Set();
+    for (const br of this.bricks) {
+      if (br.rotDeg !== undefined) continue;
+      const p = PARTS[br.part];
+      const w = (br.rot % 2 === 1) ? p.d : p.w;
+      const d = (br.rot % 2 === 1) ? p.w : p.d;
+      const x0 = Math.round(br.x - w / 2);
+      const z0 = Math.round(br.z - d / 2);
+      for (let x = x0; x < x0 + w; x++) {
+        for (let z = z0; z < z0 + d; z++) {
+          bottomCells.add(`${x},${br.y},${z}`);
+        }
+      }
+    }
+    for (const br of this.bricks) {
+      if (br.rotDeg !== undefined) continue;
+      const p = PARTS[br.part];
+      if (p.studs) continue;
+      let candidate = null;
+      if (br.part.startsWith('tile_')) {
+        const rep = br.part.replace(/^tile_/, 'plate_');
+        if (PARTS[rep]) candidate = rep;
+      } else if (br.part.startsWith('round_tile_')) {
+        const rep = br.part.replace(/^round_tile_/, 'round_plate_');
+        if (PARTS[rep]) candidate = rep;
+      }
+      if (!candidate) continue;
+      const w = (br.rot % 2 === 1) ? p.d : p.w;
+      const d = (br.rot % 2 === 1) ? p.w : p.d;
+      const x0 = Math.round(br.x - w / 2);
+      const z0 = Math.round(br.z - d / 2);
+      const yTop = br.y + p.h;
+      let hasAbove = false;
+      for (let x = x0; x < x0 + w && !hasAbove; x++) {
+        for (let z = z0; z < z0 + d && !hasAbove; z++) {
+          if (bottomCells.has(`${x},${yTop},${z}`)) hasAbove = true;
+        }
+      }
+      if (hasAbove) br.part = candidate;
+    }
+
     // Filter out any empty steps (safety)
     const nonEmptySteps = [];
     const remap = new Map();
@@ -1262,8 +1307,8 @@ function buildSetTaichungOpera() {
   // -------------------------------------------------------------------------
   // BAG 2: Interior Foyer, Sound Cave Pillars & Red Grand Theater (-24..24, -16..12)
   // -------------------------------------------------------------------------
-  b.beginStep(2, '鋪設 1F 曲牆大廳溫潤米色與純白地坪', '於 48×28 主建築地基滿鋪米色與白色大廳地磚。');
-  b.fillRect(-24, 24, -16, 12, 2, 'TAN', 'tile');
+  b.beginStep(2, '鋪設 1F 曲牆大廳溫潤米色帶凸點承重地坪', '於 48×28 主建築地基滿鋪米色帶凸點薄板，穩固承接上層曲牆、巨柱與觀眾席。');
+  b.fillRect(-24, 24, -16, 12, 2, 'TAN', 'plate');
 
   b.beginStep(2, '建置大劇院階梯式紅色絨布觀眾席 (含實心階梯台座)', '於建築中央核心砌築經典台中國家歌劇院紅色大劇院觀眾席與實心支撐底座。');
   for (let row = 0; row < 5; row++) {
@@ -1590,9 +1635,9 @@ function buildSetTaichungExpo() {
   b.fillRect(-39, 39, -11, 21, 1, 'LIGHT_BLUISH_GRAY', 'plate');
   b.fillRect(-39, 39, -21, -11, 1, 'DARK_BLUISH_GRAY', 'plate');
 
-  b.beginStep(1, '雕塑南側正面水湳中央公園綠地、生態曲水與迎賓大道', '正面臨水湳中央公園側鋪設多層次鮮綠草坪、蜿蜒透藍水景與完整 1F 迎賓前廊地坪。');
-  // Complete ground plaza apron (Z = 10..13) directly beneath South Front glass wall & Tree Gate columns!
-  b.fillRect(-38, 38, 10, 13, 2, 'LIGHT_BLUISH_GRAY', 'tile');
+  b.beginStep(1, '雕塑南側正面水湳中央公園綠地、生態曲水與迎賓大道', '正面臨水湳中央公園側鋪設多層次鮮綠草坪、蜿蜒透藍水景與帶凸點 1F 迎賓前廊承重底板。');
+  // Complete ground plaza apron (Z = 10..13) using studded plates directly beneath South Front glass wall & Tree Gate columns!
+  b.fillRect(-38, 38, 10, 13, 2, 'LIGHT_BLUISH_GRAY', 'plate');
   for (let x = -38; x < 38; x++) {
     for (let z = 13; z < 21; z++) {
       if ((x === -1 || x === 0) && (z === 19 || z === 20)) continue; // reserve for slope_ticec_2x2 plaque
@@ -1649,12 +1694,12 @@ function buildSetTaichungExpo() {
   // -------------------------------------------------------------------------
   // BAG 2: Phase 1 East Hall (X = 6..36) & Phase 2 West Hall (X = -36..-6) Interiors
   // -------------------------------------------------------------------------
-  b.beginStep(2, '鋪設二期西側展館 (West Hall) 1F 大跨距無柱展場地坪', '於西側 30×21 展館基地鋪設平整淺藍灰與深灰走道展場地磚。');
-  b.fillRect(-36, -6, -11, 10, 2, 'LIGHT_BLUISH_GRAY', 'tile');
+  b.beginStep(2, '鋪設二期西側展館 (West Hall) 1F 帶凸點承重展場底板', '於西側 30×21 展館基地滿鋪帶凸點淺藍灰薄板，供後續展攤、鋼柱與外牆穩固卡合！');
+  b.fillRect(-36, -6, -11, 10, 2, 'LIGHT_BLUISH_GRAY', 'plate');
 
-  b.beginStep(2, '鋪設一期東側展館與會議中心 (East Hall) 地坪', '於東側 30×21 基地鋪設展廳地坪與右側會議中心溫潤米色前廳。');
-  b.fillRect(6, 24, -11, 10, 2, 'LIGHT_BLUISH_GRAY', 'tile');
-  b.fillRect(24, 36, -11, 10, 2, 'TAN', 'tile');
+  b.beginStep(2, '鋪設一期東側展館與會議中心 (East Hall) 帶凸點底板', '於東側 30×21 基地滿鋪淺藍灰展廳與米色會議中心帶凸點承重薄板。');
+  b.fillRect(6, 24, -11, 10, 2, 'LIGHT_BLUISH_GRAY', 'plate');
+  b.fillRect(24, 36, -11, 10, 2, 'TAN', 'plate');
 
   b.beginStep(2, '建置二期西館與一期東館微縮國際展覽攤位群', '於兩座展館內部配置紅、藍、白、珍珠金特色微縮展區攤位與中央主軸走道。');
   const boothColors = ['RED', 'BLUE', 'WHITE', 'PEARL_GOLD', 'SAND_BLUE'];
