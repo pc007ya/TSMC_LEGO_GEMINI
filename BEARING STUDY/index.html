@@ -670,6 +670,25 @@
       background: var(--card);
     }
 
+    /* Specialized & Trek Domane Evolution Blocks */
+    .brand-block {
+      background: color-mix(in srgb, var(--card-2) 55%, var(--card));
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+    }
+    .brand-block-head h3 {
+      margin: 0 0 12px;
+      font-size: 16px;
+      font-weight: 800;
+      line-height: 1.35;
+    }
+    .brand-photos-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
     /* Charter+ 4-part OEM grid */
     .charter-parts-grid {
       display: grid;
@@ -719,11 +738,11 @@
 
     @media (max-width: 980px) {
       .kpi-grid { grid-template-columns: repeat(2, 1fr); }
-      .grid-3, .gallery-grid, .metrics-grid, .case-reasons-grid, .charter-parts-grid { grid-template-columns: repeat(2, 1fr); }
+      .grid-3, .gallery-grid, .metrics-grid, .case-reasons-grid, .charter-parts-grid, .brand-photos-3 { grid-template-columns: repeat(2, 1fr); }
       .explorer-grid, .case-hero-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 640px) {
-      .kpi-grid, .grid-3, .grid-2, .gallery-grid, .metrics-grid, .pro-con, .ref-strip, .case-reasons-grid, .charter-parts-grid {
+      .kpi-grid, .grid-3, .grid-2, .gallery-grid, .metrics-grid, .pro-con, .ref-strip, .case-reasons-grid, .charter-parts-grid, .brand-photos-3 {
         grid-template-columns: 1fr;
       }
       .panel { padding: 16px; }
@@ -740,15 +759,16 @@
         <span>自行車頭管培林外／內走線技術報告（2020–2026）</span>
       </div>
       <div class="nav-links">
-        <a href="#showdown">實品 vs CAD對照</a>
+        <a href="#showdown">實品 vs CAD</a>
         <a href="#explorer">剖面圖解</a>
-        <a href="#cannondale-case">Cannondale 改版</a>
-        <a href="#trek-charter-case">Trek Charter+ 方案</a>
-        <a href="#gallery">真實圖與技術圖庫</a>
+        <a href="#gallery">真實圖庫</a>
         <a href="#metrics">工程評比</a>
         <a href="#timeline">六年演進</a>
-        <a href="#database">系統專利表</a>
-        <a href="../">← 返回樂高主頁</a>
+        <a href="#cannondale-case">Cannondale 深研</a>
+        <a href="#brand-evolution">Specialized / Domane</a>
+        <a href="#trek-charter-case">Trek Charter+</a>
+        <a href="#database">系統表</a>
+        <a href="../">← 樂高主頁</a>
         <button type="button" class="btn-ghost" id="theme-toggle" title="切換深色／淺色模式">☀ 淺色</button>
       </div>
     </div>
@@ -776,8 +796,8 @@
         </div>
         <div class="kpi">
           <div class="kpi-label">收錄真實圖與原廠技術圖</div>
-          <div class="kpi-val mono">25 張</div>
-          <div class="kpi-sub">含輪鋒 CAD、US 12,337,923 專利、Delta 舵管與 Trek Charter+ 零件實照</div>
+          <div class="kpi-val mono">29 張</div>
+          <div class="kpi-sub">含輪鋒 CAD、US 12,337,923 專利、Specialized SL8/SL9/Aethos 2、Domane Gen 3–5 與 Charter+</div>
         </div>
         <div class="kpi">
           <div class="kpi-label">刺刀前叉半繞過方案</div>
@@ -943,7 +963,55 @@
       </div>
     </section>
 
-    <!-- SECTION 3: CANNONDALE CASE STUDY (GEN 3 OUTSIDE-BEARING -> GEN 4/5 DELTA STEERER) -->
+    <!-- SECTION 3: FULL REAL PHOTO & TECHNICAL DRAWING GALLERY -->
+    <section class="panel" id="gallery">
+      <div class="section-head">
+        <div>
+          <h2>三、真實圖片與原廠技術圖／專利圖全覽（2020–2026）</h2>
+          <p>收錄 25 張精選實品照、1:1 CAD 藍圖、USPTO 美國專利工程圖、原廠透視手冊圖與 Trek Charter+ 原廠模組零件實照。點擊任意圖片可開啟高解析度燈箱並支援 165% 縮放細看標註。</p>
+        </div>
+        <div class="btn-group" id="gallery-filters">
+          <button type="button" class="tab-btn" data-gcat="all" data-active="true">全部圖鑑 (25)</button>
+          <button type="button" class="tab-btn" data-gcat="cad-patent" data-active="false">CAD 藍圖與專利技術圖</button>
+          <button type="button" class="tab-btn" data-gcat="outside" data-active="false">培林外／刺刀繞過方案</button>
+          <button type="button" class="tab-btn" data-gcat="inside-service" data-active="false">培林內異形舵管與防鏽套件</button>
+          <button type="button" class="tab-btn" data-gcat="brand-evo" data-active="false">Specialized / Domane 演進</button>
+          <button type="button" class="tab-btn" data-gcat="ebike" data-active="false">E-Bike 模組走線 (Trek Charter+)</button>
+        </div>
+      </div>
+
+      <div class="gallery-grid" id="gallery-grid"></div>
+    </section>
+
+    <!-- SECTION 4: ENGINEERING TRADE-OFF METRICS -->
+    <section class="panel" id="metrics">
+      <div class="section-head">
+        <div>
+          <h2>四、六大工程指標量化評比（滿分 10 分）</h2>
+          <p>綜合氣動風阻、更換培林維修工時、Fitting 相容性、防水防鏽耐久度、結構剛性與模具／組裝成本。</p>
+        </div>
+        <div style="display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--muted);">
+          <span><i class="swatch" style="background:var(--chart-1)"></i> 1A 碗座外孔</span>
+          <span><i class="swatch" style="background:var(--chart-2)"></i> 1B 前置腔/側孔</span>
+          <span><i class="swatch" style="background:var(--chart-3)"></i> 1C 刺刀分流</span>
+          <span><i class="swatch" style="background:var(--chart-4)"></i> 2 培林內走線</span>
+        </div>
+      </div>
+      <div class="metrics-grid" id="metrics-grid"></div>
+    </section>
+
+    <!-- SECTION 5: 6-YEAR TIMELINE -->
+    <section class="panel" id="timeline">
+      <div class="section-head">
+        <div>
+          <h2>五、2020–2026 頭管培林走線六年演進時間軸</h2>
+          <p>從「全面導入培林內走線」→「維修噩夢催生 SLT 防鏽培林與專利頭碗」→「2025–2026 培林外走線反撲、偏心舵管極致化與電輔模組整合」。</p>
+        </div>
+      </div>
+      <div class="timeline" id="timeline-container"></div>
+    </section>
+
+    <!-- SECTION 6: CANNONDALE CASE STUDY -->
     <section class="panel" id="cannondale-case">
       <div class="section-head">
         <div>
@@ -951,7 +1019,7 @@
             <span class="pill warn">專題工程案例研究</span>
             <span class="pill info">SuperSix EVO Gen 3（2019–2022）→ Gen 4（2023）→ Gen 5（2026）</span>
           </div>
-          <h2>三、專題深研：為何 Cannondale 捨棄 Gen 3「培林外前置腔」，下一代改採 Delta 三角舵管？</h2>
+          <h2>六、專題深研：為何 Cannondale 捨棄 Gen 3「培林外前置腔」，下一代改採 Delta 三角舵管？</h2>
           <p>SuperSix EVO Gen 3 原是公路車少數採用「培林外前置走線腔」的先驅，為何 Cannondale 在 Gen 4（2023）與 Gen 5（2026）毅然轉向「穿過上培林」的 Delta 三角（V 型）舵管，並全面推廣至 SuperX 礫石車與全系列公路車？</p>
         </div>
       </div>
@@ -1103,7 +1171,339 @@
       </div>
     </section>
 
-    <!-- SECTION 4: TREK CHARTER+ (2026-2027) MODULAR E-CITY ROUTING CASE STUDY -->
+    <!-- SECTION 7: SPECIALIZED & TREK DOMANE 6-YEAR EVOLUTION (2020-2026) -->
+    <section class="panel" id="brand-evolution">
+      <div class="section-head">
+        <div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px;">
+            <span class="pill info">雙大美系品牌六年演進</span>
+            <span class="pill warn">Specialized（SL7 → SL8 → Aethos 2 → SL9 / Roubaix SL8）</span>
+            <span class="pill ok">Trek Domane（Gen 3 → Gen 4 → Gen 5）</span>
+          </div>
+          <h2>七、品牌六年演進專題：Specialized × Trek Domane（2020–2026）頭管走線世代對照</h2>
+          <p>近六年內，兩大美系標竿品牌在頭管走線與前段結構上走出極具參考價值的演進路線：<strong>Specialized</strong> 將 49.5mm 培林內走線由 Tarmac 全面擴張至 Aethos 2，並在 2026 Tarmac SL9 以偏心舵管挑戰窄化極限；<strong>Trek Domane</strong> 則隨寬胎普及先後取消前／後 IsoSpeed，從 Gen 3「培林外頭管進線」轉入 Gen 4／Gen 5「RCS 標準圓舵管＋對開墊圈」實務路線。</p>
+        </div>
+        <div class="btn-group" id="brand-evo-tabs">
+          <button type="button" class="tab-btn" data-brand="all" data-active="true">雙品牌並列全覽</button>
+          <button type="button" class="tab-btn" data-brand="specialized" data-active="false">僅看 Specialized</button>
+          <button type="button" class="tab-btn" data-brand="domane" data-active="false">僅看 Trek Domane</button>
+        </div>
+      </div>
+
+      <!-- TRACK A: SPECIALIZED -->
+      <div class="brand-block" data-brand-panel="specialized">
+        <div class="brand-block-head">
+          <div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px;">
+              <span class="pill warn">TRACK A｜SPECIALIZED（2020–2026）</span>
+              <span class="pill mono">40.5×49.5×6.5mm 統一培林 → Offset Steerer 偏心舵管</span>
+            </div>
+            <h3>Specialized 近六年頭管走線演進：從「全車系收斂至培林內走」到 2026 SL9 偏心窄化</h3>
+          </div>
+        </div>
+
+        <div class="case-hero-grid" style="margin-bottom:14px;">
+          <!-- Left: 3-Stage Top-View Headtube Evolution SVG -->
+          <div class="svg-card" style="gap:10px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--muted);">
+              <strong style="color:var(--fg)">Tarmac 三代頭管俯視剖面演進（SL7 → SL8 → SL9）</strong>
+              <span class="mono">↑ 車頭迎風方向</span>
+            </div>
+            <svg viewBox="0 0 540 184" style="width:100%;height:auto;display:block;background:var(--card);border:1px solid var(--border-soft);border-radius:10px;" aria-label="Specialized Tarmac SL7 SL8 SL9 頭管剖面演進">
+              <!-- SL7 (2020) -->
+              <text x="88" y="18" text-anchor="middle" font-size="11" font-weight="800" fill="var(--fg)">2020 Tarmac SL7</text>
+              <path d="M 88 32 C 122 32, 134 62, 134 98 C 134 132, 118 152, 88 152 C 58 152, 42 132, 42 98 C 42 62, 54 32, 88 32 Z" fill="var(--card-2)" stroke="var(--border)" stroke-width="2"/>
+              <circle cx="88" cy="96" r="35" fill="var(--chart-1)" fill-opacity="0.25" stroke="var(--chart-1)" stroke-width="6.5"/>
+              <circle cx="88" cy="100" r="17" fill="var(--chart-2)" fill-opacity="0.34" stroke="var(--chart-2)" stroke-width="2.2"/>
+              <circle cx="77" cy="76" r="5" fill="var(--chart-4)" stroke="var(--bg)" stroke-width="1.3"/>
+              <circle cx="99" cy="76" r="5" fill="var(--chart-4)" stroke="var(--bg)" stroke-width="1.3"/>
+              <text x="88" y="168" text-anchor="middle" font-size="9" fill="var(--muted)">49.5mm 培林・雙管走舵管前方</text>
+
+              <!-- Arrow 1 -->
+              <line x1="150" y1="94" x2="174" y2="94" stroke="var(--primary)" stroke-width="2"/>
+              <polygon points="174,89 183,94 174,99" fill="var(--primary)"/>
+
+              <!-- SL8 (2023) -->
+              <text x="268" y="18" text-anchor="middle" font-size="11" font-weight="800" fill="var(--warning)">2023 Tarmac SL8</text>
+              <!-- Speed Sniffer extended nose -->
+              <path d="M 268 24 C 296 28, 310 64, 310 102 C 310 134, 294 152, 268 152 C 242 152, 226 134, 226 102 C 226 64, 240 28, 268 24 Z" fill="var(--card-2)" stroke="var(--warning)" stroke-width="2"/>
+              <circle cx="268" cy="104" r="34" fill="var(--chart-1)" fill-opacity="0.25" stroke="var(--chart-1)" stroke-width="6.5"/>
+              <circle cx="268" cy="108" r="16.5" fill="var(--chart-2)" fill-opacity="0.34" stroke="var(--chart-2)" stroke-width="2.2"/>
+              <circle cx="258" cy="84" r="5" fill="var(--chart-4)" stroke="var(--bg)" stroke-width="1.3"/>
+              <circle cx="278" cy="84" r="5" fill="var(--chart-4)" stroke="var(--bg)" stroke-width="1.3"/>
+              <text x="268" y="54" text-anchor="middle" font-size="8.5" font-weight="700" fill="var(--warning)">Speed Sniffer</text>
+              <text x="268" y="168" text-anchor="middle" font-size="9" fill="var(--muted)">鼻錐前凸後移舵管・685g＋SLT</text>
+
+              <!-- Arrow 2 -->
+              <line x1="330" y1="94" x2="354" y2="94" stroke="var(--primary)" stroke-width="2"/>
+              <polygon points="354,89 363,94 354,99" fill="var(--primary)"/>
+
+              <!-- SL9 (2026) -->
+              <text x="448" y="18" text-anchor="middle" font-size="11" font-weight="800" fill="var(--primary)">2026 Tarmac SL9</text>
+              <!-- Slimmer -4mm headtube -->
+              <path d="M 448 24 C 470 28, 482 64, 482 102 C 482 134, 469 152, 448 152 C 427 152, 414 134, 414 102 C 414 64, 426 28, 448 24 Z" fill="var(--card-2)" stroke="var(--primary)" stroke-width="2.2"/>
+              <circle cx="448" cy="102" r="30" fill="var(--chart-1)" fill-opacity="0.25" stroke="var(--chart-1)" stroke-width="6"/>
+              <!-- Offset steerer shifted slightly left so right channel holds hoses cleanly -->
+              <circle cx="441" cy="103" r="15.5" fill="var(--chart-2)" fill-opacity="0.38" stroke="var(--chart-2)" stroke-width="2.2"/>
+              <circle cx="464" cy="95" r="4.8" fill="var(--chart-4)" stroke="var(--bg)" stroke-width="1.3"/>
+              <circle cx="464" cy="109" r="4.8" fill="var(--chart-4)" stroke="var(--bg)" stroke-width="1.3"/>
+              <text x="448" y="168" text-anchor="middle" font-size="9" fill="var(--success)">偏心舵管靠右側走線・再窄 4mm 省 4W</text>
+            </svg>
+          </div>
+
+          <!-- Right: Specialized 6-Year Model Matrix -->
+          <div class="svg-card" style="justify-content:center;">
+            <table class="mini-compare-table" style="margin-top:0;">
+              <thead>
+                <tr>
+                  <th>年份／車款</th>
+                  <th>走線型態與培林規格</th>
+                  <th>關鍵工程演進與維修取捨</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>2020.07<br/>Tarmac SL7</strong></td>
+                  <td>培林內走線<br/><span class="mono">40.5×49.5×6.5mm</span></td>
+                  <td>統一 Venge 與 Tarmac，較小外徑 49.5mm 培林配標準圓舵管＋龍頭底槽與對開墊圈，兼顧半整合改裝彈性。</td>
+                </tr>
+                <tr>
+                  <td><strong>2020.10<br/>Aethos Gen 1</strong></td>
+                  <td style="color:var(--success)"><strong>培林外（車架側孔）</strong><br/><span class="mono">標準 1-1/8" 圓舵管</span></td>
+                  <td>585g 極致爬坡車刻意逆向採用傳統全外露進線孔，換培林／換把立零門檻，成為維修友善標竿。</td>
+                </tr>
+                <tr>
+                  <td><strong>2023.08–09<br/>Tarmac SL8 &amp; Roubaix SL8</strong></td>
+                  <td>SL8：鼻錐培林內 <span class="mono">49.5mm</span><br/>Roubaix：Future Shock 3.0 <span class="mono">45.8mm</span></td>
+                  <td>SL8 鼻錐後移舵管減重至 685g 並導入 CeramicSpeed SLT；Roubaix SL8 以頭管內 20mm 阻尼匣整合線管。</td>
+                </tr>
+                <tr>
+                  <td><strong>2025.10<br/>Aethos 2</strong></td>
+                  <td style="color:var(--warning)"><strong>轉向培林內走線</strong><br/><span class="mono">同 SL8 頭碗規格</span></td>
+                  <td>595g（整車 5.98kg）、35mm 胎寬、UDH；順應市場審美捨棄外走線，改配 Roval Alpinist II 一體把穿培林走線。</td>
+                </tr>
+                <tr>
+                  <td><strong>2026.06<br/>Tarmac SL9</strong></td>
+                  <td style="color:var(--primary)"><strong>專利偏心舵管（Offset）</strong><br/>標配 CeramicSpeed 培林</td>
+                  <td>後煞等管路集中舵管右側，迎風面再減 10%（窄 4mm）、45km/h 省 4W（687g）；全線純電變且高度仰賴防鏽培林。</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="brand-photos-3">
+          <article class="part-card">
+            <div class="media-box" data-lb-src="./images/tech-tarmac-sl8-bearing-schematic.jpg" data-lb-title="Specialized Tarmac SL7 / SL8 頭碗培林與開槽迫緊環 3D 技術圖" data-lb-cap="Specialized 自 2020 SL7 延續至 2023 SL8 與 2025 Aethos 2 的 40.5×49.5×6.5mm 頭碗架構：紫／紅雙液壓油管經開槽迫緊環（C）貫穿上培林（B）內圈，形成 Specialized 公路車系六年的共用標準。">
+              <img src="./images/tech-tarmac-sl8-bearing-schematic.jpg" alt="Specialized Tarmac SL8 頭碗培林技術透視圖" loading="lazy" />
+              <span class="zoom-hint">放大技術圖</span>
+            </div>
+            <div class="part-card-body">
+              <div class="part-sku mono">2020 SL7 → 2023 SL8 原廠技術圖</div>
+              <h4>49.5mm 培林＋開槽迫緊環架構</h4>
+              <p>外徑比標準 IS52（51.8mm）縮小 2.3mm，配 Speed Sniffer 鼻錐在圓舵管基礎下兼顧氣動與 685g 輕量。</p>
+            </div>
+          </article>
+
+          <article class="part-card">
+            <div class="media-box dark-bg" data-lb-src="./images/specialized-aethos2-cockpit.jpg" data-lb-title="Specialized S-Works Aethos 2（2025.10）全內走線座艙與頭管實照" data-lb-cap="2025 年 10 月發表的 Aethos 2 雖維持 595g 超輕爬坡血統，卻正式告別初代 Aethos 的外露車架側孔，改採與 Tarmac SL8 相同的穿培林內走線頭碗與 Roval Alpinist II 一體把，象徵 Specialized 頂級公路車全面邁入全隱藏時代。">
+              <img src="./images/specialized-aethos2-cockpit.jpg" alt="Specialized S-Works Aethos 2 2025 全內走線頭管實照" loading="lazy" />
+              <span class="zoom-hint">放大實照</span>
+            </div>
+            <div class="part-card-body">
+              <div class="part-sku mono">2025.10｜Aethos Gen 1 外走 → Aethos 2 內走</div>
+              <h4>Aethos 2 告別外走線的關鍵轉折</h4>
+              <p>連最標榜機械簡潔的 595g 爬坡車也統一改用 SL8 同規培林內走線＋Roval Alpinist II，保留標準圓舵管相容性。</p>
+            </div>
+          </article>
+
+          <article class="part-card">
+            <div class="media-box dark-bg" data-lb-src="./images/specialized-tarmac-sl9.jpg" data-lb-title="Specialized S-Works Tarmac SL9（2026.06）偏心舵管窄化頭管實車" data-lb-cap="2026 年 6 月環法前夕發表的 Tarmac SL9，導入專利申請中 Offset Steerer（偏心舵管）將油管收攏於舵管右側通道，令 Speed Sniffer 頭管再縮窄 4mm、正面迎風面積減少 10%，於 45km/h 較 SL8 再省 4W。">
+              <img src="./images/specialized-tarmac-sl9.jpg" alt="Specialized Tarmac SL9 2026 偏心舵管頭管實照" loading="lazy" />
+              <span class="zoom-hint">放大實照</span>
+            </div>
+            <div class="part-card-body">
+              <div class="part-sku mono">2026.06｜Patent-Pending Offset Steerer</div>
+              <h4>Tarmac SL9 偏心舵管：再窄 4mm 省 4W</h4>
+              <p>在不採外置刺刀前叉的前提下，靠偏心通道把頭管迎風面再降 10%，以 687g 輕量結合 CeramicSpeed 頭碗對抗純空力車。</p>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- TRACK B: TREK DOMANE -->
+      <div class="brand-block" data-brand-panel="domane" style="margin-top:18px;">
+        <div class="brand-block-head">
+          <div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px;">
+              <span class="pill ok">TRACK B｜TREK DOMANE（2020–2026）</span>
+              <span class="pill mono">Gen 3（前 IsoSpeed 培林外）→ Gen 4（RCS 培林內）→ Gen 5（無 IsoSpeed 輕量化）</span>
+            </div>
+            <h3>Trek Domane 近六年頭管與車架演進：告別前後 IsoSpeed × 統一 RCS 模組化內走線</h3>
+          </div>
+        </div>
+
+        <div class="case-hero-grid" style="margin-bottom:14px;">
+          <!-- Left: 3-Generation Domane Headtube SVG -->
+          <div class="svg-card" style="gap:10px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--muted);">
+              <strong style="color:var(--fg)">Trek Domane 三代頭管結構與走線演進（Gen 3 → Gen 4 → Gen 5）</strong>
+              <span class="mono">側視頭管對照</span>
+            </div>
+            <svg viewBox="0 0 540 184" style="width:100%;height:auto;display:block;background:var(--card);border:1px solid var(--border-soft);border-radius:10px;" aria-label="Trek Domane Gen 3 Gen 4 Gen 5 頭管演進">
+              <!-- Gen 3 (2020-2022) -->
+              <text x="88" y="18" text-anchor="middle" font-size="11" font-weight="800" fill="var(--success)">Gen 3（2019–2022）</text>
+              <!-- Headtube -->
+              <path d="M 68 58 L 106 58 L 116 146 L 78 146 Z" fill="var(--card-2)" stroke="var(--border)" stroke-width="2"/>
+              <!-- Front IsoSpeed Decoupler block inside upper headtube -->
+              <rect x="73" y="64" width="28" height="26" rx="4" fill="var(--warning)" fill-opacity="0.32" stroke="var(--warning)" stroke-width="1.8"/>
+              <text x="87" y="80" text-anchor="middle" font-size="7.5" font-weight="800" fill="var(--warning)">Front Iso</text>
+              <!-- Standard Stem -->
+              <rect x="74" y="34" width="52" height="14" rx="4" fill="var(--card-2)" stroke="var(--fg)" stroke-opacity="0.55" stroke-width="1.5"/>
+              <!-- External cable diving into behind-stem/headtube port (outside bearing!) -->
+              <path d="M 122 48 C 118 68, 92 64, 70 90 C 60 104, 62 126, 76 144" fill="none" stroke="var(--chart-4)" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="71" cy="89" r="4" fill="var(--success)"/>
+              <text x="88" y="162" text-anchor="middle" font-size="9" font-weight="700" fill="var(--success)">前 IsoSpeed 佔頭管→培林外進線</text>
+              <text x="88" y="174" text-anchor="middle" font-size="8.5" fill="var(--muted)">換培林免斷油管・結構較重</text>
+
+              <!-- Arrow 1 -->
+              <line x1="150" y1="94" x2="174" y2="94" stroke="var(--primary)" stroke-width="2"/>
+              <polygon points="174,89 183,94 174,99" fill="var(--primary)"/>
+
+              <!-- Gen 4 (2022-2025) -->
+              <text x="268" y="18" text-anchor="middle" font-size="11" font-weight="800" fill="var(--warning)">Gen 4（2022–2025）</text>
+              <path d="M 248 58 L 288 58 L 298 146 L 258 146 Z" fill="var(--card-2)" stroke="var(--warning)" stroke-width="2"/>
+              <!-- RCS Pro Stem + under-stem cover + split spacers -->
+              <path d="M 252 32 L 310 34 L 310 47 L 286 47 L 280 56 L 252 56 Z" fill="var(--card-2)" stroke="var(--primary)" stroke-width="1.6"/>
+              <!-- Upper & Lower Bearings -->
+              <rect x="252" y="61" width="32" height="9" rx="2" fill="var(--chart-1)" fill-opacity="0.4" stroke="var(--chart-1)" stroke-width="1.3"/>
+              <!-- Through-bearing cables -->
+              <path d="M 306 46 C 288 48, 280 54, 276 68 C 274 96, 268 122, 262 144" fill="none" stroke="var(--chart-4)" stroke-width="3" stroke-linecap="round"/>
+              <text x="268" y="162" text-anchor="middle" font-size="9" font-weight="700" fill="var(--warning)">取消前 IsoSpeed→RCS 培林內走線</text>
+              <text x="268" y="174" text-anchor="middle" font-size="8.5" fill="var(--muted)">對開墊圈免斷管調高・減重 ~300g</text>
+
+              <!-- Arrow 2 -->
+              <line x1="330" y1="94" x2="354" y2="94" stroke="var(--primary)" stroke-width="2"/>
+              <polygon points="354,89 363,94 354,99" fill="var(--primary)"/>
+
+              <!-- Gen 5 (2026.08) -->
+              <text x="448" y="18" text-anchor="middle" font-size="11" font-weight="800" fill="var(--primary)">Gen 5（2026.08）</text>
+              <!-- Slimmer lighter headtube -->
+              <path d="M 430 58 L 466 58 L 476 146 L 440 146 Z" fill="var(--card-2)" stroke="var(--primary)" stroke-width="2.2"/>
+              <path d="M 432 32 L 490 34 L 490 47 L 466 47 L 460 56 L 432 56 Z" fill="var(--card-2)" stroke="var(--primary)" stroke-width="1.8"/>
+              <rect x="434" y="61" width="28" height="9" rx="2" fill="var(--chart-1)" fill-opacity="0.4" stroke="var(--chart-1)" stroke-width="1.3"/>
+              <path d="M 486 46 C 468 48, 460 54, 456 68 C 454 96, 448 122, 442 144" fill="none" stroke="var(--chart-4)" stroke-width="3" stroke-linecap="round"/>
+              <rect x="384" y="88" width="42" height="22" rx="4" fill="var(--success)" fill-opacity="0.2" stroke="var(--success)" stroke-width="1.3"/>
+              <text x="405" y="98" text-anchor="middle" font-size="7.5" font-weight="800" fill="var(--success)">無 IsoSpeed</text>
+              <text x="405" y="107" text-anchor="middle" font-size="7.5" fill="var(--fg)">835g/40mm</text>
+              <text x="448" y="162" text-anchor="middle" font-size="9" font-weight="700" fill="var(--primary)">前後 IsoSpeed 全取消・延續 RCS</text>
+              <text x="448" y="174" text-anchor="middle" font-size="8.5" fill="var(--muted)">再減 305g・支援機械 105 與標準舵管</text>
+            </svg>
+          </div>
+
+          <!-- Right: Trek Domane Gen 3 vs Gen 4 vs Gen 5 Matrix -->
+          <div class="svg-card" style="justify-content:center;">
+            <table class="mini-compare-table" style="margin-top:0;">
+              <thead>
+                <tr>
+                  <th>工程項目</th>
+                  <th>Gen 3（2019–2022）</th>
+                  <th>Gen 4（2022–2025）</th>
+                  <th>Gen 5（2026.08）</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>IsoSpeed 配置</strong></td>
+                  <td>前 IsoSpeed ＋ 可調後 IsoSpeed</td>
+                  <td><strong>取消前 IsoSpeed</strong>・保留簡化後 IsoSpeed</td>
+                  <td style="color:var(--primary)"><strong>前後 IsoSpeed 全面取消</strong>（改靠 35–40mm 寬胎＋27.2 圓座管）</td>
+                </tr>
+                <tr>
+                  <td><strong>頭管走線型態</strong></td>
+                  <td style="color:var(--success)"><strong>培林外（頭管進線孔）</strong><br/>線繞龍頭下方進車架</td>
+                  <td><strong>RCS 培林內走線</strong><br/>RCS Pro 龍頭底槽＋對開墊圈</td>
+                  <td><strong>延續 RCS 培林內走線</strong><br/>支援 Aero RSL 一體把與機械 105</td>
+                </tr>
+                <tr>
+                  <td><strong>車架減重與胎寬</strong></td>
+                  <td>基準重量｜最大 38mm（標配 28–32mm）</td>
+                  <td>較 Gen 3 減重 <strong>~300g</strong>｜最大 38mm</td>
+                  <td style="color:var(--success)">SLR 再減 <strong>305g（835g）</strong>／SL 減 292g｜最大 <strong>40mm</strong>（標配 35mm）</td>
+                </tr>
+                <tr>
+                  <td><strong>調高與換培林</strong></td>
+                  <td style="color:var(--success)">✓ 調高／換培林皆免斷油管（前 IsoSpeed 需定期保養）</td>
+                  <td>✓ 對開墊圈調高免斷管（配 <span class="mono">W5274615</span> 可換一般龍頭）<br/>✗ 換上培林須斷管</td>
+                  <td>✓ 圓舵管＋對開墊圈調高與換龍頭免斷管・免 IsoSpeed 保養<br/>✗ 換上培林須斷管</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="brand-photos-3">
+          <article class="part-card">
+            <div class="media-box" data-lb-src="./images/trek-domane-gen3-isospeed.jpg" data-lb-title="Trek Domane SL 5 Gen 3（2020–2022）前 IsoSpeed 與培林外頭管進線實車" data-lb-cap="Domane Gen 3 頭管上端內藏 Front IsoSpeed 減震解耦器，線管無法貫穿上培林，因而由龍頭下方外露並從頭管 Control Freak 進線口進入車架（屬培林外進線），換培林免斷油管但整車較重。">
+              <img src="./images/trek-domane-gen3-isospeed.jpg" alt="Trek Domane SL 5 Gen 3 實車照" loading="lazy" />
+              <span class="zoom-hint">放大實車</span>
+            </div>
+            <div class="part-card-body">
+              <div class="part-sku mono">2019–2022｜Domane Gen 3（前 IsoSpeed）</div>
+              <h4>前 IsoSpeed 時代的「培林外進線」</h4>
+              <p>清楚可見龍頭下方線管直接匯入頭管入口而不穿過上培林，維修最直覺，但雙 IsoSpeed 帶來重量與異音保養負擔。</p>
+            </div>
+          </article>
+
+          <article class="part-card">
+            <div class="media-box" data-lb-src="./images/trek-domane-rcs-pro-stem.jpg" data-lb-title="Trek RCS Pro Blendr 龍頭（Domane Gen 4 / Gen 5 核心走線模組）" data-lb-cap="Domane Gen 4（2022.09）起導入並延續至 Gen 5（2026）的 RCS Pro 鋁合金龍頭：底部設有可拆式流線藏線護蓋，讓煞車油管與變速線沿龍頭下緣平順導入對開式墊圈與頭碗上培林，調整墊圈高度或更換龍頭長度完全不必拆剪液壓油管。">
+              <img src="./images/trek-domane-rcs-pro-stem.jpg" alt="Trek RCS Pro Blendr Stem 實品照" loading="lazy" />
+              <span class="zoom-hint">放大實品</span>
+            </div>
+            <div class="part-card-body">
+              <div class="part-sku mono">2022–2026｜Gen 4 &amp; Gen 5 關鍵件</div>
+              <h4>RCS Pro 龍頭底槽＋對開墊圈系統</h4>
+              <p>底蓋包覆走線＋對開式墊圈設計，加上標準 1-1/8" 圓舵管與轉接蓋（<span class="mono">W5274615</span>），兼顧簡潔外觀與車主 DIY 調姿。</p>
+            </div>
+          </article>
+
+          <article class="part-card">
+            <div class="media-box" data-lb-src="./images/trek-domane-gen5-slr9.jpg" data-lb-title="Trek Domane SLR 9 Gen 5（2026.08）全面移除 IsoSpeed 之輕量化新世代" data-lb-cap="2026 年 8 月 13 日發表的第五代 Domane SLR 9（圖為 50 週年 Project One No.76 限量版）：徹底告別前後 IsoSpeed 機構，SLR 車架狂減 305g 至 835g、採用標準 27.2mm 圓形碳座管與 40mm 寬胎容納度，並延續成熟的 RCS 圓舵管頭碗系統。">
+              <img src="./images/trek-domane-gen5-slr9.jpg" alt="Trek Domane SLR 9 Gen 5 2026 實車照" loading="lazy" />
+              <span class="zoom-hint">放大實車</span>
+            </div>
+            <div class="part-card-body">
+              <div class="part-sku mono">2026.08｜Domane Gen 5（835g・40mm 胎寬）</div>
+              <h4>全面取消 IsoSpeed，回歸純粹輕量耐力車</h4>
+              <p>兩代累計減重逾 600g，以 35–40mm 寬胎＋碳疊層取代機械解耦，保留 T47、UDH、圓座管與 RCS 頭碗實現低保養負擔。</p>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- Cross-Brand Engineering Synthesis -->
+      <div class="case-reasons-grid" style="margin-top:16px;">
+        <div class="reason-card">
+          <div class="reason-num">共通趨勢｜高階公路車全面轉向「培林內走線」</div>
+          <h4>Aethos 2（2025）與 Domane Gen 4/5 印證市場選擇</h4>
+          <p>2020 年時，Specialized Aethos Gen 1 與 Trek Domane Gen 3 仍是少數堅守「培林外／車架側孔」的高階公路車；然而到了 2025–2026，兩大車系雙雙完成全面培林內走線化，顯示消費市場對無外露線管美學的剛性需求，迫使原廠改由<strong>對開墊圈（RCS）</strong>與<strong>長壽命防鏽培林（SLT）</strong>來緩解維修痛點。</p>
+        </div>
+
+        <div class="reason-card">
+          <div class="reason-num">路線分歧｜「機械減震」vs「寬胎去機構化」</div>
+          <h4>Roubaix SL8 堅持 Future Shock 3.0；Domane Gen 5 徹底去 IsoSpeed</h4>
+          <p>面對長途耐力車的減震命題，兩大品牌在 2023–2026 分道揚鑣：Specialized 仍於 <strong>Roubaix SL8</strong> 保留頭管內置 20mm 行程 <strong>Future Shock 3.0</strong> 強化手部吸震；Trek 則以實測數據證明 <strong>35–40mm 寬胎低壓</strong>可達前代 95% 減震效能，在 2026 <strong>Domane Gen 5</strong> 果斷砍除所有 IsoSpeed 機構，換取 835g 超輕車架與零解耦器異音。</p>
+        </div>
+
+        <div class="reason-card tradeoff">
+          <div class="reason-num">工程啟示｜極致氣動（SL9）vs 實務通用（Domane RCS）</div>
+          <h4>偏心異形舵管換 4W，標準圓舵管保住 Fitting 彈性</h4>
+          <p><strong>Tarmac SL9</strong> 為了再擠出 4W 與 4mm 頭管縮窄，已跨出圓舵管框架改採專利偏心舵管（純電變專用）；而 <strong>Domane Gen 5</strong> 雖同採培林內走線，仍刻意保留標準 1-1/8" 圓舵管、對開墊圈與 Shimano 105 機械變速支援——證明「頭管走線選型」沒有單一標準答案，端視車種定位在<strong>風阻瓦數</strong>與<strong>十年維修便利性</strong>間的權衡。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 8: TREK CHARTER+ (2026-2027) MODULAR E-CITY ROUTING CASE STUDY -->
     <section class="panel" id="trek-charter-case">
       <div class="section-head">
         <div>
@@ -1112,7 +1512,7 @@
             <span class="pill info">Trek Charter+ 4 / 4S / 5 / 5S（MY2026–2027）</span>
             <span class="pill mono">Alpha Aluminum ＋ Bosch Smart System 750W / 85Nm</span>
           </div>
-          <h2>四、專題收錄：Trek Charter+（2026–2027）電輔城市車「單螺絲可拆蓋前頭管 × 可調升降護蓋龍頭 × 下管線槽」方案</h2>
+          <h2>八、專題收錄：Trek Charter+（2026–2027）電輔城市車「單螺絲可拆蓋前頭管 × 可調升降護蓋龍頭 × 下管線槽」方案</h2>
           <p>有別於公路競賽車追求極窄迎風面，高階電輔城市車必須同時整合<strong>雙液壓油管、變速（Shimano CUES / Nexus Di2 / Enviolo）、Bosch HMI 電控與整合前燈</strong>共 5–6 條線束，並保留大幅度把高與仰角調整能力。2026 年 2 月發表的 Trek Charter+ 以四組原廠模組化零件（<span class="mono">5347290</span>、<span class="mono">W5330566</span>、<span class="mono">W5331956</span>、<span class="mono">W5332943</span>）打造出兼顧整潔外觀與裝配彈性的城市車走線典範。</p>
         </div>
       </div>
@@ -1305,58 +1705,11 @@
       </div>
     </section>
 
-    <!-- SECTION 5: FULL REAL PHOTO & TECHNICAL DRAWING GALLERY -->
-    <section class="panel" id="gallery">
-      <div class="section-head">
-        <div>
-          <h2>五、真實圖片與原廠技術圖／專利圖全覽（2020–2026）</h2>
-          <p>收錄 21 張精選實品照、1:1 CAD 藍圖、USPTO 美國專利工程圖、原廠透視手冊圖與 Trek Charter+ 原廠模組零件實照。點擊任意圖片可開啟高解析度燈箱並支援 165% 縮放細看標註。</p>
-        </div>
-        <div class="btn-group" id="gallery-filters">
-          <button type="button" class="tab-btn" data-gcat="all" data-active="true">全部圖鑑 (21)</button>
-          <button type="button" class="tab-btn" data-gcat="cad-patent" data-active="false">CAD 藍圖與專利技術圖</button>
-          <button type="button" class="tab-btn" data-gcat="outside" data-active="false">培林外／刺刀繞過方案</button>
-          <button type="button" class="tab-btn" data-gcat="inside-service" data-active="false">培林內異形舵管與防鏽套件</button>
-          <button type="button" class="tab-btn" data-gcat="ebike" data-active="false">E-Bike 模組走線 (Trek Charter+)</button>
-        </div>
-      </div>
-
-      <div class="gallery-grid" id="gallery-grid"></div>
-    </section>
-
-    <!-- SECTION 6: ENGINEERING TRADE-OFF METRICS -->
-    <section class="panel" id="metrics">
-      <div class="section-head">
-        <div>
-          <h2>六、六大工程指標量化評比（滿分 10 分）</h2>
-          <p>綜合氣動風阻、更換培林維修工時、Fitting 相容性、防水防鏽耐久度、結構剛性與模具／組裝成本。</p>
-        </div>
-        <div style="display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--muted);">
-          <span><i class="swatch" style="background:var(--chart-1)"></i> 1A 碗座外孔</span>
-          <span><i class="swatch" style="background:var(--chart-2)"></i> 1B 前置腔/側孔</span>
-          <span><i class="swatch" style="background:var(--chart-3)"></i> 1C 刺刀分流</span>
-          <span><i class="swatch" style="background:var(--chart-4)"></i> 2 培林內走線</span>
-        </div>
-      </div>
-      <div class="metrics-grid" id="metrics-grid"></div>
-    </section>
-
-    <!-- SECTION 7: 6-YEAR TIMELINE -->
-    <section class="panel" id="timeline">
-      <div class="section-head">
-        <div>
-          <h2>七、2020–2026 頭管培林走線六年演進時間軸</h2>
-          <p>從「全面導入培林內走線」→「維修噩夢催生 SLT 防鏽培林與專利頭碗」→「2025–2026 培林外走線反撲、偏心舵管極致化與電輔模組整合」。</p>
-        </div>
-      </div>
-      <div class="timeline" id="timeline-container"></div>
-    </section>
-
-    <!-- SECTION 8: FILTERABLE ENGINEERING DATABASE -->
+    <!-- SECTION 9: FILTERABLE ENGINEERING DATABASE -->
     <section class="panel" id="database">
       <div class="section-head">
         <div>
-          <h2>八、2020–2026 代表系統、車款與專利明細表（20 項）</h2>
+          <h2>九、2020–2026 代表系統、車款與專利明細表（22 項）</h2>
           <p>點選左側縮圖即可放大檢視對應實品或技術圖，並支援依走線類型、車種與關鍵字即時篩選。</p>
         </div>
       </div>
@@ -1439,6 +1792,8 @@
         <a target="_blank" rel="noopener noreferrer" href="https://www.bikeradar.com/features/opinion/5-ways-race-bikes-will-improve-in-2026">10. BikeRadar (2025.09) &amp; MBR (2026.05) — Bypassing Headset Bearings &amp; MTB Return to Frame Ports</a>
         <a target="_blank" rel="noopener noreferrer" href="https://bikerumor.com/trek-charter-plus-e-bike-is-belt-driven-and-has-autoshift/">11. Trek Official OEM Parts &amp; Bikerumor (2026.02) — Trek Charter+ (5347290 / W5330566 / W5331956 / W5332943)</a>
         <a target="_blank" rel="noopener noreferrer" href="https://www.outdoorgearlab.com/reviews/biking/electric-bike/trek-charter-plus">12. OutdoorGearLab (2026.05) — Trek Charter+ Review &amp; Headtube Internal Routing Assessment</a>
+        <a target="_blank" rel="noopener noreferrer" href="https://bikerumor.com/first-impressions-trek-domane-slr-9-drops-isospeed-gains-performance/">13. Bikerumor &amp; Cyclingnews (2026.08–10) — Trek Domane Gen 5 Drops IsoSpeed, Retains RCS Headset System</a>
+        <a target="_blank" rel="noopener noreferrer" href="https://www.bikeradar.com/news/specialized-aethos-2">14. BikeRadar (2025.10 &amp; 2026.06) — Specialized Aethos 2 Internal Routing &amp; Tarmac SL9 Offset Steerer</a>
       </div>
     </footer>
   </main>
@@ -1803,7 +2158,7 @@
       },
       {
         src: './images/tech-tarmac-sl8-bearing-schematic.jpg',
-        gcat: ['cad-patent', 'inside-service'],
+        gcat: ['cad-patent', 'inside-service', 'brand-evo'],
         tag: '原廠 3D 透視技術圖',
         tagClass: 'pill warn',
         title: 'Specialized Tarmac SL8 頭碗培林與迫緊環透視圖',
@@ -1813,7 +2168,7 @@
       },
       {
         src: './images/specialized-tarmac-sl9.jpg',
-        gcat: ['inside-service'],
+        gcat: ['inside-service', 'brand-evo'],
         tag: '實車照（2026.06）',
         tagClass: 'pill warn',
         title: 'Specialized Tarmac SL9（偏心舵管窄化 4mm 頭管）',
@@ -1920,6 +2275,46 @@
         desc: '壓印 MOTOR → 方向箭頭之全長導線護板，將煞變與 Bosch 線束與上抽式 PowerTube 540/800Wh 電池完全隔開，杜絕夾線與異音。',
         source: 'Trek OEM Service Parts',
         year: '2026–2027'
+      },
+      {
+        src: './images/specialized-aethos2-cockpit.jpg',
+        gcat: ['inside-service', 'brand-evo'],
+        tag: '實車照（2025.10）',
+        tagClass: 'pill warn',
+        title: 'Specialized S-Works Aethos 2 全內走線頭管與 Alpinist II',
+        desc: '595g 超輕爬坡車正式捨棄初代外露側孔，改採與 Tarmac SL8 同規 49.5mm 培林內走線頭碗與 35mm 胎寬。',
+        source: 'Specialized Official / BikeRadar (2025.10)',
+        year: '2025'
+      },
+      {
+        src: './images/trek-domane-gen3-isospeed.jpg',
+        gcat: ['outside', 'brand-evo'],
+        tag: '實車照（Gen 3）',
+        tagClass: 'pill ok',
+        title: 'Trek Domane SL 5 Gen 3（前 IsoSpeed ＋ 培林外頭管進線）',
+        desc: '因頭管內藏 Front IsoSpeed 減震器，管線繞行龍頭下方由車架頭管孔進入，更換頭碗培林完全免拆剪液壓油管。',
+        source: 'Trek Bicycle Official',
+        year: '2020–2022'
+      },
+      {
+        src: './images/trek-domane-rcs-pro-stem.jpg',
+        gcat: ['inside-service', 'brand-evo'],
+        tag: '原廠零件實照',
+        tagClass: 'pill info',
+        title: 'Trek RCS Pro Blendr 藏線龍頭（Domane Gen 4 & Gen 5）',
+        desc: '底部流線藏線護蓋配對開式墊圈，讓 Domane Gen 4/5 進入培林內走線時代後仍可免斷油管調整把高與更換龍頭。',
+        source: 'Trek Bicycle Official',
+        year: '2022–2026'
+      },
+      {
+        src: './images/trek-domane-gen5-slr9.jpg',
+        gcat: ['inside-service', 'brand-evo'],
+        tag: '實車照（2026.08）',
+        tagClass: 'pill info',
+        title: 'Trek Domane SLR 9 Gen 5（全面取消 IsoSpeed・835g・RCS）',
+        desc: '2026 年 8 月發表之第五代 Domane：取消前後 IsoSpeed 狂減 305g、支援 40mm 寬胎與圓形 27.2 座管，延續標準圓舵管 RCS 頭碗。',
+        source: 'Trek Bicycle Official (2026.08)',
+        year: '2026'
       }
     ];
 
@@ -1929,7 +2324,7 @@
       const items = GALLERY.filter(g => activeGcat === 'all' || g.gcat.includes(activeGcat));
       grid.innerHTML = items.map(g => `
         <article class="gal-card">
-          <div class="media-box ${g.src.includes('cannondale-delta-steerer.jpg') || g.src.includes('tarmac-sl9') ? 'dark-bg' : ''}" data-lb-src="${g.src}" data-lb-title="${g.title}" data-lb-cap="${g.desc}（來源：${g.source}）">
+          <div class="media-box ${g.src.includes('cannondale-delta-steerer.jpg') || g.src.includes('tarmac-sl9') || g.src.includes('aethos2-cockpit') ? 'dark-bg' : ''}" data-lb-src="${g.src}" data-lb-title="${g.title}" data-lb-cap="${g.desc}（來源：${g.source}）">
             <img src="${g.src}" alt="${g.title}" loading="lazy" />
             <span class="zoom-hint">放大檢視</span>
           </div>
@@ -1953,7 +2348,7 @@
       });
     });
 
-    // ---------- Section 6: Engineering Metrics ----------
+    // ---------- Section 4: Engineering Metrics ----------
     const METRICS = [
       { name: '培林更換維修性', note: '免斷油管、保養工時與耗材成本', scores: [9.2, 9.8, 5.5, 2.5] },
       { name: '氣動與極簡外觀', note: '頭管迎風截面積與全隱藏整合', scores: [6.8, 6.2, 9.8, 9.4] },
@@ -1984,15 +2379,15 @@
       `).join('');
     }
 
-    // ---------- Section 7: 6-Year Timeline ----------
+    // ---------- Section 5: 6-Year Timeline ----------
     const TIMELINE = [
       { year: '2020', tag: '培林內普及元年', color: 'var(--chart-4)', title: 'FSA ACR / SMR、Deda DCR 與 Specialized Tarmac SL7 推動全面內走線', detail: 'IS52 超大上培林配標準圓舵管與半內走線 SMR（如 Merida Wire Port）成為全球車廠 OEM 標準，頭管內走線由頂級車快速普及至中階平台。' },
       { year: '2021', tag: '防鏽配套關鍵突破', color: 'var(--success)', title: 'CeramicSpeed 發表 SLT 固體潤滑培林；Scott Spark 導入整合角度頭碗', detail: '針對培林內走線「上培林生鏽＝剪油管大修」痛點，CeramicSpeed 於 2021.11 發表含油固態聚合物 SLT 培林（終身保固）；Scott Spark RC 則將頭碗內走線與 ±0.6° 免剪線調角帶入 XC 賽場。' },
-      { year: '2022', tag: 'D型舵管與維修折衷', color: 'var(--chart-1)', title: 'Giant OverDrive Aero、Cervélo Soloist 與二代 S5 刺刀前叉', detail: 'Giant 以 D 型舵管縮減上培林至 46.9mm；Cervélo Soloist 採龍頭下方進線（換龍頭免斷油管）；Cervélo S5 強化刺刀前叉前煞繞過培林的分流設計。' },
+      { year: '2022', tag: 'D型舵管與維修折衷', color: 'var(--chart-1)', title: 'Trek Domane Gen 4 RCS、Giant OverDrive Aero、Cervélo Soloist 與二代 S5', detail: 'Trek Domane Gen 4（2022.09）取消前 IsoSpeed 減重 300g 並由培林外轉入 RCS 培林內走線（配對開墊圈）；Giant 以 D 型舵管縮減上培林至 46.9mm；Cervélo S5 強化刺刀前叉分流。' },
       { year: '2023', tag: '異形舵管大爆發', color: 'var(--chart-4)', title: 'Cannondale Delta 三角舵管、Tarmac SL8 鼻錐與 Specialized 限位頭碗專利', detail: 'SuperSix EVO Gen 4 捨棄 Gen 3 培林外前置腔改採 Delta 三角舵管（消除限位塊裂框災情、省 12W 並大減重）；Tarmac SL8 以 Speed Sniffer 鼻錐後移舵管；MTB 社群對穿培林維修反彈升溫。' },
       { year: '2024', tag: '刺刀前叉擴張', color: 'var(--chart-3)', title: 'Colnago Y1Rs（2024.12）發表；Giant TCR Gen 10 全面內走線化', detail: 'Colnago Y1Rs 結合外置雙柱刺刀前叉、JP 轉向限位與 CeramicSpeed SLT，前煞油管完全繞過頭碗培林。' },
-      { year: '2025', tag: '專利落地與 MTB 轉向', color: 'var(--success)', title: 'Chris King 獲頒 US 12,337,923 B2；Orbea Occam 恢復側孔；Factor ONE 登場', detail: 'Chris King AeroSet 取得美國專利；Orbea Occam SL/LT 順應車友呼聲新增頭管側孔（可繞過培林）；Factor ONE 以寬距刺刀前叉＋1-1/8" 小培林挑戰最速公路車。' },
-      { year: '2026', tag: '培林外創新 × 偏心極致 × 電輔模組', color: 'var(--primary)', title: 'First S561A、Trek Charter+、Cannondale Gen 5/SuperX、Cane Creek HCR、Tarmac SL9', detail: '輪鋒 S561A 以 Ø39 上培林＋Ø52.2 外碗 4×Ø5.8mm 孔實作培林外走線；Trek Charter+ 以單螺絲可拆蓋前頭管（5347290）＋可調仰角護蓋龍頭（W5330566）＋下管電池隔離線槽樹立電輔車模組標竿；Cannondale 推進 728g Gen 5 與 SuperX；Tarmac SL9 以偏心舵管再縮頭管 4mm。' }
+      { year: '2025', tag: '專利落地與 MTB 轉向', color: 'var(--success)', title: 'Chris King 專利獲頒；Specialized Aethos 2 轉向內走；Orbea 恢復側孔；Factor ONE 登場', detail: 'Chris King AeroSet 取得 US 12,337,923 B2；Specialized Aethos 2（2025.10）捨棄初代外走線改採 SL8 同規培林內走；Orbea Occam 新增頭管側孔；Factor ONE 登場。' },
+      { year: '2026', tag: '培林外創新 × 偏心極致 × 電輔模組', color: 'var(--primary)', title: 'First S561A、Tarmac SL9、Trek Domane Gen 5、Trek Charter+、Cannondale Gen 5', detail: '輪鋒 S561A 以 Ø39 上培林＋Ø52.2 外碗 4×Ø5.8mm 孔實作培林外走線；Trek Charter+ 以單螺絲可拆蓋前頭管（5347290）＋可調仰角護蓋龍頭（W5330566）＋下管電池隔離線槽樹立電輔車模組標竿；Trek Domane Gen 5（2026.08）全面取消 IsoSpeed 減重 305g 並延續 RCS 頭碗；Cannondale 推進 728g Gen 5 與 SuperX；Tarmac SL9 以偏心舵管再縮頭管 4mm。' }
     ];
     function renderTimeline() {
       document.getElementById('timeline-container').innerHTML = TIMELINE.map(t => `
@@ -2008,7 +2403,7 @@
       `).join('');
     }
 
-    // ---------- Section 8: Filterable 20-Item Engineering Database ----------
+    // ---------- Section 9: Filterable 22-Item Engineering Database ----------
     const SYSTEMS = [
       { thumb: './images/first-s561-outside-cutaway.jpg', year: '2026', name: 'First Components S561A（台灣輪鋒工業）', cat: 'outside', catLabel: '培林外：碗座外孔', discipline: '礫石/通用', spec: 'ZS52/28.6 上（D390 Ø30.2×39×6.5）｜IS52/40 下｜126g', noBleed: 'yes', noBleedLabel: '✓ 完全免斷', detail: '2026 台北展發表。上培林縮徑至 Ø39mm，於 Ø52.2 鋁上碗外緣開出 4×Ø5.8mm 過線孔，線管完全繞過培林外圈，相容標準龍頭。' },
       { thumb: './images/trek-charter-plus-front-grommet.jpg', year: '2026–2027', name: 'Trek Charter+ 4 / 4S / 5 / 5S（E-City 模組化走線）', cat: 'service-tech', catLabel: 'E-Bike 單螺絲開蓋前頭管', discipline: '電輔城市車', spec: '1-1/8" 圓舵管｜5347290 前頭管雙孔蓋｜W5330566 可調龍頭', noBleed: 'partial', noBleedLabel: '△ 調姿／開蓋免斷', detail: '2026.02 發表。單螺絲可拆前壓橋（5347290）雙腎形大孔收束 5–6 條煞變／Bosch／頭燈線，線走可調仰角龍頭外側免剪管調高，下管以 W5331956 C 槽夾與 W5332943 隔板與上抽電池完全分離。' },
@@ -2020,6 +2415,8 @@
       { thumb: './images/tech-colnago-y1rs-headset.png', year: '2024–2025', name: 'Colnago Y1Rs（2025 環法冠軍車）', cat: 'bayonet', catLabel: '刺刀前叉分流', discipline: '公路車', spec: 'ID35×OD47 36°/45° CeramicSpeed SLT＋JP 限位', noBleed: 'partial', noBleedLabel: '△ 前煞免斷', detail: '前煞油管走刺刀前叉前腔繞過培林；後煞油管經預壓螺絲軸孔上行，標配終身保固 SLT 培林與預壓齒輪。' },
       { thumb: './images/tech-cervelo-s5-routing.png', year: '2022 / 2025', name: 'Cervélo S5（二代／三代改款）', cat: 'bayonet', catLabel: '刺刀前叉分流', discipline: '公路車', spec: '1-1/8" 上 ＋ 1-3/8" 下（36°×45°）｜無開槽迫緊環', noBleed: 'partial', noBleedLabel: '△ 前煞免斷', detail: '前煞油管直穿刺刀前叉前孔完全繞過培林；採拉桿與預壓錐鎖固，2025 改款於 50km/h 再省 6.3W。' },
       { thumb: './images/specialized-tarmac-sl9.jpg', year: '2026', name: 'Specialized Tarmac SL9（Offset Steerer）', cat: 'inside-shaped', catLabel: '培林內：偏心舵管', discipline: '公路車', spec: '專利申請中偏心舵管｜頭管再窄 4mm', noBleed: 'no', noBleedLabel: '✗ 須拆油管', detail: '2026.06 發表。偏心舵管將雙油管併排至右側，迎風面積減 10%、45km/h 省 4W，標配 CeramicSpeed 培林。' },
+      { thumb: './images/trek-domane-gen5-slr9.jpg', year: '2020–2026', name: 'Trek Domane Gen 3 → Gen 4 → Gen 5（RCS 演進）', cat: 'inside-oversize', catLabel: '培林外→RCS 培林內', discipline: '公路車', spec: 'Gen 3 培林外頭管孔 → Gen 4/5 1-1/8" 圓舵管＋RCS 對開墊圈', noBleed: 'partial', noBleedLabel: '△ 調高免斷／換培林須斷', detail: 'Gen 3 因前 IsoSpeed 採培林外進線；Gen 4（2022）取消前 IsoSpeed 改 RCS 培林內走線；Gen 5（2026.08）再取消後 IsoSpeed 減重 305g 至 835g、容納 40mm 胎寬並延續 RCS 實務架構。' },
+      { thumb: './images/specialized-aethos2-cockpit.jpg', year: '2023–2025', name: 'Specialized Aethos 2（2025）& Roubaix SL8（2023）', cat: 'inside-oversize', catLabel: '培林內：49.5mm / FS 3.0', discipline: '公路車', spec: 'Aethos 2：40.5×49.5×6.5mm ｜ Roubaix：FS 3.0 (36.8×45.8)', noBleed: 'no', noBleedLabel: '✗ 須拆油管', detail: 'Aethos 2（595g）告別初代全外走線，統一收斂至 SL8 培林內走頭碗與 Roval Alpinist II；Roubaix SL8 則於頭管內整合 20mm Future Shock 3.0 避震阻尼匣。' },
       { thumb: './images/tech-tarmac-sl8-bearing-schematic.jpg', year: '2023 / 2025', name: 'Specialized Tarmac SL8 & Aethos 2', cat: 'inside-shaped', catLabel: '培林內：鼻錐頭管', discipline: '公路車', spec: '上下同規 40.5×49.5×6.5mm（標配 SLT）', noBleed: 'no', noBleedLabel: '✗ 須拆油管', detail: 'SL8 採 Speed Sniffer 鼻錐後移舵管，前後油管仍經開槽迫緊環與上培林內圈進入；2025.10 Aethos 2 亦跟進同套內走線頭碗。' },
       { thumb: './images/cannondale-delta-steerer-cutaway.png', year: '2023–2026', name: 'Cannondale SuperSix EVO Gen 4/5 & SuperX', cat: 'inside-shaped', catLabel: '培林內：Delta 三角舵管', discipline: '公路車', spec: '1-1/8" 上｜1-1/4"（SuperX 1-1/2"）下＋三角舵管', noBleed: 'no', noBleedLabel: '✗ 須拆油管', detail: '取代 Gen 3 培林外前置腔與易裂限位塊：三角平切面讓雙油管穿過 1-1/8" 窄頭管省 12W、減重 ~500g（Gen 5 LAB71 達 728g），並藉填補片相容標準龍頭。' },
       { thumb: '', year: '2022–2025', name: 'Giant OverDrive Aero（Propel / Defy / TCR Gen 10）', cat: 'inside-shaped', catLabel: '培林內：D 型舵管', discipline: '公路車', spec: '37×46.9×7mm (45°/45°)＋D 型前切舵管', noBleed: 'no', noBleedLabel: '✗ 須拆油管', detail: '前叉舵管前緣切削為 D 形平面，線管沿平面穿過上培林內圈，搭配雙片開口墊圈便於微調高度。' },
@@ -2077,6 +2474,19 @@
     });
     document.getElementById('search-input').addEventListener('input', renderTable);
     document.getElementById('discipline-filter').addEventListener('change', renderTable);
+
+    // ---------- Section 7: Specialized / Trek Domane Brand Filter ----------
+    document.querySelectorAll('#brand-evo-tabs .tab-btn').forEach(b => {
+      b.addEventListener('click', () => {
+        const target = b.dataset.brand;
+        document.querySelectorAll('#brand-evo-tabs .tab-btn').forEach(x => x.dataset.active = (x === b) ? 'true' : 'false');
+        document.querySelectorAll('[data-brand-panel]').forEach(panel => {
+          const show = target === 'all' || panel.dataset.brandPanel === target;
+          panel.style.display = show ? '' : 'none';
+          panel.style.marginTop = (show && target === 'all' && panel.dataset.brandPanel === 'domane') ? '18px' : '0';
+        });
+      });
+    });
 
     // Init
     renderArch('cup-outside');
