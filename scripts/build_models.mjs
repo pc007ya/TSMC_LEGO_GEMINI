@@ -1213,6 +1213,7 @@ function buildSetTaichungOpera() {
   b.beginStep(1, '鋪設前庭曲水流觴透藍景觀水池 (東／西雙池)', '以 1×1 透亮水藍與透海藍光磚細緻拼出歌劇院招牌蜿蜒曲水池。');
   for (let x = -30; x < 30; x++) {
     for (let z = 13; z < 22; z++) {
+      if ((x === -1 || x === 0) && z >= 21) continue; // reserve for slope_ntt_2x2 plaque
       // Two sweeping organic water channels flanking the central grand entrance bridge
       const inBridge = Math.abs(x) <= 5;
       const wave = Math.sin(x * 0.22) * 1.6 + 17.5;
@@ -1251,10 +1252,11 @@ function buildSetTaichungOpera() {
     [-30, -8], [-30, 4], [29, -8], [29, 4], [29, 14]
   ];
   for (const [tx, tz] of plazaTrees) {
-    b.place('round_brick_1x1', 'REDDISH_BROWN', tx, 2, tz);
-    b.place('flower_1x1', 'DARK_GREEN', tx, 5, tz);
-    b.place('flower_1x1', 'BRIGHT_GREEN', tx, 6, tz);
-    b.place('flower_1x1', 'LIME', tx, 7, tz);
+    b.place('plate_1x1', 'DARK_BLUISH_GRAY', tx, 2, tz);
+    b.place('round_brick_1x1', 'REDDISH_BROWN', tx, 3, tz);
+    b.place('flower_1x1', 'DARK_GREEN', tx, 6, tz);
+    b.place('flower_1x1', 'BRIGHT_GREEN', tx, 7, tz);
+    b.place('flower_1x1', 'LIME', tx, 8, tz);
   }
 
   // -------------------------------------------------------------------------
@@ -1263,11 +1265,15 @@ function buildSetTaichungOpera() {
   b.beginStep(2, '鋪設 1F 曲牆大廳溫潤米色與純白地坪', '於 48×28 主建築地基滿鋪米色與白色大廳地磚。');
   b.fillRect(-24, 24, -16, 12, 2, 'TAN', 'tile');
 
-  b.beginStep(2, '建置大劇院階梯式紅色絨布觀眾席 (下段)', '於建築中央核心砌築經典台中國家歌劇院紅色大劇院觀眾席。');
+  b.beginStep(2, '建置大劇院階梯式紅色絨布觀眾席 (含實心階梯台座)', '於建築中央核心砌築經典台中國家歌劇院紅色大劇院觀眾席與實心支撐底座。');
   for (let row = 0; row < 5; row++) {
     const rz = -2 - row * 2;
     const ry = 3 + row * 2;
     for (let x = -11; x < 11; x += 2) {
+      // Solid riser plinth from y=3 up to ry-1 so tiered seats never float
+      for (let py = 3; py < ry; py++) {
+        b.place('plate_2x2', 'DARK_BLUISH_GRAY', x, py, rz);
+      }
       b.place('plate_2x2', 'RED', x, ry, rz);
       b.place('tile_1x2',  'RED', x, ry + 1, rz, 1);
     }
@@ -1280,33 +1286,42 @@ function buildSetTaichungOpera() {
     b.spanX(-12, 12, y, -14, 'TAN', 'brick', y % 6 === 0);
   }
 
-  b.beginStep(2, '雕塑大廳內部「美聲涵洞」雙曲線白柱群', '於大廳左右兩側逐層雕塑出向上展開的白色曲牆涵洞支撐柱。');
+  b.beginStep(2, '雕塑大廳內部「美聲涵洞」雙曲線實心咬合白柱群', '於大廳左右兩側逐層以 1×3／1×2 對稱咬合薄板雕塑出從地面直達屋頂的白色曲牆涵洞巨柱。');
   const cavePillars = [[-16, 2], [-16, -8], [15, 2], [15, -8]];
   for (const [cx, cz] of cavePillars) {
-    for (let y = 3; y <= 33; y += 2) {
-      const t = (y - 18) / 15; // -1..1
-      const spread = Math.round(1 + t * t * 2.2);
-      for (let dx = -spread; dx <= spread; dx++) {
-        for (let dz = -1; dz <= 1; dz++) {
-          if (Math.abs(dx) === spread || Math.abs(dz) === 1) {
-            b.place('plate_1x1', 'WHITE', cx + dx, y, cz + dz);
-            b.place('plate_1x1', 'WHITE', cx + dx, y + 1, cz + dz);
-          }
+    for (let y = 3; y <= 36; y++) {
+      const t = (y - 19.5) / 16.5; // -1..1
+      const spread = Math.round(1 + t * t * 1.6); // 1, 2, or 3
+      for (let dz = -1; dz <= 1; dz++) {
+        if (spread === 1) {
+          b.place('plate_1x3', 'WHITE', cx - 1, y, cz + dz, 1);
+        } else if (spread === 2) {
+          b.place('plate_1x3', 'WHITE', cx - 2, y, cz + dz, 1);
+          b.place('plate_1x2', 'WHITE', cx + 1, y, cz + dz, 1);
+        } else {
+          b.place('plate_1x2', 'WHITE', cx - 3, y, cz + dz, 1);
+          b.place('plate_1x3', 'WHITE', cx - 1, y, cz + dz, 1);
+          b.place('plate_1x2', 'WHITE', cx + 2, y, cz + dz, 1);
         }
       }
     }
   }
 
-  b.beginStep(2, '建造大廳中央雙向弧形迎賓大階梯', '以淺藍灰與純白薄板堆疊出從 1F 大廳盤旋向上的迎賓樓梯。');
+  b.beginStep(2, '建造大廳中央實心雙向弧形迎賓大階梯', '以淺藍灰與純白薄板堆疊出從 1F 大廳實心支撐向上的迎賓樓梯。');
   for (let s = 0; s < 10; s++) {
     const sy = 3 + s;
     const sz = 8 - s;
+    for (let py = 3; py < sy; py++) {
+      b.spanX(-4, 4, py, sz, 'LIGHT_BLUISH_GRAY', 'plate');
+    }
     b.spanX(-4, 4, sy, sz, s % 2 === 0 ? 'WHITE' : 'LIGHT_BLUISH_GRAY', 'plate');
   }
 
   // -------------------------------------------------------------------------
-  // BAG 3: Front (Z = 10..12) & Rear (Z = -16..-14) Iconic Hourglass Curvilinear Facades
-  // 34 plate layers (Y = 3..37), using fine 1x1 & 1x2 plates for smooth Toyo Ito curves!
+  // BAG 3: Front (Z = 10..11) & Rear (Z = -16..-15) Iconic Hourglass Curvilinear Facades
+  // Every white concrete shell unit uses interlocking plate_1x2 spanning the full 2-stud
+  // wall thickness (Z=10..11 / Z=-16..-15), so outward-flaring hourglass curves are 100%
+  // vertically supported by the continuous inner curtain plane at Z=10 / Z=-15!
   // -------------------------------------------------------------------------
   const H_START = 3, H_END = 37; // 34 plate layers tall
   const MID_Y = (H_START + H_END) / 2;
@@ -1324,9 +1339,9 @@ function buildSetTaichungOpera() {
 
   // Build Front Facade in 3 vertical stages (Bag 3 Steps 11-13)
   const frontBands = [
-    [3, 14,  '雕塑正面「壺中居」下段沙漏曲牆與藍玻璃帷幕 (1–11 層)', '逐層以 1×1／1×2 純白薄板砌出三個向內收束的優美曲牆開口，內嵌透亮水藍玻璃。'],
+    [3, 14,  '雕塑正面「壺中居」下段沙漏曲牆與藍玻璃帷幕 (1–11 層)', '逐層以 1×2 雙倍咬合純白薄板砌出三個向內收束的優美曲牆開口，完全無懸空！'],
     [14, 26, '雕塑正面「壺中居」中段收腰曲牆與深灰窗框 (12–23 層)', '曲牆於建築腰部達到最優美弧度收束，玻璃帷幕加入深藍灰水平與垂直窗櫺。'],
-    [26, 37, '雕塑正面「壺中居」上段展開曲牆與挑簷 (24–34 層)',     '曲牆向上流暢展開合攏，完整重現伊東豊雄招牌沙漏立面輪廓！']
+    [26, 37, '雕塑正面「壺中居」上段展開曲牆與挑簷 (24–34 層)',     '曲牆以 1×2 結構咬合流暢展開合攏，直頂屋頂樓板！']
   ];
   for (const [y1, y2, title, tip] of frontBands) {
     b.beginStep(3, title, tip);
@@ -1337,9 +1352,8 @@ function buildSetTaichungOpera() {
           const isMullion = ((x + 24) % 5 === 0) || (y % 8 === 0);
           b.place('plate_1x1', isMullion ? 'DARK_BLUISH_GRAY' : 'TRANS_LIGHT_BLUE', x, y, 10);
         } else {
-          // Sculpted 2-stud-thick white concrete catenoid shell (Z=10 & Z=11)
-          b.place('plate_1x1', 'WHITE', x, y, 11);
-          b.place('plate_1x1', 'WHITE', x, y, 10);
+          // Interlocking 2-stud-deep white concrete catenoid shell (spans Z=10..11 in one piece!)
+          b.place('plate_1x2', 'WHITE', x, y, 10, 0);
         }
       }
     }
@@ -1347,9 +1361,9 @@ function buildSetTaichungOpera() {
 
   // Build Rear Facade in 3 vertical stages (Bag 3 Steps 14-16)
   const rearBands = [
-    [3, 14,  '雕塑背面「壺中居」下段曲牆與玻璃帷幕 (1–11 層)',   '於歌劇院後立面對稱砌出三個曲牆玻璃大開口。'],
+    [3, 14,  '雕塑背面「壺中居」下段曲牆與玻璃帷幕 (1–11 層)',   '於歌劇院後立面對稱以 1×2 咬合薄板砌出三個曲牆玻璃大開口。'],
     [14, 26, '雕塑背面「壺中居」中段收腰曲牆 (12–23 層)',        '持續逐層收束白色曲牆並內嵌透藍玻璃與窗櫺。'],
-    [26, 37, '雕塑背面「壺中居」上段合攏曲牆 (24–34 層)',        '完成背面曲牆合攏結構，四面視角皆具建築雕塑感。']
+    [26, 37, '雕塑背面「壺中居」上段合攏曲牆 (24–34 層)',        '完成背面曲牆合攏結構，四面視角皆具穩固建築雕塑感。']
   ];
   for (const [y1, y2, title, tip] of rearBands) {
     b.beginStep(3, title, tip);
@@ -1359,16 +1373,16 @@ function buildSetTaichungOpera() {
           const isMullion = ((x + 24) % 5 === 0) || (y % 8 === 0);
           b.place('plate_1x1', isMullion ? 'DARK_BLUISH_GRAY' : 'TRANS_LIGHT_BLUE', x, y, -15);
         } else {
-          b.place('plate_1x1', 'WHITE', x, y, -16);
-          b.place('plate_1x1', 'WHITE', x, y, -15);
+          // Interlocking 2-stud-deep white concrete shell spanning Z=-16..-15
+          b.place('plate_1x2', 'WHITE', x, y, -16, 0);
         }
       }
     }
   }
 
   // -------------------------------------------------------------------------
-  // BAG 4: East (X = 22..24) & West (X = -24..-22) Hourglass Curvilinear Facades
-  // 2 sweeping hourglass glass openings per side (centered at Z = -9 & Z = +3)
+  // BAG 4: East (X = 22..23) & West (X = -24..-23) Hourglass Curvilinear Facades
+  // Interlocking plate_1x2 (rot=1) spans full 2-stud wall thickness so ZERO bricks float!
   // -------------------------------------------------------------------------
   const isInSideHourglass = (z, y) => {
     const centers = [-8.5, 3.5];
@@ -1381,7 +1395,7 @@ function buildSetTaichungOpera() {
   };
 
   const westBands = [
-    [3, 20,  '雕塑西側立面雙沙漏曲牆下半部 (1–17 層)', '於西側立面構築兩座流線型壺中居玻璃帷幕。'],
+    [3, 20,  '雕塑西側立面雙沙漏曲牆下半部 (1–17 層)', '於西側立面以 1×2 結構咬合薄板構築兩座流線型壺中居玻璃帷幕。'],
     [20, 37, '雕塑西側立面雙沙漏曲牆上半部 (18–34 層)', '向上展開並合攏西側純白曲牆外殼。']
   ];
   for (const [y1, y2, title, tip] of westBands) {
@@ -1392,16 +1406,15 @@ function buildSetTaichungOpera() {
           const isMullion = ((z + 16) % 4 === 0) || (y % 8 === 0);
           b.place('plate_1x1', isMullion ? 'DARK_BLUISH_GRAY' : 'TRANS_LIGHT_BLUE', -23, y, z);
         } else {
-          b.place('plate_1x1', 'WHITE', -24, y, z);
-          b.place('plate_1x1', 'WHITE', -23, y, z);
+          b.place('plate_1x2', 'WHITE', -24, y, z, 1);
         }
       }
     }
   }
 
   const eastBands = [
-    [3, 20,  '雕塑東側立面雙沙漏曲牆下半部 (1–17 層)', '於東側立面對稱構築兩座壺中居玻璃帷幕。'],
-    [20, 37, '雕塑東側立面雙沙漏曲牆上半部 (18–34 層)', '完成東側純白曲牆外殼，四面壺中居合體成型！']
+    [3, 20,  '雕塑東側立面雙沙漏曲牆下半部 (1–17 層)', '於東側立面對稱以 1×2 結構咬合薄板構築兩座壺中居玻璃帷幕。'],
+    [20, 37, '雕塑東側立面雙沙漏曲牆上半部 (18–34 層)', '完成東側純白曲牆外殼，四面壺中居穩固合體成型！']
   ];
   for (const [y1, y2, title, tip] of eastBands) {
     b.beginStep(4, title, tip);
@@ -1411,15 +1424,21 @@ function buildSetTaichungOpera() {
           const isMullion = ((z + 16) % 4 === 0) || (y % 8 === 0);
           b.place('plate_1x1', isMullion ? 'DARK_BLUISH_GRAY' : 'TRANS_LIGHT_BLUE', 22, y, z);
         } else {
-          b.place('plate_1x1', 'WHITE', 23, y, z);
-          b.place('plate_1x1', 'WHITE', 22, y, z);
+          b.place('plate_1x2', 'WHITE', 22, y, z, 1);
         }
       }
     }
   }
 
-  b.beginStep(4, '架設室內頂層白色交錯聲學曲樑', '於主建築頂部空間橫跨雙向白色結構樑，強化整體承重。');
-  for (const z of [-10, -2, 5]) {
+  b.beginStep(4, '架設室內承重柱列與頂層白色聲學曲樑', '於主建築內部立起落地結構柱群並橫跨雙向白色承重樑，完美撐起屋頂空中花園。');
+  for (const z of [-8, 2]) {
+    // Support columns rising from floor (y=3) up to beam underside (y=33)
+    for (const cx of [-8, 0, 8]) {
+      for (let y = 3; y <= 31; y += 3) {
+        b.place('brick_1x1', 'WHITE', cx, y, z);
+      }
+      b.place('plate_1x1', 'WHITE', cx, 33, z);
+    }
     b.spanX(-22, 22, 34, z, 'WHITE', 'brick');
   }
 
@@ -1464,20 +1483,22 @@ function buildSetTaichungOpera() {
 
   // -------------------------------------------------------------------------
   // BAG 6: 6 Iconic White Sculpted "Volcano" Skylight Cones & Rooftop Trees
+  // Grounded directly onto roof deck (y=39) with solid core under the skylight lens!
   // -------------------------------------------------------------------------
   const volcanoes = [
     [-15, -8], [0, -9], [15, -8],
     [-14,  4], [2,  4], [15,  4]
   ];
 
-  b.beginStep(6, '砌築 6 座標誌性白色「火山口」天窗底座環', '於空中花園草丘上定位 6 座伊東豊雄招牌白色有機天窗雕塑。');
+  b.beginStep(6, '砌築 6 座標誌性白色「火山口」天窗底座環', '從屋頂草坪基底 (y=39) 穩固砌築 6 座伊東豊雄招牌白色有機天窗雕塑。');
   for (const [vx, vz] of volcanoes) {
-    for (let dx = -2; dx <= 2; dx++) {
-      for (let dz = -2; dz <= 2; dz++) {
-        const d = Math.hypot(dx, dz);
-        if (d >= 1.2 && d <= 2.4) {
-          b.place('plate_1x1', 'WHITE', vx + dx, 41, vz + dz);
-          b.place('plate_1x1', 'WHITE', vx + dx, 42, vz + dz);
+    for (let y = 39; y <= 42; y++) {
+      for (let dx = -2; dx <= 2; dx++) {
+        for (let dz = -2; dz <= 2; dz++) {
+          const d = Math.hypot(dx, dz);
+          if (d <= 2.4) {
+            b.place('plate_1x1', 'WHITE', vx + dx, y, vz + dz);
+          }
         }
       }
     }
@@ -1497,7 +1518,7 @@ function buildSetTaichungOpera() {
     }
   }
 
-  b.beginStep(6, '種植空中花園 16 棵景觀小樹與花卉灌木完工', '沿屋頂 S 型散步道種植多層次植栽，6,000+ 片臺中國家歌劇院完美落成！');
+  b.beginStep(6, '種植空中花園 16 棵景觀小樹與花卉灌木完工', '沿屋頂 S 型散步道種植多層次植栽，臺中國家歌劇院完美落成！');
   const roofTrees = [
     [-20, -12], [-20, 0], [-20, 8], [-8, -13], [-8, 8],
     [8, -13], [8, 8], [20, -12], [20, 0], [20, 8],
@@ -1569,9 +1590,12 @@ function buildSetTaichungExpo() {
   b.fillRect(-39, 39, -11, 21, 1, 'LIGHT_BLUISH_GRAY', 'plate');
   b.fillRect(-39, 39, -21, -11, 1, 'DARK_BLUISH_GRAY', 'plate');
 
-  b.beginStep(1, '雕塑南側正面水湳中央公園綠地、生態曲水與迎賓大道', '正面臨水湳中央公園側鋪設多層次鮮綠草坪、蜿蜒透藍水景與中央步廊。');
+  b.beginStep(1, '雕塑南側正面水湳中央公園綠地、生態曲水與迎賓大道', '正面臨水湳中央公園側鋪設多層次鮮綠草坪、蜿蜒透藍水景與完整 1F 迎賓前廊地坪。');
+  // Complete ground plaza apron (Z = 10..13) directly beneath South Front glass wall & Tree Gate columns!
+  b.fillRect(-38, 38, 10, 13, 2, 'LIGHT_BLUISH_GRAY', 'tile');
   for (let x = -38; x < 38; x++) {
     for (let z = 13; z < 21; z++) {
+      if ((x === -1 || x === 0) && (z === 19 || z === 20)) continue; // reserve for slope_ticec_2x2 plaque
       const inCentralPlaza = Math.abs(x) <= 6;
       const inEastEntry = Math.abs(x - 21) <= 3;
       const inWestEntry = Math.abs(x + 21) <= 3;
@@ -1604,13 +1628,11 @@ function buildSetTaichungExpo() {
   }
 
   b.beginStep(1, '鋪設北側背面重型物流貨運廣場與 4 輛微縮貨櫃車', '與正面公園截然不同！背面為專業物流裝卸坪，停放 4 輛微縮聯結貨櫃車。');
-  // White lane dividers on dark-gray freight apron
   for (let x = -36; x < 36; x += 6) {
     for (let z = -19; z <= -14; z += 2) {
       b.place('tile_1x1', 'WHITE', x, 2, z);
     }
   }
-  // 4 Micro Cargo Semi-Trucks docked along north freight bays
   const trucks = [
     { x: -28, color: 'RED' },
     { x: -16, color: 'BLUE' },
@@ -1618,10 +1640,8 @@ function buildSetTaichungExpo() {
     { x:  26, color: 'DARK_BLUE' }
   ];
   for (const tr of trucks) {
-    // Trailer container (4 studs long along Z)
     b.place('brick_1x4', tr.color, tr.x, 2, -16, 0);
     b.place('tile_1x4',  tr.color, tr.x, 5, -16, 0);
-    // Tractor cab facing north
     b.place('brick_1x1', 'WHITE', tr.x, 2, -18);
     b.place('plate_1x1', 'TRANS_LIGHT_BLUE', tr.x, 5, -18);
   }
@@ -1648,7 +1668,7 @@ function buildSetTaichungExpo() {
     }
   }
 
-  b.beginStep(2, '打造一期東側「國際會議中心」階梯式紅藍會議座席與講台', '還原一期東側招牌國際會議廳：深棕主講台搭配 4 階階梯式紅藍觀眾席！');
+  b.beginStep(2, '打造一期東側「國際會議中心」實心階梯式紅藍會議座席與講台', '還原一期東側招牌國際會議廳：深棕主講台搭配 4 階實心支撐紅藍觀眾席！');
   b.fillRect(26, 34, -8, -5, 3, 'DARK_BROWN', 'plate');
   b.fillRect(26, 34, -8, -5, 4, 'DARK_BROWN', 'tile');
   for (let row = 0; row < 4; row++) {
@@ -1656,87 +1676,106 @@ function buildSetTaichungExpo() {
     const ry = 3 + row * 2;
     const seatCol = row % 2 === 0 ? 'RED' : 'DARK_BLUE';
     for (let x = 26; x < 34; x += 2) {
+      for (let py = 3; py < ry; py++) {
+        b.place('plate_2x2', 'DARK_BLUISH_GRAY', x, py, rz);
+      }
       b.place('plate_2x2', seatCol, x, ry, rz);
       b.place('tile_1x2',  seatCol, x, ry + 1, rz, 1);
     }
   }
 
-  b.beginStep(2, '立起兩館室內巨型鋼骨支撐柱與機電核心筒', '於兩館內部均勻立起深灰結構巨柱，承托上方大跨距銀色波浪屋頂。');
+  b.beginStep(2, '立起兩館室內巨型鋼骨支撐柱直頂波浪屋頂', '於兩館內部均勻立起深灰結構巨柱，精準頂接上方大跨距銀色波浪屋頂底面，零縫隙！');
   const interiorCols = [
-    [-33, -9], [-21, -9], [-9, -9], [-33, 7], [-21, 7], [-9, 7],
-    [9, -9], [21, -9], [33, -9], [9, 7], [21, 7], [33, 7]
+    [-33, -9], [-25, -9], [-17, -9], [-9, -9],
+    [-33,  0], [-25,  0], [-17,  0], [-9,  0],
+    [-33,  7], [-25,  7], [-17,  7], [-9,  7],
+    [9,   -9], [17,  -9], [25,  -9], [33, -9],
+    [9,    0], [17,   0], [25,   0], [33,  0],
+    [9,    7], [17,   7], [25,   7], [33,  7]
   ];
   for (const [cx, cz] of interiorCols) {
-    const topY = roofY(cx, cz) - 2;
-    for (let y = 3; y <= topY - 2; y += 3) {
+    const topTarget = roofY(cx, cz) - 1;
+    let y = 3;
+    while (y + 3 <= topTarget) {
       b.place('brick_1x1', 'DARK_BLUISH_GRAY', cx, y, cz);
+      y += 3;
+    }
+    while (y < topTarget) {
+      b.place('plate_1x1', 'DARK_BLUISH_GRAY', cx, y, cz);
+      y += 1;
     }
   }
 
   // -------------------------------------------------------------------------
   // BAG 3: South Front Facade (Z = 9..13) — Iconic "Tree Gate" (大樹之門)
-  // Double-height transparent glass curtain wall + branching white Y-columns + warm tan soffit
+  // Every wall reaches flush up to roofY(x, 10) - 1 (ZERO air gap to roof!)
   // -------------------------------------------------------------------------
-  b.beginStep(3, '構築二期西館南側正面雙層通透玻璃帷幕與銀色窗框', '正面迎向中央公園採用大面積透亮水藍玻璃帷幕，高度隨波浪屋頂自然起伏！');
+  b.beginStep(3, '構築二期西館南側正面雙層通透玻璃帷幕與銀色窗框', '正面迎向中央公園採用大面積透亮水藍玻璃帷幕，頂緣緊密貼合波浪屋頂底面！');
   for (let x = -36; x < -6; x++) {
-    const wallTop = roofY(x, 10) - 2;
+    const wallTop = roofY(x, 10) - 1; // inclusive up to ry-2 -> touches ry-1 flush!
     for (let y = 3; y < wallTop; y++) {
-      const isMullion = ((x + 36) % 4 === 0) || (y === 10) || (y === 3);
       const isEntry = Math.abs(x + 21) <= 2 && y < 10;
       if (isEntry) {
         b.place('plate_1x1', y === 9 ? 'FLAT_SILVER' : 'TRANS_CLEAR', x, y, 9);
+      } else if (Math.abs(x + 21) <= 2 && y === 10) {
+        // Interlocking lintel bridging recessed entry (Z=9) back out to facade plane (Z=10)
+        b.place('plate_1x2', 'FLAT_SILVER', x, y, 9, 0);
       } else {
+        const isMullion = ((x + 36) % 4 === 0) || (y === 10) || (y === 3);
         b.place('plate_1x1', isMullion ? 'FLAT_SILVER' : 'TRANS_LIGHT_BLUE', x, y, 10);
       }
     }
   }
 
-  b.beginStep(3, '構築一期東館南側正面通透玻璃帷幕與會議廳觀景窗', '對稱於一期東館正面砌築高聳透藍玻璃帷幕與會議廳全景落地窗。');
+  b.beginStep(3, '構築一期東館南側正面通透玻璃帷幕與會議廳觀景窗', '對稱於一期東館正面砌築高聳透藍玻璃帷幕，頂緣緊密貼合波浪屋頂！');
   for (let x = 6; x < 36; x++) {
-    const wallTop = roofY(x, 10) - 2;
+    const wallTop = roofY(x, 10) - 1;
     for (let y = 3; y < wallTop; y++) {
-      const isMullion = ((x - 6) % 4 === 0) || (y === 10) || (y === 3);
       const isEntry = Math.abs(x - 21) <= 2 && y < 10;
       if (isEntry) {
         b.place('plate_1x1', y === 9 ? 'FLAT_SILVER' : 'TRANS_CLEAR', x, y, 9);
+      } else if (Math.abs(x - 21) <= 2 && y === 10) {
+        b.place('plate_1x2', 'FLAT_SILVER', x, y, 9, 0);
       } else {
+        const isMullion = ((x - 6) % 4 === 0) || (y === 10) || (y === 3);
         b.place('plate_1x1', isMullion ? 'FLAT_SILVER' : 'TRANS_LIGHT_BLUE', x, y, 10);
       }
     }
   }
 
-  b.beginStep(3, '雕塑南側招牌「大樹之門 (Tree Gate)」Y 型分支純白挑簷列柱', '沿正面廣場立起 14 座向上分岔展開的白色樹狀斜撐巨柱，溫柔托起波浪屋簷！');
+  b.beginStep(3, '雕塑南側招牌「大樹之門 (Tree Gate)」Y 型咬合純白挑簷列柱', '沿正面廣場立起 14 座實體咬合的白色樹狀斜撐巨柱，從地坪一路穩固撐起波浪屋簷！');
   const treeGateX = [-35, -30, -25, -17, -12, -7, -3, 3, 7, 12, 17, 25, 30, 35];
   for (const tx of treeGateX) {
-    const topY = roofY(tx, 12) - 2;
-    // Trunk rising at Z=12 from Y=3 to Y=11
+    const topY = roofY(tx, 12) - 1;
+    // Solid trunk rising from y=3 to y=11 at Z=12
     for (let y = 3; y < Math.min(12, topY); y++) {
       b.place('plate_1x1', 'WHITE', tx, y, 12);
     }
-    // Branching Y-arms spreading along X (±1) and Z (11..13) as it meets the roof soffit!
+    // Interlocking Y-branches: plate_1x3 (rot=1, spans tx-1..tx+1) anchored directly onto trunk at tx!
     for (let y = 12; y < topY; y++) {
-      const spread = y >= 16 ? 2 : 1;
-      b.place('plate_1x1', 'WHITE', tx - spread, y, 12);
-      b.place('plate_1x1', 'WHITE', tx + spread, y, 12);
-      if (y >= 15) {
-        b.place('plate_1x1', 'WHITE', tx, y, 13);
-        b.place('plate_1x1', 'WHITE', tx, y, 11);
+      if (y < 16) {
+        b.place('plate_1x3', 'WHITE', tx - 1, y, 12, 1);
+      } else {
+        // Upper crown spreads along Z (11..13) AND X (tx-1..tx+1) anchored to center!
+        b.place('plate_1x3', 'WHITE', tx - 1, y, 12, 1);
+        b.place('plate_1x2', 'WHITE', tx, y, 11, 0);
+        b.place('plate_1x2', 'WHITE', tx, y, 12, 0);
       }
     }
   }
 
-  b.beginStep(3, '安裝正面挑簷底部溫潤木質米色格柵天花板 (Soffit)', '於正面大樹之門挑簷下緣鋪設沙漠米色天花飾板，重現真實建築的溫暖光感。');
+  b.beginStep(3, '安裝正面挑簷溫潤木質米色懸挑托樑 (Soffit)', '以 1×3 沙漠米色托樑從玻璃帷幕 (Z=10) 實體懸挑至大樹之門列柱 (Z=12)，穩固無懸空！');
   for (let x = -36; x < 36; x += 2) {
-    const sy = roofY(x, 12) - 2;
-    b.place('plate_1x1', 'TAN', x, sy, 11);
-    b.place('plate_1x1', 'TAN', x, sy, 12);
+    if (x >= -6 && x < 6) continue; // central promenade open under canopy
+    const sy = Math.min(roofY(x, 10), roofY(x, 12)) - 2;
+    b.place('plate_1x3', 'TAN', x, sy, 10, 0);
   }
 
   // -------------------------------------------------------------------------
-  // BAG 4: North Rear Facade (Z = -11..-10) — Heavy Logistics Design!
-  // 10 Recessed Truck Loading Docks + Rhythmic Dark-Gray/Silver Metal Louvers + Spiral Ramp Tower
+  // BAG 4: North Rear Facade (Z = -12..-10) — Heavy Logistics Design!
+  // Interlocking dock lintels & rain canopy + upper louver wall flush to wave roof!
   // -------------------------------------------------------------------------
-  b.beginStep(4, '建造北側背面 10 座重型貨車卸貨碼頭與黑色捲門 (截然不同的背面設計)', '背面不設落地玻璃！改以深藍灰混凝土月台與 10 座內凹黑色重型貨櫃捲門呈現機能美學。');
+  b.beginStep(4, '建造北側背面 10 座重型貨車卸貨碼頭與黑色捲門 (截然不同的背面設計)', '背面改以深藍灰混凝土月台、10 座內凹黑色捲門與實體咬合的金屬銀防雨挑簷呈現機能美學。');
   const dockCenters = [-32, -27, -22, -16, -11, 11, 16, 22, 27, 32];
   const isInDock = (x, y) => {
     if (y < 3 || y > 8) return false;
@@ -1745,33 +1784,30 @@ function buildSetTaichungExpo() {
     }
     return false;
   };
-  // Phase 2 Rear Lower Wall (-36..-6) & Phase 1 Rear Lower Wall (6..36)
   for (const [x1, x2] of [[-36, -6], [6, 36]]) {
     for (let x = x1; x < x2; x++) {
-      for (let y = 3; y < 10; y++) {
+      for (let y = 3; y <= 8; y++) {
         if (isInDock(x, y)) {
-          // Recessed black roll-up loading door at Z = -10
           b.place('plate_1x1', y === 8 ? 'DARK_BLUISH_GRAY' : 'BLACK', x, y, -10);
         } else {
-          // Solid concrete dock pier at Z = -11
           b.place('plate_1x1', 'DARK_BLUISH_GRAY', x, y, -11);
         }
       }
-      // Protective logistics dock rain canopy sticking out to Z = -12 at Y = 9
-      b.place('tile_1x1', 'FLAT_SILVER', x, 9, -12);
+      // Solid lintel at y=9 spanning Z=-11..-10 over every dock & pier!
+      b.place('plate_1x2', 'DARK_BLUISH_GRAY', x, 9, -11, 0);
+      // Interlocking rain canopy at y=10 spanning Z=-12..-11 (anchored onto y=9 lintel!)
+      b.place('plate_1x2', 'FLAT_SILVER', x, 10, -12, 0);
     }
   }
 
-  b.beginStep(4, '砌築北側背面上半部金屬垂直百葉格柵牆與高窗帶', '卸貨碼頭上方採用交錯金屬銀與深藍灰垂直百葉格柵，搭配條狀高窗採光帶。');
+  b.beginStep(4, '砌築北側背面上半部金屬垂直百葉格柵牆與高窗帶', '卸貨碼頭上方採用交錯金屬銀與深藍灰垂直百葉格柵，一路緊密頂接波浪屋頂！');
   for (const [x1, x2] of [[-36, -6], [6, 36]]) {
     for (let x = x1; x < x2; x++) {
-      const wallTop = roofY(x, -11) - 2;
-      for (let y = 10; y < wallTop; y++) {
+      const wallTop = roofY(x, -11) - 1;
+      for (let y = 11; y < wallTop; y++) {
         if (y === 13 || y === 14) {
-          // High logistics clerestory ribbon window
-          b.place('plate_1x1', (x % 3 === 0) ? 'DARK_BLUISH_GRAY' : 'TRANS_MEDIUM_BLUE', x, y, -10);
+          b.place('plate_1x1', (x % 3 === 0) ? 'DARK_BLUISH_GRAY' : 'TRANS_MEDIUM_BLUE', x, y, -11);
         } else {
-          // Rhythmic vertical metal louver fins (alternating Flat Silver & Dark Bluish Gray)
           const col = (x % 2 === 0) ? 'FLAT_SILVER' : 'DARK_BLUISH_GRAY';
           b.place('plate_1x1', col, x, y, -11);
         }
@@ -1779,11 +1815,10 @@ function buildSetTaichungExpo() {
     }
   }
 
-  b.beginStep(4, '砌築東西兩側端牆與中央綠廊內側雙館對望帷幕牆', '封閉西端 (-36)、東端 (35) 建築端牆，並於中央綠廊兩側 (-7 與 +6) 開設通透觀景窗。');
-  // Outer West (x=-36) & East (x=35) walls: architectural white + silver bands + clerestory glass
+  b.beginStep(4, '砌築東西兩側端牆與中央綠廊內側雙館對望帷幕牆', '封閉西端 (-36)、東端 (35) 端牆與中央綠廊內側帷幕牆，全數緊密銜接波浪屋頂！');
   for (const wx of [-36, 35]) {
     for (let z = -10; z < 10; z++) {
-      const wallTop = roofY(wx, z) - 2;
+      const wallTop = roofY(wx, z) - 1;
       for (let y = 3; y < wallTop; y++) {
         const isGlassBand = (y >= 11 && y <= 14 && z > -6 && z < 7);
         const col = isGlassBand ? ((z % 3 === 0) ? 'FLAT_SILVER' : 'TRANS_LIGHT_BLUE')
@@ -1792,13 +1827,13 @@ function buildSetTaichungExpo() {
       }
     }
   }
-  // Inner Central Promenade facing walls (x=-7 on Phase 2, x=6 on Phase 1)
-  // Leave clean 2F skybridge portal open at Z = -2..4, Y = 9..15!
+  // Inner Central Promenade walls (x=-7 on Phase 2, x=6 on Phase 1)
+  // Portal open at Z=-2..4, Y=9..15; above Y=16 rests on the extended skybridge roof!
   for (const ix of [-7, 6]) {
     for (let z = -10; z < 10; z++) {
-      const wallTop = roofY(ix, z) - 2;
+      const wallTop = roofY(ix, z) - 1;
       for (let y = 3; y < wallTop; y++) {
-        const inBridgePortal = (z >= -2 && z <= 4 && y >= 9 && y <= 15);
+        const inBridgePortal = (z >= -2 && z <= 4 && y >= 9 && y <= 16);
         if (inBridgePortal) continue;
         const isMullion = (z % 4 === 0) || (y === 8);
         b.place('plate_1x1', isMullion ? 'WHITE' : 'TRANS_LIGHT_BLUE', ix, y, z);
@@ -1806,23 +1841,26 @@ function buildSetTaichungExpo() {
     }
   }
 
-  b.beginStep(4, '雕塑西側北角二期招牌「造型迴車塔 (Spiral Turnaround Ramp Tower)」', '於西側展館北角打造圓筒螺旋物流迴車塔，以純白螺旋車道肋條與金屬銀格柵盤旋而上！');
+  b.beginStep(4, '雕塑西側北角二期招牌「造型迴車塔 (Spiral Turnaround Ramp Tower)」', '於西側展館北角打造實心核心圓筒螺旋物流迴車塔，以純白螺旋車道肋條盤旋而上！');
   const towerCX = -36, towerCZ = -14;
   for (let y = 2; y <= 16; y++) {
     for (let dx = -3; dx <= 3; dx++) {
       for (let dz = -3; dz <= 3; dz++) {
         const dist = Math.hypot(dx, dz);
-        if (dist >= 2.1 && dist <= 3.2) {
-          const angle = Math.atan2(dz, dx); // -PI..PI
-          // Helical white ramp band wrapping smoothly around the cylinder
-          const helixPhase = ((y * 0.55 + angle * 1.6) % (Math.PI * 2) + Math.PI * 2) % (Math.PI * 2);
-          const col = helixPhase < 1.9 ? 'WHITE' : (helixPhase < 3.4 ? 'FLAT_SILVER' : 'DARK_BLUISH_GRAY');
-          b.place('plate_1x1', col, towerCX + dx, y, towerCZ + dz);
+        if (dist <= 3.2) {
+          if (dist < 2.1) {
+            // Solid structural elevator & ramp core inside tower so top deck never floats
+            b.place('plate_1x1', 'DARK_BLUISH_GRAY', towerCX + dx, y, towerCZ + dz);
+          } else {
+            const angle = Math.atan2(dz, dx);
+            const helixPhase = ((y * 0.55 + angle * 1.6) % (Math.PI * 2) + Math.PI * 2) % (Math.PI * 2);
+            const col = helixPhase < 1.9 ? 'WHITE' : (helixPhase < 3.4 ? 'FLAT_SILVER' : 'DARK_BLUISH_GRAY');
+            b.place('plate_1x1', col, towerCX + dx, y, towerCZ + dz);
+          }
         }
       }
     }
   }
-  // Cap the spiral ramp tower with sleek light-gray & white top deck
   for (let dx = -2; dx <= 2; dx++) {
     for (let dz = -2; dz <= 2; dz++) {
       if (Math.hypot(dx, dz) <= 2.3) {
@@ -1833,11 +1871,11 @@ function buildSetTaichungExpo() {
 
   // -------------------------------------------------------------------------
   // BAG 5: Phase 1 & Phase 2 Connection (1・2 期聯通)
-  // Central Green Promenade + Elevated 2F Glass & Steel Skybridge (X = -6..6, Z = -3..5, Y = 8..16)
+  // Central Green Promenade + Elevated 2F Glass & Steel Skybridge (X = -7..7, Z = -3..5, Y = 8..17)
   // -------------------------------------------------------------------------
   b.beginStep(5, '鋪設一二期之間「中央綠廊景觀步道」與植栽帶', '串聯南北水湳中央公園與北側廣場，以石材步道與雙排綠籬勾勒中軸動線。');
   for (let x = -6; x < 6; x++) {
-    for (let z = -12; z < 13; z++) {
+    for (let z = -12; z < 10; z++) {
       const isGreenStrip = (x === -5 || x === 4) && (z % 2 === 0);
       if (isGreenStrip) {
         b.place('plate_1x1', 'BRIGHT_GREEN', x, 2, z);
@@ -1858,11 +1896,10 @@ function buildSetTaichungExpo() {
   }
 
   b.beginStep(5, '架設 1・2 期 2F 聯通空橋主結構橋面與深灰鋼桁架', '橫跨 12 格寬度無縫對接一期東館與二期西館 2F 大廳，鋪設寬敞展覽連通道！');
-  // Steel bridge underside (Y=8) & walkway floor (Y=9) from X=-6..6, Z=-3..5
   b.fillRect(-6, 6, -3, 5, 8, 'DARK_BLUISH_GRAY', 'plate');
   b.fillRect(-6, 6, -3, 5, 9, 'TAN', 'tile');
 
-  b.beginStep(5, '安裝 2F 聯通空橋雙面全景透明玻璃帷幕與純白斜交鋼構肋', '空橋南北兩側包覆透亮水藍全景玻璃與白色鋼構桁架，成為一二期最亮眼地標！');
+  b.beginStep(5, '安裝 2F 聯通空橋雙面全景透明玻璃帷幕與承重頂板', '空橋南北兩側包覆透亮水藍玻璃與白色桁架，頂板兩端延伸錨定進雙館內牆！');
   for (let x = -6; x < 6; x++) {
     for (let y = 10; y <= 15; y++) {
       const isTruss = ((x + 6) % 3 === 0) || (y === 10) || (y === 15);
@@ -1871,14 +1908,14 @@ function buildSetTaichungExpo() {
       b.place('plate_1x1', col, x, y, 4);
     }
   }
-  // Skybridge sleek roof slab (Y=16)
-  b.fillRect(-6, 6, -3, 5, 16, 'WHITE', 'plate');
+  // Skybridge roof slab extends X=-7..7 so both inner promenade walls above Y=16 rest solidly on it!
+  b.fillRect(-7, 7, -3, 5, 16, 'WHITE', 'plate');
   b.fillRect(-6, 6, -2, 4, 17, 'FLAT_SILVER', 'tile');
 
   // -------------------------------------------------------------------------
-  // BAG 6: Giant "Silver Magic Carpet" Undulating Wave Roof (巨型銀色魔毯波浪屋頂)
-  // Spanning Phase 2 (-37..-7), Central Connecting Canopy (-7..7), and Phase 1 (7..37), Z = -12..14
-  // 2 sculpted plate/tile layers + crisp White wave fascia edge + Dark Blue rooftop Solar Panels!
+  // BAG 6: Giant "Silver Magic Carpet" Watertight Undulating Wave Roof (巨型銀色魔毯波浪屋頂)
+  // Continuous 3D stepped shell where every adjacent column overlaps vertically with its
+  // neighbors (minNeighborRY - 1 .. ry - 1), resting flush on all walls & 24 interior columns!
   // -------------------------------------------------------------------------
   const buildRoofSection = (x1, x2, title, tip) => {
     b.beginStep(6, title, tip);
@@ -1886,9 +1923,17 @@ function buildSetTaichungExpo() {
       for (let z = -12; z < 14; z++) {
         const ry = roofY(x, z);
         const isEdge = (x === -37 || x === 36 || z === -12 || z === 13);
-        // Sculpted structural underside layer (ry - 1)
+        // Compute lowest neighbor roofY to guarantee 100% watertight vertical continuity (zero gaps/floating tiles)
+        let minN = ry;
+        if (x > -37) minN = Math.min(minN, roofY(x - 1, z));
+        if (x < 36)  minN = Math.min(minN, roofY(x + 1, z));
+        if (z > -12) minN = Math.min(minN, roofY(x, z - 1));
+        if (z < 13)  minN = Math.min(minN, roofY(x, z + 1));
+
         const underCol = isEdge ? 'WHITE' : (z >= 10 ? 'TAN' : 'LIGHT_BLUISH_GRAY');
-        b.place('plate_1x1', underCol, x, ry - 1, z);
+        for (let uy = Math.min(minN, ry - 1); uy <= ry - 1; uy++) {
+          b.place('plate_1x1', underCol, x, uy, z);
+        }
 
         // Top silver magic carpet skin (ry) with rhythmic wave ribs & crisp white perimeter edge
         const isRib = ((x + 40) % 6 === 0);
@@ -1900,14 +1945,14 @@ function buildSetTaichungExpo() {
 
   buildRoofSection(
     -37, -12,
-    '鋪設二期西館「銀色魔毯」3D 起伏波浪屋頂 (西段)',
-    '逐格依雙向正弦波高程雕塑出柔順銀色屋頂浪潮，並以純白線條勾勒流線飛簷！'
+    '鋪設二期西館「銀色魔毯」3D 連續咬合波浪屋頂 (西段)',
+    '逐格依雙向正弦波高程雕塑連續無縫銀色屋頂浪潮，與西館外牆與巨柱緊密合體！'
   );
 
   buildRoofSection(
     -12, 12,
     '合體鋪設中央聯通天幕波浪屋頂 (中段跨接 1・2 期)',
-    '巨型銀色魔毯流暢跨越中央綠廊與 2F 聯通空橋，將一期與二期展館合為壯闊一體！'
+    '巨型銀色魔毯無縫跨越中央綠廊與 2F 聯通空橋，將一期與二期展館合為壯闊一體！'
   );
 
   buildRoofSection(
@@ -1917,7 +1962,6 @@ function buildSetTaichungExpo() {
   );
 
   b.beginStep(6, '加裝屋頂 8 大區海軍深藍太陽能光電板陣列與天窗完工', '於波浪屋頂平緩區段鋪設海軍深藍太陽能光電陣列，致敬會展中心 4,945 片綠能屋頂！');
-  // Solar panel arrays mounted cleanly on top of the wave roof (ry + 1) in 8 neat rectangular fields
   const solarZones = [
     [-33, -23, -8, -2], [-33, -23, 2, 7],
     [-19, -10, -8, -2], [-19, -10, 2, 7],
@@ -1927,14 +1971,12 @@ function buildSetTaichungExpo() {
   for (const [sx1, sx2, sz1, sz2] of solarZones) {
     for (let x = sx1; x < sx2; x++) {
       for (let z = sz1; z < sz2; z++) {
-        // Leave narrow maintenance aisles every 5 studs
         if ((x - sx1) === 4 || (z - sz1) === 2) continue;
         const ry = roofY(x, z);
         b.place('tile_1x1', 'DARK_BLUE', x, ry + 1, z);
       }
     }
   }
-  // Central translucent skylight spine running above the skybridge canopy
   for (let x = -5; x < 5; x++) {
     for (let z = -4; z <= 4; z += 2) {
       const ry = roofY(x, z);
