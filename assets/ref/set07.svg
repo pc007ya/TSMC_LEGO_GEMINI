@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#EEF2F6"/>
+      <stop offset="100%" stop-color="#DCE3EC"/>
+    </linearGradient>
+    <linearGradient id="silverWave" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#CFD6DE"/>
+      <stop offset="25%" stop-color="#F8FAFC"/>
+      <stop offset="50%" stop-color="#94A3B8"/>
+      <stop offset="75%" stop-color="#F8FAFC"/>
+      <stop offset="100%" stop-color="#CBD5E1"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#5FD4F4"/>
+      <stop offset="100%" stop-color="#1E6EA8"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <!-- Panoramic Black Baseplate -->
+  <polygon points="45,420 400,545 755,420 400,315" fill="#1D2024"/>
+  <polygon points="45,420 400,545 400,562 45,437" fill="#111317"/>
+  <polygon points="755,420 400,545 400,562 755,437" fill="#2A2F36"/>
+  <!-- Shuinan Central Park Front Green Lawn & Plaza -->
+  <polygon points="65,418 400,532 735,418 400,322" fill="#A8AEB4"/>
+  <polygon points="100,432 400,524 700,432 400,478" fill="#1D8F44" opacity="0.88"/>
+  <!-- Phase 2 West Hall (Left) Glass Facade & Tree Gate Columns -->
+  <polygon points="115,315 355,392 355,455 115,378" fill="url(#glass)" stroke="#334155" stroke-width="2"/>
+  <g stroke="#FFFFFF" stroke-width="4">
+    <line x1="160" y1="392" x2="160" y2="335"/><line x1="160" y1="350" x2="145" y2="328"/><line x1="160" y1="350" x2="175" y2="332"/>
+    <line x1="235" y1="416" x2="235" y2="358"/><line x1="235" y1="373" x2="220" y2="351"/><line x1="235" y1="373" x2="250" y2="356"/>
+    <line x1="310" y1="440" x2="310" y2="382"/><line x1="310" y1="397" x2="295" y2="375"/><line x1="310" y1="397" x2="325" y2="380"/>
+  </g>
+  <!-- 2F Connecting Glass Skybridge between Phase 1 & Phase 2 -->
+  <polygon points="355,365 445,365 445,405 355,405" fill="url(#glass)" stroke="#F8FAFC" stroke-width="3"/>
+  <!-- Phase 1 East Hall (Right) Glass Facade & Tree Gate Columns -->
+  <polygon points="445,392 685,315 685,378 445,455" fill="url(#glass)" stroke="#334155" stroke-width="2"/>
+  <g stroke="#FFFFFF" stroke-width="4">
+    <line x1="490" y1="440" x2="490" y2="382"/><line x1="490" y1="397" x2="475" y2="380"/><line x1="490" y1="397" x2="505" y2="375"/>
+    <line x1="565" y1="416" x2="565" y2="358"/><line x1="565" y1="373" x2="550" y2="356"/><line x1="565" y1="373" x2="580" y2="351"/>
+    <line x1="640" y1="392" x2="640" y2="335"/><line x1="640" y1="350" x2="625" y2="332"/><line x1="640" y1="350" x2="655" y2="328"/>
+  </g>
+  <!-- Giant Undulating Silver Magic Carpet Wave Roof (Phase 2 + Bridge + Phase 1) -->
+  <path d="M95,308 Q165,248 235,288 Q305,328 365,282 Q400,262 435,282 Q495,328 565,288 Q635,248 705,308 L665,235 Q595,185 525,222 Q460,252 400,218 Q340,252 275,222 Q205,185 135,235 Z" fill="url(#silverWave)" stroke="#FFFFFF" stroke-width="4"/>
+  <!-- Solar Panel Dark-Blue Strips on Wave Roof -->
+  <path d="M180,255 L260,248 L272,265 L192,272 Z" fill="#1B3A63" opacity="0.85"/>
+  <path d="M540,248 L620,255 L608,272 L528,265 Z" fill="#1B3A63" opacity="0.85"/>
+  <!-- Title Badge -->
+  <rect x="220" y="38" width="360" height="60" rx="12" fill="#14181F"/>
+  <text x="400" y="65" text-anchor="middle" fill="#FFFFFF" font-family="sans-serif" font-weight="800" font-size="20">臺中國際會展中心 1+2 期 UCS</text>
+  <text x="400" y="86" text-anchor="middle" fill="#3AC5ED" font-family="monospace" font-weight="700" font-size="12">SILVER WAVE ROOF • SKYBRIDGE • 6,000+ PCS</text>
+</svg>

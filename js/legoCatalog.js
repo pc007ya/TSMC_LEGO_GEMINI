@@ -108,7 +108,8 @@ export const PARTS = {
   wall_jasm_1x2:       { partId: '3069bpr02', name: 'Tile 1 x 2 SNOT (Printed JASM)',        zh: '1×2 立面印刷磚 (Jasm 標誌)',   w: 2, d: 1, h: 3, shape: 'wall_tile', studs: false, print: 'JASM' },
   wall_morris_1x4:     { partId: '2431pr01',  name: 'Tile 1 x 4 SNOT (張忠謀大樓)',           zh: '1×4 立面印刷磚 (張忠謀大樓)',  w: 4, d: 1, h: 4, shape: 'wall_tile', studs: false, print: 'MORRIS_WALL' },
   slope_morris_2x2:    { partId: '3039pr01',  name: 'Slope 2 x 2 (張忠謀大樓 銘牌)',          zh: '2×2 斜面印刷磚 (張忠謀大樓)',  w: 2, d: 2, h: 3, shape: 'slope', studs: false, print: 'MORRIS_PLAQUE' },
-  slope_ntt_2x2:       { partId: '3039pr02',  name: 'Slope 2 x 2 (臺中國家歌劇院 銘牌)',      zh: '2×2 斜面印刷磚 (臺中國家歌劇院)', w: 2, d: 2, h: 3, shape: 'slope', studs: false, print: 'NTT_PLAQUE' }
+  slope_ntt_2x2:       { partId: '3039pr02',  name: 'Slope 2 x 2 (臺中國家歌劇院 銘牌)',      zh: '2×2 斜面印刷磚 (臺中國家歌劇院)', w: 2, d: 2, h: 3, shape: 'slope', studs: false, print: 'NTT_PLAQUE' },
+  slope_ticec_2x2:     { partId: '3039pr03',  name: 'Slope 2 x 2 (臺中國際會展中心 銘牌)',    zh: '2×2 斜面印刷磚 (臺中國際會展中心)', w: 2, d: 2, h: 3, shape: 'slope', studs: false, print: 'TICEC_PLAQUE' }
 };
 
 export function brick(part, color, x, y, z, rot = 0, bag = 1, step = 1) {

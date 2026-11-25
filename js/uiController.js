@@ -231,7 +231,8 @@ export class UIController {
         set03_arizona: 'docs/SET03_21037_ARIZONA.ldr',
         set04_morris: 'docs/SET04_21038_MORRIS.ldr',
         set05_rd: 'docs/SET05_21039_RD.ldr',
-        set06_ntt: 'docs/SET06_21040_TAICHUNG_OPERA.ldr'
+        set06_ntt: 'docs/SET06_21040_TAICHUNG_OPERA.ldr',
+        set07_ticec: 'docs/SET07_21041_TAICHUNG_EXPO.ldr'
       };
       const href = ldrMap[this.currentSet.id];
       if (!href) return;

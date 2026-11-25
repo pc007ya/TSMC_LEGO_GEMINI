@@ -32,9 +32,9 @@ export class LegoEngine {
     this.controls.dampingFactor = 0.06;
     this.controls.maxPolarAngle = Math.PI / 2 - 0.03;
     this.controls.minDistance = 6;
-    this.controls.maxDistance = 185;
+    this.controls.maxDistance = 215;
     this.controls.autoRotate = false;
-    this.controls.autoRotateSpeed = 0.80;
+    this.controls.autoRotateSpeed = 0.75;
 
     this._setupLighting();
     this._setupStudioFloor();
@@ -70,17 +70,17 @@ export class LegoEngine {
 
   _setupLighting() {
     const hemi = new THREE.HemisphereLight('#FFFFFF', '#CFD6E0', 0.90);
-    hemi.position.set(0, 75, 0);
+    hemi.position.set(0, 85, 0);
     this.scene.add(hemi);
 
     const key = new THREE.DirectionalLight('#FFFDF8', 1.38);
-    key.position.set(42, 68, 44);
+    key.position.set(48, 76, 50);
     key.castShadow = true;
     key.shadow.mapSize.width = 2048;
     key.shadow.mapSize.height = 2048;
     key.shadow.camera.near = 5;
-    key.shadow.camera.far = 185;
-    const d = 52;
+    key.shadow.camera.far = 215;
+    const d = 62;
     key.shadow.camera.left = -d;
     key.shadow.camera.right = d;
     key.shadow.camera.top = d;
@@ -267,6 +267,19 @@ export class LegoEngine {
       ctx.fillText('National Taichung Theater', 256, 174);
       ctx.fillStyle = '#C91A09';
       ctx.fillRect(56, 218, 400, 12);
+    } else if (printKey === 'TICEC_PLAQUE') {
+      ctx.fillStyle = '#1E2124';
+      ctx.fillRect(0, 0, 512, 256);
+      ctx.fillStyle = '#F6F7F9';
+      ctx.font = '800 54px "Noto Sans TC", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('臺中國際會展中心', 256, 98);
+      ctx.font = '600 22px "Inter", sans-serif';
+      ctx.fillStyle = '#93C5FD';
+      ctx.fillText('TICEC • PHASES 1 & 2', 256, 170);
+      ctx.fillStyle = '#3AC5ED';
+      ctx.fillRect(56, 216, 400, 12);
     }
 
     const tex = new THREE.CanvasTexture(canvas);
