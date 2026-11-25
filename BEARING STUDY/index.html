@@ -617,13 +617,66 @@
       align-self: center;
     }
 
+    /* Cannondale Case Study */
+    .case-hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      gap: 20px;
+      align-items: stretch;
+      margin-bottom: 18px;
+    }
+    .case-reasons-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .reason-card {
+      background: var(--card-2);
+      border: 1px solid var(--border-soft);
+      border-radius: 12px;
+      padding: 15px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .reason-card.tradeoff {
+      border-color: color-mix(in srgb, var(--danger) 45%, transparent);
+      background: color-mix(in srgb, var(--danger) 6%, var(--card-2));
+    }
+    .reason-num {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      color: var(--primary);
+    }
+    .reason-card.tradeoff .reason-num { color: var(--danger); }
+    .reason-card h4 { margin: 0; font-size: 14.5px; font-weight: 800; line-height: 1.35; }
+    .reason-card p { margin: 0; font-size: 12.5px; color: var(--muted); line-height: 1.6; }
+    .mini-compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      margin-top: 10px;
+    }
+    .mini-compare-table th, .mini-compare-table td {
+      padding: 8px 9px;
+      border-bottom: 1px solid var(--border-soft);
+      text-align: left;
+      vertical-align: top;
+    }
+    .mini-compare-table th {
+      color: var(--muted);
+      font-weight: 700;
+      background: var(--card);
+    }
+
     @media (max-width: 980px) {
       .kpi-grid { grid-template-columns: repeat(2, 1fr); }
-      .grid-3, .gallery-grid, .metrics-grid { grid-template-columns: repeat(2, 1fr); }
-      .explorer-grid { grid-template-columns: 1fr; }
+      .grid-3, .gallery-grid, .metrics-grid, .case-reasons-grid { grid-template-columns: repeat(2, 1fr); }
+      .explorer-grid, .case-hero-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 640px) {
-      .kpi-grid, .grid-3, .grid-2, .gallery-grid, .metrics-grid, .pro-con, .ref-strip {
+      .kpi-grid, .grid-3, .grid-2, .gallery-grid, .metrics-grid, .pro-con, .ref-strip, .case-reasons-grid {
         grid-template-columns: 1fr;
       }
       .panel { padding: 16px; }
@@ -642,6 +695,7 @@
       <div class="nav-links">
         <a href="#showdown">實品 vs CAD對照</a>
         <a href="#explorer">剖面圖解</a>
+        <a href="#cannondale-case">Cannondale 改版解析</a>
         <a href="#gallery">真實圖與技術圖庫</a>
         <a href="#metrics">工程評比</a>
         <a href="#timeline">六年演進</a>
@@ -674,8 +728,8 @@
         </div>
         <div class="kpi">
           <div class="kpi-label">收錄真實圖與原廠技術圖</div>
-          <div class="kpi-val mono">19 張</div>
-          <div class="kpi-sub">含輪鋒 CAD 藍圖、US 12,337,923 B2 專利圖、原廠透視圖</div>
+          <div class="kpi-val mono">20 張</div>
+          <div class="kpi-sub">含輪鋒 CAD 藍圖、US 12,337,923 B2 專利圖、Delta 舵管透視圖</div>
         </div>
         <div class="kpi">
           <div class="kpi-label">刺刀前叉半繞過方案</div>
@@ -841,15 +895,175 @@
       </div>
     </section>
 
-    <!-- SECTION 3: FULL REAL PHOTO & TECHNICAL DRAWING GALLERY -->
+    <!-- SECTION 3: CANNONDALE CASE STUDY (GEN 3 OUTSIDE-BEARING -> GEN 4/5 DELTA STEERER) -->
+    <section class="panel" id="cannondale-case">
+      <div class="section-head">
+        <div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px;">
+            <span class="pill warn">專題工程案例研究</span>
+            <span class="pill info">SuperSix EVO Gen 3（2019–2022）→ Gen 4（2023）→ Gen 5（2026）</span>
+          </div>
+          <h2>三、專題深研：為何 Cannondale 捨棄 Gen 3「培林外前置腔」，下一代改採 Delta 三角舵管？</h2>
+          <p>SuperSix EVO Gen 3 原是公路車少數採用「培林外前置走線腔」的先驅，為何 Cannondale 在 Gen 4（2023）與 Gen 5（2026）毅然轉向「穿過上培林」的 Delta 三角（V 型）舵管，並全面推廣至 SuperX 礫石車與全系列公路車？</p>
+        </div>
+      </div>
+
+      <div class="case-hero-grid">
+        <!-- Left: Cutaway Visual -->
+        <article class="compare-card" style="justify-content:space-between;">
+          <div class="media-box" style="aspect-ratio:16 / 11;padding:8px;" data-lb-src="./images/cannondale-delta-steerer-cutaway.png" data-lb-title="Cannondale Delta Steerer 頭管與三角舵管 3D 剖面結構圖" data-lb-cap="清楚揭露 Delta 舵管核心工程：將前叉舵管切削為三角形（V 型）碳纖斷面並輔以表面編織碳布強化，讓兩條液壓煞車油管緊貼左右斜面穿過纖細的 1-1/8 吋上培林，下段則平順過渡回標準圓形以對應下培林。點擊上方「放大 165%」可細看碳布紋理與油管走線路徑。">
+            <img src="./images/cannondale-delta-steerer-cutaway.png" alt="Cannondale Delta Steerer 三角舵管頭管透視剖面圖" />
+            <span class="zoom-hint">點擊放大 165% 檢視剖面</span>
+          </div>
+          <div class="compare-body">
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <span class="pill warn">Delta 三角碳纖舵管（V-Shaped Steerer）</span>
+              <span class="pill mono">Gen 4 (2023) / Gen 5 (2026)</span>
+            </div>
+            <h3>透視圖關鍵結構解讀</h3>
+            <div class="spec-list">
+              <div class="spec-row"><span>三角平切斜面</span><span>騰出雙油管緊貼空間，免升格 1.5" 大頭管</span></div>
+              <div class="spec-row"><span>編織碳布強化區</span><span>保留前後煞車與過彎主受力平面的高抗彎剛性</span></div>
+              <div class="spec-row"><span>上小／下大培林</span><span class="mono">1-1/8" 上 ｜ 1-1/4" 下（SuperX 採 1-1/2" 下）</span></div>
+              <div class="spec-row"><span>下端圓形過渡</span><span>舵管底部恢復正圓斷面，完美貼合下頭碗培林</span></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Right: Gen 3 vs Gen 4/5 Top-View SVG + Quantitative Table -->
+        <div class="svg-card" style="gap:12px;">
+          <div>
+            <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--muted);margin-bottom:8px;">
+              <strong style="color:var(--fg)">世代俯視剖面對照：為何從「培林外」改回「三角培林內」？</strong>
+              <span class="mono">↑ 車頭迎風方向</span>
+            </div>
+            <svg viewBox="0 0 520 198" style="width:100%;height:auto;display:block;background:var(--card);border:1px solid var(--border-soft);border-radius:10px;" aria-label="Cannondale Gen 3 vs Gen 4/5 俯視剖面對比">
+              <!-- Left: Gen 3 Outside-Bearing Front Cavity -->
+              <text x="128" y="18" text-anchor="middle" font-size="11.5" font-weight="800" fill="var(--fg)">Gen 3（2019–2022）培林外前置腔</text>
+              <path d="M 128 28 C 166 28, 186 72, 186 116 C 186 154, 160 174, 128 174 C 96 174, 70 154, 70 116 C 70 72, 90 28, 128 28 Z" fill="var(--card-2)" stroke="var(--border)" stroke-width="2"/>
+              <!-- Front cable cavity -->
+              <path d="M 128 38 C 147 38, 158 54, 156 68 C 138 63, 118 63, 100 68 C 98 54, 109 38, 128 38 Z" fill="var(--card)" stroke="var(--chart-4)" stroke-width="1.5" stroke-dasharray="3 2"/>
+              <circle cx="118" cy="54" r="6.5" fill="var(--chart-4)" stroke="var(--bg)" stroke-width="1.5"/>
+              <circle cx="138" cy="54" r="6.5" fill="var(--chart-4)" stroke="var(--bg)" stroke-width="1.5"/>
+              <!-- Steering stop block -->
+              <rect x="114" y="70" width="28" height="8" rx="2.5" fill="var(--danger)"/>
+              <text x="206" y="77" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--danger)">限位塊</text>
+              <line x1="145" y1="74" x2="188" y2="74" stroke="var(--danger)" stroke-width="1.2" stroke-dasharray="2 2"/>
+              <!-- Bearing + Round Steerer -->
+              <circle cx="128" cy="122" r="40" fill="var(--chart-1)" fill-opacity="0.25" stroke="var(--chart-1)" stroke-width="8"/>
+              <circle cx="128" cy="122" r="22" fill="var(--chart-2)" fill-opacity="0.32" stroke="var(--chart-2)" stroke-width="2.5"/>
+              <text x="128" y="125" text-anchor="middle" font-size="8.5" font-weight="700" fill="var(--fg)">圓舵管</text>
+              <text x="128" y="190" text-anchor="middle" font-size="9.5" fill="var(--muted)">頭管深厚＋限位塊易撞裂碳框</text>
+
+              <!-- Center Arrow -->
+              <line x1="242" y1="104" x2="274" y2="104" stroke="var(--primary)" stroke-width="2.2"/>
+              <polygon points="274,98 286,104 274,110" fill="var(--primary)"/>
+              <text x="261" y="92" text-anchor="middle" font-size="9.5" font-weight="800" fill="var(--primary)">改版</text>
+
+              <!-- Right: Gen 4/5 Delta Steerer -->
+              <text x="394" y="18" text-anchor="middle" font-size="11.5" font-weight="800" fill="var(--primary)">Gen 4/5（2023–2026）Delta 三角舵管</text>
+              <!-- Much slimmer aero headtube -->
+              <path d="M 394 42 C 424 42, 440 76, 440 114 C 440 150, 422 172, 394 172 C 366 172, 348 150, 348 114 C 348 76, 364 42, 394 42 Z" fill="var(--card-2)" stroke="var(--primary)" stroke-width="2"/>
+              <!-- Compact 1-1/8" bearing -->
+              <circle cx="394" cy="112" r="35" fill="var(--chart-1)" fill-opacity="0.25" stroke="var(--chart-1)" stroke-width="7.5"/>
+              <!-- Triangular / V-shaped Delta steerer (pointing forward-ish / flat sides for hoses) -->
+              <polygon points="394,85 418,131 370,131" fill="var(--chart-2)" fill-opacity="0.38" stroke="var(--chart-2)" stroke-width="2.5" stroke-linejoin="round"/>
+              <!-- Two hydraulic hoses tucked on left/right angled sides inside upper bearing -->
+              <circle cx="374" cy="99" r="6" fill="var(--chart-4)" stroke="var(--bg)" stroke-width="1.5"/>
+              <circle cx="414" cy="99" r="6" fill="var(--chart-4)" stroke="var(--bg)" stroke-width="1.5"/>
+              <text x="394" y="124" text-anchor="middle" font-size="8.5" font-weight="800" fill="var(--fg)">Delta</text>
+              <text x="394" y="190" text-anchor="middle" font-size="9.5" fill="var(--success)">窄頭管省 12W・取消限位塊・大減重</text>
+            </svg>
+          </div>
+
+          <table class="mini-compare-table">
+            <thead>
+              <tr>
+                <th>工程項目</th>
+                <th>Gen 3（培林外前置腔）</th>
+                <th>Gen 4 (2023) / Gen 5 (2026) Delta</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>上頭碗與走線</strong></td>
+                <td>油管走培林前方獨立隔腔</td>
+                <td>穿過緊湊 <span class="mono">1-1/8"</span> 上培林兩側平切面</td>
+              </tr>
+              <tr>
+                <td><strong>轉向限位塊</strong></td>
+                <td style="color:var(--danger)">必須安裝（轉角受限・摔車易裂頭管）</td>
+                <td style="color:var(--success)"><strong>完全取消</strong>（零撞擊裂框風險）</td>
+              </tr>
+              <tr>
+                <td><strong>氣動與重量</strong></td>
+                <td>頭管較寬厚、隔牆結構較重</td>
+                <td>Gen 4 省 <strong>12W @45km/h</strong>、成車減重 ~500g；2026 Gen 5 LAB71 車架再降至 <strong>728g</strong>、前叉 410g</td>
+              </tr>
+              <tr>
+                <td><strong>龍頭相容性</strong></td>
+                <td>高整合把立與專用墊圈</td>
+                <td>專用填補片相容一體把、C1 Conceal 龍頭與標準把立</td>
+              </tr>
+              <tr>
+                <td><strong>換培林維修</strong></td>
+                <td style="color:var(--success)">✓ 免拆斷液壓油管</td>
+                <td style="color:var(--danger)">✗ 須拆斷油管並重新排氣（主要代價）</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 5 Engineering Drivers + 1 Trade-off -->
+      <div class="case-reasons-grid">
+        <div class="reason-card">
+          <div class="reason-num">原因 01｜氣動截面積（省 12 W）</div>
+          <h4>縮小頭管迎風面，卻不必改用粗大 IS52 培林</h4>
+          <p>一般圓舵管要做培林內走線，必須放大至 1.5"（IS52，52mm）大培林導致頭管肥胖；而 Gen 3 雖用培林外前置腔，卻令頭管前後厚重。Delta 將舵管切出兩側斜面，讓雙油管緊貼舵管穿過 <strong>1-1/8" 窄上培林</strong>，配合纖細前叉肩，Gen 4 於 45 km/h 較 Gen 3 實測省下 <strong>12 W</strong>（並比 Tarmac SL7 快 4 W）。</p>
+        </div>
+
+        <div class="reason-card">
+          <div class="reason-num">原因 02｜結構可靠性（消除災情）</div>
+          <h4>徹底移除「轉向限位塊」，根治摔車裂頭管</h4>
+          <p>Gen 3 的致命弱點是油管位於培林前方，轉把角度過大會直接剪斷／壓折油管，因此被迫在頭管內設計實體「轉向限位塊（Steering Stop）」。此限位塊不僅牽車與裝箱極不方便，更在無數摔車案例中造成碳纖頭管撞擊碎裂。改由 Delta 舵管貼近轉向軸心走線後，<strong>完全取消限位塊</strong>，根除車架撞裂通病。</p>
+        </div>
+
+        <div class="reason-card">
+          <div class="reason-num">原因 03｜輕量化與剛性平衡</div>
+          <h4>省去雙腔隔牆與限位補強，車架減重達極致</h4>
+          <p>取消前置腔隔牆與重度碳纖限位補強後，搭配三角形斷面將碳纖材料精準保留在「前後煞車」與「過彎橫向」主載荷平面，Gen 4 整車較 Gen 3 大減約 <strong>500 g</strong>（LAB71 770 g / Hi-MOD 810 g）。2026 年 <strong>Gen 5</strong> 進一步優化疊層，將 LAB71 車架壓低至 <strong>728 g</strong>、Hi-MOD 781 g、前叉僅 410 g（同時將 Stack 降低 10 mm）。</p>
+        </div>
+
+        <div class="reason-card">
+          <div class="reason-num">原因 04｜座艙與 Fitting 彈性</div>
+          <h4>異形舵管仍可裝標準龍頭與 C1 Conceal</h4>
+          <p>為避免三角舵管把車主鎖死在昂貴一體把，Cannondale 開發專用左右填補片（<span class="mono">K3507310</span>／<span class="mono">K3508310</span>）與專用 Delta 膨脹塞（<span class="mono">K35051</span>／<span class="mono">K35063</span>），使車主能自由選用 MomoDesign <strong>SystemBar 一體把</strong>（Gen 5 推出 265g Road SL 版）、線藏底槽的 <strong>C1 Conceal 分體龍頭</strong>，甚至市售標準 1-1/8" 龍頭或 FSA ACR 轉接套件。</p>
+        </div>
+
+        <div class="reason-card">
+          <div class="reason-num">原因 05｜全家族平台標準化（2023–2026）</div>
+          <h4>從公路旗艦擴散至 SuperX 礫石與全路況車系</h4>
+          <p>驗證成功後，Cannondale 將 Delta Steerer 推行成跨車種統一平台：涵蓋 <strong>SuperSix EVO Gen 4 / Gen 5（2026）</strong>、<strong>2026 SuperX 競速礫石車</strong>（配 1-1/2" 下培林與更強剛性）、SuperSix EVO SE/CX、Synapse Neo 與 Tesoro Carbon，大幅統一全球經銷商的頭碗、墊圈與龍頭零件庫存。</p>
+        </div>
+
+        <div class="reason-card tradeoff">
+          <div class="reason-num">工程代價（Trade-Off）｜客觀評析</div>
+          <h4>犧牲「換培林免斷油管」與避震前叉改裝彈性</h4>
+          <p>由 Gen 3（培林外）退回 Gen 4/5（培林內），最大代價就是<strong>更換上頭碗培林必須拆斷液壓油管並重新排氣</strong>（BikeRadar 2025.09 專文點名為維修性倒退）；此外，專屬三角舵管也讓 2026 SuperX 礫石車<strong>無法安裝市售標準圓舵管避震前叉</strong>，安裝他牌把立時亦須嚴格確認填補片與膨脹塞深度，防止夾傷碳舵管。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: FULL REAL PHOTO & TECHNICAL DRAWING GALLERY -->
     <section class="panel" id="gallery">
       <div class="section-head">
         <div>
-          <h2>三、真實圖片與原廠技術圖／專利圖全覽（2020–2026）</h2>
-          <p>收錄 15 張精選實品照、1:1 CAD 藍圖、USPTO 美國專利工程圖與原廠透視手冊圖。點擊任意圖片可開啟高解析度燈箱並支援 165% 縮放細看標註。</p>
+          <h2>四、真實圖片與原廠技術圖／專利圖全覽（2020–2026）</h2>
+          <p>收錄 16 張精選實品照、1:1 CAD 藍圖、USPTO 美國專利工程圖與原廠透視手冊圖。點擊任意圖片可開啟高解析度燈箱並支援 165% 縮放細看標註。</p>
         </div>
         <div class="btn-group" id="gallery-filters">
-          <button type="button" class="tab-btn" data-gcat="all" data-active="true">全部圖鑑 (15)</button>
+          <button type="button" class="tab-btn" data-gcat="all" data-active="true">全部圖鑑 (16)</button>
           <button type="button" class="tab-btn" data-gcat="cad-patent" data-active="false">CAD 藍圖與專利技術圖</button>
           <button type="button" class="tab-btn" data-gcat="outside" data-active="false">培林外／刺刀繞過方案</button>
           <button type="button" class="tab-btn" data-gcat="inside-service" data-active="false">培林內異形舵管與防鏽套件</button>
@@ -859,11 +1073,11 @@
       <div class="gallery-grid" id="gallery-grid"></div>
     </section>
 
-    <!-- SECTION 4: ENGINEERING TRADE-OFF METRICS -->
+    <!-- SECTION 5: ENGINEERING TRADE-OFF METRICS -->
     <section class="panel" id="metrics">
       <div class="section-head">
         <div>
-          <h2>四、六大工程指標量化評比（滿分 10 分）</h2>
+          <h2>五、六大工程指標量化評比（滿分 10 分）</h2>
           <p>綜合氣動風阻、更換培林維修工時、Fitting 相容性、防水防鏽耐久度、結構剛性與模具／組裝成本。</p>
         </div>
         <div style="display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--muted);">
@@ -876,22 +1090,22 @@
       <div class="metrics-grid" id="metrics-grid"></div>
     </section>
 
-    <!-- SECTION 5: 6-YEAR TIMELINE -->
+    <!-- SECTION 6: 6-YEAR TIMELINE -->
     <section class="panel" id="timeline">
       <div class="section-head">
         <div>
-          <h2>五、2020–2026 頭管培林走線六年演進時間軸</h2>
+          <h2>六、2020–2026 頭管培林走線六年演進時間軸</h2>
           <p>從「全面導入培林內走線」→「維修噩夢催生 SLT 防鏽培林與專利頭碗」→「2025–2026 培林外走線反撲與偏心舵管極致化」。</p>
         </div>
       </div>
       <div class="timeline" id="timeline-container"></div>
     </section>
 
-    <!-- SECTION 6: FILTERABLE ENGINEERING DATABASE -->
+    <!-- SECTION 7: FILTERABLE ENGINEERING DATABASE -->
     <section class="panel" id="database">
       <div class="section-head">
         <div>
-          <h2>六、2020–2026 代表系統、車款與專利明細表（19 項）</h2>
+          <h2>七、2020–2026 代表系統、車款與專利明細表（19 項）</h2>
           <p>點選左側縮圖即可放大檢視對應實品或技術圖，並支援依走線類型、車種與關鍵字即時篩選。</p>
         </div>
       </div>
@@ -1354,12 +1568,22 @@
         year: '2026'
       },
       {
+        src: './images/cannondale-delta-steerer-cutaway.png',
+        gcat: ['cad-patent', 'inside-service'],
+        tag: '原廠頭管 3D 透視剖面圖',
+        tagClass: 'pill warn',
+        title: 'Cannondale Delta Steerer 頭管與三角舵管走線剖面圖',
+        desc: '展示雙液壓油管緊貼編織碳布強化之三角（V 型）舵管兩側斜面穿過 1-1/8" 上培林，下段平順轉回正圓，取代 Gen 3 易撞裂的限位塊前置腔。',
+        source: 'Cannondale Delta Steerer 技術剖面',
+        year: '2023–2026'
+      },
+      {
         src: './images/cannondale-delta-steerer.jpg',
         gcat: ['inside-service'],
         tag: '真實微距實拍圖',
         tagClass: 'pill warn',
         title: 'Cannondale Delta Steerer 碳纖三角舵管實拍',
-        desc: '捨棄 Gen 3 的培林外前置腔後，Gen 4/5 透過三角形碳纖舵管兩側平切面讓油管穿過 1-1/8"–1-1/4" 纖細頭管。',
+        desc: '捨棄 Gen 3 的培林外前置腔後，Gen 4/5 透過三角形碳纖舵管兩側平切面讓油管穿過 1-1/8"–1-1/4" 纖細頭管，減重約 500g 並省 12W。',
         source: 'Cannondale Official',
         year: '2023–2026'
       },
@@ -1401,7 +1625,7 @@
       const items = GALLERY.filter(g => activeGcat === 'all' || g.gcat.includes(activeGcat));
       grid.innerHTML = items.map(g => `
         <article class="gal-card">
-          <div class="media-box ${g.src.includes('cannondale') || g.src.includes('tarmac-sl9') ? 'dark-bg' : ''}" data-lb-src="${g.src}" data-lb-title="${g.title}" data-lb-cap="${g.desc}（來源：${g.source}）">
+          <div class="media-box ${g.src.includes('cannondale-delta-steerer.jpg') || g.src.includes('tarmac-sl9') ? 'dark-bg' : ''}" data-lb-src="${g.src}" data-lb-title="${g.title}" data-lb-cap="${g.desc}（來源：${g.source}）">
             <img src="${g.src}" alt="${g.title}" loading="lazy" />
             <span class="zoom-hint">放大檢視</span>
           </div>
@@ -1425,7 +1649,7 @@
       });
     });
 
-    // ---------- Section 4: Engineering Metrics ----------
+    // ---------- Section 5: Engineering Metrics ----------
     const METRICS = [
       { name: '培林更換維修性', note: '免斷油管、保養工時與耗材成本', scores: [9.2, 9.8, 5.5, 2.5] },
       { name: '氣動與極簡外觀', note: '頭管迎風截面積與全隱藏整合', scores: [6.8, 6.2, 9.8, 9.4] },
@@ -1456,15 +1680,15 @@
       `).join('');
     }
 
-    // ---------- Section 5: 6-Year Timeline ----------
+    // ---------- Section 6: 6-Year Timeline ----------
     const TIMELINE = [
       { year: '2020', tag: '培林內普及元年', color: 'var(--chart-4)', title: 'FSA ACR / SMR、Deda DCR 與 Specialized Tarmac SL7 推動全面內走線', detail: 'IS52 超大上培林配標準圓舵管與半內走線 SMR（如 Merida Wire Port）成為全球車廠 OEM 標準，頭管內走線由頂級車快速普及至中階平台。' },
       { year: '2021', tag: '防鏽配套關鍵突破', color: 'var(--success)', title: 'CeramicSpeed 發表 SLT 固體潤滑培林；Scott Spark 導入整合角度頭碗', detail: '針對培林內走線「上培林生鏽＝剪油管大修」痛點，CeramicSpeed 於 2021.11 發表含油固態聚合物 SLT 培林（終身保固）；Scott Spark RC 則將頭碗內走線與 ±0.6° 免剪線調角帶入 XC 賽場。' },
       { year: '2022', tag: 'D型舵管與維修折衷', color: 'var(--chart-1)', title: 'Giant OverDrive Aero、Cervélo Soloist 與二代 S5 刺刀前叉', detail: 'Giant 以 D 型舵管縮減上培林至 46.9mm；Cervélo Soloist 採龍頭下方進線（換龍頭免斷油管）；Cervélo S5 強化刺刀前叉前煞繞過培林的分流設計。' },
-      { year: '2023', tag: '異形舵管大爆發', color: 'var(--chart-4)', title: 'Cannondale Delta 三角舵管、Tarmac SL8 鼻錐與 Specialized 限位頭碗專利', detail: 'SuperSix EVO Gen 4 捨棄 Gen 3 培林外前置腔改採 Delta 三角舵管；Tarmac SL8 以 Speed Sniffer 鼻錐後移舵管；Specialized 公開 Epic 轉向限位頭碗專利；MTB 社群對穿培林維修反彈升溫。' },
+      { year: '2023', tag: '異形舵管大爆發', color: 'var(--chart-4)', title: 'Cannondale Delta 三角舵管、Tarmac SL8 鼻錐與 Specialized 限位頭碗專利', detail: 'SuperSix EVO Gen 4 捨棄 Gen 3 培林外前置腔改採 Delta 三角舵管（消除限位塊裂框災情、省 12W 並大減重）；Tarmac SL8 以 Speed Sniffer 鼻錐後移舵管；MTB 社群對穿培林維修反彈升溫。' },
       { year: '2024', tag: '刺刀前叉擴張', color: 'var(--chart-3)', title: 'Colnago Y1Rs（2024.12）發表；Giant TCR Gen 10 全面內走線化', detail: 'Colnago Y1Rs 結合外置雙柱刺刀前叉、JP 轉向限位與 CeramicSpeed SLT，前煞油管完全繞過頭碗培林。' },
       { year: '2025', tag: '專利落地與 MTB 轉向', color: 'var(--success)', title: 'Chris King 獲頒 US 12,337,923 B2；Orbea Occam 恢復側孔；Factor ONE 登場', detail: 'Chris King AeroSet 取得美國專利；Orbea Occam SL/LT 順應車友呼聲新增頭管側孔（可繞過培林）；Factor ONE 以寬距刺刀前叉＋1-1/8" 小培林挑戰最速公路車。' },
-      { year: '2026', tag: '培林外創新 × 偏心極致化', color: 'var(--primary)', title: 'First S561A 培林外 4 孔碗組、Cane Creek HCR、Canyon 棄頭碗走線、Tarmac SL9 偏心舵管', detail: '輪鋒 S561A 以 Ø39 上培林＋Ø52.2 外碗 4×Ø5.8mm 孔實作培林外走線；Cane Creek 推出 HCR 免剪線換把立系統；Canyon Strive:ON 棄用頭碗走線回歸側孔；Specialized Tarmac SL9（2026.06）以專利申請中偏心舵管再縮頭管 4mm。' }
+      { year: '2026', tag: '培林外創新 × 偏心極致化', color: 'var(--primary)', title: 'First S561A 培林外 4 孔碗組、Cannondale Gen 5/SuperX、Cane Creek HCR、Tarmac SL9', detail: '輪鋒 S561A 以 Ø39 上培林＋Ø52.2 外碗 4×Ø5.8mm 孔實作培林外走線；Cannondale 將 Delta 舵管推進至 728g EVO Gen 5 與 SuperX 礫石車；Canyon 棄用頭碗走線回歸側孔；Specialized Tarmac SL9 以偏心舵管再縮頭管 4mm。' }
     ];
     function renderTimeline() {
       document.getElementById('timeline-container').innerHTML = TIMELINE.map(t => `
@@ -1480,19 +1704,19 @@
       `).join('');
     }
 
-    // ---------- Section 6: Filterable 19-Item Engineering Database ----------
+    // ---------- Section 7: Filterable 19-Item Engineering Database ----------
     const SYSTEMS = [
       { thumb: './images/first-s561-outside-cutaway.jpg', year: '2026', name: 'First Components S561A（台灣輪鋒工業）', cat: 'outside', catLabel: '培林外：碗座外孔', discipline: '礫石/通用', spec: 'ZS52/28.6 上（D390 Ø30.2×39×6.5）｜IS52/40 下｜126g', noBleed: 'yes', noBleedLabel: '✓ 完全免斷', detail: '2026 台北展發表。上培林縮徑至 Ø39mm，於 Ø52.2 鋁上碗外緣開出 4×Ø5.8mm 過線孔，線管完全繞過培林外圈，相容標準龍頭。' },
       { thumb: '', year: '2026', name: 'Canyon Strive:ON（2026 改款）', cat: 'outside', catLabel: '培林外：頭管側孔', discipline: '登山車', spec: '標準頭碗＋頭管側邊進線孔（配 KIS）', noBleed: 'yes', noBleedLabel: '✓ 完全免斷', detail: '正式取消受詬病的頭碗培林走線，回歸頭管外部獨立進線孔，解決 E-MTB 泥水侵蝕與高頻更換培林痛點。' },
       { thumb: '', year: '2025', name: 'Orbea Occam SL / LT（2025 更新）', cat: 'outside', catLabel: '培林外：雙走線可選', discipline: '登山車', spec: '±0.75° 可調頭碗＋車架側孔進線', noBleed: 'yes', noBleedLabel: '✓ 走側孔免斷', detail: '前代強制穿頭碗引發車主反彈，2025 改款於頭管兩側加回傳統內走線孔，車主可自由選擇繞過培林或穿過頭碗。' },
-      { thumb: '', year: '2020–2022', name: 'Cannondale SuperSix EVO Gen 3 / SystemSix', cat: 'outside', catLabel: '培林外：頭管前置腔', discipline: '公路車', spec: '頭管前方獨立走線腔＋轉向限位塊', noBleed: 'yes', noBleedLabel: '✓ 完全免斷', detail: '公路車罕見的培林外全內走線先驅：油管走上培林前方專屬碳纖腔室，不經培林內圈；因頭管較寬，2023 Gen 4 改回 Delta 舵管。' },
+      { thumb: '', year: '2020–2022', name: 'Cannondale SuperSix EVO Gen 3 / SystemSix', cat: 'outside', catLabel: '培林外：頭管前置腔', discipline: '公路車', spec: '頭管前方獨立走線腔＋轉向限位塊', noBleed: 'yes', noBleedLabel: '✓ 完全免斷', detail: '公路車罕見的培林外全內走線先驅：油管走上培林前方專屬腔室免經培林；但頭管深厚且限位塊在摔車時易撞裂碳頭管，故於 Gen 4 改採 Delta 舵管。' },
       { thumb: '', year: '2023–2024', name: 'Specialized Epic World Cup / Epic 8 專利頭碗', cat: 'outside', catLabel: '非旋轉上蓋＋限位', discipline: '登山車', spec: '整合式轉向限位上蓋（2023.03 公開專利）', noBleed: 'partial', noBleedLabel: '△ 視配置', detail: '專利結合多線管導引與轉向限位機構，非旋轉上蓋降低轉向時對煞車與避震線控的擠壓與拉扯。' },
       { thumb: './images/factor-one-bayonet.jpg', year: '2025–2026', name: 'Factor ONE（刺刀前叉＋Chin Fairing）', cat: 'bayonet', catLabel: '刺刀前叉分流', discipline: '公路車', spec: 'FSA 1-1/8" 上下小徑培林｜電子變速專用', noBleed: 'partial', noBleedLabel: '△ 前煞免斷', detail: '外置寬距刺刀前叉將前煞油管獨立導入前叉前腔（繞過培林），並靠雙柱剛性將頭管縮至 1-1/8" 極窄迎風面。' },
       { thumb: './images/tech-colnago-y1rs-headset.png', year: '2024–2025', name: 'Colnago Y1Rs（2025 環法冠軍車）', cat: 'bayonet', catLabel: '刺刀前叉分流', discipline: '公路車', spec: 'ID35×OD47 36°/45° CeramicSpeed SLT＋JP 限位', noBleed: 'partial', noBleedLabel: '△ 前煞免斷', detail: '前煞油管走刺刀前叉前腔繞過培林；後煞油管經預壓螺絲軸孔上行，標配終身保固 SLT 培林與預壓齒輪。' },
       { thumb: './images/tech-cervelo-s5-routing.png', year: '2022 / 2025', name: 'Cervélo S5（二代／三代改款）', cat: 'bayonet', catLabel: '刺刀前叉分流', discipline: '公路車', spec: '1-1/8" 上 ＋ 1-3/8" 下（36°×45°）｜無開槽迫緊環', noBleed: 'partial', noBleedLabel: '△ 前煞免斷', detail: '前煞油管直穿刺刀前叉前孔完全繞過培林；採拉桿與預壓錐鎖固，2025 改款於 50km/h 再省 6.3W。' },
       { thumb: './images/specialized-tarmac-sl9.jpg', year: '2026', name: 'Specialized Tarmac SL9（Offset Steerer）', cat: 'inside-shaped', catLabel: '培林內：偏心舵管', discipline: '公路車', spec: '專利申請中偏心舵管｜頭管再窄 4mm', noBleed: 'no', noBleedLabel: '✗ 須拆油管', detail: '2026.06 發表。偏心舵管將雙油管併排至右側，迎風面積減 10%、45km/h 省 4W，標配 CeramicSpeed 培林。' },
       { thumb: './images/tech-tarmac-sl8-bearing-schematic.jpg', year: '2023 / 2025', name: 'Specialized Tarmac SL8 & Aethos 2', cat: 'inside-shaped', catLabel: '培林內：鼻錐頭管', discipline: '公路車', spec: '上下同規 40.5×49.5×6.5mm（標配 SLT）', noBleed: 'no', noBleedLabel: '✗ 須拆油管', detail: 'SL8 採 Speed Sniffer 鼻錐後移舵管，前後油管仍經開槽迫緊環與上培林內圈進入；2025.10 Aethos 2 亦跟進同套內走線頭碗。' },
-      { thumb: './images/cannondale-delta-steerer.jpg', year: '2023–2026', name: 'Cannondale SuperSix EVO Gen 4 / Gen 5', cat: 'inside-shaped', catLabel: '培林內：三角舵管', discipline: '公路車', spec: '1-1/8"–1-1/4" 培林＋Delta 三角舵管', noBleed: 'no', noBleedLabel: '✗ 須拆油管', detail: '三角形碳纖舵管兩側平切面騰出過線通道，免用 IS52 粗壯頭管即可完成全內走線，並搭配 Conceal 分體龍頭方便調整。' },
+      { thumb: './images/cannondale-delta-steerer-cutaway.png', year: '2023–2026', name: 'Cannondale SuperSix EVO Gen 4/5 & SuperX', cat: 'inside-shaped', catLabel: '培林內：Delta 三角舵管', discipline: '公路車', spec: '1-1/8" 上｜1-1/4"（SuperX 1-1/2"）下＋三角舵管', noBleed: 'no', noBleedLabel: '✗ 須拆油管', detail: '取代 Gen 3 培林外前置腔與易裂限位塊：三角平切面讓雙油管穿過 1-1/8" 窄頭管省 12W、減重 ~500g（Gen 5 LAB71 達 728g），並藉填補片相容標準龍頭。' },
       { thumb: '', year: '2022–2025', name: 'Giant OverDrive Aero（Propel / Defy / TCR Gen 10）', cat: 'inside-shaped', catLabel: '培林內：D 型舵管', discipline: '公路車', spec: '37×46.9×7mm (45°/45°)＋D 型前切舵管', noBleed: 'no', noBleedLabel: '✗ 須拆油管', detail: '前叉舵管前緣切削為 D 形平面，線管沿平面穿過上培林內圈，搭配雙片開口墊圈便於微調高度。' },
       { thumb: './images/first-r554a1-inside-cutaway.jpg', year: '2026', name: 'First Components R554A-1 & T522A-4', cat: 'inside-oversize', catLabel: '培林內：IS52 / EC44', discipline: '礫石/通用', spec: 'R554A-1 (IS52/EC49, 141g)｜T522A-4 (EC44, 183g)', noBleed: 'no', noBleedLabel: '✗ 須拆油管', detail: 'R554A-1 相容 ENVE IN-Route 全內走線；T522A-4 以 EC44 外置碗讓存量 ZS44 鋼／鈦車架升級內走線。' },
       { thumb: '', year: '2020–2026', name: 'FSA ACR / SMR & Deda DCR / S-DCR', cat: 'inside-oversize', catLabel: '培林內：IS52 大培林', discipline: '礫石/通用', spec: 'IS52/28.6（51.9×40×8mm 45°/45°）｜80g', noBleed: 'no', noBleedLabel: '✗ 須拆油管', detail: '全球市佔最高標準。IS52 上培林配標準 1-1/8" 圓舵管容納 4 線管；SMR / S-DCR 採龍頭下進線提升相容性（Merida Wire Port 採用）。' },
