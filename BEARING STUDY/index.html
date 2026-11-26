@@ -103,6 +103,29 @@
       color: var(--primary);
       border: 1px solid color-mix(in srgb, var(--primary) 40%, transparent);
     }
+    .page-tabs {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--card-2);
+      border: 1px solid var(--border);
+      padding: 4px;
+      border-radius: 10px;
+    }
+    .page-tab {
+      padding: 5px 12px;
+      border-radius: 7px;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--muted);
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+    .page-tab:hover { color: var(--fg); text-decoration: none; }
+    .page-tab.active {
+      background: var(--primary);
+      color: var(--primary-fg);
+    }
     .nav-links {
       display: flex;
       align-items: center;
@@ -756,7 +779,10 @@
     <div class="topbar-inner">
       <div class="brand">
         <span class="brand-badge mono">/BEARING STUDY</span>
-        <span>自行車頭管培林外／內走線技術報告（2020–2026）</span>
+        <div class="page-tabs" role="tablist" aria-label="報告分頁切換">
+          <a class="page-tab active" href="./index.html">分頁 1｜頭管培林外／內走線</a>
+          <a class="page-tab" href="./stem-routing.html">分頁 2｜龍頭內走線 ＆ 下方藏線</a>
+        </div>
       </div>
       <div class="nav-links">
         <a href="#showdown">實品 vs CAD</a>

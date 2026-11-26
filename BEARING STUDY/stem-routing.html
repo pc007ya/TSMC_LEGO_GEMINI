@@ -1,0 +1,1925 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2020–2026 自行車龍頭「內走線 vs 下方藏線」工程圖鑑與方案報告｜BEARING STUDY</title>
+  <style>
+    :root {
+      --bg: #0b1018;
+      --bg-elev: #111826;
+      --card: #151e2e;
+      --card-2: #1a2538;
+      --border: #26344d;
+      --border-soft: #1e2a40;
+      --fg: #eef3fb;
+      --muted: #99a9c4;
+      --primary: #38bdf8;
+      --primary-fg: #06131f;
+      --accent: #818cf8;
+      --success: #34d399;
+      --warning: #fbbf24;
+      --danger: #f87171;
+      --chart-1: #38bdf8;
+      --chart-2: #34d399;
+      --chart-3: #a78bfa;
+      --chart-4: #fb923c;
+      --chart-5: #f472b6;
+      --shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+      --img-bg: #ffffff;
+    }
+    [data-theme="light"] {
+      --bg: #f4f7fb;
+      --bg-elev: #ffffff;
+      --card: #ffffff;
+      --card-2: #f8fafd;
+      --border: #d5dfed;
+      --border-soft: #e5ecf5;
+      --fg: #0f172a;
+      --muted: #475569;
+      --primary: #0284c7;
+      --primary-fg: #ffffff;
+      --accent: #4f46e5;
+      --success: #059669;
+      --warning: #d97706;
+      --danger: #dc2626;
+      --chart-1: #0284c7;
+      --chart-2: #059669;
+      --chart-3: #7c3aed;
+      --chart-4: #ea580c;
+      --chart-5: #db2777;
+      --shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+      --img-bg: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", "Segoe UI", Roboto, sans-serif;
+      font-size: 14px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+
+    /* Top Nav */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(12px);
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      border-bottom: 1px solid var(--border);
+    }
+    .topbar-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--fg);
+    }
+    .brand-badge {
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      background: color-mix(in srgb, var(--primary) 18%, transparent);
+      color: var(--primary);
+      border: 1px solid color-mix(in srgb, var(--primary) 40%, transparent);
+    }
+    .page-tabs {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--card-2);
+      border: 1px solid var(--border);
+      padding: 4px;
+      border-radius: 10px;
+    }
+    .page-tab {
+      padding: 5px 12px;
+      border-radius: 7px;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--muted);
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+    .page-tab:hover { color: var(--fg); text-decoration: none; }
+    .page-tab.active {
+      background: var(--primary);
+      color: var(--primary-fg);
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .nav-links a, .btn-ghost {
+      padding: 5px 10px;
+      border-radius: 7px;
+      font-size: 12px;
+      color: var(--muted);
+      border: 1px solid transparent;
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .nav-links a:hover, .btn-ghost:hover {
+      color: var(--fg);
+      background: var(--card-2);
+      border-color: var(--border);
+      text-decoration: none;
+    }
+
+    /* Layout */
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 24px 20px 64px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+    .section-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      padding-bottom: 16px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--border-soft);
+    }
+    .section-head h2 {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+    }
+    .section-head p {
+      margin: 5px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* Pills */
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 11.5px;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      background: var(--card-2);
+      color: var(--muted);
+    }
+    .pill.ok {
+      color: var(--success);
+      border-color: color-mix(in srgb, var(--success) 40%, transparent);
+      background: color-mix(in srgb, var(--success) 13%, transparent);
+    }
+    .pill.warn {
+      color: var(--warning);
+      border-color: color-mix(in srgb, var(--warning) 40%, transparent);
+      background: color-mix(in srgb, var(--warning) 13%, transparent);
+    }
+    .pill.err {
+      color: var(--danger);
+      border-color: color-mix(in srgb, var(--danger) 40%, transparent);
+      background: color-mix(in srgb, var(--danger) 13%, transparent);
+    }
+    .pill.info {
+      color: var(--primary);
+      border-color: color-mix(in srgb, var(--primary) 40%, transparent);
+      background: color-mix(in srgb, var(--primary) 13%, transparent);
+    }
+    .pill.purple {
+      color: var(--chart-3);
+      border-color: color-mix(in srgb, var(--chart-3) 40%, transparent);
+      background: color-mix(in srgb, var(--chart-3) 14%, transparent);
+    }
+
+    .hero h1 {
+      margin: 0 0 10px;
+      font-size: clamp(24px, 3vw, 34px);
+      line-height: 1.25;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+    }
+    .hero-lead {
+      color: var(--muted);
+      font-size: 14.5px;
+      margin: 0 0 20px;
+      max-width: 980px;
+    }
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+    @media (max-width: 920px) { .kpi-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 520px) { .kpi-grid { grid-template-columns: 1fr; } }
+    .kpi {
+      background: var(--card-2);
+      border: 1px solid var(--border-soft);
+      border-radius: 12px;
+      padding: 14px 16px;
+    }
+    .kpi-label { font-size: 12px; color: var(--muted); }
+    .kpi-val { font-size: 19px; font-weight: 800; margin: 4px 0; color: var(--fg); }
+    .kpi-sub { font-size: 11.5px; color: var(--muted); line-height: 1.45; }
+
+    /* Grids & Cards */
+    .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+    @media (max-width: 1020px) {
+      .grid-3, .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 680px) {
+      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    }
+
+    .compare-card {
+      background: var(--card-2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.16s, border-color 0.16s;
+    }
+    .compare-card:hover {
+      border-color: color-mix(in srgb, var(--primary) 55%, var(--border));
+      transform: translateY(-2px);
+    }
+    .compare-card.highlight {
+      border-color: color-mix(in srgb, var(--success) 55%, var(--border));
+      box-shadow: 0 0 0 1px color-mix(in srgb, var(--success) 25%, transparent);
+    }
+    .media-box {
+      position: relative;
+      background: var(--img-bg);
+      height: 205px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+      cursor: zoom-in;
+      border-bottom: 1px solid var(--border-soft);
+      overflow: hidden;
+    }
+    .media-box.tall { height: 245px; }
+    .media-box img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+    .zoom-hint {
+      position: absolute;
+      right: 10px;
+      bottom: 8px;
+      background: rgba(11, 16, 24, 0.78);
+      color: #f8fafc;
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 6px;
+      pointer-events: none;
+    }
+    .compare-body {
+      padding: 15px 16px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      flex: 1;
+    }
+    .compare-body h3 {
+      margin: 2px 0 0;
+      font-size: 15.5px;
+      font-weight: 800;
+      line-height: 1.35;
+    }
+    .compare-body p {
+      margin: 0;
+      font-size: 12.8px;
+      color: var(--muted);
+    }
+    .spec-list {
+      margin-top: auto;
+      padding-top: 8px;
+      border-top: 1px solid var(--border-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 12px;
+    }
+    .spec-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .spec-row span:first-child { color: var(--muted); }
+    .spec-row span:last-child { font-weight: 600; text-align: right; }
+
+    /* Interactive Tabs */
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .tab-btn {
+      padding: 7px 13px;
+      border-radius: 9px;
+      border: 1px solid var(--border);
+      background: var(--card-2);
+      color: var(--muted);
+      font-size: 12.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .tab-btn:hover { color: var(--fg); border-color: var(--primary); }
+    .tab-btn[data-active="true"] {
+      background: var(--primary);
+      color: var(--primary-fg);
+      border-color: var(--primary);
+    }
+
+    /* SVG Explorer */
+    .explorer-grid {
+      display: grid;
+      grid-template-columns: 1.45fr 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+    @media (max-width: 920px) { .explorer-grid { grid-template-columns: 1fr; } }
+    .svg-stage {
+      background: #0d1420;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px;
+      min-height: 350px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    [data-theme="light"] .svg-stage {
+      background: #0f172a;
+    }
+    .svg-stage svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .explorer-info {
+      background: var(--card-2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .explorer-info h3 { margin: 0; font-size: 17px; font-weight: 800; }
+    .explorer-info ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 13px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .callout {
+      padding: 12px 14px;
+      border-radius: 10px;
+      border-left: 3px solid var(--primary);
+      background: color-mix(in srgb, var(--primary) 10%, var(--card-2));
+      font-size: 12.8px;
+    }
+    .callout.ok {
+      border-left-color: var(--success);
+      background: color-mix(in srgb, var(--success) 10%, var(--card-2));
+    }
+    .callout.warn {
+      border-left-color: var(--warning);
+      background: color-mix(in srgb, var(--warning) 10%, var(--card-2));
+    }
+
+    /* Engineering Matrix Bars */
+    .bar-row {
+      display: grid;
+      grid-template-columns: 155px 1fr 68px;
+      gap: 10px;
+      align-items: center;
+      font-size: 12.5px;
+      margin-bottom: 9px;
+    }
+    .bar-track {
+      height: 10px;
+      border-radius: 999px;
+      background: var(--border-soft);
+      overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%;
+      border-radius: 999px;
+    }
+
+    /* Timeline */
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+    @media (max-width: 960px) { .timeline { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 560px) { .timeline { grid-template-columns: 1fr; } }
+    .tl-card {
+      background: var(--card-2);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--primary);
+      border-radius: 12px;
+      padding: 15px;
+    }
+    .tl-year {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+    .tl-card h4 { margin: 0 0 8px; font-size: 14.5px; }
+    .tl-card p { margin: 0; font-size: 12.5px; color: var(--muted); }
+
+    /* Database Table */
+    .filter-bar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+    .input, .select {
+      background: var(--card-2);
+      color: var(--fg);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      padding: 7px 12px;
+      font-size: 12.5px;
+    }
+    .input { min-width: 240px; }
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--border-soft);
+      border-radius: 12px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12.5px;
+    }
+    thead th {
+      background: var(--card-2);
+      color: var(--muted);
+      font-weight: 700;
+      text-align: left;
+      padding: 11px 12px;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    tbody td {
+      padding: 11px 12px;
+      border-bottom: 1px solid var(--border-soft);
+      vertical-align: top;
+    }
+    tbody tr:hover { background: var(--card-2); }
+    .mini-thumb {
+      width: 56px;
+      height: 44px;
+      object-fit: contain;
+      background: #ffffff;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      cursor: zoom-in;
+      display: block;
+    }
+
+    /* Lightbox Modal */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: rgba(5, 9, 16, 0.92);
+      backdrop-filter: blur(8px);
+      display: none;
+      flex-direction: column;
+      padding: 16px;
+    }
+    .lightbox.open { display: flex; }
+    .lb-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      color: #f1f5f9;
+      padding-bottom: 10px;
+      flex-wrap: wrap;
+    }
+    .lb-actions { display: flex; gap: 8px; align-items: center; }
+    .lb-btn {
+      padding: 6px 12px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.22);
+      background: rgba(255,255,255,0.08);
+      color: #f8fafc;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .lb-btn:hover { background: rgba(255,255,255,0.18); }
+    .lb-stage {
+      flex: 1;
+      overflow: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 12px;
+    }
+    .lb-stage img {
+      max-width: 100%;
+      max-height: 78vh;
+      object-fit: contain;
+      background: #ffffff;
+      border-radius: 8px;
+      transition: transform 0.2s;
+    }
+    .lb-stage.zoomed {
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+    .lb-stage.zoomed img {
+      max-width: none;
+      max-height: none;
+      width: 165%;
+      cursor: zoom-out;
+    }
+    .lb-caption {
+      margin-top: 10px;
+      color: #cbd5e1;
+      font-size: 13px;
+      text-align: center;
+      max-width: 960px;
+      align-self: center;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 12px;
+      padding: 16px 0 8px;
+      border-top: 1px solid var(--border-soft);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation with 2-Page Report Switcher -->
+  <nav class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <span class="brand-badge mono">/BEARING STUDY</span>
+        <div class="page-tabs" role="tablist" aria-label="報告分頁切換">
+          <a class="page-tab" href="./index.html">分頁 1｜頭管培林外／內走線</a>
+          <a class="page-tab active" href="./stem-routing.html">分頁 2｜龍頭內走線 ＆ 下方藏線</a>
+        </div>
+      </div>
+      <div class="nav-links">
+        <a href="#architectures">四大架構</a>
+        <a href="#explorer">剖面圖解</a>
+        <a href="#under-stem">下方藏線圖庫</a>
+        <a href="#through-stem">穿透本體圖庫</a>
+        <a href="#ebike-adjustable">可調／電輔專題</a>
+        <a href="#engineering">工程權衡</a>
+        <a href="#timeline">六年演進</a>
+        <a href="#database">方案資料庫</a>
+        <a href="../">← 樂高主頁</a>
+        <button type="button" class="btn-ghost" id="theme-toggle" title="切換深色／淺色模式">☀ 淺色</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+
+    <!-- HERO -->
+    <section class="panel hero">
+      <div class="hero-meta">
+        <span class="pill info">實品圖 ＋ 原廠技術剖面 ＋ 逆向 3D CAD 實體</span>
+        <span class="pill mono">調查區間：2020 – 2026（近 6 年）</span>
+        <span class="pill ok">涵蓋公路／Gravel／避震／電輔可調龍頭共 16 套主流系統</span>
+      </div>
+      <h1>近六年自行車龍頭「內走線 vs 下方藏線」工程圖鑑與設計方案調查</h1>
+      <p class="hero-lead">
+        頭碗與頭管決定線管如何「進入車架」，而<strong>龍頭（Stem）</strong>則決定線管從彎把／平把出發後這最關鍵的 80–130 mm 要如何被隱藏、固定與維護。2020–2026 年間，產業經歷了從「全穿透中空龍頭（Through-Stem）」向<strong>「下方藏線槽＋可拆蓋板／卡扣（Under-Stem Concealed）」</strong>的大規模實用主義回歸——在僅損失 <strong>0.5–1.8 W</strong> 空力表現的前提下，換來<strong>「更換龍頭免剪液壓油管、免重排氣、相容任意 31.8 mm 圓把、不削弱舵管夾持剛性」</strong>的壓倒性維修優勢；而在 2024–2026 電輔車與全地形領域，更衍生出如 <strong>Trek Charter+（W5330566）棘輪可調藏線龍頭</strong> 與 <strong>BMC ICS2 MTT 避震藏線龍頭</strong> 等新一代整合架構。
+      </p>
+
+      <div class="kpi-grid">
+        <div class="kpi">
+          <div class="kpi-label">2023–2026 兩件式絕對主流</div>
+          <div class="kpi-val" style="color:var(--success)">下方藏線槽</div>
+          <div class="kpi-sub">Tarmac SL7/SL8、Trek RCS Pro、Cannondale Conceal、Giant AeroLight、Deda S-DCR、FSA SMR</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">收錄系統與實拍圖鑑</div>
+          <div class="kpi-val mono">16 套 / 20 張圖</div>
+          <div class="kpi-sub">含實品照、Cable Bat 卡扣特寫、Token 爆炸圖與 Trek Charter+ 逆向 3D CAD</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">空力 vs 維修黃金取捨</div>
+          <div class="kpi-val mono">僅差 0.5–1.8 W</div>
+          <div class="kpi-sub">45 km/h 下方藏線與全內穿透差值微乎其微，卻省下每次 Fit 調長度 60–90 分鐘拆剪油管工時</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">電輔／避震新分化（2025–2026）</div>
+          <div class="kpi-val">Charter+ × MTT</div>
+          <div class="kpi-sub">雙棘輪角度可調不扯線、20mm 減震同時藏線、USB-C 充電整合（Satori SICR）</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 1: 4 MAJOR ARCHITECTURES -->
+    <section class="panel" id="architectures">
+      <div class="section-head">
+        <div>
+          <h2>一、一張總覽看懂近六年「龍頭走線」四大工程架構</h2>
+          <p>將 2020–2026 年市售與 OEM 龍頭依「線管是否穿過結構主體」與「是否具運動自由度（可調／避震）」歸類為四大流派，點擊任一圖片可放大檢視細節。</p>
+        </div>
+      </div>
+
+      <div class="grid-4">
+        <!-- Arch A -->
+        <article class="compare-card highlight">
+          <div class="media-box" data-lb-src="./images/stem-deda-superbox-v2.jpg" data-lb-title="架構 A：下方藏線槽／蓋板式（代表：Deda Superbox V2 S-DCR）" data-lb-cap="線管不穿過鋁合金結構體內部，而是貼附龍頭下腹凹槽並以尼龍蓋板、卡扣（Cable Bat）或磁吸上蓋包覆。換龍頭長度時只需拆蓋即可抽出龍頭，完全免剪液壓油管。">
+            <img src="./images/stem-deda-superbox-v2.jpg" alt="Deda Superbox V2 下方藏線龍頭" />
+            <span class="zoom-hint">點擊放大</span>
+          </div>
+          <div class="compare-body">
+            <span class="pill ok">架構 A｜下方藏線（主流首選）</span>
+            <h3>Under-Stem 下腹槽＋蓋板／卡扣</h3>
+            <p>線管沿龍頭底部開放槽或半包覆尼龍護蓋滑入頭碗上蓋，結構體維持完整閉口箱型斷面。</p>
+            <div class="spec-list">
+              <div class="spec-row"><span>換龍頭免斷油管</span><span style="color:var(--success)">✓ 完全免剪免排氣</span></div>
+              <div class="spec-row"><span>支援傳統圓把</span><span style="color:var(--success)">✓ 幾乎全支援</span></div>
+              <div class="spec-row"><span>代表型號</span><span>SL7/SL8、RCS Pro、SMR、S-DCR</span></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Arch B -->
+        <article class="compare-card">
+          <div class="media-box" data-lb-src="./images/stem-enve-aero-inroute.jpg" data-lb-title="架構 B：全穿透龍頭本體內走線（代表：ENVE Aero IN-Route Carbon）" data-lb-cap="線管自彎把中央後方開孔直接穿入中空龍頭腔體，於舵管前方下潛進入頭碗。正面 100% 隱藏無接縫，但更換龍頭長度必須抽出並拆斷液壓油管。">
+            <img src="./images/stem-enve-aero-inroute.jpg" alt="ENVE Aero IN-Route 全內走線龍頭" />
+            <span class="zoom-hint">點擊放大</span>
+          </div>
+          <div class="compare-body">
+            <span class="pill warn">架構 B｜穿透本體（空力極簡）</span>
+            <h3>Through-Stem 全中空貫穿</h3>
+            <p>線管從把夾後方盲孔進入龍頭中空腔體，直接與專用開孔彎把對接，外觀極致乾淨。</p>
+            <div class="spec-list">
+              <div class="spec-row"><span>換龍頭免斷油管</span><span style="color:var(--danger)">✕ 多須拆斷並排氣</span></div>
+              <div class="spec-row"><span>支援傳統圓把</span><span style="color:var(--warning)">△ 需開孔內走線把</span></div>
+              <div class="spec-row"><span>代表型號</span><span>FSA ACR、ENVE、MOST TiCR</span></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Arch C -->
+        <article class="compare-card">
+          <div class="media-box" data-lb-src="./images/stem-cervelo-st32.jpg" data-lb-title="架構 C：異形舵管前槽耦合（代表：Cervélo ST32 / Cannondale C1 Conceal）" data-lb-cap="留意 Cervélo ST32 舵管夾持端內部的 C/D 型截面：由舵管本身讓出前側走線通道，龍頭只需底部開槽銜接，不必為了走線把頭管與上培林做得極度肥厚。">
+            <img src="./images/stem-cervelo-st32.jpg" alt="Cervélo ST32 異形舵管龍頭" />
+            <span class="zoom-hint">點擊放大</span>
+          </div>
+          <div class="compare-body">
+            <span class="pill info">架構 C｜異形舵管耦合</span>
+            <h3>D / C / Delta 舵管直接下潛</h3>
+            <p>靠 D 型、C 型或三角 Delta 舵管讓出前側空間，龍頭下方導槽將線管直接導入舵管凹槽。</p>
+            <div class="spec-list">
+              <div class="spec-row"><span>換龍頭免斷油管</span><span style="color:var(--success)">✓ 搭配對開墊圈免剪</span></div>
+              <div class="spec-row"><span>通用性</span><span style="color:var(--warning)">✕ 綁定原廠舵管</span></div>
+              <div class="spec-row"><span>代表型號</span><span>ST31/ST32、C1 Conceal、AeroLight</span></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Arch D -->
+        <article class="compare-card">
+          <div class="media-box" data-lb-src="./images/trek-charter-plus-adjustable-stem.jpg" data-lb-title="架構 D：可調角度／避震與電輔藏線（代表：Trek Charter+ W5330566）" data-lb-cap="針對 5–6 條線束（前後液壓煞車＋變速＋馬達顯示線＋頭燈線）且龍頭需大角度俯仰調整或彈性避震的車款，以獨立下座導槽＋活動間隙飾蓋確保轉動不夾線。">
+            <img src="./images/trek-charter-plus-adjustable-stem.jpg" alt="Trek Charter+ 可調角度藏線龍頭" />
+            <span class="zoom-hint">點擊放大</span>
+          </div>
+          <div class="compare-body">
+            <span class="pill purple">架構 D｜可調／避震／電輔</span>
+            <h3>活動關節＋多線束護槽</h3>
+            <p>同時處理 5–6 條粗線束與關節擺動位移，搭配快拆下蓋、防夾間隙蓋與儀表／頭燈整合。</p>
+            <div class="spec-list">
+              <div class="spec-row"><span>容納線束數</span><span style="color:var(--primary)">4 – 6 條（含電源/燈）</span></div>
+              <div class="spec-row"><span>維修性</span><span style="color:var(--success)">✓ 單螺絲開蓋＋免斷線</span></div>
+              <div class="spec-row"><span>代表型號</span><span>Charter+、BMC MTT、Satori SICR</span></div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SECTION 2: INTERACTIVE ENGINEERING CROSS-SECTION EXPLORER -->
+    <section class="panel" id="explorer">
+      <div class="section-head">
+        <div>
+          <h2>二、互動式工程剖面圖解：四種龍頭走線路徑、最小彎曲半徑與維修差異</h2>
+          <p>切換下方四種典型機構剖面，直接對比<strong>液壓油管路徑（紅／藍線）</strong>、<strong>舵管夾持受力牆</strong>、<strong>最小彎曲半徑 $R_{\min}$</strong> 與<strong>更換龍頭時是否需要斷開油管</strong>。</p>
+        </div>
+        <div class="btn-group" id="explorer-tabs">
+          <button type="button" class="tab-btn" data-mode="under" data-active="true">1. 下方藏線槽（Cable Bat / Shroud）</button>
+          <button type="button" class="tab-btn" data-mode="through" data-active="false">2. 穿透本體全內（Through-Stem）</button>
+          <button type="button" class="tab-btn" data-mode="split" data-active="false">3. 可拆上蓋／磁吸橋接（Syncros / Switch）</button>
+          <button type="button" class="tab-btn" data-mode="charter" data-active="false">4. 電輔雙棘輪可調（Trek Charter+ CAD）</button>
+        </div>
+      </div>
+
+      <div class="explorer-grid">
+        <div class="svg-stage" id="svg-stage"></div>
+        <div class="explorer-info" id="explorer-info"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: UNDER-STEM GALLERY (9 REAL SYSTEMS) -->
+    <section class="panel" id="under-stem">
+      <div class="section-head">
+        <div>
+          <h2>三、下方藏線／半隱藏主流方案實品圖鑑（2020–2026 黃金陣營）</h2>
+          <p>這 9 套系統是近六年最受車店技師與 Bike Fitter 歡迎的兩件式設計：保留全隱藏的簡潔外觀，卻徹底擺脫「換個 10mm 龍頭就要放煞車油」的惡夢。</p>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <!-- 1. Specialized Tarmac Stem -->
+        <article class="compare-card highlight">
+          <div class="media-box" data-lb-src="./images/stem-specialized-tarmac-sl7.jpg" data-lb-title="Specialized S-Works Tarmac Stem（2020–2026｜SL7 / SL8 共通）" data-lb-cap="100mm 僅重 155g，搭配 M5 螺絲鎖固的『Cable Bat（蝙蝠翼壓片）』與下方整流蓋，將油管緊貼龍頭腹面送入對開墊圈，成為整個產業爭相效法的『下方藏線』始祖。">
+            <img src="./images/stem-specialized-tarmac-sl7.jpg" alt="Specialized S-Works Tarmac Stem" />
+            <span class="zoom-hint">點擊放大</span>
+          </div>
+          <div class="compare-body">
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <span class="pill ok">下方壓片藏線始祖</span>
+              <span class="pill mono">2020–2026</span>
+            </div>
+            <h3>Specialized S-Works Tarmac Stem</h3>
+            <p><strong>核心巧思：</strong>龍頭本體維持超輕 6061 鍛造實壁，底部以一顆 M5 螺絲鎖上<strong>「Cable Bat（蝙蝠翼壓片，S204800003）」</strong>固定 2–4 條線管，再扣上整流護罩銜接對開墊圈。</p>
+            <div class="spec-list">
+              <div class="spec-row"><span>重量 / 堆高</span><span class="mono">155 g (100mm) / 30 mm</span></div>
+              <div class="spec-row"><span>長度 / 角度</span><span class="mono">70–140 mm ｜ -6° / -12°</span></div>
+              <div class="spec-row"><span>換龍頭免斷油管</span><span style="color:var(--success)">✓ 鬆一顆 M5 即可抽出</span></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 1b. Specialized Cable Bat Close-up -->
+        <article class="compare-card">
+          <div class="media-box" data-lb-src="./images/stem-specialized-cable-bat.png" data-lb-title="Specialized MY21+ Tarmac Stem Cable Bat & Bolt（料號 S204800003）" data-lb-cap="看似微不足道的一片雙翼壓片＋M5×16mm 螺絲，卻以極低成本（約 $10–15 USD）實現線管定位、防異音與免拆油管換龍頭三大目標。">
+            <img src="./images/stem-specialized-cable-bat.png" alt="Specialized Cable Bat S204800003" />
+            <span class="zoom-hint">點擊放大</span>
+          </div>
+          <div class="compare-body">
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <span class="pill info">關鍵機構特寫</span>
+              <span class="pill mono">SKU: S204800003</span>
+            </div>
+            <h3>Tarmac 下方「Cable Bat」雙翼壓片</h3>
+            <p><strong>為何勝過純塑膠卡扣：</strong>純塑膠卡扣拆裝 3–5 次後易斷腳鬆脫；Specialized 改用單顆 M5 螺絲硬鎖壓片（改裝界甚至推出陽極 CNC 鋁／鈦螺絲升級件），抗震且零鬆脫風險。</p>
+            <div class="spec-list">
+              <div class="spec-row"><span>固定方式</span><span>M5×0.8P×16mm 單螺絲硬鎖</span></div>
+              <div class="spec-row"><span>適用平台</span><span>Tarmac SL7 / SL8 / Allez Sprint</span></div>
+              <div class="spec-row"><span>線管數量</span><span>2 液壓油管 ＋ 1–2 變速/Di2</span></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 2. Trek RCS Pro Blendr -->
+        <article class="compare-card highlight">
+          <div class="media-box" data-lb-src="./images/trek-domane-rcs-pro-stem.jpg" data-lb-title="Trek RCS Pro Blendr Stem（2022–2026｜Domane Gen 4/5、Madone、Checkmate 統一平台）" data-lb-cap="Trek 捨棄早年複雜全內結構，於 2022 Domane Gen 4 起全面推行 RCS Pro 下方藏線槽＋卡扣護蓋，線管在把帶下方匯入龍頭下腹再直入頭碗上蓋，可與任何 31.8mm 彎把混搭。">
+            <img src="./images/trek-domane-rcs-pro-stem.jpg" alt="Trek RCS Pro Blendr Stem" />
+            <span class="zoom-hint">點擊放大</span>
+          </div>
+          <div class="compare-body">
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <span class="pill ok">全車系統一平台</span>
+              <span class="pill mono">2022–2026</span>
+            </div>
+            <h3>Trek RCS Pro Blendr Stem</h3>
+            <p><strong>核心巧思：</strong>底部整合一整條半封閉導線槽與可拆式下蓋，讓線管從彎把下緣順暢過渡至頭碗前緣；正面同步整合雙層 <strong>Blendr</strong> 碼錶與前燈快拆座，已跨車系部署於 Domane、Madone、Émonda 與 Checkmate。</p>
+            <div class="spec-list">
+              <div class="spec-row"><span>角度 / 把徑</span><span class="mono">-7° ｜ 31.8 mm 圓把通用</span></div>
+              <div class="spec-row"><span>附加整合</span><span>雙層 Blendr 碼錶／前燈座</span></div>
+              <div class="spec-row"><span>換龍頭免斷油管</span><span style="color:var(--success)">✓ 拆下蓋即可獨立抽換</span></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 3. Deda Superbox V2 -->
+        <article class="compare-card highlight">
+          <div class="media-box" data-lb-src="./images/stem-deda-superbox-v2.jpg" data-lb-title="Deda Elementi Superbox V2 DCR / S-DCR（2021–2026｜四合一走線之王）" data-lb-cap="市場最靈活的改裝與 OEM 龍頭：單一支龍頭即支援 DCR 全內、S-DCR 下方尼龍蓋半內、外走線與直接入頭碗 4 種路徑，V2 版本進一步強化下蓋密合度與堆高整合。">
+            <img src="./images/stem-deda-superbox-v2.jpg" alt="Deda Superbox V2 DCR Stem" />
+            <span class="zoom-hint">點擊放大</span>
+          </div>
+          <div class="compare-body">
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <span class="pill ok">4 模式通吃之王</span>
+              <span class="pill mono">2021–2026</span>
+            </div>
+            <h3>Deda Superbox V2（DCR ＋ S-DCR）</h3>
+            <p><strong>核心巧思：</strong>獨創<strong> 4-in-1 結構</strong>——裝上內附的 <strong>S-DCR 底部尼龍導線蓋</strong>時，任何傳統彎把皆可採「下方藏線」且換龍頭免拆線；若搭 DCR 內走線彎把則可切換為 100% 全隱藏。</p>
+            <div class="spec-list">
+              <div class="spec-row"><span>重量 / 角度</span><span class="mono">175–185 g (110mm) / -8° (82°)</span></div>
+              <div class="spec-row"><span>把徑 / 堆高</span><span class="mono">31.7 mm / 32 mm (含蓋 47mm)</span></div>
+              <div class="spec-row"><span>換龍頭免斷油管</span><span style="color:var(--success)">✓ S-DCR 模式完全免斷線</span></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 4. FSA NS SMR / SMR-II -->
+        <article class="compare-card">
+          <div class="media-box" data-lb-src="./images/stem-fsa-acr-cover.jpg" data-lb-title="FSA NS SMR / SMR-II（Smart Cable Routing）兩片式下方藏線護蓋特寫" data-lb-cap="清楚可見 FSA SMR 位於龍頭正下方的兩片式螺絲鎖固護蓋：線管可從彎把後方進入（半內）或直接從下蓋側緣匯入，同時 100% 相容 FSA ACR 頭碗與對開墊圈生態。">
+            <img src="./images/stem-fsa-acr-cover.jpg" alt="FSA NS SMR 下方藏線蓋特寫" />
+            <span class="zoom-hint">點擊放大</span>
+          </div>
+          <div class="compare-body">
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <span class="pill info">OEM 最大公約數</span>
+              <span class="pill mono">2021–2026</span>
+            </div>
+            <h3>FSA NS SMR / SMR-II 智慧藏線</h3>
+            <p><strong>核心巧思：</strong>FSA 在推出全內 ACR 後，發現中階成車與車店極度痛恨拆油管，遂推出 <strong>SMR（Smart Cable Routing）</strong>：共用同一套 ACR 頭碗與對開墊圈，但把龍頭改成「下方兩片式護蓋」以同時相容機械/電變與免剪油管換龍頭。</p>
+            <div class="spec-list">
+              <div class="spec-row"><span>重量 / 堆高</span><span class="mono">235 g (100mm) / 33.5 mm</span></div>
+              <div class="spec-row"><span>主要 OEM 採用</span><span>Merida、Bianchi、Wilier、Orbea</span></div>
+              <div class="spec-row"><span>換龍頭免斷油管</span><span style="color:var(--success)">✓ 卸下蓋螺絲即可抽離</span></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 5. Cannondale C1 Conceal -->
+        <article class="compare-card">
+          <div class="media-box" data-lb-src="./images/stem-cannondale-c1-conceal.jpg" data-lb-title="Cannondale C1 Conceal Stem（2023–2026｜搭配 Delta Steerer 三角舵管）" data-lb-cap="專為 SuperSix EVO Gen 4、Synapse、SuperX 與 Topstone 打造的 AL7075 下方藏線龍頭，底部內凹導槽配合對開 Delta 墊圈，讓線管從龍頭腹下順勢滑入三角舵管前側空間。">
+            <img src="./images/stem-cannondale-c1-conceal.jpg" alt="Cannondale C1 Conceal Stem" />
+            <span class="zoom-hint">點擊放大</span>
+          </div>
+          <div class="compare-body">
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <span class="pill ok">搭配 Delta 三角舵管</span>
+              <span class="pill mono">2023–2026</span>
+            </div>
+            <h3>Cannondale C1 Conceal Stem</h3>
+            <p><strong>核心巧思：</strong>透過底部導線槽與橡膠壓扣把線束緊貼下腹，再直接落入 <strong>Delta Steerer 三角舵管</strong>前方與 Ø1-1/8" 上培林之間的三角空間，支援標準 31.8 mm 圓把與全內／半內雙模式。</p>
+            <div class="spec-list">
+              <div class="spec-row"><span>重量 / 材質</span><span class="mono">210 g (110mm) / AL7075</span></div>
+              <div class="spec-row"><span>角度 / 墊圈</span><span class="mono">-6° / +6° ｜ Delta 對開墊圈</span></div>
+              <div class="spec-row"><span>換龍頭免斷油管</span><span style="color:var(--success)">✓ 半內模式完全免斷線</span></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 6. Giant Contact SL AeroLight -->
+        <article class="compare-card">
+          <div class="media-box" data-lb-src="./images/stem-giant-contact-sl-aerolight.png" data-lb-title="Giant Contact SL AeroLight Stem（2023–2026｜TCR Gen 10 / Propel Gen 3 / Defy Gen 5）" data-lb-cap="捷安特針對 OverDrive Aero D 型舵管設計的輕量鋁合金下方藏線龍頭，利用前蓋中央螺絲區與下方導槽引導煞車/變速線貼著龍頭側下緣進入 D 型對開墊圈。">
+            <img src="./images/stem-giant-contact-sl-aerolight.png" alt="Giant Contact SL AeroLight Stem" />
+            <span class="zoom-hint">點擊放大</span>
+          </div>
+          <div class="compare-body">
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <span class="pill info">OverDrive Aero D 舵管</span>
+              <span class="pill mono">2023–2026</span>
+            </div>
+            <h3>Giant Contact SL AeroLight Stem</h3>
+            <p><strong>核心巧思：</strong>整合 Contact Aero / D-Fuse 彎把底部走線，線管沿把下進入龍頭下腹導槽再落入 <strong>OverDrive Aero D 型舵管</strong>前溝；支援平把與彎把（OD1 / OD2 版本），換龍頭或調高度免抽油管。</p>
+            <div class="spec-list">
+              <div class="spec-row"><span>適用舵管</span><span>OverDrive Aero (D-Shape) / OD1</span></div>
+              <div class="spec-row"><span>代表車款</span><span>TCR Gen 10、Propel Gen 3、Defy Gen 5</span></div>
+              <div class="spec-row"><span>換龍頭免斷油管</span><span style="color:var(--success)">✓ 搭配對開墊圈免斷線</span></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 7. Ritchey Switch Stem -->
+        <article class="compare-card">
+          <div class="media-box" data-lb-src="./images/stem-ritchey-comp-switch.png" data-lb-title="Ritchey Comp / WCS Switch System Stem（2022–2026｜隱藏底槽＋可逆壓縮塞）" data-lb-cap="Ritchey 專為 IS52 頭管與一般 1-1/8 圓舵管設計的通用隱藏系統：線管藏在龍頭下方專屬槽道，最多容納 4 條線，並以標誌性 C220 220° 包覆把夾維持高剛性與 180g 輕量。">
+            <img src="./images/stem-ritchey-comp-switch.png" alt="Ritchey Comp Switch Stem" />
+            <span class="zoom-hint">點擊放大</span>
+          </div>
+          <div class="compare-body">
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <span class="pill ok">通用改裝輕量首選</span>
+              <span class="pill mono">2022–2026</span>
+            </div>
+            <h3>Ritchey Comp / WCS Switch Stem</h3>
+            <p><strong>核心巧思：</strong>底部內建半包覆藏線通道搭配 8 mm 導線轉接墊片（亦可透過轉接環直接相容 <strong>Token A-Box / C-Box</strong> 頭碗），以僅 <strong>180 g（100mm）</strong>的重量在輕量與最多 4 線隱藏間取得絕佳平衡。</p>
+            <div class="spec-list">
+              <div class="spec-row"><span>重量 / 角度</span><span class="mono">180 g (100mm) / -6° (84°)</span></div>
+              <div class="spec-row"><span>總堆高</span><span class="mono">51 mm（本體 43 + 導槽 8mm）</span></div>
+              <div class="spec-row"><span>換龍頭免斷油管</span><span style="color:var(--success)">✓ 底部導槽快拆免斷線</span></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 8. Syncros RR 1.5 (Scott) -->
+        <article class="compare-card">
+          <div class="media-box" data-lb-src="./images/stem-syncros-rr15.jpg" data-lb-title="Syncros RR 1.5 Stem（Scott Addict RC / Foil RC｜可拆上蓋＋磁吸上蓋）" data-lb-cap="Scott / Syncros 獨創『可拆式頂蓋＋磁吸豎管上蓋』設計，官方明文主打：技師可完全不拆剪碟煞油管即可直接更換不同長度龍頭，同時呈現近似一體把的無螺絲極簡外觀。">
+            <img src="./images/stem-syncros-rr15.jpg" alt="Syncros RR 1.5 Stem" />
+            <span class="zoom-hint">點擊放大</span>
+          </div>
+          <div class="compare-body">
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <span class="pill purple">磁吸上蓋＋可拆頂蓋</span>
+              <span class="pill mono">2021–2026</span>
+            </div>
+            <h3>Syncros RR 1.5 Stem（Scott）</h3>
+            <p><strong>核心巧思：</strong>反其道而行，在龍頭上方設計<strong>可拆蓋板＋磁吸上蓋（Magnetic Cap）</strong>搭配底部藏線槽與鉤式前蓋（Hook-type faceplate），兼顧「全隱藏無外露螺絲美感」與「免剪油管換龍頭」。</p>
+            <div class="spec-list">
+              <div class="spec-row"><span>材質 / 角度</span><span class="mono">AL7075 CNC / -6°</span></div>
+              <div class="spec-row"><span>特色機構</span><span>磁吸頂蓋 ＋ T25 隱藏螺絲</span></div>
+              <div class="spec-row"><span>換龍頭免斷油管</span><span style="color:var(--success)">✓ 官方主打核心賣點</span></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 9. BMC ICS2 Stem -->
+        <article class="compare-card">
+          <div class="media-box" data-lb-src="./images/stem-bmc-ics2.jpg" data-lb-title="BMC ICS2 Stem（2020–2026｜瑞士極簡下方藏線＋對開墊圈系統）" data-lb-cap="第二代 ICS2 相比一代大幅減重（185g）並將線管改為由龍頭下腹藏線蓋導入 D 型舵管對開墊圈，正面整合快拆碼錶/GoPro 支架。">
+            <img src="./images/stem-bmc-ics2.jpg" alt="BMC ICS2 Stem" />
+            <span class="zoom-hint">點擊放大</span>
+          </div>
+          <div class="compare-body">
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <span class="pill info">二代極簡整合</span>
+              <span class="pill mono">2020–2026</span>
+            </div>
+            <h3>BMC ICS2 Stem</h3>
+            <p><strong>核心巧思：</strong>以隱藏式前蓋螺絲與可拆底部導線護蓋將線管直接導入對開式 ICS 墊圈，兼顧 -12.5° 競技低趴外觀與免剪線高低微調，並衍生出礫石車專用的 <strong>ICS2 MTT 避震版</strong>。</p>
+            <div class="spec-list">
+              <div class="spec-row"><span>重量 / 角度</span><span class="mono">185 g / -12.5°（亦有 0° 版）</span></div>
+              <div class="spec-row"><span>對應系統</span><span>BMC Teammachine / Roadmachine</span></div>
+              <div class="spec-row"><span>換龍頭免斷油管</span><span style="color:var(--success)">✓ 拆底部蓋與對開墊圈</span></div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SECTION 4: THROUGH-STEM & SPECIALIZED COUPLING GALLERY -->
+    <section class="panel" id="through-stem">
+      <div class="section-head">
+        <div>
+          <h2>四、「穿透本體全內走線」與「異形舵管／通用頭碗橋接」實品圖鑑</h2>
+          <p>追求 100% 無外露線管或極致輕量的競技車款，仍會採用穿透中空本體或特殊舵管凹槽方案。以下 6 套為近六年最具代表性的工程實作。</p>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <!-- 1. ENVE Aero IN-Route -->
+        <article class="compare-card">
+          <div class="media-box" data-lb-src="./images/stem-enve-aero-inroute.jpg" data-lb-title="ENVE Aero IN-Route Carbon Stem（2022–2026｜偏心襯套可調角度＋全內穿透）" data-lb-cap="碳纖維全中空內走線龍頭，最獨特之處在於舵管孔內建『偏心鋁襯套（Shim）』：同一支龍頭可切換 -7° 或 -12° 與 ±2.5mm 長度微調，緩解全內走線無法隨意換龍頭的痛點！">
+            <img src="./images/stem-enve-aero-inroute.jpg" alt="ENVE Aero IN-Route Stem" />
+            <span class="zoom-hint">點擊放大</span>
+          </div>
+          <div class="compare-body">
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <span class="pill warn">全內穿透＋偏心可調襯套</span>
+              <span class="pill mono">2022–2026</span>
+            </div>
+            <h3>ENVE Aero IN-Route Carbon Stem</h3>
+            <p><strong>工程亮點：</strong>線管由 ENVE 彎把後方直穿全碳纖龍頭腔體；為彌補全內走線更換龍頭不便的缺點，ENVE 設計了<strong>偏心襯套（Angle/Length Shim）</strong>，不拆油管即可微調角度（-7°/-12°）與 ±2.5 mm 長度。</p>
+            <div class="spec-list">
+              <div class="spec-row"><span>重量 / 材質</span><span class="mono">175 g (110mm) / Full Carbon</span></div>
+              <div class="spec-row"><span>可調襯套</span><span>-7° / -12° 或 ±2.5mm 微調</span></div>
+              <div class="spec-row"><span>換龍頭免斷油管</span><span style="color:var(--danger)">✕ 換長度仍須拆油管</span></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 2. Pinarello MOST Tiger TiCR -->
+        <article class="compare-card">
+          <div class="media-box" data-lb-src="./images/stem-most-tiger-ticr.jpg" data-lb-title="Pinarello MOST Tiger Ultra Aero 1K TiCR Stem（2020–2026）" data-lb-cap="Pinarello PinaLAB 開發的 TiCR（Total Internal Cable Routing）兩件式版本：線管由 MOST 彎把後口直接進入中空 1K 碳纖/鍛造鋁龍頭腔體，下接 TiCR 橢圓對開墊圈。">
+            <img src="./images/stem-most-tiger-ticr.jpg" alt="MOST Tiger Ultra Aero TiCR Stem" />
+            <span class="zoom-hint">點擊放大</span>
+          </div>
+          <div class="compare-body">
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <span class="pill warn">全內穿透 TiCR</span>
+              <span class="pill mono">2020–2026</span>
+            </div>
+            <h3>Pinarello MOST Tiger TiCR</h3>
+            <p><strong>工程亮點：</strong>提供 1K 碳纖（155g）與鍛造 CNC 鋁（165g）雙版本，讓不想鎖死在 Talon Ultra 一體把的 Dogma / F 系列車主保留兩件式微調彈性，但仍需配對 MOST 開孔彎把。</p>
+            <div class="spec-list">
+              <div class="spec-row"><span>重量 / 角度</span><span class="mono">155–165 g (90mm) / -8°</span></div>
+              <div class="spec-row"><span>相容性</span><span>Pinarello TiCR 系統專用</span></div>
+              <div class="spec-row"><span>換龍頭免斷油管</span><span style="color:var(--danger)">✕ 須抽油管</span></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 3. Cervelo ST31 / ST32 -->
+        <article class="compare-card">
+          <div class="media-box" data-lb-src="./images/stem-cervelo-st32.jpg" data-lb-title="Cervélo ST31（碳纖）/ ST32（鋁合金）C-Shaped 舵管龍頭（2021–2026）" data-lb-cap="從照片左側可直接看見其標誌性『C 型舵管夾持口』：線管走入彎把與龍頭腔體後，緊貼 C 型舵管內凹槽直下頭管，避免圓形頭碗強迫放大。">
+            <img src="./images/stem-cervelo-st32.jpg" alt="Cervélo ST32 Stem" />
+            <span class="zoom-hint">點擊放大</span>
+          </div>
+          <div class="compare-body">
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <span class="pill info">C-Shaped 舵管專屬</span>
+              <span class="pill mono">2021–2026</span>
+            </div>
+            <h3>Cervélo ST31 / ST32 Stem</h3>
+            <p><strong>工程亮點：</strong>用於 R5、Caledonia-5、Áspero-5 與 R5-CX。捨棄圓形 Ø28.6 舵管而改用 <strong>C 型（月牙凹槽）舵管</strong>，讓油管與變速線直接嵌入舵管凹槽，同時提供對開墊圈（SK-023）方便調高低。</p>
+            <div class="spec-list">
+              <div class="spec-row"><span>重量 / 角度</span><span class="mono">210 g (100mm) / -8° 或 -9°</span></div>
+              <div class="spec-row"><span>相容車系</span><span>R5、Caledonia-5、Áspero-5</span></div>
+              <div class="spec-row"><span>調高度免斷油管</span><span style="color:var(--success)">✓ SK-023 對開墊圈免剪</span></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 4. PRO Vibe Superlight -->
+        <article class="compare-card">
+          <div class="media-box" data-lb-src="./images/stem-pro-vibe-superlight.jpg" data-lb-title="PRO Vibe Superlight Stem（2022–2026｜92g 羽量級內／半內走線龍頭）" data-lb-cap="Shimano 旗下 PRO 推出的超輕 7075 鋁合金＋鈦螺絲龍頭（70mm 僅 92g），支援全內、半內（下方貼附）與傳統外走線三種模式，並對 Shimano Di2 接線進行專屬優化。">
+            <img src="./images/stem-pro-vibe-superlight.jpg" alt="PRO Vibe Superlight Stem" />
+            <span class="zoom-hint">點擊放大</span>
+          </div>
+          <div class="compare-body">
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <span class="pill ok">92g 超輕三模式</span>
+              <span class="pill mono">2022–2026</span>
+            </div>
+            <h3>PRO Vibe Superlight Stem</h3>
+            <p><strong>工程亮點：</strong>打破「內走線龍頭動輒 200–240g」的魔咒！以 7075 鍛造 CNC＋鈦合金 Torx 螺絲壓到 <strong>92 g 起（70mm）</strong>，同步提供 1-1/8" 與 1-1/4"（OD2）雙規格，並支援全內／半內／外走線。</p>
+            <div class="spec-list">
+              <div class="spec-row"><span>重量 / 材質</span><span class="mono">92 g 起 (70mm) / AL7075 + Ti</span></div>
+              <div class="spec-row"><span>角度 / 舵管</span><span class="mono">±6° FlipFlop ｜ 1-1/8" & 1-1/4"</span></div>
+              <div class="spec-row"><span>Di2 整合</span><span style="color:var(--primary)">✓ 針對 Shimano Di2 專屬開孔</span></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 5. FSA NS ACR -->
+        <article class="compare-card">
+          <div class="media-box" data-lb-src="./images/stem-fsa-ns-smr.jpg" data-lb-title="FSA ACR / SMR 系統龍頭（2020–2026｜業界最廣範的 OEM 內走線基建）" data-lb-cap="FSA ACR（全內穿透）與 SMR（下方護蓋）共用同一套頭碗幾何與墊圈輪廓，讓車廠在同一個車架模具上可依價位帶自由選配全內一體把（Vision Metron 5D ACR）、ACR 龍頭或 SMR 下方藏線龍頭。">
+            <img src="./images/stem-fsa-ns-smr.jpg" alt="FSA ACR SMR Stem" />
+            <span class="zoom-hint">點擊放大</span>
+          </div>
+          <div class="compare-body">
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <span class="pill warn">ACR 全內 vs SMR 雙軌</span>
+              <span class="pill mono">2020–2026</span>
+            </div>
+            <h3>FSA NS ACR（全內穿透版）</h3>
+            <p><strong>工程亮點：</strong>最早實現跨品牌標準化的全內走線生態，線管從 ACR 彎把後方直貫龍頭內部再進入 IS52 偏心開槽頭碗；但因全內版拆裝極繁瑣，2023 年後多數中階成車已改標配同家族的 <strong>SMR / SMR-II</strong>。</p>
+            <div class="spec-list">
+              <div class="spec-row"><span>重量 / 堆高</span><span class="mono">235 g (100mm) / 30 mm</span></div>
+              <div class="spec-row"><span>對應頭碗</span><span>FSA No.55R / No.55R 1.5" ACR</span></div>
+              <div class="spec-row"><span>換龍頭免斷油管</span><span style="color:var(--danger)">✕ ACR 須拆斷；SMR 免拆</span></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 6. Token A-Box / S-Box -->
+        <article class="compare-card">
+          <div class="media-box" data-lb-src="./images/stem-token-sbox.jpg" data-lb-title="台灣泰億 Token A-Box / S-Box Cable Box 系統（2021–2026）" data-lb-cap="台灣品牌 Token 打造的跨龍頭橋接架構：A-Box 支援全內一體把／ACR 風格龍頭，S-Box 則提供獨立密封膠套讓『一般傳統龍頭下方走線』也能無縫導入 IS52 頭管！">
+            <img src="./images/stem-token-sbox.jpg" alt="Token A-Box S-Box Cable Box" />
+            <span class="zoom-hint">點擊放大</span>
+          </div>
+          <div class="compare-body">
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <span class="pill ok">台灣廠商橋接神案</span>
+              <span class="pill mono">2021–2026</span>
+            </div>
+            <h3>Token A-Box / S-Box（泰億）</h3>
+            <p><strong>工程亮點：</strong>最具彈性的「頭碗端解耦」思路——<strong>A-Box</strong> 對接全內龍頭／一體把，而 <strong>S-Box</strong> 上蓋附帶多規格防塵膠塞，可讓任意傳統龍頭直接從下方匯入頭管，且 Ritchey Switch 亦推出專用轉接環。</p>
+            <div class="spec-list">
+              <div class="spec-row"><span>上蓋重量</span><span class="mono">~80 g（整組頭碗）</span></div>
+              <div class="spec-row"><span>最多線管</span><span>4 條機械／液壓線管＋獨立防水塞</span></div>
+              <div class="spec-row"><span>S-Box 換龍頭免斷線</span><span style="color:var(--success)">✓ 任意 1-1/8" 龍頭皆可直換</span></div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SECTION 5: ADJUSTABLE, SUSPENSION & E-BIKE SPECIAL -->
+    <section class="panel" id="ebike-adjustable">
+      <div class="section-head">
+        <div>
+          <h2>五、專題深研：可調角度、避震與電輔車龍頭藏線（2022–2026 新戰場）</h2>
+          <p>當公路車已收斂到「下方藏線」時，真正困難的工程挑戰出現在<strong>電輔車（5–6 條線束＋角度 0°–60° 可調）</strong>與<strong>礫石避震龍頭（20 mm 行程）</strong>——線管必須隨著龍頭俯仰旋轉而不被夾扁、磨破或拉扯。</p>
+        </div>
+      </div>
+
+      <!-- Trek Charter+ Deep Dive -->
+      <div class="callout ok" style="margin-bottom:18px;">
+        <strong>🔥 實機逆向 3D CAD 實證案例：Trek Charter+ Adjustable Stem（原廠料號 <code>W5330566</code>，2026–2027）</strong><br/>
+        透過我們剛從你的 Google Drive 逆向模型完整還原並通過 <code>11/11 MANIFOLD_SOLID_BREP</code> 驗證的 3D 實體 CAD，可精準解析這支 2026–2027 最新世代電輔可調龍頭的 11 件結構分工與藏線邏輯：
+      </div>
+
+      <div class="grid-3" style="margin-bottom:20px;">
+        <article class="compare-card highlight">
+          <div class="media-box tall" data-lb-src="./images/trek-charter-plus-adjustable-stem.jpg" data-lb-title="Trek Charter+ 可調角度藏線龍頭實品照（W5330566｜2026–2027）" data-lb-cap="採用高強度雙齒棘輪轉軸（Pivot Ratchet）調節騎乘高度與俯仰角，線管從手把進入後經由下座寬幅導槽與飾蓋直落頭管前腔，完全不經過上培林內圈。">
+            <img src="./images/trek-charter-plus-adjustable-stem.jpg" alt="Trek Charter+ W5330566 實品照" />
+            <span class="zoom-hint">點擊放大</span>
+          </div>
+          <div class="compare-body">
+            <span class="pill ok">原廠實品外觀</span>
+            <h3>Charter+ W5330566 實機樣貌</h3>
+            <p>外型完全看不到任何外露螺絲或雜亂線束：下座包覆夾持飾蓋（<code>W5330576</code>），轉軸處以間隙飾蓋（<code>5330578</code>）遮蔽，前端整合 Blendr / 頭燈支架（<code>5330577</code>）。</p>
+          </div>
+        </article>
+
+        <article class="compare-card highlight">
+          <div class="media-box tall" data-lb-src="./images/trek-charter-plus-stem-cad-solid.png" data-lb-title="Trek Charter+ Stem W5330566 — 逆向 11 件 100% 封閉實體 3D CAD 解析圖" data-lb-cap="實際從 Charter+ 逆向模型提取並轉出驗證（11/11 Closed Solid, 0 Open Shells）之三視實體圖：總包絡 62.76 × 60.33 × 187.54 mm，清楚可見下座內置豎管迫緊塊（5330566C）、雙棘輪側蓋（5330566F/G）、下座飾蓋（W5330576）與前燈支架（5330577）。">
+            <img src="./images/trek-charter-plus-stem-cad-solid.png" alt="Trek Charter+ Stem 逆向 3D CAD 實體渲染圖" />
+            <span class="zoom-hint">點擊放大</span>
+          </div>
+          <div class="compare-body">
+            <span class="pill info">逆向 3D 實體 CAD 拆解</span>
+            <h3>11 件結構 BOM 與藏線通道</h3>
+            <p><strong>關鍵設計：</strong>下座本體（<code>5330566A</code>）將舵管迫緊塊（<code>5330566C</code>）內收，騰出前方／側下空間作為寬敞藏線槽，再以快拆下蓋（<code>W5330576</code>）包覆，讓 5–6 條線束在角度調整時能沿軸心自然滑動。</p>
+          </div>
+        </article>
+
+        <article class="compare-card">
+          <div class="media-box tall" data-lb-src="./images/trek-charter-plus-cabling-map.jpg" data-lb-title="Trek Charter+ 官方維修手冊全車走線拓樸圖（2026-08-19 版）" data-lb-cap="官方手冊揭示龍頭下方線束匯入頭管前蓋（5347290 單螺絲開蓋）後，經前頭管獨立腔室繞過上培林外緣（581403 Ø30×41×6.5），並以 W5331524 可裁切護套防磨。">
+            <img src="./images/trek-charter-plus-cabling-map.jpg" alt="Trek Charter+ 官方走線地圖" />
+            <span class="zoom-hint">點擊放大</span>
+          </div>
+          <div class="compare-body">
+            <span class="pill purple">原廠系統級連動</span>
+            <h3>龍頭下藏 × 培林外前頭管腔</h3>
+            <p>龍頭藏線與頭管培林外走線（分頁 1 詳解）形成完美閉環：線管由龍頭下座滑入 <code>5347290</code> 單螺絲開蓋前頭管腔，同時實現<strong>「可調姿態＋全隱藏 6 線束＋換培林免斷油管」</strong>。</p>
+          </div>
+        </article>
+      </div>
+
+      <!-- Other Adjustable / Suspension / E-Bike Stems -->
+      <div class="grid-3">
+        <article class="compare-card">
+          <div class="media-box" data-lb-src="./images/stem-bmc-ics2-mtt.jpg" data-lb-title="BMC ICS2 MTT × Redshift 避震藏線龍頭（2022–2026｜20mm 行程＋下方藏線）" data-lb-cap="BMC 與 Redshift 聯手開發的礫石／全地形避震龍頭：內部置入可換硬度彈性體（Elastomer）提供 20mm 垂直避震行程，同時在底部保留完整 ICS2 下方藏線槽，擺動時完全不干涉油管。">
+            <img src="./images/stem-bmc-ics2-mtt.jpg" alt="BMC ICS2 MTT Redshift 避震藏線龍頭" />
+            <span class="zoom-hint">點擊放大</span>
+          </div>
+          <div class="compare-body">
+            <span class="pill purple">避震 × 下方藏線</span>
+            <h3>BMC ICS2 MTT × Redshift</h3>
+            <p><strong>工程突破：</strong>將 20 mm 彈性體微避震（Micro Travel Technology）整合進 0° 藏線龍頭，透過樞軸位於線束上方、線管走底部鬆弛弧線的幾何配置，讓避震作動時油管彎曲半徑變化極小。</p>
+            <div class="spec-list">
+              <div class="spec-row"><span>避震行程 / 角度</span><span class="mono">20 mm（5 種彈性體）/ 0°</span></div>
+              <div class="spec-row"><span>走線方式</span><span>ICS2 下方隱藏槽＋對開墊圈</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="compare-card">
+          <div class="media-box" data-lb-src="./images/canecreek-hcr-stem.jpg" data-lb-title="Acros ICR / Cane Creek HCR 系統（2021–2026｜歐洲電輔車與登山車主流）" data-lb-cap="歐洲電輔品牌（Cube、Canyon、Ghost、Rose、Orbea）大量採用 Acros ICR 頭碗上蓋（左右各 3 孔、最多 6 線防水膠塞），龍頭端可直接配標準固定或可調龍頭，線管從龍頭下側斜插進頭碗蓋。">
+            <img src="./images/canecreek-hcr-stem.jpg" alt="ICR 頭碗與龍頭下方導入示意" />
+            <span class="zoom-hint">點擊放大</span>
+          </div>
+          <div class="compare-body">
+            <span class="pill info">歐系電輔標準：Acros ICR / AICR</span>
+            <h3>Acros ICR 側入式上蓋架構</h3>
+            <p><strong>為何歐洲電輔車愛用：</strong>透過僅重 13 g 的 IS52/ZS56 ICR 雙膠塞上蓋（左右各 3 孔，共 6 線防水密封），完全解放龍頭端限制——車廠可自由搭配 Newmen、Cube、Ergotec 或 Satori AICR 可調龍頭。</p>
+            <div class="spec-list">
+              <div class="spec-row"><span>線束容量</span><span>最多 6 條線＋防水膠塞</span></div>
+              <div class="spec-row"><span>換龍頭免斷線</span><span style="color:var(--success)">✓ 龍頭與入線口完全解耦</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="compare-card">
+          <div class="media-box" data-lb-src="./images/token-abox-exploded.jpg" data-lb-title="台灣代工體系（Satori SICR / Ergotec / Token）電輔可調與免工具藏線方案" data-lb-cap="2024–2026 台歐電輔龍頭新趨勢：Satori SICR / AICR（相容 Acros ICR）與 Ergotec 可調龍頭除了底部導線槽，更開始直接將 USB Type-C 供電口（直連馬達電池）與 SP Connect / Bosch Kiox 儀表座整合進龍頭本體。">
+            <img src="./images/token-abox-exploded.jpg" alt="模組化藏線墊圈與可調轉接架構" />
+            <span class="zoom-hint">點擊放大</span>
+          </div>
+          <div class="compare-body">
+            <span class="pill warn">2025–2026 電輔整合新趨勢</span>
+            <h3>Satori SICR / Ergotec 可調＋供電</h3>
+            <p><strong>新世代特徵：</strong>台灣 Satori（2025 目錄）推出 <strong>SICR / AICR</strong> 系列免工具可調藏線龍頭，甚至內建直連馬達電源的 <strong>USB-C 充電口</strong>與手機快拆座；德國 Ergotec 與 KTM Python ICR 則主打 0°–90° 大角度可調下槽藏線。</p>
+            <div class="spec-list">
+              <div class="spec-row"><span>角度調整範圍</span><span class="mono">0°–60° / 0°–90°（含免工具版）</span></div>
+              <div class="spec-row"><span>特色整合</span><span>USB-C 供電、Kiox / SP Connect</span></div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SECTION 6: ENGINEERING TRADE-OFFS & PITFALLS -->
+    <section class="panel" id="engineering">
+      <div class="section-head">
+        <div>
+          <h2>六、工程師選型評比：下方藏線 vs 穿透本體 vs 一體把（6 大關鍵指標）</h2>
+          <p>從結構力學、液壓/機械手感、Bike Fitting 改裝成本與售後維修工時四個維度，拆解為何 2023–2026 年絕大多數新車選擇「下方藏線」作為標準答案。</p>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="explorer-info">
+          <h3>綜合工程評分對照（滿分 100）</h3>
+          <div>
+            <div style="font-weight:700;margin-bottom:6px;color:var(--success)">● 下方藏線（Under-Stem：SL7/SL8、RCS Pro、S-DCR、SMR、Conceal）</div>
+            <div class="bar-row"><span>換龍頭免斷油管</span><div class="bar-track"><div class="bar-fill" style="width:96%;background:var(--success)"></div></div><span class="mono">96 / 100</span></div>
+            <div class="bar-row"><span>彎把／配件通用性</span><div class="bar-track"><div class="bar-fill" style="width:94%;background:var(--success)"></div></div><span class="mono">94 / 100</span></div>
+            <div class="bar-row"><span>線管彎曲半徑 Rmin</span><div class="bar-track"><div class="bar-fill" style="width:88%;background:var(--success)"></div></div><span class="mono">88 / 100</span></div>
+            <div class="bar-row"><span>空氣力學表現</span><div class="bar-track"><div class="bar-fill" style="width:86%;background:var(--primary)"></div></div><span class="mono">86 / 100</span></div>
+          </div>
+
+          <div style="margin-top:8px;">
+            <div style="font-weight:700;margin-bottom:6px;color:var(--warning)">● 穿透本體全內（Through-Stem：FSA ACR、ENVE IN-Route、MOST TiCR）</div>
+            <div class="bar-row"><span>換龍頭免斷油管</span><div class="bar-track"><div class="bar-fill" style="width:20%;background:var(--danger)"></div></div><span class="mono">20 / 100</span></div>
+            <div class="bar-row"><span>彎把／配件通用性</span><div class="bar-track"><div class="bar-fill" style="width:45%;background:var(--warning)"></div></div><span class="mono">45 / 100</span></div>
+            <div class="bar-row"><span>線管彎曲半徑 Rmin</span><div class="bar-track"><div class="bar-fill" style="width:62%;background:var(--warning)"></div></div><span class="mono">62 / 100</span></div>
+            <div class="bar-row"><span>空氣力學表現</span><div class="bar-track"><div class="bar-fill" style="width:93%;background:var(--primary)"></div></div><span class="mono">93 / 100</span></div>
+          </div>
+
+          <div style="margin-top:8px;">
+            <div style="font-weight:700;margin-bottom:6px;color:var(--chart-3)">● 一體把全內（One-Piece Cockpit：Roval Rapide、Madone RSL 等對照）</div>
+            <div class="bar-row"><span>換長度／調角度彈性</span><div class="bar-track"><div class="bar-fill" style="width:12%;background:var(--danger)"></div></div><span class="mono">12 / 100</span></div>
+            <div class="bar-row"><span>重量與整合度</span><div class="bar-track"><div class="bar-fill" style="width:97%;background:var(--chart-3)"></div></div><span class="mono">97 / 100</span></div>
+            <div class="bar-row"><span>空氣力學表現</span><div class="bar-track"><div class="bar-fill" style="width:98%;background:var(--primary)"></div></div><span class="mono">98 / 100</span></div>
+          </div>
+        </div>
+
+        <div class="explorer-info">
+          <h3>機構設計 5 大實務踩坑點（DFM / 售後檢查表）</h3>
+          <ul>
+            <li><strong>1. 塑膠卡扣疲勞斷裂：</strong>純塑膠卡榫（Snap-fit）下蓋經日曬汗水與 3–5 次拆裝極易斷腳異音。<strong>最佳實務</strong>為 Specialized Cable Bat 單螺絲硬鎖，或如 Trek Charter+ <code>W5330576</code> 採滑軌定位＋螺絲鎖附。</li>
+            <li><strong>2. 最小彎曲半徑（R<sub>min</sub>）與機械變速阻力：</strong>穿透本體式在把夾後方與舵管前方會產生兩個急轉彎（常 &lt; 22 mm），極易造成機械變速手感發澀或油管折痕；下方藏線能多爭取 8–12 mm 過渡弧線（R ≥ 28–35 mm）。</li>
+            <li><strong>3. 舵管夾持區應力與重量懲罰：</strong>全內中空龍頭為了在舵管前方挖出 4 線通道，必須加寬加厚側壁或增加堆高（如 43–51 mm），導致鋁合金全內龍頭常重達 220–245 g，反比下方藏線（如 SL7 155g、PRO Vibe SL 92g）重出 60–100 g。</li>
+            <li><strong>4. 航空裝箱與轉向死點干涉：</strong>穿透式龍頭在拆把打包時，若油管預留餘量不足會直接拉斷橄欖頭；下方藏線只要拆開下蓋與前蓋 4 顆螺絲，即可將彎把平貼上管打包，無須動到頭碗預壓。</li>
+            <li><strong>5. 電輔可調龍頭的「轉動餘長」設計：</strong>像 Trek Charter+ 這類 0°–60° 可調龍頭，線管必須通過轉軸附近中性層並預留 15–25 mm 頭管內滑移空間，搭配防磨護套（<code>W5331524</code>）才能避免俯仰調整時把燈線或煞車管割破。</li>
+          </ul>
+          <div class="callout warn">
+            <strong>結論建議：</strong>若你是車廠或自行開發新平台，<strong>「下方螺絲壓片／滑槽護蓋藏線（Under-Stem）＋ 對開墊圈 ＋ 培林外獨立腔（或異形舵管）」</strong>是 2026 年性價比、重量、空力與售後滿意度的最優解；僅在頂級競賽高階車款才另供一體把選配。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 7: 6-YEAR EVOLUTION TIMELINE -->
+    <section class="panel" id="timeline">
+      <div class="section-head">
+        <div>
+          <h2>七、2020–2026 龍頭藏線六年演進時間軸</h2>
+          <p>從 2020 年追求極致外觀的全內狂潮，走向 2026 年「空力＋免剪油管＋電輔多線整合」的務實工程收斂。</p>
+        </div>
+      </div>
+
+      <div class="timeline">
+        <div class="tl-card">
+          <div class="tl-year mono">2020 – 2021</div>
+          <h4>全內爆發 × 下方藏線破冰</h4>
+          <p>FSA ACR、Pinarello TiCR 與 BMC ICS2 引爆兩件式全內走線潮；同年 Specialized Tarmac SL7 率先推出 <strong>Cable Bat 下方壓片</strong>，證明不穿透龍頭也能做到極致乾淨與 155g 超輕量。</p>
+        </div>
+        <div class="tl-card" style="border-top-color:var(--success)">
+          <div class="tl-year mono" style="color:var(--success)">2021 – 2022</div>
+          <h4>模組化兼容與跨平台解耦</h4>
+          <p>車店反彈拆剪油管工時，催生 <strong>Deda Superbox（4 合 1）</strong>、<strong>FSA SMR</strong>、<strong>Ritchey Switch</strong>、<strong>Trek RCS Pro</strong> 與 <strong>Token S-Box</strong>；ENVE IN-Route 則以偏心襯套降低全內龍頭的調姿門檻。</p>
+        </div>
+        <div class="tl-card" style="border-top-color:var(--chart-3)">
+          <div class="tl-year mono" style="color:var(--chart-3)">2023 – 2024</div>
+          <h4>異形舵管與磁吸機構大普及</h4>
+          <p><strong>Cannondale C1 Conceal（Delta 舵管）</strong>、<strong>Giant AeroLight（OverDrive Aero）</strong>全面標準化下方藏線；Scott / Syncros 導入磁吸與可拆上蓋；BMC ICS2 MTT 將 20mm 避震塞入藏線龍頭。</p>
+        </div>
+        <div class="tl-card" style="border-top-color:var(--warning)">
+          <div class="tl-year mono" style="color:var(--warning)">2025 – 2026</div>
+          <h4>兩極分化：競賽一體化 × 電輔可調藏線</h4>
+          <p>頂級競賽車進一步普及單件碳纖一體把，而中高階、耐力、Gravel 與電輔平台則全面轉向「下方藏線＋可調／供電整合」——如 <strong>Trek Charter+ W5330566</strong> 雙棘輪藏線龍頭與 <strong>Satori SICR USB-C</strong>。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 8: FILTERABLE MASTER DATABASE -->
+    <section class="panel" id="database">
+      <div class="section-head">
+        <div>
+          <h2>八、2020–2026 龍頭內走線／下方藏線全方案工程資料庫（可篩選搜尋）</h2>
+          <p>共收錄 16 套代表性龍頭方案，支援依架構類型、免斷油管能力或關鍵字即時篩選，點擊縮圖可放大原圖。</p>
+        </div>
+      </div>
+
+      <div class="filter-bar">
+        <input type="text" id="db-search" class="input" placeholder="搜尋品牌、型號、舵管規格（如 Trek、Deda、Delta、92g）..." />
+        <select id="db-arch" class="select">
+          <option value="all">全部走線架構</option>
+          <option value="under">下方藏線（Under-Stem）</option>
+          <option value="through">穿透本體（Through-Stem）</option>
+          <option value="steerer">異形舵管耦合（C/D/Delta）</option>
+          <option value="adjustable">可調／避震／電輔（Adjustable/E-Bike）</option>
+        </select>
+        <select id="db-bleed" class="select">
+          <option value="all">換龍頭免斷油管：全部</option>
+          <option value="yes">✓ 免剪免排氣</option>
+          <option value="no">✕ 須拆斷油管</option>
+        </select>
+        <span class="pill mono" id="db-count">顯示 16 / 16 套</span>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>實品圖</th>
+              <th>品牌與型號</th>
+              <th>年份</th>
+              <th>走線架構</th>
+              <th>藏線固定機構</th>
+              <th>重量 / 角度</th>
+              <th>把徑 / 舵管相容</th>
+              <th>換龍頭免斷油管</th>
+              <th>核心工程評語</th>
+            </tr>
+          </thead>
+          <tbody id="db-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer>
+      BEARING STUDY 分頁 2｜2020–2026 自行車龍頭「內走線 vs 下方藏線」工程圖鑑與方案調查 ｜ <a href="./index.html">← 切換回分頁 1：頭管培林外／內走線報告</a> ｜ <a href="../">返回主頁</a>
+    </footer>
+  </main>
+
+  <!-- Lightbox Modal -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="圖片檢視器">
+    <div class="lb-bar">
+      <div id="lb-title" style="font-weight:700;font-size:14px;"></div>
+      <div class="lb-actions">
+        <button type="button" class="lb-btn" id="lb-zoom">🔍 放大 165%</button>
+        <button type="button" class="lb-btn" id="lb-close">✕ 關閉 (ESC)</button>
+      </div>
+    </div>
+    <div class="lb-stage" id="lb-stage">
+      <img id="lb-img" src="" alt="" />
+    </div>
+    <div class="lb-caption" id="lb-cap"></div>
+  </div>
+
+  <script>
+    // 1. Theme Toggle (synced with Page 1 via localStorage)
+    const root = document.documentElement;
+    const themeBtn = document.getElementById("theme-toggle");
+    function applyTheme(t) {
+      root.setAttribute("data-theme", t);
+      themeBtn.textContent = t === "dark" ? "☀ 淺色" : "☾ 深色";
+      try { localStorage.setItem("bearing_study_theme", t); } catch (e) {}
+    }
+    try {
+      const saved = localStorage.getItem("bearing_study_theme");
+      if (saved === "light" || saved === "dark") applyTheme(saved);
+    } catch (e) {}
+    themeBtn.addEventListener("click", () => {
+      applyTheme(root.getAttribute("data-theme") === "dark" ? "light" : "dark");
+    });
+
+    // 2. Lightbox
+    const lb = document.getElementById("lightbox");
+    const lbImg = document.getElementById("lb-img");
+    const lbTitle = document.getElementById("lb-title");
+    const lbCap = document.getElementById("lb-cap");
+    const lbStage = document.getElementById("lb-stage");
+    const lbZoom = document.getElementById("lb-zoom");
+
+    function openLightbox(src, title, cap) {
+      lbImg.src = src;
+      lbImg.alt = title || "";
+      lbTitle.textContent = title || "";
+      lbCap.textContent = cap || "";
+      lbStage.classList.remove("zoomed");
+      lbZoom.textContent = "🔍 放大 165%";
+      lb.classList.add("open");
+      document.body.style.overflow = "hidden";
+    }
+    function closeLightbox() {
+      lb.classList.remove("open");
+      document.body.style.overflow = "";
+    }
+    document.getElementById("lb-close").addEventListener("click", closeLightbox);
+    lb.addEventListener("click", (e) => { if (e.target === lb) closeLightbox(); });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeLightbox(); });
+    lbZoom.addEventListener("click", () => {
+      const z = lbStage.classList.toggle("zoomed");
+      lbZoom.textContent = z ? "🔎 還原適應視窗" : "🔍 放大 165%";
+    });
+    lbImg.addEventListener("click", () => lbZoom.click());
+
+    document.addEventListener("click", (e) => {
+      const box = e.target.closest("[data-lb-src]");
+      if (!box) return;
+      openLightbox(box.dataset.lbSrc, box.dataset.lbTitle, box.dataset.lbCap);
+    });
+
+    // 3. Interactive SVG Engineering Cross-Section Explorer
+    const EXPLORER_DATA = {
+      under: {
+        title: "架構 1｜下方藏線槽＋護蓋／壓片（Under-Stem Concealed）",
+        badge: { cls: "ok", text: "2023–2026 兩件式絕對主流｜換龍頭免斷油管" },
+        lead: "線管自彎把下緣貼著龍頭底部凹槽向後延伸，由螺絲壓片（如 Specialized Cable Bat）或卡扣下蓋（Trek RCS Pro / FSA SMR / Deda S-DCR）固定，再轉折進入對開墊圈與頭碗前緣。",
+        bullets: [
+          "<strong>零斷油管維護：</strong>鬆開下蓋或 M5 壓片螺絲，即可將龍頭往上抽離舵管，更換 80–130 mm 長度完全無須拆油管與排氣。",
+          "<strong>結構剛性完整：</strong>鋁合金／碳纖龍頭本體不必在正面或舵管區挖出大洞，能維持 155–185 g 輕量與高扭轉剛性。",
+          "<strong>最小彎曲半徑友善：</strong>線管在龍頭下方擁有較大弧度（R ≈ 28–38 mm），機械變速與液壓煞車手感皆滑順。",
+          "<strong>把組自由度最高：</strong>不綁定特殊開孔彎把，市面上任何 31.8 mm 圓把或空力把皆可直接安裝。"
+        ],
+        note: "代表型號：Specialized S-Works Tarmac Stem、Trek RCS Pro Blendr、Deda Superbox S-DCR、FSA NS SMR / SMR-II、Cannondale C1 Conceal、Giant Contact SL AeroLight、BMC ICS2。",
+        svg: `
+        <svg viewBox="0 0 680 340" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="alu1" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#334155"/><stop offset="100%" stop-color="#1e293b"/>
+            </linearGradient>
+            <linearGradient id="shroud" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#0ea5e9" stop-opacity="0.32"/><stop offset="100%" stop-color="#0284c7" stop-opacity="0.16"/>
+            </linearGradient>
+          </defs>
+          <rect width="680" height="340" rx="10" fill="#0d1420"/>
+          <g stroke="#1e293b" stroke-width="1"><line x1="0" y1="290" x2="680" y2="290"/><line x1="185" y1="30" x2="185" y2="310" stroke-dasharray="4 4"/></g>
+          <!-- Headtube & Steerer -->
+          <path d="M132 178 L238 178 L248 310 L122 310 Z" fill="#172033" stroke="#475569" stroke-width="1.5"/>
+          <rect x="165" y="74" width="40" height="236" rx="3" fill="#273449" stroke="#94a3b8" stroke-width="1.5"/>
+          <text x="185" y="268" fill="#cbd5e1" font-size="11" text-anchor="middle" font-weight="700">舵管 Steerer</text>
+          <!-- Upper Bearing -->
+          <rect x="140" y="182" width="23" height="20" rx="2" fill="#475569" stroke="#cbd5e1"/>
+          <rect x="207" y="182" width="23" height="20" rx="2" fill="#475569" stroke="#cbd5e1"/>
+          <text x="90" y="196" fill="#94a3b8" font-size="10.5" text-anchor="middle">上培林</text>
+          <!-- Split Spacers -->
+          <rect x="148" y="146" width="84" height="32" rx="4" fill="#1e293b" stroke="#38bdf8" stroke-dasharray="4 2" stroke-width="1.4"/>
+          <text x="90" y="166" fill="#38bdf8" font-size="10.5" text-anchor="middle" font-weight="700">對開墊圈</text>
+          <!-- Solid Stem Body (Uncut!) -->
+          <path d="M150 86 L490 86 L490 132 L215 132 L215 144 L150 144 Z" fill="url(#alu1)" stroke="#94a3b8" stroke-width="1.8"/>
+          <text x="345" y="114" fill="#f1f5f9" font-size="13" text-anchor="middle" font-weight="800">完整閉口龍頭主體（不挖大孔、剛性滿載）</text>
+          <!-- Handlebar cross-section -->
+          <circle cx="515" cy="112" r="32" fill="#1e293b" stroke="#cbd5e1" stroke-width="2"/>
+          <circle cx="515" cy="112" r="19" fill="#0d1420" stroke="#475569" stroke-width="1.2"/>
+          <text x="515" y="116" fill="#e2e8f0" font-size="11" text-anchor="middle" font-weight="700">Ø31.8 把</text>
+          <!-- Under-Stem Shroud / Cable Bat -->
+          <path d="M225 132 L478 132 L478 164 L250 164 Q228 164 225 144 Z" fill="url(#shroud)" stroke="#38bdf8" stroke-width="1.8"/>
+          <!-- M5 Bolt (Cable Bat) -->
+          <rect x="358" y="130" width="8" height="38" rx="1.5" fill="#fbbf24"/>
+          <rect x="353" y="164" width="18" height="6" rx="1.5" fill="#f59e0b"/>
+          <text x="362" y="188" fill="#fbbf24" font-size="11" text-anchor="middle" font-weight="700">M5 壓片螺絲 / 快拆下蓋</text>
+          <!-- Hydraulic Hose & Shift Cable (Smooth gentle radius!) -->
+          <path d="M510 144 Q492 152 460 148 L256 148 Q224 148 220 185 L218 308" fill="none" stroke="#34d399" stroke-width="4.5" stroke-linecap="round"/>
+          <path d="M500 146 Q486 158 456 155 L260 155 Q232 155 228 190 L226 308" fill="none" stroke="#f87171" stroke-width="4" stroke-linecap="round"/>
+          <!-- Radius callout -->
+          <path d="M226 168 A 28 28 0 0 1 254 148" fill="none" stroke="#34d399" stroke-width="1.4" stroke-dasharray="3 2"/>
+          <text x="295" y="218" fill="#34d399" font-size="11.5" font-weight="700">大彎曲半徑 R ≥ 28–35 mm</text>
+          <text x="295" y="235" fill="#94a3b8" font-size="10.5">液壓不折管、機械變速阻力低</text>
+          <!-- Detach Arrow -->
+          <path d="M330 68 L330 36" stroke="#38bdf8" stroke-width="2" marker-end="url(#arr)"/>
+          <polygon points="330,28 324,40 336,40" fill="#38bdf8"/>
+          <text x="348" y="47" fill="#38bdf8" font-size="12" font-weight="800">換龍頭時直接向上抽離（免拆油管！）</text>
+          <!-- Legend -->
+          <circle cx="445" cy="264" r="5" fill="#34d399"/><text x="457" y="268" fill="#cbd5e1" font-size="11">前/後液壓油管（外貼下腹槽）</text>
+          <circle cx="445" cy="285" r="5" fill="#f87171"/><text x="457" y="289" fill="#cbd5e1" font-size="11">變速線 / Di2 電線（同步固定）</text>
+        </svg>`
+      },
+      through: {
+        title: "架構 2｜全穿透中空本體內走線（Through-Stem Internal）",
+        badge: { cls: "warn", text: "極致正面無線外觀｜換龍頭多須拆斷油管" },
+        lead: "線管直接由專用開孔彎把的中央後方出口進入中空龍頭腔體，於龍頭內部折彎向下，貼著舵管前緣穿過偏心壓縮環與上培林內圈進入頭管。",
+        bullets: [
+          "<strong>正面 100% 無線極簡：</strong>沒有底部塑膠護蓋接縫，風洞測試比下方藏線再節省約 0.5–1.2 W（45 km/h）。",
+          "<strong>維修與 Fitting 門檻高：</strong>由於線管封閉貫穿金屬／碳纖管身，每次更換龍頭長度都必須切斷油管、重新壓接橄欖頭並液壓排氣。",
+          "<strong>壁厚與彎折雙挑戰：</strong>為了在舵管前方留出 4 線通道，龍頭往往更寬更重（220–245 g），且把夾後出口處轉彎半徑偏小（R ≈ 18–22 mm）。",
+          "<strong>緩解解法（ENVE 思路）：</strong>ENVE Aero IN-Route 透過舵管孔內「偏心襯套」提供不剪管微調角度（-7°/-12°）與 ±2.5 mm 長度的巧思。"
+        ],
+        note: "代表型號：FSA NS ACR、ENVE Aero IN-Route Carbon、Pinarello MOST Tiger TiCR、Deda Superbox（DCR 模式）、PRO Vibe Aero（全內模式）。",
+        svg: `
+        <svg viewBox="0 0 680 340" xmlns="http://www.w3.org/2000/svg">
+          <rect width="680" height="340" rx="10" fill="#0d1420"/>
+          <g stroke="#1e293b" stroke-width="1"><line x1="0" y1="290" x2="680" y2="290"/></g>
+          <!-- Headtube & Steerer -->
+          <path d="M132 178 L238 178 L248 310 L122 310 Z" fill="#172033" stroke="#475569" stroke-width="1.5"/>
+          <rect x="165" y="74" width="40" height="236" rx="3" fill="#273449" stroke="#94a3b8" stroke-width="1.5"/>
+          <text x="185" y="268" fill="#cbd5e1" font-size="11" text-anchor="middle" font-weight="700">舵管</text>
+          <!-- Oversized Bearing -->
+          <rect x="136" y="182" width="22" height="20" rx="2" fill="#475569" stroke="#cbd5e1"/>
+          <rect x="212" y="182" width="22" height="20" rx="2" fill="#475569" stroke="#cbd5e1"/>
+          <!-- Hollow Stem Body (Cutaway) -->
+          <path d="M148 78 L492 78 L492 146 L232 146 L232 178 L148 178 Z" fill="#1e293b" stroke="#fbbf24" stroke-width="1.8"/>
+          <!-- Hollow inner tunnel -->
+          <path d="M210 100 L488 100 L488 134 L232 134 L232 178 L210 178 Z" fill="#0b1018" stroke="#64748b" stroke-dasharray="3 2"/>
+          <text x="355" y="94" fill="#fbbf24" font-size="12" text-anchor="middle" font-weight="800">中空閉合龍頭腔體（線管封閉貫穿內部）</text>
+          <!-- Aero Bar with rear port -->
+          <circle cx="518" cy="112" r="32" fill="#1e293b" stroke="#cbd5e1" stroke-width="2"/>
+          <rect x="484" y="102" width="16" height="24" fill="#0b1018"/>
+          <text x="522" y="116" fill="#e2e8f0" font-size="10.5" text-anchor="middle" font-weight="700">專用開孔把</text>
+          <!-- Tight radius internal hoses -->
+          <path d="M518 112 L488 112 L245 112 Q218 112 218 145 L218 308" fill="none" stroke="#f87171" stroke-width="4.5" stroke-linecap="round"/>
+          <path d="M518 122 L488 122 L250 122 Q226 122 226 152 L226 308" fill="none" stroke="#38bdf8" stroke-width="4" stroke-linecap="round"/>
+          <!-- Warning Tight Bend -->
+          <circle cx="226" cy="126" r="18" fill="none" stroke="#f87171" stroke-width="2" stroke-dasharray="4 3"/>
+          <text x="305" y="198" fill="#f87171" font-size="12" font-weight="800">⚠ 急彎瓶頸（R ≈ 18–22 mm）</text>
+          <text x="305" y="216" fill="#94a3b8" font-size="10.8">且線管被閉口鋁壁包死，換龍頭必須剪斷油管並重灌油排氣</text>
+          <text x="305" y="246" fill="#38bdf8" font-size="11.5" font-weight="700">✓ 優點：外觀 0 外露接縫、迎風面積最小（省 ~0.8–1.5 W）</text>
+          <text x="305" y="266" fill="#fbbf24" font-size="11">△ 代價：側壁必須加厚補強，重量常比一般龍頭重 40–80 g</text>
+        </svg>`
+      },
+      split: {
+        title: "架構 3｜可拆上蓋／磁吸橋接（Syncros RR 1.5 ＆ Ritchey Switch）",
+        badge: { cls: "purple", text: "兼具全內視覺＋免剪油管巧思" },
+        lead: "透過將龍頭外殼拆分成「承力骨架」與「可拆式頂蓋／磁吸上蓋（Syncros RR 1.5）」或「可逆壓縮導槽（Ritchey Switch）」，讓已排氣的完整油管可直接從上方或下方置入槽道。",
+        bullets: [
+          "<strong>免斷油管更換長度：</strong>Syncros RR 1.5 官方設計目標即是讓車手與技師能在不切斷液壓碟煞油管的情況下直接更換 80–130 mm 龍頭。",
+          "<strong>無外露螺絲極簡外觀：</strong>搭配磁吸豎管上蓋（Magnetic Stem Cap）與鉤式前蓋，把夾與豎管螺絲全數隱形。",
+          "<strong>Ritchey Switch 通用性：</strong>透過 8 mm 專用轉接導線環，可直接對應標準 IS52 頭管與 Token A-Box，把一般公路／Gravel 車無痛升級為隱藏走線。"
+        ],
+        note: "代表型號：Syncros RR 1.5（Scott Addict RC / Foil RC）、Ritchey Comp / WCS Switch、Token S-Box 轉接方案。",
+        svg: `
+        <svg viewBox="0 0 680 340" xmlns="http://www.w3.org/2000/svg">
+          <rect width="680" height="340" rx="10" fill="#0d1420"/>
+          <g stroke="#1e293b" stroke-width="1"><line x1="0" y1="290" x2="680" y2="290"/></g>
+          <!-- Headtube & Steerer -->
+          <path d="M132 182 L238 182 L248 310 L122 310 Z" fill="#172033" stroke="#475569" stroke-width="1.5"/>
+          <rect x="165" y="88" width="40" height="222" rx="3" fill="#273449" stroke="#94a3b8" stroke-width="1.5"/>
+          <!-- Removable Magnetic Top Cover (Lifted up!) -->
+          <path d="M152 46 L472 46 L472 68 L152 68 Z" fill="#a78bfa" fill-opacity="0.28" stroke="#a78bfa" stroke-width="1.8" stroke-dasharray="5 3"/>
+          <text x="312" y="61" fill="#ddd6fe" font-size="11.5" text-anchor="middle" font-weight="800">可拆式上蓋 ＋ 磁吸豎管蓋（向上取下）</text>
+          <path d="M210 72 L210 86 M420 72 L420 86" stroke="#a78bfa" stroke-width="1.5" stroke-dasharray="2 2"/>
+          <!-- Structural U-Channel Body -->
+          <path d="M150 92 L488 92 L488 148 L228 148 L228 180 L150 180 Z" fill="#1e293b" stroke="#94a3b8" stroke-width="1.8"/>
+          <text x="348" y="138" fill="#cbd5e1" font-size="11.5" text-anchor="middle" font-weight="700">AL7075 CNC U 型承力主結構</text>
+          <!-- Handlebar -->
+          <circle cx="516" cy="116" r="30" fill="#1e293b" stroke="#cbd5e1" stroke-width="2"/>
+          <text x="516" y="120" fill="#e2e8f0" font-size="11" text-anchor="middle" font-weight="700">Ø31.8 把</text>
+          <!-- Drop-in Cables -->
+          <path d="M500 104 L250 104 Q220 104 220 144 L220 308" fill="none" stroke="#34d399" stroke-width="4.5" stroke-linecap="round"/>
+          <path d="M500 114 L254 114 Q228 114 228 150 L228 308" fill="none" stroke="#38bdf8" stroke-width="4" stroke-linecap="round"/>
+          <!-- Callout -->
+          <text x="305" y="198" fill="#a78bfa" font-size="12.5" font-weight="800">★ 上開／下開槽道直接「放入」完整油管</text>
+          <text x="305" y="218" fill="#cbd5e1" font-size="11">1. 掀開磁吸蓋與可拆上蓋（或下壓槽）即可完整露出走線槽</text>
+          <text x="305" y="236" fill="#cbd5e1" font-size="11">2. 已排氣之煞車油管無須切斷，直接脫離／置入新龍頭</text>
+          <text x="305" y="254" fill="#34d399" font-size="11">3. 蓋上後呈現近似一體把的無螺絲平滑外觀</text>
+        </svg>`
+      },
+      charter: {
+        title: "架構 4｜電輔雙棘輪可調藏線龍頭（Trek Charter+ W5330566 實測構造）",
+        badge: { cls: "info", text: "2026–2027 電輔標竿｜5–6 線束 × 角度可調 × 培林外入線" },
+        lead: "依據你 Google Drive 中逆向還原的 11 件 3D 實體 CAD 與 Trek 官方 2027 維修手冊：Charter+ 將下座（5330566A）與上臂（5330566B）透過大直徑棘輪軸連結，並將 5–6 條線束沿下座飾蓋導入前頭管培林外獨立腔。",
+        bullets: [
+          "<strong>內置豎管迫緊塊（5330566C）：</strong>不採傳統外鎖雙螺絲耳片，改為內置式夾緊塊＋頂部預壓塞（5330566H），讓下座前方與側下空間完全淨空供走線使用。",
+          "<strong>雙重包覆護蓋：</strong>下座夾持飾蓋（<code>W5330576</code>）＋轉軸間隙蓋（<code>5330578</code>）將前後油管、變速、Bosch 顯示線與頭燈線全數遮蔽。",
+          "<strong>俯仰角度調整不扯線：</strong>線束貼近大徑棘輪轉軸（<code>5330566F/G</code>）中性面下潛，並與前頭管 <code>5347290</code> 單螺絲開蓋腔室銜接，給予充裕滑移餘長。",
+          "<strong>前端 Blendr 支架一體化：</strong><code>5330577</code> 頭燈／配件座直接鎖附於雙前蓋（<code>5330566D</code> L/R）中央，頭燈電源線直接沿上臂內側回穿。"
+        ],
+        note: "完整 11 件封閉實體 STEP AP214 已更新於你的 Google Drive（Trek2026/CharterPlus_Stem_AP214），可直接匯入 Siemens NX 進行機構干涉與最小彎曲半徑模擬。",
+        svg: `
+        <svg viewBox="0 0 680 340" xmlns="http://www.w3.org/2000/svg">
+          <rect width="680" height="340" rx="10" fill="#0d1420"/>
+          <!-- Headtube with FRONT CAVITY (Outside Bearing!) -->
+          <path d="M128 212 L255 212 L268 320 L118 320 Z" fill="#172033" stroke="#475569" stroke-width="1.6"/>
+          <!-- Steerer tube inside rear part of headtube -->
+          <rect x="148" y="138" width="38" height="182" rx="3" fill="#273449" stroke="#94a3b8" stroke-width="1.5"/>
+          <!-- Upper Bearing 581403 -->
+          <rect x="134" y="216" width="14" height="16" fill="#64748b" stroke="#e2e8f0"/>
+          <rect x="186" y="216" width="14" height="16" fill="#64748b" stroke="#e2e8f0"/>
+          <text x="100" y="228" fill="#94a3b8" font-size="10" text-anchor="middle">上培林 581403</text>
+          <!-- Front Cavity 5347290 -->
+          <path d="M206 214 L252 214 L260 318 L206 318 Z" fill="#0ea5e9" fill-opacity="0.16" stroke="#38bdf8" stroke-dasharray="4 2"/>
+          <text x="292" y="274" fill="#38bdf8" font-size="11" font-weight="700">前頭管獨立腔 (5347290)</text>
+          <text x="292" y="290" fill="#94a3b8" font-size="10">培林外走線＋W5331524 防磨護套</text>
+          <!-- 5330566A Lower Base -->
+          <path d="M138 142 L226 142 L226 208 L138 208 Z" fill="#1e3a5f" stroke="#60a5fa" stroke-width="1.8"/>
+          <text x="182" y="178" fill="#dbeafe" font-size="10.5" text-anchor="middle" font-weight="700">5330566A 下座</text>
+          <!-- W5330576 Front Clamp Cover -->
+          <path d="M226 146 L252 152 L252 210 L226 210 Z" fill="#fbbf24" fill-opacity="0.3" stroke="#fbbf24" stroke-width="1.6"/>
+          <text x="315" y="196" fill="#fbbf24" font-size="11" font-weight="700">W5330576 下座藏線飾蓋</text>
+          <!-- Pivot Ratchet Joint 5330566F/G -->
+          <circle cx="195" cy="134" r="24" fill="#312e81" stroke="#a78bfa" stroke-width="2"/>
+          <circle cx="195" cy="134" r="10" fill="#0d1420" stroke="#c4b5fd" stroke-width="1.5"/>
+          <text x="112" y="128" fill="#c4b5fd" font-size="10.5" text-anchor="middle" font-weight="700">5330566F/G</text>
+          <text x="112" y="142" fill="#94a3b8" font-size="9.5" text-anchor="middle">雙棘輪轉軸</text>
+          <!-- 5330566B Adjustable Upper Arm (Angled up!) -->
+          <g transform="translate(195,134) rotate(-36)">
+            <rect x="-14" y="-92" width="38" height="92" rx="8" fill="#9a3412" fill-opacity="0.85" stroke="#fb923c" stroke-width="1.8"/>
+            <text x="5" y="-42" fill="#ffedd5" font-size="10" text-anchor="middle" font-weight="700">5330566B</text>
+            <!-- Handlebar + Faceplates 5330566D -->
+            <circle cx="6" cy="-106" r="22" fill="#1e293b" stroke="#e879f9" stroke-width="2"/>
+            <text x="6" y="-102" fill="#f5d0fe" font-size="9.5" text-anchor="middle" font-weight="700">Ø31.8</text>
+            <!-- 5330577 Light Bracket -->
+            <rect x="26" y="-114" width="18" height="14" rx="3" fill="#06b6d4"/>
+          </g>
+          <!-- Swing Angle Arc -->
+          <path d="M262 66 A 92 92 0 0 1 292 128" fill="none" stroke="#fb923c" stroke-width="1.6" stroke-dasharray="4 3"/>
+          <text x="342" y="88" fill="#fb923c" font-size="11.5" font-weight="800">可調俯仰角（0°–60° 棘輪鎖定）</text>
+          <text x="342" y="106" fill="#94a3b8" font-size="10.5">5330578 間隙蓋遮蔽轉軸空隙</text>
+          <text x="342" y="126" fill="#22d3ee" font-size="10.5">5330577 前端頭燈 / Blendr 支架</text>
+          <!-- 5-6 Cable Bundle sliding cleanly through neutral axis into front cavity -->
+          <path d="M276 62 Q238 110 236 155 L234 316" fill="none" stroke="#34d399" stroke-width="4.5" stroke-linecap="round"/>
+          <path d="M284 68 Q246 116 244 160 L242 316" fill="none" stroke="#f87171" stroke-width="4" stroke-linecap="round"/>
+          <path d="M292 74 Q254 122 250 165 L248 316" fill="none" stroke="#38bdf8" stroke-width="3" stroke-linecap="round"/>
+          <text x="342" y="156" fill="#34d399" font-size="11.5" font-weight="700">5–6 線束（煞車＋變速＋馬達＋燈）</text>
+          <text x="342" y="172" fill="#cbd5e1" font-size="10.5">經 W5330576 下座槽直落培林外前腔，調角不夾線</text>
+        </svg>`
+      }
+    };
+
+    const svgStage = document.getElementById("svg-stage");
+    const expInfo = document.getElementById("explorer-info");
+    const expBtns = document.querySelectorAll("#explorer-tabs .tab-btn");
+
+    function renderExplorer(mode) {
+      const d = EXPLORER_DATA[mode];
+      svgStage.innerHTML = d.svg;
+      expInfo.innerHTML = `
+        <div><span class="pill ${d.badge.cls}">${d.badge.text}</span></div>
+        <h3>${d.title}</h3>
+        <p style="margin:0;color:var(--muted);font-size:13px;">${d.lead}</p>
+        <ul>${d.bullets.map(b => `<li>${b}</li>`).join("")}</ul>
+        <div class="callout">${d.note}</div>
+      `;
+      expBtns.forEach(b => b.setAttribute("data-active", b.dataset.mode === mode ? "true" : "false"));
+    }
+    expBtns.forEach(b => b.addEventListener("click", () => renderExplorer(b.dataset.mode)));
+    renderExplorer("under");
+
+    // 4. Master Filterable Database (16 Verified Systems, 2020-2026)
+    const STEM_DB = [
+      {
+        img: "./images/stem-specialized-tarmac-sl7.jpg",
+        name: "Specialized S-Works Tarmac Stem",
+        year: "2020–2026",
+        arch: "under",
+        archLabel: "下方藏線（Under-Stem）",
+        mech: "M5 螺絲鎖固 Cable Bat 壓片＋整流下蓋",
+        spec: "155g (100mm) ｜ -6° / -12°",
+        compat: "31.8 圓把通用 ｜ 1-1/8\" 圓舵管",
+        bleed: "yes",
+        note: "兩件式下方藏線開山始祖，單螺絲壓片抗震不鬆脫，SL7/SL8 共通。"
+      },
+      {
+        img: "./images/trek-domane-rcs-pro-stem.jpg",
+        name: "Trek RCS Pro Blendr Stem",
+        year: "2022–2026",
+        arch: "under",
+        archLabel: "下方藏線（Under-Stem）",
+        mech: "底部導槽＋快拆卡扣護蓋＋雙層 Blendr",
+        spec: "~185g (100mm) ｜ -7°",
+        compat: "31.8 圓把通用 ｜ Trek RCS 頭碗",
+        bleed: "yes",
+        note: "橫跨 Domane Gen 4/5、Madone、Checkmate 的統一模組，維修體驗極佳。"
+      },
+      {
+        img: "./images/stem-deda-superbox-v2.jpg",
+        name: "Deda Superbox V2 (DCR / S-DCR)",
+        year: "2021–2026",
+        arch: "under",
+        archLabel: "下方藏線＋全內 4 合 1",
+        mech: "可拆尼龍 S-DCR 下蓋（亦支援 DCR 全內）",
+        spec: "175–185g (110mm) ｜ -8°",
+        compat: "31.7 mm 把 ｜ 1-1/8\" ＋ D-Steerer",
+        bleed: "yes",
+        note: "市面最萬用的 4 模式走線龍頭，改裝與獨立車架廠首選。"
+      },
+      {
+        img: "./images/stem-fsa-acr-cover.jpg",
+        name: "FSA NS SMR / SMR-II",
+        year: "2021–2026",
+        arch: "under",
+        archLabel: "下方藏線（Under-Stem）",
+        mech: "兩片式螺絲鎖固底部護蓋＋對開墊圈",
+        spec: "235g (100mm) ｜ ±6°",
+        compat: "31.8 圓把通用 ｜ FSA ACR/SMR 頭碗",
+        bleed: "yes",
+        note: "Merida / Bianchi / Wilier / Orbea OEM 最大公約數，兼顧機械與電變。"
+      },
+      {
+        img: "./images/stem-cannondale-c1-conceal.jpg",
+        name: "Cannondale C1 Conceal",
+        year: "2023–2026",
+        arch: "steerer",
+        archLabel: "下方藏線 × Delta 舵管",
+        mech: "底部內凹導槽＋橡膠扣＋Delta 對開墊圈",
+        spec: "210g (110mm) ｜ -6° / +6°",
+        compat: "31.8 圓把通用 ｜ Delta 三角舵管",
+        bleed: "yes",
+        note: "讓線管沿龍頭下腹直落三角舵管前側空間，兼顧窄頭管與標準 Ø1-1/8\" 培林。"
+      },
+      {
+        img: "./images/stem-giant-contact-sl-aerolight.png",
+        name: "Giant Contact SL AeroLight",
+        year: "2023–2026",
+        arch: "steerer",
+        archLabel: "下方藏線 × OverDrive Aero",
+        mech: "前蓋導線＋底部流線導槽＋D 型對開墊圈",
+        spec: "~165–185g ｜ -10° / -15°",
+        compat: "31.8 把（彎/平把）｜ OverDrive Aero D 舵管",
+        bleed: "yes",
+        note: "TCR Gen 10、Propel Gen 3、Defy Gen 5 全面搭載，兼顧輕量與換龍頭便利。"
+      },
+      {
+        img: "./images/stem-ritchey-comp-switch.png",
+        name: "Ritchey Comp / WCS Switch",
+        year: "2022–2026",
+        arch: "under",
+        archLabel: "下方藏線（Under-Stem）",
+        mech: "專利底部隱藏導槽＋8mm 轉接墊片＋C220 把夾",
+        spec: "180g (100mm) ｜ -6° (84°)",
+        compat: "31.8 圓把通用 ｜ IS52 / Token A-Box",
+        bleed: "yes",
+        note: "可藏 4 條線且重量控制在 180g，支援透過轉接環相容 Token 頭碗。"
+      },
+      {
+        img: "./images/stem-syncros-rr15.jpg",
+        name: "Syncros RR 1.5（Scott）",
+        year: "2021–2026",
+        arch: "under",
+        archLabel: "下方藏線＋可拆上蓋",
+        mech: "可拆頂蓋＋磁吸豎管上蓋＋鉤式隱藏前蓋",
+        spec: "~215g (110mm) ｜ -6°",
+        compat: "31.8 圓把通用 ｜ Scott 偏心/D 舵管",
+        bleed: "yes",
+        note: "官方主打「不剪碟煞油管換龍頭」＋零外露螺絲的磁吸極簡外觀。"
+      },
+      {
+        img: "./images/stem-bmc-ics2.jpg",
+        name: "BMC ICS2 Stem",
+        year: "2020–2026",
+        arch: "under",
+        archLabel: "下方藏線（Under-Stem）",
+        mech: "底部可拆藏線蓋＋隱藏螺栓＋對開墊圈",
+        spec: "185g ｜ -12.5° / 0°",
+        compat: "31.8 把 ｜ BMC D 型舵管",
+        bleed: "yes",
+        note: "比初代 ICS 大幅減重並強化剛性，保留對開墊圈免剪線調高度。"
+      },
+      {
+        img: "./images/stem-pro-vibe-superlight.jpg",
+        name: "PRO Vibe Superlight Stem",
+        year: "2022–2026",
+        arch: "under",
+        archLabel: "半內／全內／傳統三模",
+        mech: "AL7075 CNC＋鈦螺絲＋Di2 專屬內部通道",
+        spec: "92g 起 (70mm) ｜ ±6°",
+        compat: "31.8 把 ｜ 1-1/8\" & 1-1/4\" 雙規格",
+        bleed: "yes",
+        note: "羽量級標竿（92g 起），打破整合走線龍頭必重 200g 以上的迷思。"
+      },
+      {
+        img: "./images/stem-enve-aero-inroute.jpg",
+        name: "ENVE Aero IN-Route Carbon",
+        year: "2022–2026",
+        arch: "through",
+        archLabel: "穿透本體（Through-Stem）",
+        mech: "全碳纖中空通道＋舵管偏心可調襯套（Shim）",
+        spec: "175g (110mm) ｜ -7°/-12°",
+        compat: "ENVE IN-Route 開孔把 ｜ 1-1/8\" 圓舵管",
+        bleed: "no",
+        note: "雖換長度須抽油管，但靠偏心襯套可免剪線切換角度與 ±2.5mm 長度。"
+      },
+      {
+        img: "./images/stem-most-tiger-ticr.jpg",
+        name: "Pinarello MOST Tiger TiCR",
+        year: "2020–2026",
+        arch: "through",
+        archLabel: "穿透本體（Through-Stem）",
+        mech: "中空 1K 碳纖／CNC 鋁通道直入 TiCR 對開墊圈",
+        spec: "155–165g (90mm) ｜ -8°",
+        compat: "MOST TiCR 開孔把 ｜ Pinarello 專用",
+        bleed: "no",
+        note: "給不想綁死 Talon Ultra 一體把的 Dogma/F 系列車主提供兩件式選項。"
+      },
+      {
+        img: "./images/stem-fsa-ns-smr.jpg",
+        name: "FSA NS ACR Stem",
+        year: "2020–2026",
+        arch: "through",
+        archLabel: "穿透本體（Through-Stem）",
+        mech: "全中空鍛造腔體直通 ACR 偏心壓縮環",
+        spec: "235g (100mm) ｜ ±6°",
+        compat: "FSA ACR 開孔把 ｜ IS52 ACR 頭碗",
+        bleed: "no",
+        note: "跨品牌全內走線標準先驅；但中階市場已多改採同頭碗的 SMR 下方藏線版。"
+      },
+      {
+        img: "./images/stem-cervelo-st32.jpg",
+        name: "Cervélo ST31 / ST32",
+        year: "2021–2026",
+        arch: "steerer",
+        archLabel: "穿透／C 型舵管耦合",
+        mech: "C-Shaped 舵管凹槽直落＋SK-023 對開墊圈",
+        spec: "210g (100mm) ｜ -8° / -9°",
+        compat: "開孔內走線把 ｜ Cervélo C 型舵管",
+        bleed: "no",
+        note: "以 C 型舵管解決頭管過肥問題；調高低免拆管，但換龍頭長度仍須抽線。"
+      },
+      {
+        img: "./images/trek-charter-plus-adjustable-stem.jpg",
+        name: "Trek Charter+ Adjustable (W5330566)",
+        year: "2026–2027",
+        arch: "adjustable",
+        archLabel: "電輔可調＋下座藏線",
+        mech: "雙棘輪轉軸＋W5330576 下蓋＋5330578 間隙蓋",
+        spec: "11 件模組化結構 ｜ 0°–60° 可調",
+        compat: "31.8 把 ｜ 前頭管培林外獨立腔 (5347290)",
+        bleed: "yes",
+        note: "可容納 5–6 條電輔線束且俯仰調角不夾線，結合培林外走線達成全車免斷油管。"
+      },
+      {
+        img: "./images/stem-bmc-ics2-mtt.jpg",
+        name: "BMC ICS2 MTT × Redshift",
+        year: "2022–2026",
+        arch: "adjustable",
+        archLabel: "避震龍頭 × 下方藏線",
+        mech: "20mm 彈性體微避震＋ICS2 底部藏線槽",
+        spec: "~330g (80mm) ｜ 0° ｜ 5 種硬度",
+        compat: "31.8 把 ｜ BMC ICS D 型舵管",
+        bleed: "yes",
+        note: "Gravel 領域極罕見同時達成「20mm 真避震＋全隱藏下方藏線」的工程作品。"
+      }
+    ];
+
+    const dbBody = document.getElementById("db-body");
+    const dbSearch = document.getElementById("db-search");
+    const dbArch = document.getElementById("db-arch");
+    const dbBleed = document.getElementById("db-bleed");
+    const dbCount = document.getElementById("db-count");
+
+    function renderDB() {
+      const q = dbSearch.value.trim().toLowerCase();
+      const a = dbArch.value;
+      const bl = dbBleed.value;
+      const rows = STEM_DB.filter(r => {
+        if (a !== "all" && r.arch !== a) return false;
+        if (bl !== "all" && r.bleed !== bl) return false;
+        if (q) {
+          const hay = `${r.name} ${r.year} ${r.archLabel} ${r.mech} ${r.spec} ${r.compat} ${r.note}`.toLowerCase();
+          if (!hay.includes(q)) return false;
+        }
+        return true;
+      });
+      dbCount.textContent = `顯示 ${rows.length} / ${STEM_DB.length} 套`;
+      dbBody.innerHTML = rows.map(r => `
+        <tr>
+          <td>
+            <img class="mini-thumb" src="${r.img}" alt="${r.name}"
+              data-lb-src="${r.img}" data-lb-title="${r.name}（${r.year}）" data-lb-cap="${r.mech}｜${r.note}" />
+          </td>
+          <td><strong>${r.name}</strong></td>
+          <td class="mono">${r.year}</td>
+          <td><span class="pill ${r.arch === 'under' ? 'ok' : r.arch === 'through' ? 'warn' : r.arch === 'adjustable' ? 'purple' : 'info'}">${r.archLabel}</span></td>
+          <td>${r.mech}</td>
+          <td class="mono">${r.spec}</td>
+          <td>${r.compat}</td>
+          <td>${r.bleed === "yes" ? '<span style="color:var(--success);font-weight:700;">✓ 免剪免排氣</span>' : '<span style="color:var(--danger);font-weight:700;">✕ 須拆油管</span>'}</td>
+          <td style="color:var(--muted);">${r.note}</td>
+        </tr>
+      `).join("");
+    }
+    dbSearch.addEventListener("input", renderDB);
+    dbArch.addEventListener("change", renderDB);
+    dbBleed.addEventListener("change", renderDB);
+    renderDB();
+  </script>
+</body>
+</html>
