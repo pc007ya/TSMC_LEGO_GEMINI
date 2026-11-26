@@ -657,7 +657,7 @@
       </div>
       <h1>近六年自行車龍頭「內走線 vs 下方藏線」工程圖鑑與設計方案調查</h1>
       <p class="hero-lead">
-        頭碗與頭管決定線管如何「進入車架」，而<strong>龍頭（Stem）</strong>則決定線管從彎把／平把出發後這最關鍵的 80–130 mm 要如何被隱藏、固定與維護。2020–2026 年間，產業經歷了從「全穿透中空龍頭（Through-Stem）」向<strong>「下方藏線槽＋可拆蓋板／卡扣（Under-Stem Concealed）」</strong>的大規模實用主義回歸——在僅損失 <strong>0.5–1.8 W</strong> 空力表現的前提下，換來<strong>「更換龍頭免剪液壓油管、免重排氣、相容任意 31.8 mm 圓把、不削弱舵管夾持剛性」</strong>的壓倒性維修優勢；本頁並深入剖析<strong>可調／避震／電輔龍頭（8 套）</strong>，以及工程師最常思考的<strong>「穿越舵管花心上方／上方堆高 8–12 mm 架空過線層」</strong>可行性與量產實例。
+        頭碗與頭管決定線管如何「進入車架」，而<strong>龍頭（Stem）</strong>則決定線管從彎把／平把出發後這最關鍵的 80–130 mm 要如何被隱藏、固定與維護。2020–2026 年間，產業經歷了從「全穿透中空龍頭（Through-Stem）」向<strong>「下方藏線槽＋可拆蓋板／卡扣（Under-Stem Concealed）」</strong>的大規模實用主義回歸——在僅損失 <strong>0.5–1.8 W</strong> 空力表現的前提下，換來<strong>「更換龍頭免剪液壓油管、免重排氣、相容任意 31.8 mm 圓把、不削弱舵管夾持剛性」</strong>的壓倒性維修優勢；本頁並針對<strong>可調角度／避震／電輔龍頭（8 套）</strong>，以及<strong>「高把位可調電輔車：花心上方堆高 +8–12 mm 架空過線層 × 穿過花心／中空螺栓直落前叉底孔」</strong>進行同類量產方案對標與 DFM 深度拆解。
       </p>
 
       <div class="kpi-grid">
@@ -677,9 +677,9 @@
           <div class="kpi-sub">45 km/h 下方藏線與全內穿透差值微乎其微，卻省下每次 Fit 調長度 60–90 分鐘拆剪油管工時</div>
         </div>
         <div class="kpi">
-          <div class="kpi-label">專題深研（可調 × 跨花心上方）</div>
-          <div class="kpi-val">8 套可調 ＋ 4 套頂穿</div>
-          <div class="kpi-sub">涵蓋 Charter+、Orbea、Ergotec、CUBE、Canyon PACE 與 Giant Gen 2 / Allied / Satori RANA 頂穿剖析</div>
+          <div class="kpi-label">電輔可調 × 花心上方穿舵管</div>
+          <div class="kpi-val">8 套可調 ＋ 4 套穿舵管</div>
+          <div class="kpi-sub">涵蓋 Satori UP3e (0°–90° SICR)、RANA 缺口花心、Ergotec Cobia Fi+ 與中空 M10 / 專利螺栓方案</div>
         </div>
       </div>
     </section>
@@ -780,7 +780,7 @@
           <button type="button" class="tab-btn" data-mode="through" data-active="false">2. 穿透本體全內（Through-Stem）</button>
           <button type="button" class="tab-btn" data-mode="split" data-active="false">3. 可拆上蓋／磁吸橋接（Syncros / Switch）</button>
           <button type="button" class="tab-btn" data-mode="charter" data-active="false">4. 電輔雙棘輪可調（Trek Charter+ CAD）</button>
-          <button type="button" class="tab-btn" data-mode="overtop" data-active="false">5. 跨花心上方堆高層（+8–12mm 剖析）</button>
+          <button type="button" class="tab-btn" data-mode="overtop" data-active="false">5. 高把位可調電輔｜花心上方 +8–12mm 穿舵管</button>
         </div>
       </div>
 
@@ -1378,120 +1378,144 @@
       </div>
     </section>
 
-    <!-- SECTION 6: OVER-STEERER & THROUGH-STEERER DEEP DIVE -->
+    <!-- SECTION 6: ADJUSTABLE HIGH-STACK E-BIKE OVER-STEERER / THROUGH-STEERER DEEP DIVE -->
     <section class="panel" id="over-steerer">
       <div class="section-head">
         <div>
-          <h2>六、專題深研：穿越「舵管花心上方」走線 ＆「上方堆高 8–12 mm」可行性剖析</h2>
-          <p>機構設計最常浮現的直覺問題：<strong>「如果把花心（Star Nut／膨脹塞）上方刻意堆高 8–12 mm 做成架空過線層，讓線管直接跨過舵管頂端，行不行？為何 95% 現代公路車不用，但少數實品卻做得到？」</strong></p>
+          <h2>六、專題深研：高把位可調電輔車「花心上方堆高 +8–12 mm × 穿花心／中空螺栓直落前叉底孔」同類方案與 DFM 設計指南</h2>
+          <p>專為<strong>金屬舵管（Ø28.6 mm）× 角度可調高把位電輔／都會通勤車</strong>打造的架構對標：比對全球市售與專利中「將線管架高跨過舵管頂端、穿過特規花心或中空螺栓直出前叉肩蓋底孔」的實戰硬體與機構防雷清單。</p>
         </div>
-        <button type="button" class="tab-btn" onclick="document.querySelector('#explorer-tabs [data-mode=overtop]').click(); document.getElementById('explorer').scrollIntoView({behavior:'smooth'});">↗ 切換上方互動剖面至「跨花心上方」</button>
+        <button type="button" class="tab-btn" onclick="document.querySelector('#explorer-tabs [data-mode=overtop]').click(); document.getElementById('explorer').scrollIntoView({behavior:'smooth'});">↗ 查看本方案專屬 SVG 剖面圖</button>
       </div>
 
-      <!-- 4 Real Production Hardware Examples -->
+      <!-- 4 Directly Relevant E-Bike / Urban / Through-Steerer Benchmarks -->
       <div class="grid-4" style="margin-bottom:20px;">
         <article class="compare-card highlight">
-          <div class="media-box" data-lb-src="./images/stem-giant-propel-gen2-overtop.jpg" data-lb-title="Giant Contact SLR Aero OD2 Stem（2018–2022 Propel Gen 2｜最經典「花心上方堆高蓋板」量產案）" data-lb-cap="圖中清楚可見分離的頂部整流過線蓋板（Top Cover）：線管走龍頭上方凹槽直接「跨過花心頂蓋正上方」，再經後方導罩從舵管後方下潛進入車架。2023 Propel Gen 3 已改回下方藏線並減重 102.5 g。">
-            <img src="./images/stem-giant-propel-gen2-overtop.jpg" alt="Giant Contact SLR Aero OD2 龍頭與跨花心上方蓋板實品照" />
+          <div class="media-box" data-lb-src="./images/stem-satori-up3e-sicr.jpg" data-lb-title="Satori UP3e（0°–+90° 角度可調 × SICR 花心上方架空穿舵管 × 缺口特規花心）" data-lb-cap="最直接命中的量產對標！台灣信隆 Satori UP3e 採 3D 鍛造 AL 0°–+90° 可調設計：總下座長 70 mm、舵管插入深 41 mm（在花心上方留出 29 mm 架空＋轉軸過線空間）；右圖官方剖面顯示 3 條線管繞過中央 M6 預壓螺絲，經「缺口星型花心（Special Starnut）」直落前叉舵管內部！">
+            <img src="./images/stem-satori-up3e-sicr.jpg" alt="Satori UP3e 0至90度可調SICR穿舵管龍頭與缺口花心官方圖" />
             <span class="zoom-hint">點擊放大</span>
           </div>
           <div class="compare-body">
-            <span class="pill warn">流派 A｜花心上方堆高→舵管後方下潛</span>
-            <h3>Giant Contact SLR Aero（Gen 2）</h3>
-            <p><strong>最貼近「花心上方堆高」構想的實品：</strong>以獨立頂蓋在舵管上方架出過線層，讓油管直接跨過膨脹花心頂端、再從<strong>舵管後方</strong>垂直落進頭管。後因重量（+102.5 g）、上方不可留墊圈與維修複雜度，於 2023 Gen 3 改回下方藏線。</p>
+            <span class="pill ok">最精準量產對標｜0°–+90° 可調穿舵管</span>
+            <h3>Satori UP3e（SICR ＋ 缺口花心）</h3>
+            <p><strong>幾乎就是你要的量產原型：</strong>3D 鍛造 <strong>0° 至 +90° 可調</strong>，下座總長 <code>70 mm</code>（舵管夾持深 <code>41 mm</code>），在舵管頂端上方自然形成寬敞過線腔；搭配<strong>缺口星型花心（保留標準 M6 螺絲＋外緣開大缺口）</strong>，官方剖面可一次穿過 1–3 條線直落前叉！</p>
             <div class="spec-list">
-              <div class="spec-row"><span>過線方式</span><span>龍頭頂槽跨花心→舵管後方</span></div>
-              <div class="spec-row"><span>上方預留墊圈</span><span style="color:var(--danger)">✕ 0 mm（必須切齊舵管）</span></div>
+              <div class="spec-row"><span>角度 / 延伸</span><span class="mono">0° 至 +90° ｜ 65 / 90 / 110 mm</span></div>
+              <div class="spec-row"><span>過線硬體</span><span>標準 M6 螺絲＋缺口 Special Starnut</span></div>
+              <div class="spec-row"><span>整合選配</span><span>Kiox 300 / Intuvia 100 / SP Connect</span></div>
             </div>
           </div>
         </article>
 
         <article class="compare-card highlight">
-          <div class="media-box" data-lb-src="./images/stem-allied-echo-topplate.jpg" data-lb-title="Allied Cycle Works Echo / ST03 Stem（移除頂端花心預壓、雙油管跨頂直入標準圓舵管）" data-lb-cap="Allied Echo 直接取消傳統頂蓋＋花心預壓機制，改在龍頭下方用底部預壓環／側向迫緊鎖定頭碗，將舵管頂端完全騰空；上方僅覆蓋一片整合蓋板，讓雙油管跨過舵管口直落標準 1-1/8&quot; 圓舵管內，且換龍頭免剪油管。">
-            <img src="./images/stem-allied-echo-topplate.jpg" alt="Allied Echo 整合頂蓋穿舵管龍頭單品實拍" />
+          <div class="media-box" data-lb-src="./images/stem-satori-rana-diagram.jpg" data-lb-title="Satori RANA 官方雙分流圖（黃線 SICR：前煞跨頂穿缺口花心直落前叉 ／ 綠線 AICR：後煞與電控走下槽）" data-lb-cap="Satori 官方走線示意圖：+20° 高把位都會電輔龍頭將線束「前後分流」——黃線（前煞車油管）經頂部可拆蓋板跨過舵管頂端、穿過缺口星型花心直出前叉底孔；綠線（後煞／變速／馬達電線）則走底部通道入 Acros AZX-727 頭碗，零舵管側開孔風險。">
+            <img src="./images/stem-satori-rana-diagram.jpg" alt="Satori RANA 黃線SICR穿花心與綠線AICR下槽分流官方示意圖" />
             <span class="zoom-hint">點擊放大</span>
           </div>
           <div class="compare-body">
-            <span class="pill purple">流派 B｜取消上方花心→直入圓舵管</span>
-            <h3>Allied Echo / ST03 Stem</h3>
-            <p><strong>徹底繞開預壓衝突的硬核解：</strong>把頭碗預壓機構移到<strong>龍頭底端</strong>，頂端直接騰空讓雙液壓油管跨進標準 1-1/8" 圓舵管正中央；上方僅鎖一片可拆頂蓋（新版 ST03 並靠襯套可調 0° / -8°），同時達成<strong>免剪油管換龍頭</strong>。</p>
+            <span class="pill purple">最佳前後分流範本｜黃線穿花心×綠線下槽</span>
+            <h3>Satori RANA（前煞穿花心＋下槽分流）</h3>
+            <p><strong>黃金分流拓樸：</strong>+20° 高把位配置，掀開頂部特規上蓋即可維護<strong>黃線（前煞油管穿缺口花心直出前叉底孔）</strong>，同時讓<strong>綠線（後煞／變速／馬達線）走下槽進頭碗</strong>，徹底避開在舵管側壁開孔的結構弱點。</p>
             <div class="spec-list">
-              <div class="spec-row"><span>預壓機構</span><span>底部螺環／特規迫緊（免頂花心）</span></div>
-              <div class="spec-row"><span>換龍頭免斷油管</span><span style="color:var(--success)">✓ 掀頂蓋即可抽出龍頭</span></div>
+              <div class="spec-row"><span>前煞路徑</span><span>可拆上蓋→缺口花心→前叉底孔</span></div>
+              <div class="spec-row"><span>後線路徑</span><span>龍頭下槽→Acros AZX-727 ICR</span></div>
+              <div class="spec-row"><span>預壓維護</span><span style="color:var(--success)">✓ 掀頂蓋直調 M6，免拆油管</span></div>
             </div>
           </div>
         </article>
 
         <article class="compare-card">
-          <div class="media-box" data-lb-src="./images/stem-satori-rana-steerer.jpg" data-lb-title="Satori RANA（AICR 下槽 ＋ 前煞跨頂蓋直穿避震前叉舵管中心）" data-lb-cap="台灣信隆 Satori RANA 龍頭：針對上下開口之避震前叉，設計可拆式上蓋（Removable Top Cap），讓前煞車油管跨過舵管頂端、垂直穿過中空舵管由前叉底孔直出接前卡鉗，後煞與變速線則走底部 AICR 進頭碗。">
-            <img src="./images/stem-satori-rana-steerer.jpg" alt="Satori RANA 可拆上蓋穿舵管前煞龍頭單品照" />
+          <div class="media-box" data-lb-src="./images/stem-aheadset-hollow-starnut.jpg" data-lb-title="中空預壓螺栓路線：Aheadset TF3 / Reverse Barspin（M10 中空螺絲）vs 專利 US7591474B1（偏心六角大口徑環狀螺栓）" data-lb-cap="將預壓螺栓直接改為中空通道的兩大機構路線：市售 Aheadset TF3 / Salt M10 採 M10 中空螺栓＋中空花心（內徑 Ø5.2 mm，限單條前煞油管）；美國專利 US7591474B1 則於金屬舵管內壁攻牙，旋入「大口徑環狀中空預壓螺栓＋偏心六角工具孔」，兼顧大過線量與工具不干涉。">
+            <img src="./images/stem-aheadset-hollow-starnut.jpg" alt="Aheadset TF3 中空 M10 預壓螺栓與中空花心單品照" />
             <span class="zoom-hint">點擊放大</span>
           </div>
           <div class="compare-body">
-            <span class="pill ok">流派 B2｜電輔／避震前叉分流最佳解</span>
-            <h3>Satori RANA（前煞穿舵管）</h3>
-            <p><strong>聰明的「前後分流」策略：</strong>僅讓<strong>前煞車油管</strong>掀開頂蓋跨進舵管中心、一路從前叉肩蓋底孔直出（不在舵管側壁開孔，零結構風險！）；後煞與電控線則走下方 AICR 槽進頭碗，視覺 100% 乾淨。</p>
+            <span class="pill info">中空螺栓路線｜M10 標準件 vs US7591474B1</span>
+            <h3>中空 M10 螺栓 ＆ 偏心環狀螺栓專利</h3>
+            <p><strong>穿螺栓中心實作：</strong>市售 <code>Aheadset TF3 / Salt M10</code> 以 M10 中空螺絲＋中空花心過單條 Ø5 mm 前煞管；若想同時過<strong>前煞＋前燈電源線</strong>，可參考 <strong>US7591474B1</strong> 專利思路——大口徑內牙環狀中空螺栓搭配<strong>偏心內六角孔</strong>，預壓與大口徑過線互不擋道。</p>
             <div class="spec-list">
-              <div class="spec-row"><span>穿舵管對象</span><span>僅前煞油管（前叉底孔直出）</span></div>
-              <div class="spec-row"><span>安全優勢</span><span style="color:var(--success)">✓ 舵管側壁免開孔、零斷管風險</span></div>
+              <div class="spec-row"><span>M10 中空內徑</span><span class="mono">Ø5.2 mm（極限 1 條油管）</span></div>
+              <div class="spec-row"><span>US7591474B1</span><span>偏心六角＋大口徑過線（2009 授權）</span></div>
+              <div class="spec-row"><span>轉把干涉</span><span style="color:var(--success)">✓ 軸心正中央、360° 零纏線</span></div>
             </div>
           </div>
         </article>
 
         <article class="compare-card">
-          <div class="media-box" data-lb-src="./images/stem-aheadset-hollow-starnut.jpg" data-lb-title="Aheadset TF3 / Dia-Compe 中空花心與中空預壓螺絲套件（BMX / Dirt Jump 標準）" data-lb-cap="將無牙預壓螺絲加大為 M10 中空螺栓，搭配中心開 Ø5–6 mm 通孔的中空花心（Hollow Star Nut），讓前煞車油管直接貫穿花心正中央下潛至前叉底孔，達成 360° Barspin 轉把完全不纏線。">
-            <img src="./images/stem-aheadset-hollow-starnut.jpg" alt="Aheadset TF3 中空預壓螺絲與中空花心單品照" />
+          <div class="media-box" data-lb-src="./images/stem-ergotec-cobia-vario-fi.jpg" data-lb-title="Ergotec COBIA VARIO Fi+（0°–+60° 高把位可調 × 40–140 mm 有效升幅 × 頂部飾蓋對照組）" data-lb-cap="德系高把位電輔可調龍頭對照組（Safety Level 5、AL6061-T6 金屬舵管專用）：提供 0°–+60° 調角與高達 140 mm 有效把高，頂部採雙快拆飾蓋完整遮蔽花心預壓螺絲，線束改由樞軸下方進前側單螺絲護罩入 Acros / Token 頭碗。">
+            <img src="./images/stem-ergotec-cobia-vario-fi.jpg" alt="Ergotec COBIA VARIO Fi+ 0至60度高把位可調電輔龍頭單品照" />
             <span class="zoom-hint">點擊放大</span>
           </div>
           <div class="compare-body">
-            <span class="pill info">流派 C｜中空 M10 螺絲＋中空花心</span>
-            <h3>Aheadset TF3 / 中空花心組</h3>
-            <p><strong>最直觀的貫穿花心硬體：</strong>將預壓螺絲擴徑為 <strong>M10 中空螺栓</strong>並搭配中心開孔花心（通孔 Ø5 mm），直接把前煞車油管從龍頭頂端穿入舵管中軸線，廣泛用於 BMX 與土坡車 360° 轉把不纏線。</p>
+            <span class="pill warn">高把位可調對照組｜全線走前側導罩</span>
+            <h3>Ergotec COBIA VARIO Fi+</h3>
+            <p><strong>同級對照參考：</strong>專攻高把位電輔車（0°–+60°、有效高度 <strong>40–140 mm</strong>、Safety Level 5），同樣在花心上方做快拆飾蓋遮蔽預壓螺絲，但線束全數走下座前側單螺絲導罩入頭碗——方便你在<strong>「前煞穿舵管」vs「全線前側導罩」</strong>間評估裝配工時與前叉相容性。</p>
             <div class="spec-list">
-              <div class="spec-row"><span>核心機構</span><span>M10 中空預壓螺絲＋中空花心</span></div>
-              <div class="spec-row"><span>適用舵管</span><span>鋼／厚鋁舵管（碳纖不適用花心）</span></div>
+              <div class="spec-row"><span>角度 / 有效高度</span><span class="mono">0°–+60° ｜ 40–140 mm</span></div>
+              <div class="spec-row"><span>夾持高度 / 強度</span><span class="mono">38 mm ｜ Safety Level 5</span></div>
+              <div class="spec-row"><span>頭碗相容</span><span>Acros / Token ICR 頭碗</span></div>
             </div>
           </div>
         </article>
       </div>
 
-      <!-- Engineering Analysis: Why not just raise a +8-12mm bridge above the star nut? -->
+      <!-- Focused Engineering Comparison & DFM Guide (Zero Road / Zero Carbon) -->
       <div class="grid-2">
         <div class="explorer-info">
-          <span class="pill err">核心工程詰問｜反面限制</span>
-          <h3>如果刻意在「花心上方堆高 8–12 mm」做架空過線層，會卡在哪些真實瓶頸？</h3>
-          <ul>
-            <li><strong>1. 上方零墊圈的「切管死穴」（最致命的售後痛點）：</strong>現代碳纖舵管多要求龍頭上方保留 2–5 mm 墊圈保護上夾栓，且新車常預留 15–20 mm 供車主微調。一旦線管跨在花心正上方，<strong>舵管只要凸出龍頭頂面 1 mm 就會直接頂死過線橋</strong>——想調低把位就必須現場鋸舵管。</li>
-            <li><strong>2. 跨過花心「出口要去哪裡？」（幾何死胡同）：</strong>
-              <br/>• <em>往舵管後方下潛（Propel Gen 2 / Felt AR）</em>：撞上頭管／上管最高應力交會區，且轉把 ±45° 時線管極易在「舵管後壁」與「頭管後壁」間被剪刀式夾扁。
-              <br/>• <em>往舵管中心直穿</em>：前煞直落前叉底孔很安全，但<strong>後煞若進舵管就必須在舵管中段側壁開窗孔</strong>進下管——在彎矩最大處開孔會讓舵管疲勞強度崩跌！
-              <br/>• <em>跨過去再繞回舵管前方</em>：平白多繞半圈與 2 個急彎，不如一開始直接走龍頭下方。</li>
-            <li><strong>3. 駝峰 S 型雙急彎（R<sub>min</sub> 惡化）：</strong>線管從 Ø31.8 把出來後必須先「爬升」跨過花心、再急折 90° 下墜，在短短 40 mm 內形成兩道急彎；反觀下方藏線是一條順勢下垂的單一平滑大弧（R ≥ 28–35 mm）。</li>
-            <li><strong>4. 堆高與重量懲罰（公路車吃虧）：</strong>多一層 8–12 mm 架空艙＋頂蓋，讓龍頭總厚由 40 mm 膨脹至 48–54 mm，犧牲低趴把位且多出 60–100 g（Propel Gen 2 改 Gen 3 下方藏線直接輕 102.5 g）。</li>
-            <li><strong>5. 預壓維護干擾：</strong>若仍保留傳統頂部花心螺絲，每次調頭碗間隙都得掀蓋撥開油管；若像 Allied 改做底部預壓，又會增加特規零件與裝配門檻。</li>
-          </ul>
+          <span class="pill info">花心與預壓機構選型｜3 種過線硬體對決</span>
+          <h3>穿過花心直落前叉底孔：3 種預壓結構怎麼選？</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>結構方案</th>
+                  <th>預壓機構</th>
+                  <th>可過線束容量</th>
+                  <th>工具／維修性</th>
+                  <th>製造成本</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>A. 缺口星型花心</strong><br/><span style="color:var(--muted);font-size:11px;">Satori UP3e / RANA</span></td>
+                  <td>標準 M6 螺絲<br/>（中央實心鎖固）</td>
+                  <td><strong style="color:var(--success)">1–3 條</strong>（前煞 Ø5 ＋ 燈線 Ø3 輕鬆過）</td>
+                  <td><strong style="color:var(--success)">極佳</strong>（標準 4/5mm 內六角，不擋工具）</td>
+                  <td><strong style="color:var(--success)">最低</strong>（僅花心沖壓開缺口）</td>
+                </tr>
+                <tr>
+                  <td><strong>B. 中空 M10 預壓螺栓</strong><br/><span style="color:var(--muted);font-size:11px;">Aheadset TF3 / Salt</span></td>
+                  <td>M10 中空螺栓<br/>＋中空花心</td>
+                  <td><span style="color:var(--warning)">僅 1 條 Ø5 mm</span>（內孔 Ø5.2 mm 緊配）</td>
+                  <td>中等（須外六角套筒或特規中空工具，橄欖頭無法穿過）</td>
+                  <td>低（標準市售改裝件可得）</td>
+                </tr>
+                <tr>
+                  <td><strong>C. 大口徑偏心環狀螺栓</strong><br/><span style="color:var(--muted);font-size:11px;">US7591474B1 思路</span></td>
+                  <td>舵管內壁攻牙<br/>＋偏心內六角孔</td>
+                  <td><strong style="color:var(--success)">2 條以上</strong>（超大偏心過線截面積）</td>
+                  <td>佳（偏心六角不干涉油管）</td>
+                  <td><span style="color:var(--danger)">高</span>（前叉金屬舵管須內攻牙加工）</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="callout ok" style="margin-top:6px;">
+            <strong>首選建議（針對你的 +8–12 mm 高把位可調方案）：</strong>優先選 <strong>方案 A（缺口星型花心＋標準 M6 螺絲）</strong>！不只 BOM 成本比中空螺栓低、M6 預壓鎖力與手感最穩定，而且<strong>油管壓接頭／快拆接頭更容易通過大缺口</strong>，同時塞入「前煞油管 Ø5 mm ＋ 前燈電源線 Ø2.8 mm」也游刃有餘。
+          </div>
         </div>
 
         <div class="explorer-info">
-          <span class="pill ok">正向設計突破口｜你的構想何時反而超強？</span>
-          <h3>這 2 種車型「花心上方堆高 10 mm」反而能化缺點為優勢！</h3>
-          <div class="callout ok">
-            <strong>突破口 1｜高把位電輔車／都會通勤車 ×「前煞穿中空花心＋後線走下槽/前腔」</strong><br/>
-            電輔與都會車本來就需要高把位（Stack 越高越舒適），而且多採<strong>金屬鋁舵管（無碳纖上墊圈壓裂顧慮）</strong>，在花心上方多堆高 10 mm 幾乎沒有任何空力或姿勢懲罰！
-            <br/>若把該 +10 mm 頂部架空艙做成<strong>快拆電子整合艙</strong>：
-            <ul style="margin-top:6px;">
-              <li><strong>前煞油管</strong>跨上頂艙→穿過中空花心／中空螺栓直落前叉底孔（零舵管側開孔、零前叉外露油管，比照 Satori RANA）。</li>
-              <li><strong>後煞＋變速＋馬達線</strong>維持走龍頭下槽→進前頭管獨立腔（如 Trek Charter+ <code>5347290</code>），避開舵管後方夾線與側壁開孔。</li>
-              <li><strong>順便吃掉 +10 mm 空間</strong>：直接內嵌 <strong>USB-C 供電板、Bosch/Shimano 顯示座或頭燈分線盒</strong>，把「被迫堆高」轉化為最高整合度的電輔座艙！</li>
-            </ul>
-          </div>
-          <div class="callout">
-            <strong>突破口 2｜車廠閉環系統「取消頂部花心」改底部／側向預壓（Allied / Canyon 思路）</strong><br/>
-            如果車廠同時掌控前叉、頭碗與龍頭規格，可將頭碗預壓下移至龍頭底端（Allied Echo）或採雙節豎管（Canyon 思路），讓花心不再佔據舵管頂面；此時頂部僅需 6–8 mm 單片快拆蓋板即可涵蓋走線與免剪油管換龍頭，但前提是<strong>僅限單一品牌封閉平台</strong>，無法通吃市售改裝龍頭。
-          </div>
-          <div class="callout warn">
-            <strong>一句話工程總結：</strong>公路車因「低把位＋碳纖切管容錯＋輕量化」全面否決花心上方走線；但在<strong>金屬舵管電輔／都會車</strong>領域，<strong>「花心上方 +10 mm 電子／前煞整合艙 × 下方主線束進培林外前腔」</strong>其實是一條尚未被徹底做滿的高潛力創新路線！
-          </div>
+          <span class="pill warn">高把位可調電輔 DFM 防雷清單（6 大關鍵尺寸）</span>
+          <h3>花心上方堆高 +8–12 mm 架空過線層：設計必檢 6 件事</h3>
+          <ul>
+            <li><strong>1. +8–12 mm 淨高與進線傾角核算：</strong>Ø5.0 mm 液壓油管建議最小彎曲半徑 R<sub>min</sub> ≥ 18–22 mm。若花心上方淨高抓 <strong>8–12 mm</strong>，可調上臂內孔出口<strong>不可水平 90° 硬折</strong>，應讓油管從上臂下緣以 <strong>30°–45° 斜角</strong>滑入架空層再順弧進缺口花心（參考 Satori <code>UP3e</code> 留足弧度空間）。</li>
+            <li><strong>2. 可調樞軸相對於舵管的偏置幾何：</strong>樞軸中心建議設於<strong>舵管軸線後方或上方</strong>（避免 0° 下壓時樞軸齒塊擠壓過線腔），並驗證 <code>0° → +60°</code>（或 <code>+90°</code>）全行程中，油管在架空層內有 <strong>10–18 mm 滑移餘長</strong>不被拉扯或夾扁。</li>
+            <li><strong>3. 金屬舵管口防磨喇叭口襯套（Bell-mouth Grommet）：</strong>鋁／鋼舵管切口與花心金屬爪極銳利，<strong>務必在舵管上口壓入一顆尼龍／TPU 弧面護套</strong>，並於缺口花心邊緣做倒角或包膠，防止長期震動割破油管外皮。</li>
+            <li><strong>4. 堅持「前煞＋前燈穿舵管、後線走下槽／前腔」分流：</strong>前煞油管與前叉燈線從<strong>前叉肩蓋底孔</strong>直出最乾淨安全；後煞、變速與馬達顯示線切勿在舵管側壁開孔穿出，應分流至龍頭下槽進頭碗或前頭管獨立腔（參考 Satori RANA 與 Trek Charter+）。</li>
+            <li><strong>5. 快拆頂蓋 × 調預壓免拆油管：</strong>架空層頂蓋採單／雙螺絲快拆或滑扣設計，掀蓋後中央 M6 預壓螺絲直接外露（線管走缺口花心兩側不遮住螺絲頭），車店微調頭碗間隙 30 秒搞定、完全不碰油管。</li>
+            <li><strong>6. 前叉底孔出口與避震行程／擋泥板校核：</strong>確認前叉下肩蓋（Fork Crown）底孔與前擋泥板／前燈 M6 鎖點不干涉；若配避震前叉（60–100 mm 行程），前煞油管穿出底孔後須預留適當 S 弧餘長，確保壓到底不拉扯卡鉗接頭、且不磨前胎。</li>
+          </ul>
         </div>
       </div>
     </section>
@@ -1586,19 +1610,19 @@
       <div class="section-head">
         <div>
           <h2>九、2020–2026 龍頭內走線／下方藏線全方案工程資料庫（可篩選搜尋）</h2>
-          <p>共收錄 26 套代表性龍頭方案（含 8 套可調／避震／電輔 ＋ 4 套跨花心上方／穿舵管方案），支援依架構類型、免斷油管能力或關鍵字即時篩選，點擊縮圖可放大原圖。</p>
+          <p>共收錄 26 套代表性龍頭方案（含 8 套可調／避震／電輔 ＋ 4 套高把位花心上方穿舵管方案），支援依架構類型、免斷油管能力或關鍵字即時篩選，點擊縮圖可放大原圖。</p>
         </div>
       </div>
 
       <div class="filter-bar">
-        <input type="text" id="db-search" class="input" placeholder="搜尋品牌、型號、規格（如 Trek、Orbea、Allied、Giant、Satori、花心）..." />
+        <input type="text" id="db-search" class="input" placeholder="搜尋品牌、型號、規格（如 Trek、Orbea、Satori、UP3e、Ergotec、中空花心）..." />
         <select id="db-arch" class="select">
           <option value="all">全部走線架構</option>
           <option value="under">下方藏線（Under-Stem）</option>
           <option value="through">穿透本體（Through-Stem）</option>
           <option value="steerer">異形舵管耦合（C/D/Delta）</option>
           <option value="adjustable">可調／避震／電輔（Adjustable/E-Bike）</option>
-          <option value="over">跨花心上方／穿舵管中心（Over/Through-Steerer）</option>
+          <option value="over">電輔高把位／穿花心直落前叉（Through-Steerer）</option>
         </select>
         <select id="db-bleed" class="select">
           <option value="all">換龍頭免斷油管：全部</option>
@@ -1907,59 +1931,73 @@
         </svg>`
       },
       overtop: {
-        title: "架構 5｜花心上方堆高 +8–12 mm 過線層（Over-Steerer / Through-Steerer）",
-        badge: { cls: "err", text: "公路車多已撤退｜高把位電輔車具創新潛力" },
-        lead: "刻意在標準圓舵管與花心／膨脹塞上方架高 8–12 mm 過線艙，讓油管跨過舵管頂端；跨過後有兩條分岔出口：路徑 A 往舵管後方下潛（Giant Propel Gen 2），路徑 B 穿過中空花心直落前叉中心（Satori RANA / Aheadset TF3）。",
+        title: "架構 5｜高把位可調電輔龍頭：花心上方 +8–12 mm 過線層 × 穿花心直落前叉底孔",
+        badge: { cls: "ok", text: "金屬舵管電輔／都會通勤專用｜前煞零外露" },
+        lead: "專為 0°–60°/90° 可調高把位電輔車設計：在 Ø28.6 mm 金屬舵管頂端上方堆高 8–12 mm 架空過線層，讓前煞油管（與前燈電源線）以 30°–45° 斜角順弧穿過「缺口星型花心（M6 螺絲）」或「中空 M10／偏心環狀螺栓」直落前叉底孔；後煞與馬達線束則分流走下座槽進頭碗／前腔。",
         bullets: [
-          "<strong>切管死穴（上方 0 mm 墊圈）：</strong>舵管頂端只要高出龍頭 1 mm 就會頂死上方過線艙，無法留 5–10 mm 預留墊圈給車主微調高度。",
-          "<strong>路徑 A 瓶頸（往舵管後方下潛）：</strong>撞上頭管／上管最高應力區，且轉把 ±45° 易在舵管後壁與頭管間夾扁油管，還須走駝峰 S 型急彎。",
-          "<strong>路徑 B 限制（穿舵管中心）：</strong>僅<strong>前煞油管</strong>從前叉底孔直出才安全；若後煞也進舵管再從側壁開孔出線，會嚴重削弱舵管抗疲勞強度。",
-          "<strong>電輔車翻盤點：</strong>金屬舵管高把位電輔車不怕 +10 mm 堆高——若頂艙專做「前煞穿中空花心＋USB-C/螢幕整合」，主線束維持走下槽，反而能化缺點為優勢！"
+          "<strong>花心硬體首選「缺口星型花心（如 Satori UP3e / RANA）」：</strong>保留標準 M6 預壓螺絲與一般六角工具，外緣開大缺口一次容納前煞 Ø5 mm＋前燈線 Ø2.8 mm，掀開快拆上蓋即可微調預壓不拆油管。",
+          "<strong>中空螺栓替代方案：</strong>Aheadset TF3（M10 中空螺絲，限 1 條 Ø5 mm 油管）或 US7591474B1（內牙大口徑環狀中空螺栓＋偏心六角孔），適合追求 360° 零偏心轉向。",
+          "<strong>+8–12 mm 進線角度關鍵：</strong>油管自可調上臂內緣以 30°–45° 斜入架空層（非 90° 硬折），並於金屬舵管上口壓入 <strong>TPU／尼龍防磨喇叭口護套</strong>，防止震動割破油管。",
+          "<strong>前後分流零結構弱點：</strong>僅前煞與前燈直落前叉肩蓋底孔（避開擋泥板螺絲），後煞／變速／馬達線改走龍頭下槽進頭碗或前頭管獨立腔，完全不在舵管側壁開孔。"
         ],
-        note: "代表實品：Giant Contact SLR Aero OD2 (Gen 2，已於 2023 改回下方藏線)、Allied Echo / ST03（改底部預壓騰空頂端）、Satori RANA（前煞穿舵管）、Aheadset TF3 中空花心組。",
+        note: "同類量產對標：Satori UP3e（0°–+90° SICR＋缺口花心，下座 70mm / 插入 41mm）、Satori RANA（黃線穿花心＋綠線 AICR 分流）、Aheadset TF3 / US7591474B1 中空螺栓、Ergotec COBIA VARIO Fi+（高把位可調對照）。",
         svg: `
         <svg viewBox="0 0 680 340" xmlns="http://www.w3.org/2000/svg">
           <rect width="680" height="340" rx="10" fill="#0d1420"/>
-          <g stroke="#1e293b" stroke-width="1"><line x1="0" y1="296" x2="680" y2="296"/></g>
-          <!-- Headtube (Left=Rear toward Top Tube, Right=Front) -->
-          <path d="M126 196 L252 196 L262 320 L118 320 Z" fill="#172033" stroke="#475569" stroke-width="1.6"/>
-          <!-- Top Tube connecting to REAR (Left) -->
-          <path d="M16 206 L130 206 L124 252 L16 252 Z" fill="#172033" stroke="#475569" stroke-width="1.5"/>
-          <text x="64" y="233" fill="#94a3b8" font-size="10.5" text-anchor="middle">上管（後方）</text>
-          <!-- Steerer Tube (Cut flush — ZERO spacers above!) -->
-          <rect x="172" y="102" width="44" height="218" rx="3" fill="#273449" stroke="#94a3b8" stroke-width="1.6"/>
+          <g stroke="#1e293b" stroke-width="1"><line x1="0" y1="302" x2="680" y2="302"/></g>
+          <!-- Headtube + Front Cable Cavity / ICR Cup -->
+          <path d="M124 210 L256 210 L268 302 L114 302 Z" fill="#172033" stroke="#475569" stroke-width="1.6"/>
+          <!-- Fork Crown & Bottom Exit Hole -->
+          <path d="M132 302 L220 302 L226 322 L126 322 Z" fill="#273449" stroke="#64748b" stroke-width="1.5"/>
+          <rect x="164" y="302" width="24" height="22" fill="#0d1420"/>
+          <text x="176" y="335" fill="#34d399" font-size="10.2" text-anchor="middle" font-weight="800">前叉肩蓋底孔直出（避開擋泥板鎖孔）</text>
+          <!-- Metal Steerer Tube (Ø28.6mm Alloy/Steel) -->
+          <rect x="156" y="138" width="40" height="168" rx="2" fill="#273449" stroke="#94a3b8" stroke-width="1.6"/>
           <!-- Upper Bearings -->
-          <rect x="148" y="200" width="22" height="18" rx="2" fill="#475569" stroke="#cbd5e1"/>
-          <rect x="218" y="200" width="22" height="18" rx="2" fill="#475569" stroke="#cbd5e1"/>
-          <!-- Star Nut / Hollow Expander inside Steerer -->
-          <rect x="176" y="122" width="36" height="22" rx="2" fill="#fbbf24" fill-opacity="0.28" stroke="#fbbf24" stroke-width="1.5"/>
-          <line x1="194" y1="100" x2="194" y2="146" stroke="#fbbf24" stroke-width="2" stroke-dasharray="3 2"/>
-          <text x="275" y="138" fill="#fbbf24" font-size="10.5" font-weight="700">花心 / 膨脹塞（或中空 M10 螺絲）</text>
-          <!-- Main Stem Body clamping steerer -->
-          <path d="M158 102 L486 102 L486 154 L230 154 L230 184 L158 184 Z" fill="#1e293b" stroke="#94a3b8" stroke-width="1.8"/>
-          <text x="355" y="133" fill="#e2e8f0" font-size="11.5" text-anchor="middle" font-weight="700">主龍頭本體（舵管必須切齊頂面！）</text>
-          <!-- Handlebar -->
-          <circle cx="514" cy="128" r="30" fill="#1e293b" stroke="#cbd5e1" stroke-width="2"/>
-          <text x="514" y="132" fill="#e2e8f0" font-size="11" text-anchor="middle" font-weight="700">Ø31.8 把</text>
-          <!-- RAISED +8-12mm TOP BRIDGE / HOOD ABOVE STAR NUT! -->
-          <path d="M126 56 L476 56 L476 102 L158 102 L158 196 L126 196 Z" fill="#f97316" fill-opacity="0.18" stroke="#fb923c" stroke-width="1.8" stroke-dasharray="5 3"/>
-          <!-- Dimension bracket for +8-12mm stack -->
-          <line x1="112" y1="56" x2="112" y2="102" stroke="#fb923c" stroke-width="1.6"/>
-          <line x1="106" y1="56" x2="118" y2="56" stroke="#fb923c" stroke-width="1.6"/>
-          <line x1="106" y1="102" x2="118" y2="102" stroke="#fb923c" stroke-width="1.6"/>
-          <text x="60" y="76" fill="#fb923c" font-size="11" text-anchor="middle" font-weight="800">+8–12 mm</text>
-          <text x="60" y="92" fill="#fdba74" font-size="9.8" text-anchor="middle">架空過線層</text>
-          <text x="328" y="46" fill="#fb923c" font-size="12" text-anchor="middle" font-weight="800">花心上方架高蓋板（無法再留上方墊圈！）</text>
-          <!-- Path A: Over Star Nut -> Rear of Steerer (Propel Gen 2 / Felt AR) -->
-          <path d="M500 104 Q478 72 440 72 L160 72 Q140 72 140 105 L140 220 Q140 232 100 232 L16 232" fill="none" stroke="#f87171" stroke-width="4.2" stroke-linecap="round"/>
-          <!-- Path B: Over Top -> Straight Down Center of Hollow Steerer (Satori RANA / Hollow Star Nut) -->
-          <path d="M500 112 Q475 84 440 84 L214 84 Q194 84 194 114 L194 318" fill="none" stroke="#34d399" stroke-width="4.2" stroke-linecap="round"/>
-          <!-- Pinch warning at rear of steerer -->
-          <circle cx="144" cy="196" r="14" fill="none" stroke="#f87171" stroke-width="2" stroke-dasharray="3 2"/>
-          <text x="292" y="218" fill="#f87171" font-size="11.2" font-weight="800">● 路徑 A（紅）：跨花心往舵管後方下潛</text>
-          <text x="304" y="235" fill="#94a3b8" font-size="10.2">撞頭管應力區＋轉把易夾線＋駝峰 S 急彎（Propel Gen 2 已改掉）</text>
-          <text x="292" y="264" fill="#34d399" font-size="11.2" font-weight="800">● 路徑 B（綠）：穿中空花心直落前叉底孔</text>
-          <text x="304" y="281" fill="#94a3b8" font-size="10.2">前煞直出安全乾淨（Satori RANA / TF3）；但後煞不可穿破舵管側壁</text>
+          <rect x="134" y="214" width="20" height="16" rx="2" fill="#475569" stroke="#cbd5e1"/>
+          <rect x="198" y="214" width="20" height="16" rx="2" fill="#475569" stroke="#cbd5e1"/>
+          <!-- TPU Bell-Mouth Protective Grommet at Steerer Top -->
+          <path d="M154 136 Q154 146 164 146 L188 146 Q198 146 198 136" fill="none" stroke="#38bdf8" stroke-width="2.6"/>
+          <!-- Notched Star Nut (Standard M6 bolt + perimeter notch) / Hollow Bolt -->
+          <rect x="160" y="158" width="32" height="20" rx="2" fill="#fbbf24" fill-opacity="0.28" stroke="#fbbf24" stroke-width="1.5"/>
+          <line x1="172" y1="130" x2="172" y2="180" stroke="#fbbf24" stroke-width="2.4"/>
+          <rect x="166" y="126" width="12" height="6" rx="1" fill="#fbbf24"/>
+          <!-- Lower Stem Clamp Collar (41mm depth) -->
+          <rect x="142" y="138" width="68" height="68" rx="4" fill="#1e3a5f" stroke="#60a5fa" stroke-width="1.8"/>
+          <text x="108" y="176" fill="#93c5fd" font-size="10" text-anchor="end" font-weight="700">Ø28.6 金屬舵管</text>
+          <text x="108" y="190" fill="#94a3b8" font-size="9.5" text-anchor="end">夾持深 38–41mm</text>
+          <!-- RAISED +8-12mm OVER-STEERER CHAMBER (with Quick-Release Top Cap) -->
+          <path d="M138 98 L244 98 L244 138 L138 138 Z" fill="#f97316" fill-opacity="0.22" stroke="#fb923c" stroke-width="1.8" stroke-dasharray="5 3"/>
+          <line x1="126" y1="98" x2="126" y2="138" stroke="#fb923c" stroke-width="1.6"/>
+          <line x1="120" y1="98" x2="132" y2="98" stroke="#fb923c" stroke-width="1.6"/>
+          <line x1="120" y1="138" x2="132" y2="138" stroke="#fb923c" stroke-width="1.6"/>
+          <text x="114" y="115" fill="#fb923c" font-size="10.8" text-anchor="end" font-weight="800">+8–12 mm</text>
+          <text x="114" y="130" fill="#fdba74" font-size="9.5" text-anchor="end">花心上方架空層</text>
+          <!-- Adjustable Pivot Joint (Offset Rear/Above Steerer!) -->
+          <circle cx="156" cy="96" r="18" fill="#312e81" stroke="#a78bfa" stroke-width="2"/>
+          <circle cx="156" cy="96" r="7" fill="#0d1420" stroke="#c4b5fd" stroke-width="1.5"/>
+          <text x="108" y="80" fill="#c4b5fd" font-size="10" text-anchor="end" font-weight="700">0°–60°/90°</text>
+          <text x="108" y="93" fill="#94a3b8" font-size="9.5" text-anchor="end">偏置可調樞軸</text>
+          <!-- Adjustable Upper Arm (Angled Up for High-Stack E-Bike!) -->
+          <g transform="translate(156,96) rotate(-32)">
+            <rect x="0" y="-16" width="128" height="32" rx="7" fill="#1e293b" stroke="#94a3b8" stroke-width="1.8"/>
+            <text x="64" y="4" fill="#e2e8f0" font-size="10.5" text-anchor="middle" font-weight="700">可調上臂（30°–45° 斜入）</text>
+            <circle cx="144" cy="0" r="22" fill="#1e293b" stroke="#cbd5e1" stroke-width="2"/>
+            <text x="144" y="4" fill="#f1f5f9" font-size="9.5" text-anchor="middle" font-weight="700">Ø31.8 把</text>
+          </g>
+          <!-- GREEN LINE: Front Brake Hose + Front Light Wire -> Over Star Nut (+8-12mm) -> Through Notched Star Nut -> Straight Out Fork Bottom! -->
+          <path d="M276 44 Q212 96 196 116 Q184 130 184 156 L184 322" fill="none" stroke="#34d399" stroke-width="4.4" stroke-linecap="round"/>
+          <!-- BLUE LINE: Rear Brake / Shift / Motor Display -> Split Under Stem into ICR / Front Headtube Cavity -->
+          <path d="M286 52 Q232 108 232 152 L232 296" fill="none" stroke="#38bdf8" stroke-width="4" stroke-linecap="round"/>
+          <!-- Right-side clear engineering callouts -->
+          <text x="345" y="106" fill="#fb923c" font-size="11.5" font-weight="800">★ 快拆頂蓋掀開 → 直接鎖 M6 預壓螺絲免拆管</text>
+          <text x="345" y="124" fill="#94a3b8" font-size="10.3">架空艙同時可整合 USB-C 充電口或螢幕／手機座</text>
+          <text x="345" y="156" fill="#34d399" font-size="11.5" font-weight="800">● 綠線｜前煞油管 ＋ 前燈線（穿花心直落底孔）</text>
+          <text x="357" y="173" fill="#cbd5e1" font-size="10.2">經 TPU 喇叭口防磨套 → 缺口花心（或中空 M10 螺栓）</text>
+          <text x="357" y="189" fill="#cbd5e1" font-size="10.2">全程不穿破舵管側壁，前叉外觀 100% 零外露油管</text>
+          <text x="345" y="222" fill="#38bdf8" font-size="11.5" font-weight="800">● 藍線｜後煞 ＋ 變速 ＋ 馬達線（分流走下槽）</text>
+          <text x="357" y="239" fill="#cbd5e1" font-size="10.2">自下座導槽直落 AICR 頭碗或前頭管培林外獨立腔</text>
+          <text x="345" y="274" fill="#fbbf24" font-size="11" font-weight="700">✓ 參考量產原型：Satori UP3e (0°–90°) ／ RANA</text>
         </svg>`
       }
     };
@@ -2250,52 +2288,52 @@
         note: "破解 40–50mm 極短龍頭藏線轉角不足難題，以底部弧形導槽順導油管與電控線入頭碗。"
       },
       {
-        img: "./images/stem-giant-propel-gen2-overtop.jpg",
-        name: "Giant Contact SLR Aero OD2 (Gen 2)",
-        year: "2018–2022",
-        arch: "over",
-        archLabel: "花心上方堆高→舵管後方",
-        mech: "頂部堆高整流蓋板跨花心＋舵管後方導線罩",
-        spec: "199g (110mm, 不含把) ｜ -8°",
-        compat: "Propel 專用把 ｜ 1-1/4\" OD2 圓舵管",
-        bleed: "yes",
-        note: "最經典「花心上方架高」量產實例；因上方不可留墊圈且多 102.5g，2023 Gen 3 已改回下方藏線。"
-      },
-      {
-        img: "./images/stem-allied-echo-topplate.jpg",
-        name: "Allied Cycle Works Echo / ST03",
-        year: "2021–2026",
-        arch: "over",
-        archLabel: "無頂花心→直入標準圓舵管",
-        mech: "取消頂端花心改底部預壓＋整合可拆頂蓋＋偏心角襯套",
-        spec: "~185g (110mm) ｜ 0° / -8°（ST03）",
-        compat: "開孔內走線把 ｜ 1-1/8\" 圓舵管（Allied 專用）",
-        bleed: "yes",
-        note: "將頭碗預壓移到龍頭底端騰空頂面，雙油管跨頂直落舵管中心且換龍頭免剪油管。"
-      },
-      {
-        img: "./images/stem-satori-rana-steerer.jpg",
-        name: "Satori RANA（AICR ＋ 穿舵管前煞）",
+        img: "./images/stem-satori-up3e-sicr.jpg",
+        name: "Satori UP3e（SICR 0°–+90° 穿舵管）",
         year: "2024–2026",
         arch: "over",
-        archLabel: "頂蓋前煞穿舵管＋下槽分流",
-        mech: "可拆上蓋導引前煞穿中空舵管直出前叉底孔＋下槽 AICR",
-        spec: "鋁合金鍛造 ｜ 避震前叉專用分流",
-        compat: "31.8 把 ｜ 1-1/8\" 上下開口避震前叉",
+        archLabel: "可調高把位 × 缺口花心穿舵管",
+        mech: "下座 70mm（插入 41mm）架空腔＋標準 M6＋缺口 Special Starnut",
+        spec: "390g (90mm) ｜ 0° 至 +90°",
+        compat: "31.8 把 ｜ Ø28.6mm 金屬舵管（避震/都會前叉）",
         bleed: "yes",
-        note: "僅讓前煞直落前叉底孔（不在舵管側壁開孔），其餘線束走下槽，兼顧結構安全與極致美觀。"
+        note: "最精準命中高把位可調電輔穿舵管原型：官方剖面一次可穿 1–3 條線繞過 M6 螺絲直落前叉。"
+      },
+      {
+        img: "./images/stem-satori-rana-diagram.jpg",
+        name: "Satori RANA（前煞穿花心＋下槽分流）",
+        year: "2024–2026",
+        arch: "over",
+        archLabel: "頂蓋前煞穿花心＋下槽分流",
+        mech: "可拆上蓋導引前煞穿缺口花心直出前叉底孔＋下槽 AICR 分流",
+        spec: "309.5g ｜ +20° 高把位 ｜ 90/110mm",
+        compat: "31.8 把 ｜ Ø28.6mm 金屬舵管＋Acros AZX-727",
+        bleed: "yes",
+        note: "黃線（前煞）直落前叉底孔、綠線（後煞/電控）走下槽，零舵管側壁開孔且掀蓋直調 M6。"
       },
       {
         img: "./images/stem-aheadset-hollow-starnut.jpg",
-        name: "Aheadset TF3 / Dia-Compe 中空花心組",
-        year: "經典持續量產",
+        name: "Aheadset TF3 / US7591474B1 中空螺栓",
+        year: "標準件 / 專利",
         arch: "over",
-        archLabel: "中空 M10 螺絲＋中空花心",
-        mech: "Ø5mm 中空預壓螺栓貫穿中心開孔花心直入舵管軸心",
-        spec: "M10 中空螺絲 ｜ Ø28.6mm 1-1/8\" 舵管",
-        compat: "鋼／厚鋁舵管（BMX / Dirt Jump）",
+        archLabel: "中空 M10 ／ 偏心環狀螺栓",
+        mech: "M10 中空螺絲（Ø5.2mm）或內牙大口徑環狀螺栓＋偏心六角孔",
+        spec: "M10 中空（1 條管）｜ US7591474B1（雙線）",
+        compat: "Ø28.6mm 鋼／鋁金屬舵管",
         bleed: "no",
-        note: "最直接穿透花心之硬體標準，專供前煞直穿舵管達成 360° 轉把不纏線（碳纖舵管不適用）。"
+        note: "直接貫穿預壓螺栓軸心直落前叉底孔，實現 360° 轉向零偏心纏線。"
+      },
+      {
+        img: "./images/stem-ergotec-cobia-vario-fi.jpg",
+        name: "Ergotec COBIA VARIO Fi+（高把位對照）",
+        year: "2025–2026",
+        arch: "over",
+        archLabel: "高把位可調 × 頂蓋遮花心對照",
+        mech: "0°–+60° 樞軸＋頂部雙快拆飾蓋遮蔽預壓螺絲＋下座前導罩",
+        spec: "473–559g ｜ 有效升幅 40–140mm ｜ Level 5",
+        compat: "31.8 把 ｜ Ø28.6mm 金屬舵管＋Acros/Token",
+        bleed: "yes",
+        note: "同為高把位金屬舵管電輔可調龍頭，可作為「前煞穿舵管 vs 全線前側導罩」之直接對照組。"
       }
     ];
 
