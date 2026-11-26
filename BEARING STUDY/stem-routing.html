@@ -780,7 +780,7 @@
           <button type="button" class="tab-btn" data-mode="through" data-active="false">2. 穿透本體全內（Through-Stem）</button>
           <button type="button" class="tab-btn" data-mode="split" data-active="false">3. 可拆上蓋／磁吸橋接（Syncros / Switch）</button>
           <button type="button" class="tab-btn" data-mode="charter" data-active="false">4. 電輔雙棘輪可調（Trek Charter+ CAD）</button>
-          <button type="button" class="tab-btn" data-mode="overtop" data-active="false">5. 高把位可調電輔｜花心上方 +8–12mm 穿舵管</button>
+          <button type="button" class="tab-btn" data-mode="overtop" data-active="false">5. 前移樞軸 +3mm × 簍空龍頭 × 花心架空雙分流</button>
         </div>
       </div>
 
@@ -1382,8 +1382,8 @@
     <section class="panel" id="over-steerer">
       <div class="section-head">
         <div>
-          <h2>六、專題深研：高把位可調電輔車「花心上方堆高 +8–12 mm × 穿花心／中空螺栓直落前叉底孔」同類方案與 DFM 設計指南</h2>
-          <p>專為<strong>金屬舵管（Ø28.6 mm）× 角度可調高把位電輔／都會通勤車</strong>打造的架構對標：比對全球市售與專利中「將線管架高跨過舵管頂端、穿過特規花心或中空螺栓直出前叉肩蓋底孔」的實戰硬體與機構防雷清單。</p>
+          <h2>六、專題深研：高把位可調電輔車「前移樞軸 +3 mm × 簍空龍頭 × 花心上方 +8–12 mm 架空雙分流」對標與 DFM 指南</h2>
+          <p>專為<strong>金屬舵管（Ø28.6 mm）× 角度可調高把位電輔／都會通勤車</strong>打造的架構對標：結合<strong>「Steerer 前方水平調整 +3 mm 偏置可調樞軸」</strong>、<strong>「Stem 內側簍空藏線」</strong>與<strong>「花心上方 +8–12 mm 架空層（後線跨頂往舵管後方進車體內、前煞＋前燈穿花心直出前叉底孔）」</strong>，比對全球實戰硬體與機構防雷清單。</p>
         </div>
         <button type="button" class="tab-btn" onclick="document.querySelector('#explorer-tabs [data-mode=overtop]').click(); document.getElementById('explorer').scrollIntoView({behavior:'smooth'});">↗ 查看本方案專屬 SVG 剖面圖</button>
       </div>
@@ -1507,13 +1507,13 @@
 
         <div class="explorer-info">
           <span class="pill warn">高把位可調電輔 DFM 防雷清單（6 大關鍵尺寸）</span>
-          <h3>花心上方堆高 +8–12 mm 架空過線層：設計必檢 6 件事</h3>
+          <h3>花心上方堆高 +8–12 mm 架空雙分流：設計必檢 6 件事</h3>
           <ul>
-            <li><strong>1. +8–12 mm 淨高與進線傾角核算：</strong>Ø5.0 mm 液壓油管建議最小彎曲半徑 R<sub>min</sub> ≥ 18–22 mm。若花心上方淨高抓 <strong>8–12 mm</strong>，可調上臂內孔出口<strong>不可水平 90° 硬折</strong>，應讓油管從上臂下緣以 <strong>30°–45° 斜角</strong>滑入架空層再順弧進缺口花心（參考 Satori <code>UP3e</code> 留足弧度空間）。</li>
-            <li><strong>2. 可調樞軸相對於舵管的偏置幾何：</strong>樞軸中心建議設於<strong>舵管軸線後方或上方</strong>（避免 0° 下壓時樞軸齒塊擠壓過線腔），並驗證 <code>0° → +60°</code>（或 <code>+90°</code>）全行程中，油管在架空層內有 <strong>10–18 mm 滑移餘長</strong>不被拉扯或夾扁。</li>
+            <li><strong>1. +8–12 mm 淨高與 Stem 簍空進線傾角核算：</strong>Ø5.0 mm 液壓油管建議最小彎曲半徑 R<sub>min</sub> ≥ 18–22 mm。線束從 <strong>Stem 內側簍空藏線腔</strong>自樞軸上方順斜角匯入 <strong>+8–12 mm</strong> 架空層，切忌 90° 硬折，確保前煞下潛與後線跨頂皆維持平順弧度。</li>
+            <li><strong>2. 可調樞軸前移至 Steerer 前方（水平調整 +3 mm）：</strong>將 0°–60°/90° 可調樞軸偏置於<strong>舵管前壁前方（+3 mm 水平偏置／調整餘量）</strong>，徹底騰空花心正上方與舵管後方通道（避免如傳統後置樞軸被齒塊擋線），並驗證全行程擺動時簍空腔與架空層內留有 <strong>10–18 mm 滑移餘長</strong>不被拉扯或夾扁。</li>
             <li><strong>3. 金屬舵管口防磨喇叭口襯套（Bell-mouth Grommet）：</strong>鋁／鋼舵管切口與花心金屬爪極銳利，<strong>務必在舵管上口壓入一顆尼龍／TPU 弧面護套</strong>，並於缺口花心邊緣做倒角或包膠，防止長期震動割破油管外皮。</li>
-            <li><strong>4. 堅持「前煞＋前燈穿舵管、後線走下槽／前腔」分流：</strong>前煞油管與前叉燈線從<strong>前叉肩蓋底孔</strong>直出最乾淨安全；後煞、變速與馬達顯示線切勿在舵管側壁開孔穿出，應分流至龍頭下槽進頭碗或前頭管獨立腔（參考 Satori RANA 與 Trek Charter+）。</li>
-            <li><strong>5. 快拆頂蓋 × 調預壓免拆油管：</strong>架空層頂蓋採單／雙螺絲快拆或滑扣設計，掀蓋後中央 M6 預壓螺絲直接外露（線管走缺口花心兩側不遮住螺絲頭），車店微調頭碗間隙 30 秒搞定、完全不碰油管。</li>
+            <li><strong>4. 雙分流路徑：「後線跨花心後方進車體、前煞＋前燈穿舵管直落前叉底孔」：</strong>後煞、變速與馬達線經花心上方 +8–12 mm 架空層往<strong>舵管後方</strong>直接落入車架頭管／上管內部（不在舵管側壁開孔、並須預留轉把 ±45° 緩衝餘隙）；前煞油管與前叉燈線則穿過缺口星型花心／中空螺栓由<strong>前叉肩蓋底孔</strong>直出。</li>
+            <li><strong>5. 快拆頂蓋 × 調預壓免拆油管：</strong>架空層頂蓋採單／雙螺絲快拆或滑扣設計，掀蓋後中央 M6 預壓螺絲直接外露（後線靠上層微撥即讓位、前線走缺口花心側邊不遮住螺絲頭），車店微調頭碗間隙 30 秒搞定、完全不碰油管。</li>
             <li><strong>6. 前叉底孔出口與避震行程／擋泥板校核：</strong>確認前叉下肩蓋（Fork Crown）底孔與前擋泥板／前燈 M6 鎖點不干涉；若配避震前叉（60–100 mm 行程），前煞油管穿出底孔後須預留適當 S 弧餘長，確保壓到底不拉扯卡鉗接頭、且不磨前胎。</li>
           </ul>
         </div>
@@ -1931,73 +1931,103 @@
         </svg>`
       },
       overtop: {
-        title: "架構 5｜高把位可調電輔龍頭：花心上方 +8–12 mm 過線層 × 穿花心直落前叉底孔",
-        badge: { cls: "ok", text: "金屬舵管電輔／都會通勤專用｜前煞零外露" },
-        lead: "專為 0°–60°/90° 可調高把位電輔車設計：在 Ø28.6 mm 金屬舵管頂端上方堆高 8–12 mm 架空過線層，讓前煞油管（與前燈電源線）以 30°–45° 斜角順弧穿過「缺口星型花心（M6 螺絲）」或「中空 M10／偏心環狀螺栓」直落前叉底孔；後煞與馬達線束則分流走下座槽進頭碗／前腔。",
+        title: "架構 5｜前移樞軸（+3 mm）× Stem 內側簍空 × 花心上方 +8–12 mm 雙分流",
+        badge: { cls: "ok", text: "高把位可調電輔專屬架構｜前煞穿前叉 × 後線跨頂入車體" },
+        lead: "將 0°–60°/90° 可調樞軸前移至 Steerer 前方（水平偏置／調整 +3 mm），把舵管花心正上方與後方完全騰空；線束全數藏於「可調 Stem 內側簍空通道」，匯入「花心上方 +8–12 mm 架空層」後乾淨分流：紅線往後方跨入車體內、綠線穿中空／缺口花心直落前叉底孔。",
         bullets: [
-          "<strong>花心硬體首選「缺口星型花心（如 Satori UP3e / RANA）」：</strong>保留標準 M6 預壓螺絲與一般六角工具，外緣開大缺口一次容納前煞 Ø5 mm＋前燈線 Ø2.8 mm，掀開快拆上蓋即可微調預壓不拆油管。",
-          "<strong>中空螺栓替代方案：</strong>Aheadset TF3（M10 中空螺絲，限 1 條 Ø5 mm 油管）或 US7591474B1（內牙大口徑環狀中空螺栓＋偏心六角孔），適合追求 360° 零偏心轉向。",
-          "<strong>+8–12 mm 進線角度關鍵：</strong>油管自可調上臂內緣以 30°–45° 斜入架空層（非 90° 硬折），並於金屬舵管上口壓入 <strong>TPU／尼龍防磨喇叭口護套</strong>，防止震動割破油管。",
-          "<strong>前後分流零結構弱點：</strong>僅前煞與前燈直落前叉肩蓋底孔（避開擋泥板螺絲），後煞／變速／馬達線改走龍頭下槽進頭碗或前頭管獨立腔，完全不在舵管側壁開孔。"
+          "<strong>樞軸前移（Steerer 前方水平 +3 mm）：</strong>與傳統樞軸設在舵管後方的龍頭不同，前移樞軸直接讓出花心正上方與舵管後方空間，避免調角齒塊阻擋後走線通道。",
+          "<strong>Stem 內側簍空藏線腔：</strong>可調上臂本體採中空／內側簍空結構，線束自 Ø31.8 把直接進入簍空上臂並沿樞軸內側中性區順滑過渡，外觀 100% 無外露線管。",
+          "<strong>花心上方 +8–12 mm 架空層（紅線→往後方入車體）：</strong>後煞、變速與馬達電線在快拆頂蓋下跨越花心頂端，沿舵管後方導罩直接下潛進入車架頭管／上管內部，且不在舵管側壁開孔。",
+          "<strong>穿花心直落前叉底孔（綠線→前煞＋前燈）：</strong>前煞油管與前叉燈線經 TPU 喇叭口防磨套，穿過缺口星型花心（M6 螺絲）或中空 M10 螺栓垂直落出前叉肩蓋底孔，掀開頂蓋即可調預壓免拆管。"
         ],
-        note: "同類量產對標：Satori UP3e（0°–+90° SICR＋缺口花心，下座 70mm / 插入 41mm）、Satori RANA（黃線穿花心＋綠線 AICR 分流）、Aheadset TF3 / US7591474B1 中空螺栓、Ergotec COBIA VARIO Fi+（高把位可調對照）。",
+        note: "結構關鍵校核：① 樞軸前移後須確認 0°–60° 全行程不與架空層前壁干涉；② 舵管後方進車體通道須預留轉把 ±45° 緩衝餘隙；③ 舵管上口必裝 TPU 防磨喇叭口護套。",
         svg: `
-        <svg viewBox="0 0 680 340" xmlns="http://www.w3.org/2000/svg">
-          <rect width="680" height="340" rx="10" fill="#0d1420"/>
-          <g stroke="#1e293b" stroke-width="1"><line x1="0" y1="302" x2="680" y2="302"/></g>
-          <!-- Headtube + Front Cable Cavity / ICR Cup -->
-          <path d="M124 210 L256 210 L268 302 L114 302 Z" fill="#172033" stroke="#475569" stroke-width="1.6"/>
+        <svg viewBox="0 0 680 350" xmlns="http://www.w3.org/2000/svg">
+          <rect width="680" height="350" rx="10" fill="#0d1420"/>
+          <g stroke="#1e293b" stroke-width="1"><line x1="0" y1="306" x2="680" y2="306"/></g>
+
+          <!-- Unified Frame Top Tube (Rear / Left) + Headtube Internal Cavity -->
+          <path d="M12 222 L126 222 L128 208 L244 208 L254 306 L118 306 L123 268 L12 268 Z" fill="#172033" stroke="#475569" stroke-width="1.6"/>
+          <text x="66" y="257" fill="#94a3b8" font-size="10.2" text-anchor="middle" font-weight="700">車架上管內部（後方）</text>
+
           <!-- Fork Crown & Bottom Exit Hole -->
-          <path d="M132 302 L220 302 L226 322 L126 322 Z" fill="#273449" stroke="#64748b" stroke-width="1.5"/>
-          <rect x="164" y="302" width="24" height="22" fill="#0d1420"/>
-          <text x="176" y="335" fill="#34d399" font-size="10.2" text-anchor="middle" font-weight="800">前叉肩蓋底孔直出（避開擋泥板鎖孔）</text>
-          <!-- Metal Steerer Tube (Ø28.6mm Alloy/Steel) -->
-          <rect x="156" y="138" width="40" height="168" rx="2" fill="#273449" stroke="#94a3b8" stroke-width="1.6"/>
+          <path d="M142 306 L236 306 L242 325 L136 325 Z" fill="#273449" stroke="#64748b" stroke-width="1.5"/>
+          <rect x="176" y="306" width="26" height="21" fill="#0d1420"/>
+          <text x="189" y="341" fill="#34d399" font-size="10.5" text-anchor="middle" font-weight="800">前叉肩蓋底孔直出（前煞／前燈）</text>
+
+          <!-- Metal Steerer Tube (Center axis x=189, walls x=169..209) -->
+          <rect x="169" y="144" width="40" height="164" rx="2" fill="#273449" stroke="#94a3b8" stroke-width="1.6"/>
+          <!-- Steerer Centerline & Front-Wall Reference Line -->
+          <line x1="189" y1="74" x2="189" y2="324" stroke="#64748b" stroke-width="1" stroke-dasharray="4 3"/>
+          <line x1="209" y1="138" x2="209" y2="206" stroke="#a78bfa" stroke-width="1.2" stroke-dasharray="3 2"/>
+
           <!-- Upper Bearings -->
-          <rect x="134" y="214" width="20" height="16" rx="2" fill="#475569" stroke="#cbd5e1"/>
-          <rect x="198" y="214" width="20" height="16" rx="2" fill="#475569" stroke="#cbd5e1"/>
-          <!-- TPU Bell-Mouth Protective Grommet at Steerer Top -->
-          <path d="M154 136 Q154 146 164 146 L188 146 Q198 146 198 136" fill="none" stroke="#38bdf8" stroke-width="2.6"/>
-          <!-- Notched Star Nut (Standard M6 bolt + perimeter notch) / Hollow Bolt -->
-          <rect x="160" y="158" width="32" height="20" rx="2" fill="#fbbf24" fill-opacity="0.28" stroke="#fbbf24" stroke-width="1.5"/>
-          <line x1="172" y1="130" x2="172" y2="180" stroke="#fbbf24" stroke-width="2.4"/>
-          <rect x="166" y="126" width="12" height="6" rx="1" fill="#fbbf24"/>
-          <!-- Lower Stem Clamp Collar (41mm depth) -->
-          <rect x="142" y="138" width="68" height="68" rx="4" fill="#1e3a5f" stroke="#60a5fa" stroke-width="1.8"/>
+          <rect x="148" y="212" width="19" height="16" rx="2" fill="#475569" stroke="#cbd5e1"/>
+          <rect x="211" y="212" width="19" height="16" rx="2" fill="#475569" stroke="#cbd5e1"/>
+
+          <!-- Lower Stem Base clamping Steerer + forward lug holding Front-Offset Pivot -->
+          <path d="M156 144 L254 144 L254 174 L224 198 L156 198 Z" fill="#1e3a5f" fill-opacity="0.72" stroke="#60a5fa" stroke-width="1.7"/>
           <text x="108" y="176" fill="#93c5fd" font-size="10" text-anchor="end" font-weight="700">Ø28.6 金屬舵管</text>
-          <text x="108" y="190" fill="#94a3b8" font-size="9.5" text-anchor="end">夾持深 38–41mm</text>
-          <!-- RAISED +8-12mm OVER-STEERER CHAMBER (with Quick-Release Top Cap) -->
-          <path d="M138 98 L244 98 L244 138 L138 138 Z" fill="#f97316" fill-opacity="0.22" stroke="#fb923c" stroke-width="1.8" stroke-dasharray="5 3"/>
-          <line x1="126" y1="98" x2="126" y2="138" stroke="#fb923c" stroke-width="1.6"/>
-          <line x1="120" y1="98" x2="132" y2="98" stroke="#fb923c" stroke-width="1.6"/>
-          <line x1="120" y1="138" x2="132" y2="138" stroke="#fb923c" stroke-width="1.6"/>
-          <text x="114" y="115" fill="#fb923c" font-size="10.8" text-anchor="end" font-weight="800">+8–12 mm</text>
-          <text x="114" y="130" fill="#fdba74" font-size="9.5" text-anchor="end">花心上方架空層</text>
-          <!-- Adjustable Pivot Joint (Offset Rear/Above Steerer!) -->
-          <circle cx="156" cy="96" r="18" fill="#312e81" stroke="#a78bfa" stroke-width="2"/>
-          <circle cx="156" cy="96" r="7" fill="#0d1420" stroke="#c4b5fd" stroke-width="1.5"/>
-          <text x="108" y="80" fill="#c4b5fd" font-size="10" text-anchor="end" font-weight="700">0°–60°/90°</text>
-          <text x="108" y="93" fill="#94a3b8" font-size="9.5" text-anchor="end">偏置可調樞軸</text>
-          <!-- Adjustable Upper Arm (Angled Up for High-Stack E-Bike!) -->
-          <g transform="translate(156,96) rotate(-32)">
-            <rect x="0" y="-16" width="128" height="32" rx="7" fill="#1e293b" stroke="#94a3b8" stroke-width="1.8"/>
-            <text x="64" y="4" fill="#e2e8f0" font-size="10.5" text-anchor="middle" font-weight="700">可調上臂（30°–45° 斜入）</text>
-            <circle cx="144" cy="0" r="22" fill="#1e293b" stroke="#cbd5e1" stroke-width="2"/>
-            <text x="144" y="4" fill="#f1f5f9" font-size="9.5" text-anchor="middle" font-weight="700">Ø31.8 把</text>
+          <text x="108" y="190" fill="#94a3b8" font-size="9.5" text-anchor="end">下座夾持 38–41mm</text>
+          <line x1="112" y1="173" x2="165" y2="173" stroke="#60a5fa" stroke-width="1" stroke-dasharray="2 2" opacity="0.75"/>
+
+          <!-- TPU Bell-Mouth Protective Grommet at Steerer Top -->
+          <path d="M167 142 Q167 152 177 152 L201 152 Q211 152 211 142" fill="none" stroke="#38bdf8" stroke-width="2.6"/>
+
+          <!-- Notched / Hollow Star Nut inside Steerer (with right pass-through notch) -->
+          <rect x="173" y="162" width="32" height="19" rx="2" fill="#fbbf24" fill-opacity="0.28" stroke="#fbbf24" stroke-width="1.5"/>
+          <rect x="191" y="161" width="11" height="21" fill="#1e293b"/>
+          <line x1="183" y1="134" x2="183" y2="183" stroke="#fbbf24" stroke-width="2.4"/>
+          <rect x="177" y="130" width="12" height="6" rx="1" fill="#fbbf24"/>
+
+          <!-- RAISED +8-12mm OVER-STEERER CHAMBER (Over Star Nut -> Rear Drop into Frame!) -->
+          <path d="M126 96 L242 96 L242 144 L156 144 L156 208 L126 208 Z" fill="#f97316" fill-opacity="0.18" stroke="#fb923c" stroke-width="1.8" stroke-dasharray="5 3"/>
+          <!-- +8-12mm Vertical Dimension Bracket -->
+          <line x1="112" y1="96" x2="112" y2="144" stroke="#fb923c" stroke-width="1.6"/>
+          <line x1="106" y1="96" x2="118" y2="96" stroke="#fb923c" stroke-width="1.6"/>
+          <line x1="106" y1="144" x2="118" y2="144" stroke="#fb923c" stroke-width="1.6"/>
+          <text x="100" y="116" fill="#fb923c" font-size="10.8" text-anchor="end" font-weight="800">+8–12 mm</text>
+          <text x="100" y="131" fill="#fdba74" font-size="9.6" text-anchor="end">花心上方架空層</text>
+          <text x="166" y="84" fill="#fb923c" font-size="10.6" text-anchor="middle" font-weight="800">快拆頂蓋（掀蓋調預壓）</text>
+
+          <!-- Adjustable Upper Arm with HOLLOW INTERNAL CHANNEL ABOVE PIVOT (Stem 內側簍空藏線) -->
+          <g transform="translate(240,146) rotate(-22)">
+            <!-- Outer forged stem arm -->
+            <rect x="-14" y="-38" width="204" height="52" rx="9" fill="#1e293b" stroke="#94a3b8" stroke-width="1.8"/>
+            <!-- Hollow internal routing cavity running ABOVE the pivot axle -->
+            <rect x="-8" y="-33" width="188" height="22" rx="5" fill="#0b1018" stroke="#38bdf8" stroke-width="1.4" stroke-dasharray="4 2"/>
+            <text x="104" y="-44" fill="#38bdf8" font-size="11.2" text-anchor="middle" font-weight="800">Stem 內側簍空藏線腔（可調上臂）</text>
+            <!-- Handlebar at front end -->
+            <circle cx="202" cy="-14" r="23" fill="#1e293b" stroke="#cbd5e1" stroke-width="2"/>
+            <circle cx="202" cy="-14" r="13" fill="#0d1420" stroke="#475569" stroke-width="1.2"/>
+            <text x="202" y="-10" fill="#f1f5f9" font-size="9.2" text-anchor="middle" font-weight="700">Ø31.8</text>
           </g>
-          <!-- GREEN LINE: Front Brake Hose + Front Light Wire -> Over Star Nut (+8-12mm) -> Through Notched Star Nut -> Straight Out Fork Bottom! -->
-          <path d="M276 44 Q212 96 196 116 Q184 130 184 156 L184 322" fill="none" stroke="#34d399" stroke-width="4.4" stroke-linecap="round"/>
-          <!-- BLUE LINE: Rear Brake / Shift / Motor Display -> Split Under Stem into ICR / Front Headtube Cavity -->
-          <path d="M286 52 Q232 108 232 152 L232 296" fill="none" stroke="#38bdf8" stroke-width="4" stroke-linecap="round"/>
-          <!-- Right-side clear engineering callouts -->
-          <text x="345" y="106" fill="#fb923c" font-size="11.5" font-weight="800">★ 快拆頂蓋掀開 → 直接鎖 M6 預壓螺絲免拆管</text>
-          <text x="345" y="124" fill="#94a3b8" font-size="10.3">架空艙同時可整合 USB-C 充電口或螢幕／手機座</text>
-          <text x="345" y="156" fill="#34d399" font-size="11.5" font-weight="800">● 綠線｜前煞油管 ＋ 前燈線（穿花心直落底孔）</text>
-          <text x="357" y="173" fill="#cbd5e1" font-size="10.2">經 TPU 喇叭口防磨套 → 缺口花心（或中空 M10 螺栓）</text>
-          <text x="357" y="189" fill="#cbd5e1" font-size="10.2">全程不穿破舵管側壁，前叉外觀 100% 零外露油管</text>
-          <text x="345" y="222" fill="#38bdf8" font-size="11.5" font-weight="800">● 藍線｜後煞 ＋ 變速 ＋ 馬達線（分流走下槽）</text>
-          <text x="357" y="239" fill="#cbd5e1" font-size="10.2">自下座導槽直落 AICR 頭碗或前頭管培林外獨立腔</text>
-          <text x="345" y="274" fill="#fbbf24" font-size="11" font-weight="700">✓ 參考量產原型：Satori UP3e (0°–90°) ／ RANA</text>
+
+          <!-- FRONT-OFFSET ADJUSTABLE PIVOT (Steerer 前方水平調整 +3 mm!) -->
+          <circle cx="240" cy="146" r="14" fill="#312e81" fill-opacity="0.95" stroke="#a78bfa" stroke-width="2"/>
+          <circle cx="240" cy="146" r="5.5" fill="#0d1420" stroke="#c4b5fd" stroke-width="1.6"/>
+          <!-- Horizontal Offset +3mm Dimension Callout (Steerer Front Wall x=209 -> Pivot Center x=240) -->
+          <line x1="240" y1="162" x2="240" y2="186" stroke="#a78bfa" stroke-width="1.2" stroke-dasharray="3 2"/>
+          <line x1="209" y1="178" x2="240" y2="178" stroke="#c4b5fd" stroke-width="1.8"/>
+          <polygon points="209,178 215,175 215,181" fill="#c4b5fd"/>
+          <polygon points="240,178 234,175 234,181" fill="#c4b5fd"/>
+          <text x="266" y="168" fill="#c4b5fd" font-size="11" font-weight="800">偏置可調樞軸</text>
+          <text x="266" y="183" fill="#ddd6fe" font-size="10.2" font-weight="700">Steerer 前方水平調整 +3 mm</text>
+
+          <!-- RED LINE: Rear Brake + Shift + Motor -> Hollow Stem Cavity -> Over Star Nut (+8-12mm) -> Rear of Steerer -> Into Frame Top Tube! -->
+          <path d="M396 54 L230 120 Q218 124 205 114 L156 114 Q140 114 140 134 L140 226 Q140 240 114 240 L14 240" fill="none" stroke="#f87171" stroke-width="4.2" stroke-linecap="round"/>
+
+          <!-- GREEN LINE: Front Brake + Front Light -> Hollow Stem Cavity -> +8-12mm Chamber -> TPU Grommet -> Notched/Hollow Star Nut -> Fork Bottom Exit! -->
+          <path d="M399 62 L233 128 Q218 133 206 129 Q196 128 196 148 L196 324" fill="none" stroke="#34d399" stroke-width="4.2" stroke-linecap="round"/>
+
+          <!-- Right-side clear engineering callouts (Zero overlap!) -->
+          <rect x="290" y="198" width="376" height="128" rx="8" fill="#111826" stroke="#26344d" stroke-width="1.2"/>
+          <text x="304" y="220" fill="#f87171" font-size="11.2" font-weight="800">● 紅線｜後煞＋變速＋馬達（花心上方往後方入車體）</text>
+          <text x="316" y="236" fill="#cbd5e1" font-size="10">Stem 簍空腔 → 花心上方架空層 → 舵管後方下潛進車架內部</text>
+          <text x="304" y="260" fill="#34d399" font-size="11.2" font-weight="800">● 綠線｜前煞油管＋前燈線（穿花心直落前叉底孔）</text>
+          <text x="316" y="276" fill="#cbd5e1" font-size="10">Stem 簍空腔 → TPU 防磨套 → 缺口花心／中空螺栓直出前叉底</text>
+          <text x="304" y="300" fill="#c4b5fd" font-size="10.8" font-weight="800">★ 樞軸前移（Steerer 前方 +3 mm）核心價值：</text>
+          <text x="316" y="315" fill="#94a3b8" font-size="10">徹底騰空舵管正上方與後方過線空間，轉軸不擋後入線通道！</text>
         </svg>`
       }
     };
