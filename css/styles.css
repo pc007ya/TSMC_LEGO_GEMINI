@@ -107,15 +107,64 @@ html, body {
   font-weight: 500;
 }
 
-.set-switcher {
+.set-switcher-wrap {
   display: flex;
   align-items: center;
   gap: 6px;
-  overflow-x: auto;
-  scrollbar-width: none;
-  padding: 4px 2px;
   flex: 1;
+  min-width: 0;
+  position: relative;
+}
+
+.switcher-nav-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid var(--border-subtle);
+  background: #FFFFFF;
+  color: var(--ink-primary);
+  font-size: 18px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.08);
+  transition: all 0.16s ease;
+}
+
+.switcher-nav-btn:hover:not(:disabled) {
+  background: #14181F;
+  color: #FFFFFF;
+  border-color: #14181F;
+}
+
+.switcher-nav-btn:disabled {
+  opacity: 0.28;
+  cursor: default;
+  box-shadow: none;
+}
+
+.set-switcher {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 6px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  padding: 4px 4px;
+  flex: 1;
+  min-width: 0;
+  cursor: grab;
+  user-select: none;
+}
+.set-switcher.is-dragging {
+  cursor: grabbing;
+  scroll-behavior: auto;
 }
 .set-switcher::-webkit-scrollbar { display: none; }
 
@@ -133,6 +182,7 @@ html, body {
   font-size: 13px;
   font-weight: 600;
   white-space: nowrap;
+  flex-shrink: 0;
   transition: all 0.18s ease;
 }
 

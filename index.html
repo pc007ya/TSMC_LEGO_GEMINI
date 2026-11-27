@@ -29,9 +29,13 @@
       </div>
     </div>
 
-    <nav class="set-switcher" id="setSwitcher" aria-label="切換樂高盒組">
-      <!-- Dynamically populated with 5 TSMC LEGO sets -->
-    </nav>
+    <div class="set-switcher-wrap">
+      <button class="switcher-nav-btn" id="btnScrollSetsLeft" type="button" aria-label="向左滑動模型清單" title="向左滑動">‹</button>
+      <nav class="set-switcher" id="setSwitcher" aria-label="切換樂高盒組">
+        <!-- Dynamically populated with all LEGO sets -->
+      </nav>
+      <button class="switcher-nav-btn" id="btnScrollSetsRight" type="button" aria-label="向右滑動模型清單" title="向右滑動">›</button>
+    </div>
 
     <div class="topbar-actions">
       <button class="btn btn-ghost" id="btnToggleRef" title="對照參考圖片">

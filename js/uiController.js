@@ -119,6 +119,8 @@ export class UIController {
     const $ = id => document.getElementById(id);
     this.el = {
       setSwitcher: $('setSwitcher'),
+      btnScrollSetsLeft: $('btnScrollSetsLeft'),
+      btnScrollSetsRight: $('btnScrollSetsRight'),
       btnToggleRef: $('btnToggleRef'),
       btnOpenBOM: $('btnOpenBOM'),
       btnStartAssembly: $('btnStartAssembly'),
@@ -348,15 +350,78 @@ export class UIController {
   }
 
   _renderSetSwitcher() {
-    this.el.setSwitcher.innerHTML = '';
+    const nav = this.el.setSwitcher;
+    nav.innerHTML = '';
     this.sets.forEach((set, idx) => {
       const btn = document.createElement('button');
       btn.className = 'set-tab';
       btn.dataset.index = String(idx);
       btn.innerHTML = `<span class="set-tab-no">#${set.setNumber}</span><span>${set.shortName}</span>`;
-      btn.addEventListener('click', () => this.selectSet(idx));
-      this.el.setSwitcher.appendChild(btn);
+      btn.addEventListener('click', (e) => {
+        if (this._suppressSwitcherClick) {
+          e.preventDefault();
+          return;
+        }
+        this.selectSet(idx);
+      });
+      nav.appendChild(btn);
     });
+    this._bindSwitcherScroll();
+  }
+
+  _bindSwitcherScroll() {
+    if (this._switcherScrollBound) return;
+    this._switcherScrollBound = true;
+    const nav = this.el.setSwitcher;
+    const btnL = this.el.btnScrollSetsLeft;
+    const btnR = this.el.btnScrollSetsRight;
+
+    const updateArrows = () => {
+      const maxScroll = Math.max(0, nav.scrollWidth - nav.clientWidth);
+      if (btnL) btnL.disabled = nav.scrollLeft <= 2;
+      if (btnR) btnR.disabled = nav.scrollLeft >= maxScroll - 2;
+    };
+
+    if (btnL) btnL.addEventListener('click', () => nav.scrollBy({ left: -260, behavior: 'smooth' }));
+    if (btnR) btnR.addEventListener('click', () => nav.scrollBy({ left: 260, behavior: 'smooth' }));
+
+    // Mouse wheel vertical -> smooth horizontal scroll
+    nav.addEventListener('wheel', (e) => {
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        e.preventDefault();
+        nav.scrollLeft += e.deltaY;
+      }
+    }, { passive: false });
+
+    // Click-and-drag horizontal swipe on desktop (touch swipe works natively)
+    let isDown = false, startX = 0, startScroll = 0, moved = false;
+    nav.addEventListener('mousedown', (e) => {
+      if (e.button !== 0) return;
+      isDown = true;
+      moved = false;
+      startX = e.pageX;
+      startScroll = nav.scrollLeft;
+      nav.classList.add('is-dragging');
+    });
+    window.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      const dx = e.pageX - startX;
+      if (Math.abs(dx) > 6) moved = true;
+      if (moved) nav.scrollLeft = startScroll - dx;
+    });
+    window.addEventListener('mouseup', () => {
+      if (!isDown) return;
+      isDown = false;
+      nav.classList.remove('is-dragging');
+      if (moved) {
+        this._suppressSwitcherClick = true;
+        setTimeout(() => { this._suppressSwitcherClick = false; }, 60);
+      }
+    });
+
+    nav.addEventListener('scroll', updateArrows, { passive: true });
+    window.addEventListener('resize', updateArrows);
+    requestAnimationFrame(updateArrows);
   }
 
   selectSet(idx) {
@@ -365,9 +430,13 @@ export class UIController {
     this.currentSet = this.sets[idx];
     this.decalCycleIndex = 0;
 
-    // Update active tab styling
+    // Update active tab styling & smoothly scroll active tab into view
     this.el.setSwitcher.querySelectorAll('.set-tab').forEach((tab, i) => {
-      tab.classList.toggle('active', i === idx);
+      const isActive = i === idx;
+      tab.classList.toggle('active', isActive);
+      if (isActive) {
+        tab.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      }
     });
 
     // Reset explode slider
