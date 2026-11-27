@@ -2058,8 +2058,10 @@ function buildSetTaichungExpo() {
 }
 
 // ============================================================================
-// SET 08: 臺中綠美圖 UCS 典藏版 (72 × 48 studs, 7,000+ bricks, 6 Bags, 25 Steps)
-// SANAA's 8 Interconnected White Expanded-Mesh Cubes + Reflective Water Basin + Cultural Forest Skybridge
+// SET 08: 臺中綠美圖 UCS 典藏版 (76 × 52 studs, 9,000+ bricks, 6 Bags, 18 Steps)
+// Authentic SANAA Architecture: 8 NON-ORTHOGONAL Multi-Angled Pavilions (several with
+// sweeping CURVED / ROUNDED EDGES), 2 Circular 1F Glass Lobby Pavilions, Organic
+// Reflective Stainless-Steel Water Basin & Serpentine Rooftop "Cultural Forest" Skybridge!
 // ============================================================================
 function buildSetGreenMuseumbrary() {
   const b = new LegoBuilder({
@@ -2069,108 +2071,141 @@ function buildSetGreenMuseumbrary() {
     name: '臺中綠美圖 UCS 典藏版',
     englishName: 'Taichung Green Museumbrary (SANAA) — UCS Collector Edition',
     location: '台灣・臺中市西屯區水湳中央公園北側 (Shuinan Central Park, Taichung)',
-    footprint: '72 × 48',
+    footprint: '76 × 52',
     age: '18+',
     year: '2026',
     refImage: 'assets/ref/set08.svg',
     accentColor: '#1D8F44',
-    cameraPos: [62, 40, 68],
+    cameraPos: [64, 44, 70],
     cameraTarget: [0, 8, 0],
-    description: '致敬普立茲克獎建築大師妹島和世 × 西澤立衛 (SANAA) 的「公園中的圖書館、森林中的美術館」！以 72×48 全景典藏底座與超過 7,000 塊零重疊樂高積木，精細還原 8 座高低錯落、底部挑空柱廊的純白方盒量體（西側 4 棟臺中市立美術館 + 東側 4 棟臺中市立圖書館總館）、標誌性雙層玻璃與銀白鋁擴張網帷幕、中央大廳曲線鏡面水池、室內美術館展台與圖書館書牆，以及屋頂環形「文化之森」空中花園步道！',
+    description: '真實還原普立茲克獎大師妹島和世 × 西澤立衛 (SANAA) 的「臺中綠美圖」！打破正交方盒框架，以 76×52 底座雕塑出 8 座「各自旋轉不同角度、高低錯落、多棟具流線圓弧邊緣」的銀白鋁擴張網量體（西側 4 棟美術館 ＋ 東側 4 棟總圖書館）、1F 挑空柱廊與兩座圓形玻璃服務屋、中央曲面不鏽鋼鏡面水池，以及屋頂蜿蜒流暢的「文化之森」圓弧空中花園步道！',
     bags: [
-      { id: 1, title: '第 1 包：72×48 水湳中央公園底座、鏡面水池與銘牌', subtitle: '72x48 Central Park Base, Water Basin & Plaque', color: '#1D8F44' },
-      { id: 2, title: '第 2 包：8 棟方盒 1F 挑空柱廊、美術館展廳與書庫基底', subtitle: '8-Volume Piloti Columns, Museum & Library Decks', color: '#F6F7F9' },
-      { id: 3, title: '第 3 包：西側 4 棟「臺中市立美術館」鋁擴張網方盒群', subtitle: 'West 4 Art Museum Expanded-Mesh Cubes', color: '#3AC5ED' },
-      { id: 4, title: '第 4 包：東側 4 棟「臺中市立圖書館總館」通透方盒群', subtitle: 'East 4 Public Library Glass & Mesh Cubes', color: '#A8AEB4' },
-      { id: 5, title: '第 5 包：美術館 × 圖書館多層聯通玻璃空橋與樓梯',   subtitle: 'Multi-Level Connecting Skybridges & Stairs', color: '#555C63' },
-      { id: 6, title: '第 6 包：屋頂「文化之森」環形天空步道與森林植栽', subtitle: 'Rooftop Cultural Forest Circular Skybridge', color: '#9FC33A' }
+      { id: 1, title: '第 1 包：76×52 水湳中央公園、曲面水池與雙圓形玻璃屋', subtitle: '76x52 Park Base, Organic Water Basin & 2 Circular Glass Pavilions', color: '#1D8F44' },
+      { id: 2, title: '第 2 包：8 棟斜角與圓弧建築 1F 挑空白色柱廊 (Piloti)', subtitle: 'Multi-Angled 8-Pavilion Open Piloti Columns', color: '#F6F7F9' },
+      { id: 3, title: '第 3 包：西側 4 棟「臺中市立美術館」斜角與圓弧量體群', subtitle: 'West 4 Angled & Rounded-Edge Art Museum Pavilions', color: '#3AC5ED' },
+      { id: 4, title: '第 4 包：東側 4 棟「臺中市立圖書館總館」斜角與圓弧量體群', subtitle: 'East 4 Angled & Rounded-Edge Library Pavilions', color: '#A8AEB4' },
+      { id: 5, title: '第 5 包：跨館斜向與弧形「融合空間」多層玻璃空橋',     subtitle: 'Curved & Diagonal Multi-Level Glass Skybridges', color: '#555C63' },
+      { id: 6, title: '第 6 包：屋頂「文化之森」流線圓弧天空步道與空中森林', subtitle: 'Serpentine Rooftop Cultural Forest Skybridge & Trees', color: '#9FC33A' }
     ]
   });
 
-  // Define SANAA's 8 interconnected volumes of varying heights (4 Museum West, 4 Library East)
-  // [id, x1, x2, z1, z2, topY, type]
-  const cubes = [
-    { id: 'M1', x1: -31, x2: -17, z1:   2, z2: 13, topY: 22, type: 'museum' },
-    { id: 'M2', x1: -23, x2:  -7, z1: -10, z2:  4, topY: 31, type: 'museum' },
-    { id: 'M3', x1: -32, x2: -20, z1: -16, z2: -5, topY: 25, type: 'museum' },
-    { id: 'M4', x1: -11, x2:  -3, z1:   3, z2: 12, topY: 26, type: 'museum' },
-    { id: 'L1', x1:   3, x2:  11, z1:   3, z2: 12, topY: 25, type: 'library' },
-    { id: 'L2', x1:   7, x2:  23, z1: -10, z2:  4, topY: 33, type: 'library' },
-    { id: 'L3', x1:  17, x2:  31, z1:   2, z2: 13, topY: 21, type: 'library' },
-    { id: 'L4', x1:  20, x2:  32, z1: -16, z2: -5, topY: 27, type: 'library' }
+  // 8 Distinct SANAA Pavilions — ALL rotated at non-orthogonal angles (deg != 0),
+  // with 5 featuring prominent sweeping CURVED / ROUNDED EDGES (r = 3.5..6.0)!
+  const pavilions = [
+    // West 4 Art Museum Pavilions
+    { id: 'M1', cx: -24, cz:   8, hw: 7.5, hd: 5.5, deg: -21, r: 4.2, topY: 22, type: 'museum' },
+    { id: 'M2', cx: -16, cz:  -4, hw: 8.5, hd: 7.0, deg:  14, r: 2.0, topY: 31, type: 'museum' },
+    { id: 'M3', cx: -26, cz: -10, hw: 6.5, hd: 5.8, deg: -13, r: 5.0, topY: 25, type: 'museum' },
+    { id: 'M4', cx:  -8, cz:   9, hw: 5.8, hd: 5.2, deg:  24, r: 4.5, topY: 26, type: 'museum' },
+    // East 4 Public Library Pavilions
+    { id: 'L1', cx:   8, cz:   9, hw: 5.8, hd: 5.2, deg: -23, r: 4.5, topY: 25, type: 'library' },
+    { id: 'L2', cx:  16, cz:  -4, hw: 8.5, hd: 7.2, deg: -15, r: 2.5, topY: 33, type: 'library' },
+    { id: 'L3', cx:  24, cz:   8, hw: 7.5, hd: 5.5, deg:  19, r: 4.4, topY: 21, type: 'library' },
+    { id: 'L4', cx:  26, cz: -10, hw: 6.8, hd: 5.8, deg:  12, r: 5.2, topY: 28, type: 'library' }
   ];
 
-  // Helper: build one SANAA cube's double-layered glass + white/silver expanded-metal-mesh facade
-  const buildCubeVolume = (c) => {
-    // 2F structural floor deck at y=8
-    b.fillRect(c.x1, c.x2, c.z1, c.z2, 8, 'WHITE', 'plate');
+  // Signed Distance Field for a rotated rounded-corner pavilion in XZ
+  const sdPav = (x, z, v) => {
+    const rad = (v.deg * Math.PI) / 180;
+    const dx = x - v.cx, dz = z - v.cz;
+    const lx = dx * Math.cos(rad) + dz * Math.sin(rad);
+    const lz = -dx * Math.sin(rad) + dz * Math.cos(rad);
+    const qx = Math.abs(lx) - (v.hw - v.r);
+    const qz = Math.abs(lz) - (v.hd - v.r);
+    return Math.hypot(Math.max(qx, 0), Math.max(qz, 0)) + Math.min(Math.max(qx, qz), 0) - v.r;
+  };
 
-    // Interior details (Museum art pedestals on West; Library bookshelves on East)
-    const cx = Math.floor((c.x1 + c.x2) / 2);
-    const cz = Math.floor((c.z1 + c.z2) / 2);
-    if (c.type === 'museum') {
-      b.place('plate_2x2', 'RED', cx - 1, 9, cz - 1);
-      b.place('brick_1x1', 'PEARL_GOLD', cx, 10, cz);
-      b.place('plate_2x2', 'BLUE', cx - 3, 9, cz + 1);
+  const inPav = (x, z, v) => sdPav(x, z, v) <= 0;
+  const isPavEdge = (x, z, v) =>
+    inPav(x, z, v) && (
+      !inPav(x + 1, z, v) || !inPav(x - 1, z, v) ||
+      !inPav(x, z + 1, v) || !inPav(x, z - 1, v)
+    );
+
+  // Build one angled & rounded-edge SANAA pavilion (2F floor deck, interior, expanded-mesh walls, roof)
+  const buildPavilion = (v) => {
+    const minX = Math.floor(v.cx - 12), maxX = Math.ceil(v.cx + 12);
+    const minZ = Math.floor(v.cz - 12), maxZ = Math.ceil(v.cz + 12);
+
+    // 2F structural white floor slab (y=8) following exact rotated rounded footprint
+    for (let x = minX; x <= maxX; x++) {
+      for (let z = minZ; z <= maxZ; z++) {
+        if (inPav(x, z, v)) {
+          b.place('plate_1x1', 'WHITE', x, 8, z);
+        }
+      }
+    }
+
+    // Interior art pedestals (museum) or curved library bookshelves (library)
+    const icx = Math.round(v.cx), icz = Math.round(v.cz);
+    if (v.type === 'museum') {
+      b.place('plate_2x2', 'RED', icx - 1, 9, icz - 1);
+      b.place('brick_1x1', 'PEARL_GOLD', icx, 10, icz);
     } else {
-      for (let bx = c.x1 + 2; bx < c.x2 - 2; bx += 3) {
-        b.place('brick_1x2', 'TAN', bx, 9, cz, 0);
-        b.place('tile_1x2',  'WHITE', bx, 12, cz, 0);
-      }
-    }
-
-    // Perimeter double-tone SANAA expanded-metal-mesh & glass curtain wall (y=9..topY)
-    for (let y = 9; y <= c.topY; y++) {
-      const isSlab = (y === 9 || y === c.topY || (y - 9) % 7 === 0);
-      // North & South walls
-      for (let x = c.x1; x < c.x2; x++) {
-        for (const z of [c.z1, c.z2 - 1]) {
-          const isCorner = (x === c.x1 || x === c.x2 - 1);
-          const col = (isSlab || isCorner) ? 'WHITE'
-            : (((x + y) % 3 === 0) ? 'FLAT_SILVER' : (((x + y) % 2 === 0) ? 'TRANS_CLEAR' : 'TRANS_LIGHT_BLUE'));
-          b.place('plate_1x1', col, x, y, z);
-        }
-      }
-      // West & East walls
-      for (let z = c.z1 + 1; z < c.z2 - 1; z++) {
-        for (const x of [c.x1, c.x2 - 1]) {
-          const col = isSlab ? 'WHITE'
-            : (((z + y) % 3 === 0) ? 'FLAT_SILVER' : (((z + y) % 2 === 0) ? 'TRANS_CLEAR' : 'TRANS_LIGHT_BLUE'));
-          b.place('plate_1x1', col, x, y, z);
+      for (let dx = -3; dx <= 3; dx += 3) {
+        if (inPav(icx + dx, icz, v)) {
+          b.place('brick_1x1', 'TAN', icx + dx, 9, icz);
+          b.place('tile_1x1',  'WHITE', icx + dx, 12, icz);
         }
       }
     }
 
-    // Crisp white roof slab (topY + 1) & sleek parapet trim (topY + 2)
-    b.fillRect(c.x1, c.x2, c.z1, c.z2, c.topY + 1, 'WHITE', 'plate');
-    b.wallRing(c.x1, c.x2, c.z1, c.z2, c.topY + 2, 'WHITE', 'tile');
+    // Watertight stepped-LEGO angled & curved-edge dual-layer mesh+glass facade (y=9..topY)
+    for (let y = 9; y <= v.topY; y++) {
+      const isFloorBand = (y === 9 || y === v.topY || (y - 9) % 7 === 0);
+      for (let x = minX; x <= maxX; x++) {
+        for (let z = minZ; z <= maxZ; z++) {
+          if (isPavEdge(x, z, v)) {
+            const col = isFloorBand ? 'WHITE'
+              : (((x + z + y) % 3 === 0) ? 'FLAT_SILVER'
+                : (((x + y) % 2 === 0) ? 'TRANS_CLEAR' : 'TRANS_LIGHT_BLUE'));
+            b.place('plate_1x1', col, x, y, z);
+          }
+        }
+      }
+    }
+
+    // Roof slab (topY + 1) + crisp white curved/angled parapet (topY + 2)
+    for (let x = minX; x <= maxX; x++) {
+      for (let z = minZ; z <= maxZ; z++) {
+        if (inPav(x, z, v)) {
+          b.place('plate_1x1', 'WHITE', x, v.topY + 1, z);
+          if (isPavEdge(x, z, v)) {
+            b.place('tile_1x1', 'WHITE', x, v.topY + 2, z);
+          }
+        }
+      }
+    }
   };
 
   // -------------------------------------------------------------------------
-  // BAG 1: 72 x 48 UCS Baseplate (-36..36, -24..24) + Shuinan Central Park & Reflective Basin
+  // BAG 1: 76 x 52 Baseplate (-38..38, -26..26) + Organic Park, Water Pool & 2 Circular Glass Pavilions
   // -------------------------------------------------------------------------
-  b.beginStep(1, '拼合 72×48 曜石黑典藏展示底板', '以大面積曜石黑基礎薄板拼出 72×48 寬敞綠美圖公園基地。');
-  for (let x = -36; x < 36; x += 16) {
-    for (let z = -24; z < 24; z += 16) {
-      if (x + 16 <= 36) b.place('plate_16x16', 'BLACK', x, 0, z);
+  b.beginStep(1, '拼合 76×52 曜石黑典藏展示底板', '以大面積曜石黑基礎薄板拼出 76×52 寬闊水湳中央公園基地。');
+  for (let x = -38; x < 38; x += 16) {
+    for (let z = -26; z < 26; z += 16) {
+      if (x + 16 <= 38 && z + 16 <= 26) b.place('plate_16x16', 'BLACK', x, 0, z);
     }
   }
-  b.fillRect(28, 36, -24, 24, 0, 'BLACK', 'plate');
+  b.fillRect(26, 38, -26, 26, 0, 'BLACK', 'plate');
+  b.fillRect(-38, 26, 22, 26, 0, 'BLACK', 'plate');
 
-  b.beginStep(1, '鋪設 70×46 水湳中央公園結構底層', '內縮一格滿鋪淺藍灰承重薄板，保留四周典藏黑框邊界。');
-  b.fillRect(-35, 35, -23, 23, 1, 'LIGHT_BLUISH_GRAY', 'plate');
+  b.beginStep(1, '鋪設 74×50 公園地基承重底層', '內縮一格滿鋪淺藍灰承重薄板，保留四周典藏黑框邊界。');
+  b.fillRect(-37, 37, -25, 25, 1, 'LIGHT_BLUISH_GRAY', 'plate');
 
-  b.beginStep(1, '雕塑公園林蔭草坪、漫遊步道與中央「知識之泉」曲線鏡面水池', '中央留設西澤立衛設計的曲線不鏽鋼鏡面水池，四周環繞水湳中央公園綠地與步道。');
-  for (let x = -34; x < 34; x++) {
-    for (let z = -22; z < 22; z++) {
-      if ((x === -1 || x === 0) && (z === 20 || z === 21)) continue; // reserve for plaque
-      const poolDist = Math.hypot(x / 5.2, (z - 0.5) / 4.2);
-      const inBuildingZone = (x >= -32 && x < 32 && z >= -16 && z < 13);
-      const onPath = Math.abs(x) <= 3 || Math.abs(z - 15 - Math.sin(x * 0.14) * 2.0) < 1.6;
-      if (poolDist <= 1.0) {
-        const col = poolDist > 0.82 ? 'FLAT_SILVER' : 'TRANS_LIGHT_BLUE';
-        b.place('tile_1x1', col, x, 2, z);
-      } else if (inBuildingZone || onPath) {
+  b.beginStep(1, '雕塑水湳中央公園曲線步道、林蔭綠地與中央曲面不鏽鋼水池', '中央打造西澤立衛設計的有機曲面鏡面水池，四周以流暢曲線串聯公園草坪與漫遊廣場。');
+  for (let x = -36; x < 36; x++) {
+    for (let z = -24; z < 24; z++) {
+      if ((x === -1 || x === 0) && (z === 21 || z === 22)) continue; // reserve for plaque
+      // Organic kidney-shaped reflective stainless-steel water basin at center
+      const poolD = Math.hypot((x - Math.sin(z * 0.3) * 1.4) / 4.8, (z - 0.5) / 3.8);
+      const underAnyPav = pavilions.some(v => inPav(x, z, v));
+      const inPlaza = Math.hypot(x / 12, (z - 1) / 10) <= 1.0
+        || Math.abs(z - 17.5 - Math.sin(x * 0.13) * 2.2) < 1.8
+        || Math.abs(x - Math.sin(z * 0.14) * 2.5) < 2.4;
+      if (poolD <= 1.0) {
+        b.place('tile_1x1', poolD > 0.80 ? 'FLAT_SILVER' : 'TRANS_LIGHT_BLUE', x, 2, z);
+      } else if (underAnyPav || inPlaza) {
         b.place('plate_1x1', 'LIGHT_BLUISH_GRAY', x, 2, z);
       } else {
         const col = ((x * 3 + z) % 7 === 0) ? 'LIME' : (((x + z) % 5 === 0) ? 'DARK_GREEN' : 'BRIGHT_GREEN');
@@ -2179,12 +2214,31 @@ function buildSetGreenMuseumbrary() {
     }
   }
 
-  b.beginStep(1, '安裝「臺中綠美圖」專屬銘牌與 20 棵水湳森林喬木', '正前方扣上專屬綠美圖斜面銘牌，並於公園四周種植多層次林蔭喬木。', 'tgm_plaque');
-  b.addDecal('tgm_plaque', '南側公園正前方・臺中綠美圖銘牌', 'slope_tgm_2x2', 'BLACK', -1, 2, 20, 0, [0, 4, 10]);
+  b.beginStep(1, '建造 1F 大廳兩座「圓形透明玻璃屋」、專屬銘牌與 20 棵公園喬木', '還原大廳招牌兩座圓形玻璃屋（服務台與地下階梯廳），並扣上綠美圖銘牌與林蔭喬木！', 'tgm_plaque');
+  // Two iconic circular 1F glass pavilions flanking the central reflective pool!
+  for (const [gcx, gcz] of [[-7, -1], [7, -1]]) {
+    for (let y = 3; y <= 7; y++) {
+      for (let dx = -3; dx <= 3; dx++) {
+        for (let dz = -3; dz <= 3; dz++) {
+          const d = Math.hypot(dx, dz);
+          if (d >= 2.0 && d <= 3.1) {
+            const col = (y === 7) ? 'WHITE' : ((dx === 0 || dz === 0) ? 'FLAT_SILVER' : 'TRANS_CLEAR');
+            b.place('plate_1x1', col, gcx + dx, y, gcz + dz);
+          }
+        }
+      }
+    }
+    for (let dx = -2; dx <= 2; dx++) {
+      for (let dz = -2; dz <= 2; dz++) {
+        if (Math.hypot(dx, dz) <= 2.3) b.place('tile_1x1', 'WHITE', gcx + dx, 8, gcz + dz);
+      }
+    }
+  }
+  b.addDecal('tgm_plaque', '南側公園正前方・臺中綠美圖銘牌', 'slope_tgm_2x2', 'BLACK', -1, 2, 21, 0, [0, 4, 10]);
   const parkTrees = [
-    [-33, 19], [-26, 18], [-18, 20], [-10, 17], [10, 17], [18, 20], [26, 18], [33, 19],
-    [-33, -20], [-22, -19], [-10, -19], [0, -20], [10, -19], [22, -19], [33, -20],
-    [-34, -4], [-34, 8], [33, -4], [33, 8], [0, -14]
+    [-34, 21], [-27, 20], [-19, 22], [-10, 20], [10, 20], [19, 22], [27, 20], [34, 21],
+    [-34, -22], [-22, -21], [-10, -21], [0, -22], [10, -21], [22, -21], [34, -22],
+    [-35, -3], [-35, 10], [34, -3], [34, 10], [0, -16]
   ];
   for (const [tx, tz] of parkTrees) {
     b.place('round_brick_1x1', 'REDDISH_BROWN', tx, 3, tz);
@@ -2194,148 +2248,142 @@ function buildSetGreenMuseumbrary() {
   }
 
   // -------------------------------------------------------------------------
-  // BAG 2: 1F Open Piloti Columns (y=3..7) supporting all 8 SANAA floating volumes!
+  // BAG 2: 1F Open Piloti Columns (y=3..7) beneath all 8 angled/curved pavilions!
   // -------------------------------------------------------------------------
-  b.beginStep(2, '立起西側 4 棟美術館 1F 挑空纖細白色柱廊 (Piloti)', 'SANAA 招牌地面層挑空柱廊，讓中央公園綠意與微風自由穿梭於建築底部！');
-  for (const c of cubes.filter(v => v.type === 'museum')) {
-    for (let x = c.x1; x < c.x2; x += 4) {
-      for (let z = c.z1; z < c.z2; z += 4) {
-        b.place('brick_1x1', 'WHITE', x, 3, z);
-        b.place('plate_1x1', 'WHITE', x, 6, z);
-        b.place('plate_1x1', 'WHITE', x, 7, z);
-      }
-    }
-    // Corner columns guaranteed
-    for (const cx of [c.x1, c.x2 - 1]) {
-      for (const cz of [c.z1, c.z2 - 1]) {
-        b.place('brick_1x1', 'WHITE', cx, 3, cz);
-        b.place('plate_1x1', 'WHITE', cx, 6, cz);
-        b.place('plate_1x1', 'WHITE', cx, 7, cz);
-      }
-    }
-  }
-
-  b.beginStep(2, '立起東側 4 棟圖書館 1F 挑空白色柱廊與大廳核心筒', '對稱於東側圖書館量體下方立起纖細白色結構柱群與電梯玻璃核心。');
-  for (const c of cubes.filter(v => v.type === 'library')) {
-    for (let x = c.x1; x < c.x2; x += 4) {
-      for (let z = c.z1; z < c.z2; z += 4) {
-        b.place('brick_1x1', 'WHITE', x, 3, z);
-        b.place('plate_1x1', 'WHITE', x, 6, z);
-        b.place('plate_1x1', 'WHITE', x, 7, z);
-      }
-    }
-    for (const cx of [c.x1, c.x2 - 1]) {
-      for (const cz of [c.z1, c.z2 - 1]) {
-        b.place('brick_1x1', 'WHITE', cx, 3, cz);
-        b.place('plate_1x1', 'WHITE', cx, 6, cz);
-        b.place('plate_1x1', 'WHITE', cx, 7, cz);
-      }
-    }
-  }
-
-  // -------------------------------------------------------------------------
-  // BAG 3: West 4 Art Museum Expanded-Mesh Volumes (M1, M2, M3, M4)
-  // -------------------------------------------------------------------------
-  b.beginStep(3, '構築美術館主高盒 (M2) 與室內現代藝術展台', '砌築美術館最高核心量體，銀白鋁擴張網與透明玻璃交織出輕盈透光質感。');
-  buildCubeVolume(cubes[1]);
-
-  b.beginStep(3, '構築美術館西前展廳 (M1) 與西後特展廳 (M3)', '交錯疊合兩座不同高度的純白擴張網展館方盒，營造豐富天際線層次。');
-  buildCubeVolume(cubes[0]);
-  buildCubeVolume(cubes[2]);
-
-  b.beginStep(3, '構築美術館中央迎賓展盒 (M4)', '緊鄰中央水池立起美術館前導量體，預留跨館空橋對接口。');
-  buildCubeVolume(cubes[3]);
-
-  // -------------------------------------------------------------------------
-  // BAG 4: East 4 Public Library Glass & Mesh Volumes (L1, L2, L3, L4)
-  // -------------------------------------------------------------------------
-  b.beginStep(4, '構築圖書館 7F 主高盒 (L2) 與木質書架閱覽空間', '打造全館最高 7 層樓景觀閱覽方盒，內部配置米白書牆與明亮採光帷幕。');
-  buildCubeVolume(cubes[5]);
-
-  b.beginStep(4, '構築圖書館東前兒童閱覽盒 (L3) 與東後典藏書庫 (L4)', '完成東側兩座錯落圖書館量體，展現 SANAA 標誌性方盒聚落美學。');
-  buildCubeVolume(cubes[6]);
-  buildCubeVolume(cubes[7]);
-
-  b.beginStep(4, '構築圖書館中央前廳方盒 (L1)', '與對面美術館 M4 遙相呼應，圍塑出半戶外中央鏡面水池大廳！');
-  buildCubeVolume(cubes[4]);
-
-  // -------------------------------------------------------------------------
-  // BAG 5: Multi-Level Connecting Glass Skybridges (美術館 × 圖書館聯通空橋)
-  // -------------------------------------------------------------------------
-  b.beginStep(5, '立起中央聯通空橋纖細白色落柱並架設 2F 南側玻璃空橋', '串聯美術館 M4 與圖書館 L1，讓民眾在閱讀與看展間自由漫步！');
-  for (const [px, pz] of [[-1, 6], [1, 6], [-1, 9], [1, 9]]) {
-    for (let y = 3; y <= 11; y += 3) b.place('brick_1x1', 'WHITE', px, y, pz);
-  }
-  b.fillRect(-3, 3, 6, 10, 12, 'WHITE', 'plate');
-  for (let x = -3; x < 3; x++) {
-    for (let y = 13; y <= 17; y++) {
-      const col = (y === 17 || x % 2 === 0) ? 'WHITE' : 'TRANS_LIGHT_BLUE';
-      b.place('plate_1x1', col, x, y, 6);
-      b.place('plate_1x1', col, x, y, 9);
-    }
-  }
-  b.fillRect(-3, 3, 6, 10, 18, 'WHITE', 'tile');
-
-  b.beginStep(5, '架設高層跨館「融合空間 (Fusion Space)」雙層空中廊橋', '於高層串聯美術館主盒 M2 與圖書館主盒 L2，俯瞰下方曲線鏡面水池！');
-  for (const [px, pz] of [[-4, -6], [3, -6], [-4, -2], [3, -2]]) {
-    for (let y = 3; y <= 18; y += 3) b.place('brick_1x1', 'WHITE', px, y, pz);
-    b.place('plate_1x1', 'WHITE', px, 20, pz);
-  }
-  b.fillRect(-7, 7, -6, -1, 21, 'WHITE', 'plate');
-  for (let x = -7; x < 7; x++) {
-    for (let y = 22; y <= 26; y++) {
-      const col = (y === 26 || x % 3 === 0) ? 'FLAT_SILVER' : 'TRANS_LIGHT_BLUE';
-      b.place('plate_1x1', col, x, y, -6);
-      b.place('plate_1x1', col, x, y, -2);
-    }
-  }
-  b.fillRect(-7, 7, -6, -1, 27, 'WHITE', 'tile');
-
-  // -------------------------------------------------------------------------
-  // BAG 6: Iconic Rooftop "Cultural Forest" Circular Skybridge & Rooftop Gardens
-  // -------------------------------------------------------------------------
-  b.beginStep(6, '架設屋頂標誌性「文化之森」環形白色天空步道支撐柱', '於中央水池南北兩側立起纖細白色結構柱，穩固承托屋頂環形天空步道。');
-  const ringSupports = [[-4, -9], [4, -9], [-4, 6], [4, 6], [0, -10], [0, 7]];
-  for (const [sx, sz] of ringSupports) {
-    let y = 3;
-    while (y + 3 <= 31) {
-      b.place('brick_1x1', 'WHITE', sx, y, sz);
-      y += 3;
-    }
-    while (y < 32) {
-      b.place('plate_1x1', 'WHITE', sx, y, sz);
-      y++;
-    }
-  }
-
-  b.beginStep(6, '鋪設屋頂「文化之森 (Cultural Forest)」橢圓環形天空步道', 'SANAA 最具代表性的半戶外屋頂環形步道，以純白鋼構串聯美術館與圖書館屋頂花園！');
-  for (let x = -18; x <= 18; x++) {
-    for (let z = -12; z <= 9; z++) {
-      const d = Math.hypot(x / 15.5, (z + 1.5) / 8.8);
-      if (d >= 0.78 && d <= 1.04) {
-        b.place('plate_1x1', 'WHITE', x, 32, z);
-        if (d > 0.96 || d < 0.84) {
-          b.place('plate_1x1', 'FLAT_SILVER', x, 33, z);
-          b.place('tile_1x1',  'WHITE', x, 34, z);
-        } else {
-          b.place('tile_1x1', 'LIGHT_BLUISH_GRAY', x, 33, z);
+  b.beginStep(2, '立起西側 4 棟斜角美術館 1F 挑空纖細白色柱廊 (Piloti)', '依各棟不同旋轉角度與圓弧邊界精準立起地面層纖細白柱，營造建築漂浮於公園上的輕盈感！');
+  for (const v of pavilions.filter(p => p.type === 'museum')) {
+    const minX = Math.floor(v.cx - 11), maxX = Math.ceil(v.cx + 11);
+    const minZ = Math.floor(v.cz - 11), maxZ = Math.ceil(v.cz + 11);
+    for (let x = minX; x <= maxX; x += 3) {
+      for (let z = minZ; z <= maxZ; z += 3) {
+        if (inPav(x, z, v) && Math.hypot(x + 7, z + 1) > 3.5) {
+          b.place('brick_1x1', 'WHITE', x, 3, z);
+          b.place('plate_1x1', 'WHITE', x, 6, z);
+          b.place('plate_1x1', 'WHITE', x, 7, z);
         }
       }
     }
   }
 
-  b.beginStep(6, '種植屋頂空中花園草坡與 14 棵文化之森喬木完工', '於 8 棟方盒屋頂點綴鮮綠草坪與多層次喬木，臺中綠美圖完美落成！');
-  const roofGardenTrees = [
-    [-26, 7], [-20, 9], [-26, -11], [-15, -6], [-12, -2], [-7, 7],
-    [7, 7], [15, -6], [12, -2], [26, 7], [20, 9], [26, -11], [-19, -2], [19, -2]
-  ];
-  for (const [rx, rz] of roofGardenTrees) {
-    // Find the highest cube roof at (rx, rz)
-    let ry = 0;
-    for (const c of cubes) {
-      if (rx >= c.x1 + 1 && rx < c.x2 - 1 && rz >= c.z1 + 1 && rz < c.z2 - 1) {
-        ry = Math.max(ry, c.topY + 2);
+  b.beginStep(2, '立起東側 4 棟斜角圖書館 1F 挑空纖細白色柱廊 (Piloti)', '於東側 4 棟斜角與圓弧圖書館量體下方對稱架設白色挑空結構柱群。');
+  for (const v of pavilions.filter(p => p.type === 'library')) {
+    const minX = Math.floor(v.cx - 11), maxX = Math.ceil(v.cx + 11);
+    const minZ = Math.floor(v.cz - 11), maxZ = Math.ceil(v.cz + 11);
+    for (let x = minX; x <= maxX; x += 3) {
+      for (let z = minZ; z <= maxZ; z += 3) {
+        if (inPav(x, z, v) && Math.hypot(x - 7, z + 1) > 3.5) {
+          b.place('brick_1x1', 'WHITE', x, 3, z);
+          b.place('plate_1x1', 'WHITE', x, 6, z);
+          b.place('plate_1x1', 'WHITE', x, 7, z);
+        }
       }
+    }
+  }
+
+  // -------------------------------------------------------------------------
+  // BAG 3: West 4 Art Museum Multi-Angled & Rounded-Edge Pavilions
+  // -------------------------------------------------------------------------
+  b.beginStep(3, '構築美術館主高館 (M2・旋轉 +14° 圓角量體)', '以非正交 +14° 旋轉角度與柔順圓角砌築美術館最高核心量體，外覆銀白鋁擴張網！');
+  buildPavilion(pavilions[1]);
+
+  b.beginStep(3, '構築美術館西前圓弧展館 (M1・-21°) 與西後圓弧展館 (M3・-13°)', '以大幅度圓弧轉角與不同斜角錯落配置兩座美術館展廳，打破呆板直角！');
+  buildPavilion(pavilions[0]);
+  buildPavilion(pavilions[2]);
+
+  b.beginStep(3, '構築美術館南側圓弧迎賓館 (M4・旋轉 +24°)', '以 +24° 活潑斜角與圓弧邊緣迎向水湳中央公園，與中央水池對話！');
+  buildPavilion(pavilions[3]);
+
+  // -------------------------------------------------------------------------
+  // BAG 4: East 4 Public Library Multi-Angled & Rounded-Edge Pavilions
+  // -------------------------------------------------------------------------
+  b.beginStep(4, '構築圖書館 7F 主高館 (L2・旋轉 -15° 景觀閱覽室)', '打造全館最高 7 層樓斜角圓角閱覽量體，內部配置木質書架與 360° 公園景觀窗。');
+  buildPavilion(pavilions[5]);
+
+  b.beginStep(4, '構築圖書館東前圓弧兒童館 (L3・+19°) 與東後圓弧書庫 (L4・+12°)', '以大圓弧邊緣與交錯旋轉角度構築東側兩座圖書館量體，重現 SANAA 流動群聚感！');
+  buildPavilion(pavilions[6]);
+  buildPavilion(pavilions[7]);
+
+  b.beginStep(4, '構築圖書館南側圓弧迎賓館 (L1・旋轉 -23°)', '與西側 M4 呈現八字張開的動態迎賓姿態，邀請市民從四面八方漫步入館！');
+  buildPavilion(pavilions[4]);
+
+  // -------------------------------------------------------------------------
+  // BAG 5: Curved & Diagonal Multi-Level Connecting Glass Skybridges
+  // -------------------------------------------------------------------------
+  b.beginStep(5, '架設南側「弧形玻璃聯通空橋」串聯美術館 M4 與圖書館 L1', '以優美微弧線形橫跨中央公園軸線，讓閱讀與藝術體驗無縫交織！');
+  for (const [px, pz] of [[-2, 9], [2, 9], [0, 10]]) {
+    for (let y = 3; y <= 11; y += 3) b.place('brick_1x1', 'WHITE', px, y, pz);
+  }
+  for (let x = -4; x <= 4; x++) {
+    const cz = Math.round(9.5 + Math.cos(x * 0.35) * 1.4);
+    for (let dz = -1; dz <= 1; dz++) {
+      b.place('plate_1x1', 'WHITE', x, 12, cz + dz);
+      if (dz === -1 || dz === 1) {
+        for (let y = 13; y <= 17; y++) {
+          b.place('plate_1x1', (y === 17 || x % 2 === 0) ? 'WHITE' : 'TRANS_LIGHT_BLUE', x, y, cz + dz);
+        }
+      }
+      b.place('tile_1x1', 'WHITE', x, 18, cz + dz);
+    }
+  }
+
+  b.beginStep(5, '架設高層「S 型曲線融合空橋」串聯美術館主館 M2 與圖書館主館 L2', '高空優雅弧線飛越中央鏡面水池上方，串聯兩座最高核心展館！');
+  for (const [px, pz] of [[-4, -4], [0, -5], [4, -4]]) {
+    for (let y = 3; y <= 18; y += 3) b.place('brick_1x1', 'WHITE', px, y, pz);
+    b.place('plate_1x1', 'WHITE', px, 20, pz);
+  }
+  for (let x = -8; x <= 8; x++) {
+    const cz = Math.round(-4.5 + Math.sin(x * 0.28) * 1.6);
+    for (let dz = -1; dz <= 1; dz++) {
+      b.place('plate_1x1', 'WHITE', x, 21, cz + dz);
+      if (dz === -1 || dz === 1) {
+        for (let y = 22; y <= 26; y++) {
+          b.place('plate_1x1', (y === 26 || x % 3 === 0) ? 'FLAT_SILVER' : 'TRANS_LIGHT_BLUE', x, y, cz + dz);
+        }
+      }
+      b.place('tile_1x1', 'WHITE', x, 27, cz + dz);
+    }
+  }
+
+  // -------------------------------------------------------------------------
+  // BAG 6: Serpentine Curved Rooftop "Cultural Forest" Skybridge & Rooftop Gardens
+  // -------------------------------------------------------------------------
+  b.beginStep(6, '立起屋頂「文化之森」圓弧天空步道纖細白色支撐柱', '於中央水池南北兩側立起纖細白色結構柱，穩固支撐屋頂流線環形天空步道。');
+  const ringSupports = [[-4, -10], [4, -10], [-4, 6], [4, 6], [0, -11], [0, 7], [-15, -5], [-16, 2]];
+  for (const [sx, sz] of ringSupports) {
+    let y = 3;
+    while (y + 3 <= 34) { b.place('brick_1x1', 'WHITE', sx, y, sz); y += 3; }
+    while (y < 35) { b.place('plate_1x1', 'WHITE', sx, y, sz); y++; }
+  }
+
+  b.beginStep(6, '鋪設屋頂「文化之森 (Cultural Forest)」有機圓弧天空步道環', '以流暢橢圓弧形純白步道串聯各棟斜角圓弧屋頂，俯瞰整座水湳中央公園！');
+  for (let x = -19; x <= 19; x++) {
+    for (let z = -13; z <= 9; z++) {
+      const d = Math.hypot(x / 16.0, (z + 2.0) / 9.2);
+      if (d >= 0.78 && d <= 1.04) {
+        b.place('plate_1x1', 'WHITE', x, 35, z);
+        if (d > 0.96 || d < 0.84) {
+          b.place('plate_1x1', 'FLAT_SILVER', x, 36, z);
+          b.place('tile_1x1',  'WHITE', x, 37, z);
+        } else {
+          b.place('tile_1x1', 'LIGHT_BLUISH_GRAY', x, 36, z);
+        }
+      }
+    }
+  }
+
+  b.beginStep(6, '種植 8 棟屋頂空中花園與 14 棵文化之森喬木完工', '於各棟斜角與圓弧屋頂點綴多層次綠意喬木，SANAA 臺中綠美圖完美落成！');
+  const roofTrees = [
+    [-24, 8], [-15, -5], [-26, -10], [-8, 9],
+    [8, 9], [15, -5], [24, 8], [26, -10],
+    [-20, 6], [20, 6], [-18, -2], [18, -2], [-23, -8], [23, -8]
+  ];
+  for (const [rx, rz] of roofTrees) {
+    // Skip if occupied by rooftop ring
+    const ringD = Math.hypot(rx / 16.0, (rz + 2.0) / 9.2);
+    if (ringD >= 0.74 && ringD <= 1.08) continue;
+    let ry = 0;
+    for (const v of pavilions) {
+      if (sdPav(rx, rz, v) <= -1.4) ry = Math.max(ry, v.topY + 2);
     }
     if (ry > 0) {
       b.place('plate_1x1', 'BRIGHT_GREEN', rx, ry, rz);
