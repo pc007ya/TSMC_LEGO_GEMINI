@@ -280,6 +280,32 @@ export class LegoEngine {
       ctx.fillText('TICEC • PHASES 1 & 2', 256, 170);
       ctx.fillStyle = '#3AC5ED';
       ctx.fillRect(56, 216, 400, 12);
+    } else if (printKey === 'TGM_PLAQUE') {
+      ctx.fillStyle = '#1E2124';
+      ctx.fillRect(0, 0, 512, 256);
+      ctx.fillStyle = '#F6F7F9';
+      ctx.font = '800 66px "Noto Sans TC", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('臺中綠美圖', 256, 98);
+      ctx.font = '600 22px "Inter", sans-serif';
+      ctx.fillStyle = '#86EFAC';
+      ctx.fillText('TAICHUNG GREEN MUSEUMBRARY', 256, 170);
+      ctx.fillStyle = '#1D8F44';
+      ctx.fillRect(56, 216, 400, 12);
+    } else if (printKey === 'TCH_PLAQUE') {
+      ctx.fillStyle = '#1E2124';
+      ctx.fillRect(0, 0, 512, 256);
+      ctx.fillStyle = '#F6F7F9';
+      ctx.font = '800 66px "Noto Sans TC", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('臺中市政府', 256, 98);
+      ctx.font = '600 22px "Inter", sans-serif';
+      ctx.fillStyle = '#CBD5E1';
+      ctx.fillText('TAICHUNG CITY HALL', 256, 170);
+      ctx.fillStyle = '#C91A09';
+      ctx.fillRect(56, 216, 400, 12);
     }
 
     const tex = new THREE.CanvasTexture(canvas);

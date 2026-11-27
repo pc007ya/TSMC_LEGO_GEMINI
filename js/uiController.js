@@ -232,7 +232,9 @@ export class UIController {
         set04_morris: 'docs/SET04_21038_MORRIS.ldr',
         set05_rd: 'docs/SET05_21039_RD.ldr',
         set06_ntt: 'docs/SET06_21040_TAICHUNG_OPERA.ldr',
-        set07_ticec: 'docs/SET07_21041_TAICHUNG_EXPO.ldr'
+        set07_ticec: 'docs/SET07_21041_TAICHUNG_EXPO.ldr',
+        set08_green_museumbrary: 'docs/SET08_21042_TAICHUNG_GREEN_MUSEUMBRARY.ldr',
+        set09_taichung_cityhall: 'docs/SET09_21043_TAICHUNG_CITY_HALL.ldr'
       };
       const href = ldrMap[this.currentSet.id];
       if (!href) return;

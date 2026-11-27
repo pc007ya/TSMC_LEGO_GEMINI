@@ -2058,7 +2058,574 @@ function buildSetTaichungExpo() {
 }
 
 // ============================================================================
-// GENERATE ALL 7 SETS + VALIDATE + WRITE JSON, LDRAW (.ldr), CSV & MD MANUALS
+// SET 08: 臺中綠美圖 UCS 典藏版 (72 × 48 studs, 7,000+ bricks, 6 Bags, 25 Steps)
+// SANAA's 8 Interconnected White Expanded-Mesh Cubes + Reflective Water Basin + Cultural Forest Skybridge
+// ============================================================================
+function buildSetGreenMuseumbrary() {
+  const b = new LegoBuilder({
+    id: 'set08_green_museumbrary',
+    setNumber: '21042',
+    shortName: '臺中綠美圖',
+    name: '臺中綠美圖 UCS 典藏版',
+    englishName: 'Taichung Green Museumbrary (SANAA) — UCS Collector Edition',
+    location: '台灣・臺中市西屯區水湳中央公園北側 (Shuinan Central Park, Taichung)',
+    footprint: '72 × 48',
+    age: '18+',
+    year: '2026',
+    refImage: 'assets/ref/set08.svg',
+    accentColor: '#1D8F44',
+    cameraPos: [62, 40, 68],
+    cameraTarget: [0, 8, 0],
+    description: '致敬普立茲克獎建築大師妹島和世 × 西澤立衛 (SANAA) 的「公園中的圖書館、森林中的美術館」！以 72×48 全景典藏底座與超過 7,000 塊零重疊樂高積木，精細還原 8 座高低錯落、底部挑空柱廊的純白方盒量體（西側 4 棟臺中市立美術館 + 東側 4 棟臺中市立圖書館總館）、標誌性雙層玻璃與銀白鋁擴張網帷幕、中央大廳曲線鏡面水池、室內美術館展台與圖書館書牆，以及屋頂環形「文化之森」空中花園步道！',
+    bags: [
+      { id: 1, title: '第 1 包：72×48 水湳中央公園底座、鏡面水池與銘牌', subtitle: '72x48 Central Park Base, Water Basin & Plaque', color: '#1D8F44' },
+      { id: 2, title: '第 2 包：8 棟方盒 1F 挑空柱廊、美術館展廳與書庫基底', subtitle: '8-Volume Piloti Columns, Museum & Library Decks', color: '#F6F7F9' },
+      { id: 3, title: '第 3 包：西側 4 棟「臺中市立美術館」鋁擴張網方盒群', subtitle: 'West 4 Art Museum Expanded-Mesh Cubes', color: '#3AC5ED' },
+      { id: 4, title: '第 4 包：東側 4 棟「臺中市立圖書館總館」通透方盒群', subtitle: 'East 4 Public Library Glass & Mesh Cubes', color: '#A8AEB4' },
+      { id: 5, title: '第 5 包：美術館 × 圖書館多層聯通玻璃空橋與樓梯',   subtitle: 'Multi-Level Connecting Skybridges & Stairs', color: '#555C63' },
+      { id: 6, title: '第 6 包：屋頂「文化之森」環形天空步道與森林植栽', subtitle: 'Rooftop Cultural Forest Circular Skybridge', color: '#9FC33A' }
+    ]
+  });
+
+  // Define SANAA's 8 interconnected volumes of varying heights (4 Museum West, 4 Library East)
+  // [id, x1, x2, z1, z2, topY, type]
+  const cubes = [
+    { id: 'M1', x1: -31, x2: -17, z1:   2, z2: 13, topY: 22, type: 'museum' },
+    { id: 'M2', x1: -23, x2:  -7, z1: -10, z2:  4, topY: 31, type: 'museum' },
+    { id: 'M3', x1: -32, x2: -20, z1: -16, z2: -5, topY: 25, type: 'museum' },
+    { id: 'M4', x1: -11, x2:  -3, z1:   3, z2: 12, topY: 26, type: 'museum' },
+    { id: 'L1', x1:   3, x2:  11, z1:   3, z2: 12, topY: 25, type: 'library' },
+    { id: 'L2', x1:   7, x2:  23, z1: -10, z2:  4, topY: 33, type: 'library' },
+    { id: 'L3', x1:  17, x2:  31, z1:   2, z2: 13, topY: 21, type: 'library' },
+    { id: 'L4', x1:  20, x2:  32, z1: -16, z2: -5, topY: 27, type: 'library' }
+  ];
+
+  // Helper: build one SANAA cube's double-layered glass + white/silver expanded-metal-mesh facade
+  const buildCubeVolume = (c) => {
+    // 2F structural floor deck at y=8
+    b.fillRect(c.x1, c.x2, c.z1, c.z2, 8, 'WHITE', 'plate');
+
+    // Interior details (Museum art pedestals on West; Library bookshelves on East)
+    const cx = Math.floor((c.x1 + c.x2) / 2);
+    const cz = Math.floor((c.z1 + c.z2) / 2);
+    if (c.type === 'museum') {
+      b.place('plate_2x2', 'RED', cx - 1, 9, cz - 1);
+      b.place('brick_1x1', 'PEARL_GOLD', cx, 10, cz);
+      b.place('plate_2x2', 'BLUE', cx - 3, 9, cz + 1);
+    } else {
+      for (let bx = c.x1 + 2; bx < c.x2 - 2; bx += 3) {
+        b.place('brick_1x2', 'TAN', bx, 9, cz, 0);
+        b.place('tile_1x2',  'WHITE', bx, 12, cz, 0);
+      }
+    }
+
+    // Perimeter double-tone SANAA expanded-metal-mesh & glass curtain wall (y=9..topY)
+    for (let y = 9; y <= c.topY; y++) {
+      const isSlab = (y === 9 || y === c.topY || (y - 9) % 7 === 0);
+      // North & South walls
+      for (let x = c.x1; x < c.x2; x++) {
+        for (const z of [c.z1, c.z2 - 1]) {
+          const isCorner = (x === c.x1 || x === c.x2 - 1);
+          const col = (isSlab || isCorner) ? 'WHITE'
+            : (((x + y) % 3 === 0) ? 'FLAT_SILVER' : (((x + y) % 2 === 0) ? 'TRANS_CLEAR' : 'TRANS_LIGHT_BLUE'));
+          b.place('plate_1x1', col, x, y, z);
+        }
+      }
+      // West & East walls
+      for (let z = c.z1 + 1; z < c.z2 - 1; z++) {
+        for (const x of [c.x1, c.x2 - 1]) {
+          const col = isSlab ? 'WHITE'
+            : (((z + y) % 3 === 0) ? 'FLAT_SILVER' : (((z + y) % 2 === 0) ? 'TRANS_CLEAR' : 'TRANS_LIGHT_BLUE'));
+          b.place('plate_1x1', col, x, y, z);
+        }
+      }
+    }
+
+    // Crisp white roof slab (topY + 1) & sleek parapet trim (topY + 2)
+    b.fillRect(c.x1, c.x2, c.z1, c.z2, c.topY + 1, 'WHITE', 'plate');
+    b.wallRing(c.x1, c.x2, c.z1, c.z2, c.topY + 2, 'WHITE', 'tile');
+  };
+
+  // -------------------------------------------------------------------------
+  // BAG 1: 72 x 48 UCS Baseplate (-36..36, -24..24) + Shuinan Central Park & Reflective Basin
+  // -------------------------------------------------------------------------
+  b.beginStep(1, '拼合 72×48 曜石黑典藏展示底板', '以大面積曜石黑基礎薄板拼出 72×48 寬敞綠美圖公園基地。');
+  for (let x = -36; x < 36; x += 16) {
+    for (let z = -24; z < 24; z += 16) {
+      if (x + 16 <= 36) b.place('plate_16x16', 'BLACK', x, 0, z);
+    }
+  }
+  b.fillRect(28, 36, -24, 24, 0, 'BLACK', 'plate');
+
+  b.beginStep(1, '鋪設 70×46 水湳中央公園結構底層', '內縮一格滿鋪淺藍灰承重薄板，保留四周典藏黑框邊界。');
+  b.fillRect(-35, 35, -23, 23, 1, 'LIGHT_BLUISH_GRAY', 'plate');
+
+  b.beginStep(1, '雕塑公園林蔭草坪、漫遊步道與中央「知識之泉」曲線鏡面水池', '中央留設西澤立衛設計的曲線不鏽鋼鏡面水池，四周環繞水湳中央公園綠地與步道。');
+  for (let x = -34; x < 34; x++) {
+    for (let z = -22; z < 22; z++) {
+      if ((x === -1 || x === 0) && (z === 20 || z === 21)) continue; // reserve for plaque
+      const poolDist = Math.hypot(x / 5.2, (z - 0.5) / 4.2);
+      const inBuildingZone = (x >= -32 && x < 32 && z >= -16 && z < 13);
+      const onPath = Math.abs(x) <= 3 || Math.abs(z - 15 - Math.sin(x * 0.14) * 2.0) < 1.6;
+      if (poolDist <= 1.0) {
+        const col = poolDist > 0.82 ? 'FLAT_SILVER' : 'TRANS_LIGHT_BLUE';
+        b.place('tile_1x1', col, x, 2, z);
+      } else if (inBuildingZone || onPath) {
+        b.place('plate_1x1', 'LIGHT_BLUISH_GRAY', x, 2, z);
+      } else {
+        const col = ((x * 3 + z) % 7 === 0) ? 'LIME' : (((x + z) % 5 === 0) ? 'DARK_GREEN' : 'BRIGHT_GREEN');
+        b.place('plate_1x1', col, x, 2, z);
+      }
+    }
+  }
+
+  b.beginStep(1, '安裝「臺中綠美圖」專屬銘牌與 20 棵水湳森林喬木', '正前方扣上專屬綠美圖斜面銘牌，並於公園四周種植多層次林蔭喬木。', 'tgm_plaque');
+  b.addDecal('tgm_plaque', '南側公園正前方・臺中綠美圖銘牌', 'slope_tgm_2x2', 'BLACK', -1, 2, 20, 0, [0, 4, 10]);
+  const parkTrees = [
+    [-33, 19], [-26, 18], [-18, 20], [-10, 17], [10, 17], [18, 20], [26, 18], [33, 19],
+    [-33, -20], [-22, -19], [-10, -19], [0, -20], [10, -19], [22, -19], [33, -20],
+    [-34, -4], [-34, 8], [33, -4], [33, 8], [0, -14]
+  ];
+  for (const [tx, tz] of parkTrees) {
+    b.place('round_brick_1x1', 'REDDISH_BROWN', tx, 3, tz);
+    b.place('flower_1x1', 'DARK_GREEN', tx, 6, tz);
+    b.place('flower_1x1', 'BRIGHT_GREEN', tx, 7, tz);
+    b.place('flower_1x1', 'LIME', tx, 8, tz);
+  }
+
+  // -------------------------------------------------------------------------
+  // BAG 2: 1F Open Piloti Columns (y=3..7) supporting all 8 SANAA floating volumes!
+  // -------------------------------------------------------------------------
+  b.beginStep(2, '立起西側 4 棟美術館 1F 挑空纖細白色柱廊 (Piloti)', 'SANAA 招牌地面層挑空柱廊，讓中央公園綠意與微風自由穿梭於建築底部！');
+  for (const c of cubes.filter(v => v.type === 'museum')) {
+    for (let x = c.x1; x < c.x2; x += 4) {
+      for (let z = c.z1; z < c.z2; z += 4) {
+        b.place('brick_1x1', 'WHITE', x, 3, z);
+        b.place('plate_1x1', 'WHITE', x, 6, z);
+        b.place('plate_1x1', 'WHITE', x, 7, z);
+      }
+    }
+    // Corner columns guaranteed
+    for (const cx of [c.x1, c.x2 - 1]) {
+      for (const cz of [c.z1, c.z2 - 1]) {
+        b.place('brick_1x1', 'WHITE', cx, 3, cz);
+        b.place('plate_1x1', 'WHITE', cx, 6, cz);
+        b.place('plate_1x1', 'WHITE', cx, 7, cz);
+      }
+    }
+  }
+
+  b.beginStep(2, '立起東側 4 棟圖書館 1F 挑空白色柱廊與大廳核心筒', '對稱於東側圖書館量體下方立起纖細白色結構柱群與電梯玻璃核心。');
+  for (const c of cubes.filter(v => v.type === 'library')) {
+    for (let x = c.x1; x < c.x2; x += 4) {
+      for (let z = c.z1; z < c.z2; z += 4) {
+        b.place('brick_1x1', 'WHITE', x, 3, z);
+        b.place('plate_1x1', 'WHITE', x, 6, z);
+        b.place('plate_1x1', 'WHITE', x, 7, z);
+      }
+    }
+    for (const cx of [c.x1, c.x2 - 1]) {
+      for (const cz of [c.z1, c.z2 - 1]) {
+        b.place('brick_1x1', 'WHITE', cx, 3, cz);
+        b.place('plate_1x1', 'WHITE', cx, 6, cz);
+        b.place('plate_1x1', 'WHITE', cx, 7, cz);
+      }
+    }
+  }
+
+  // -------------------------------------------------------------------------
+  // BAG 3: West 4 Art Museum Expanded-Mesh Volumes (M1, M2, M3, M4)
+  // -------------------------------------------------------------------------
+  b.beginStep(3, '構築美術館主高盒 (M2) 與室內現代藝術展台', '砌築美術館最高核心量體，銀白鋁擴張網與透明玻璃交織出輕盈透光質感。');
+  buildCubeVolume(cubes[1]);
+
+  b.beginStep(3, '構築美術館西前展廳 (M1) 與西後特展廳 (M3)', '交錯疊合兩座不同高度的純白擴張網展館方盒，營造豐富天際線層次。');
+  buildCubeVolume(cubes[0]);
+  buildCubeVolume(cubes[2]);
+
+  b.beginStep(3, '構築美術館中央迎賓展盒 (M4)', '緊鄰中央水池立起美術館前導量體，預留跨館空橋對接口。');
+  buildCubeVolume(cubes[3]);
+
+  // -------------------------------------------------------------------------
+  // BAG 4: East 4 Public Library Glass & Mesh Volumes (L1, L2, L3, L4)
+  // -------------------------------------------------------------------------
+  b.beginStep(4, '構築圖書館 7F 主高盒 (L2) 與木質書架閱覽空間', '打造全館最高 7 層樓景觀閱覽方盒，內部配置米白書牆與明亮採光帷幕。');
+  buildCubeVolume(cubes[5]);
+
+  b.beginStep(4, '構築圖書館東前兒童閱覽盒 (L3) 與東後典藏書庫 (L4)', '完成東側兩座錯落圖書館量體，展現 SANAA 標誌性方盒聚落美學。');
+  buildCubeVolume(cubes[6]);
+  buildCubeVolume(cubes[7]);
+
+  b.beginStep(4, '構築圖書館中央前廳方盒 (L1)', '與對面美術館 M4 遙相呼應，圍塑出半戶外中央鏡面水池大廳！');
+  buildCubeVolume(cubes[4]);
+
+  // -------------------------------------------------------------------------
+  // BAG 5: Multi-Level Connecting Glass Skybridges (美術館 × 圖書館聯通空橋)
+  // -------------------------------------------------------------------------
+  b.beginStep(5, '立起中央聯通空橋纖細白色落柱並架設 2F 南側玻璃空橋', '串聯美術館 M4 與圖書館 L1，讓民眾在閱讀與看展間自由漫步！');
+  for (const [px, pz] of [[-1, 6], [1, 6], [-1, 9], [1, 9]]) {
+    for (let y = 3; y <= 11; y += 3) b.place('brick_1x1', 'WHITE', px, y, pz);
+  }
+  b.fillRect(-3, 3, 6, 10, 12, 'WHITE', 'plate');
+  for (let x = -3; x < 3; x++) {
+    for (let y = 13; y <= 17; y++) {
+      const col = (y === 17 || x % 2 === 0) ? 'WHITE' : 'TRANS_LIGHT_BLUE';
+      b.place('plate_1x1', col, x, y, 6);
+      b.place('plate_1x1', col, x, y, 9);
+    }
+  }
+  b.fillRect(-3, 3, 6, 10, 18, 'WHITE', 'tile');
+
+  b.beginStep(5, '架設高層跨館「融合空間 (Fusion Space)」雙層空中廊橋', '於高層串聯美術館主盒 M2 與圖書館主盒 L2，俯瞰下方曲線鏡面水池！');
+  for (const [px, pz] of [[-4, -6], [3, -6], [-4, -2], [3, -2]]) {
+    for (let y = 3; y <= 18; y += 3) b.place('brick_1x1', 'WHITE', px, y, pz);
+    b.place('plate_1x1', 'WHITE', px, 20, pz);
+  }
+  b.fillRect(-7, 7, -6, -1, 21, 'WHITE', 'plate');
+  for (let x = -7; x < 7; x++) {
+    for (let y = 22; y <= 26; y++) {
+      const col = (y === 26 || x % 3 === 0) ? 'FLAT_SILVER' : 'TRANS_LIGHT_BLUE';
+      b.place('plate_1x1', col, x, y, -6);
+      b.place('plate_1x1', col, x, y, -2);
+    }
+  }
+  b.fillRect(-7, 7, -6, -1, 27, 'WHITE', 'tile');
+
+  // -------------------------------------------------------------------------
+  // BAG 6: Iconic Rooftop "Cultural Forest" Circular Skybridge & Rooftop Gardens
+  // -------------------------------------------------------------------------
+  b.beginStep(6, '架設屋頂標誌性「文化之森」環形白色天空步道支撐柱', '於中央水池南北兩側立起纖細白色結構柱，穩固承托屋頂環形天空步道。');
+  const ringSupports = [[-4, -9], [4, -9], [-4, 6], [4, 6], [0, -10], [0, 7]];
+  for (const [sx, sz] of ringSupports) {
+    let y = 3;
+    while (y + 3 <= 31) {
+      b.place('brick_1x1', 'WHITE', sx, y, sz);
+      y += 3;
+    }
+    while (y < 32) {
+      b.place('plate_1x1', 'WHITE', sx, y, sz);
+      y++;
+    }
+  }
+
+  b.beginStep(6, '鋪設屋頂「文化之森 (Cultural Forest)」橢圓環形天空步道', 'SANAA 最具代表性的半戶外屋頂環形步道，以純白鋼構串聯美術館與圖書館屋頂花園！');
+  for (let x = -18; x <= 18; x++) {
+    for (let z = -12; z <= 9; z++) {
+      const d = Math.hypot(x / 15.5, (z + 1.5) / 8.8);
+      if (d >= 0.78 && d <= 1.04) {
+        b.place('plate_1x1', 'WHITE', x, 32, z);
+        if (d > 0.96 || d < 0.84) {
+          b.place('plate_1x1', 'FLAT_SILVER', x, 33, z);
+          b.place('tile_1x1',  'WHITE', x, 34, z);
+        } else {
+          b.place('tile_1x1', 'LIGHT_BLUISH_GRAY', x, 33, z);
+        }
+      }
+    }
+  }
+
+  b.beginStep(6, '種植屋頂空中花園草坡與 14 棵文化之森喬木完工', '於 8 棟方盒屋頂點綴鮮綠草坪與多層次喬木，臺中綠美圖完美落成！');
+  const roofGardenTrees = [
+    [-26, 7], [-20, 9], [-26, -11], [-15, -6], [-12, -2], [-7, 7],
+    [7, 7], [15, -6], [12, -2], [26, 7], [20, 9], [26, -11], [-19, -2], [19, -2]
+  ];
+  for (const [rx, rz] of roofGardenTrees) {
+    // Find the highest cube roof at (rx, rz)
+    let ry = 0;
+    for (const c of cubes) {
+      if (rx >= c.x1 + 1 && rx < c.x2 - 1 && rz >= c.z1 + 1 && rz < c.z2 - 1) {
+        ry = Math.max(ry, c.topY + 2);
+      }
+    }
+    if (ry > 0) {
+      b.place('plate_1x1', 'BRIGHT_GREEN', rx, ry, rz);
+      b.place('round_brick_1x1', 'REDDISH_BROWN', rx, ry + 1, rz);
+      b.place('flower_1x1', 'DARK_GREEN', rx, ry + 4, rz);
+      b.place('flower_1x1', 'BRIGHT_GREEN', rx, ry + 5, rz);
+      b.place('flower_1x1', 'LIME', rx, ry + 6, rz);
+    }
+  }
+
+  return b.finalize();
+}
+
+// ============================================================================
+// SET 09: 臺中市政府・臺灣大道市政大樓 UCS 典藏版 (76 × 48 studs, 7,500+ bricks, 6 Bags)
+// Weber + Hofer's Giant Rectangular Glass Portal ("City Gate") + Wenxin & Huizhong Wings
+// + Central Hollow Portal + Giant Outdoor Plaza LED + Red Public Art Sculptures + Civic Park
+// ============================================================================
+function buildSetTaichungCityHall() {
+  const b = new LegoBuilder({
+    id: 'set09_taichung_cityhall',
+    setNumber: '21043',
+    shortName: '臺中市政府',
+    name: '臺中市政府・臺灣大道市政大樓 UCS 典藏版',
+    englishName: 'Taichung City Hall (Weber + Hofer) — UCS Collector Edition',
+    location: '台灣・臺中市西屯區臺灣大道三段 99 號 (Seven-Phase Redevelopment Zone)',
+    footprint: '76 × 48',
+    age: '18+',
+    year: '2026',
+    refImage: 'assets/ref/set09.svg',
+    accentColor: '#C91A09',
+    cameraPos: [66, 42, 72],
+    cameraTarget: [0, 9, 0],
+    description: '超過 7,000 塊零重疊樂高積木打造的七期市政旗艦 UCS「臺中市政府・臺灣大道市政大樓」！致敬瑞士韋伯／侯佛 (Weber + Hofer) 建築師事務所的經典「城市之門」橫向矩形玻璃帷幕建築：完整還原東側文心樓與西側惠中樓雙中庭玻璃塔樓、中央四層樓高挑空開放川堂、上方懸吊式 4F 集會堂與高層辦公橋體、正面臺灣大道府前廣場巨型戶外 LED 螢幕、鮮紅公共藝術雕塑「從過去到未來之間」與「塔之語」，以及背面綠意盎然的四季市政公園！',
+    bags: [
+      { id: 1, title: '第 1 包：76×48 底座、臺灣大道府前廣場與背面四季公園', subtitle: '76x48 Base, Front Civic Plaza & Rear Four Seasons Park', color: '#1D2024' },
+      { id: 2, title: '第 2 包：西側惠中樓＆東側文心樓 1–4F 中庭與藝術彩柱', subtitle: 'Huizhong & Wenxin 1-4F Atriums & Art Columns', color: '#DAC596' },
+      { id: 3, title: '第 3 包：雙樓 1–4F 瑞士精密玻璃帷幕與中央挑空川堂',  subtitle: 'Lower Swiss Glass Curtain Wall & Central Portal', color: '#3AC5ED' },
+      { id: 4, title: '第 4 包：4–10F 中央懸吊集會堂橋體與巨型戶外 LED 螢幕', subtitle: 'Upper Central Bridge, Assembly Hall & Giant LED', color: '#1B3A63' },
+      { id: 5, title: '第 5 包：惠中樓＆文心樓 5–10F 完整巨幅玻璃帷幕',   subtitle: 'Upper 5-10F Twin Wings & Full City Gate Facade', color: '#92989F' },
+      { id: 6, title: '第 6 包：鋁合金屋頂框緣、中庭採光天窗與鮮紅公共藝術', subtitle: 'Roof Fascia, Skylights & Red Public Art Sculptures', color: '#C91A09' }
+    ]
+  });
+
+  // -------------------------------------------------------------------------
+  // BAG 1: 76 x 48 Panoramic UCS Baseplate (-38..38, -24..24)
+  // Front (Z=9..23): Taiwan Boulevard Granite Civic Plaza + Fountain + Plaque
+  // Rear (Z=-23..-9): Four Seasons Civic Park Lawn + Reflection Ponds + Trees
+  // -------------------------------------------------------------------------
+  b.beginStep(1, '拼合 76×48 曜石黑典藏展示底板', '以大面積曜石黑基礎薄板拼出 76×48 宏偉市政中心底座。');
+  for (let x = -38; x < 38; x += 16) {
+    for (let z = -24; z < 24; z += 16) {
+      if (x + 16 <= 38) b.place('plate_16x16', 'BLACK', x, 0, z);
+    }
+  }
+  b.fillRect(26, 38, -24, 24, 0, 'BLACK', 'plate');
+
+  b.beginStep(1, '鋪設 74×46 基地結構承重底層', '內縮一格滿鋪淺藍灰承重薄板，為前後雙廣場與大樓主體打底。');
+  b.fillRect(-37, 37, -23, 23, 1, 'LIGHT_BLUISH_GRAY', 'plate');
+
+  b.beginStep(1, '鋪設正面臺灣大道「府前花崗石廣場」與噴水景觀帶', '正面打造可容納三萬人的開闊花崗石市政廣場、中央透藍水柱噴泉帶與建築帶凸點承重基座。');
+  // Building footprint (-34..34, -9..9) uses studded plates for 100% stud clutch!
+  b.fillRect(-34, 34, -9, 9, 2, 'LIGHT_BLUISH_GRAY', 'plate');
+  // Front Taiwan Boulevard Civic Plaza (Z = 9..22)
+  for (let x = -36; x < 36; x++) {
+    for (let z = 9; z < 22; z++) {
+      if ((x === -1 || x === 0) && (z === 20 || z === 21)) continue; // plaque
+      const inFountain = (Math.abs(x) <= 14 && (z === 17 || z === 18));
+      if (inFountain) {
+        b.place('tile_1x1', (x % 3 === 0) ? 'TRANS_MEDIUM_BLUE' : 'TRANS_LIGHT_BLUE', x, 2, z);
+      } else {
+        const col = ((Math.floor(x / 3) + Math.floor(z / 3)) % 2 === 0) ? 'LIGHT_BLUISH_GRAY' : 'TAN';
+        b.place('tile_1x1', col, x, 2, z);
+      }
+    }
+  }
+
+  b.beginStep(1, '雕塑背面「四季市政公園」綠地、雙映水池與 24 棵林蔭喬木', '背面與正面石材廣場截然不同！鋪設綠意盎然的四季公園草坪、雙映水池並安裝正面專屬銘牌。', 'tch_plaque');
+  for (let x = -36; x < 36; x++) {
+    for (let z = -22; z < -9; z++) {
+      const onAxisPath = Math.abs(x) <= 5;
+      const inPondL = Math.hypot((x + 20) / 7, (z + 15.5) / 2.6) <= 1.0;
+      const inPondR = Math.hypot((x - 20) / 7, (z + 15.5) / 2.6) <= 1.0;
+      if (onAxisPath) {
+        b.place('tile_1x1', (Math.abs(x) === 5) ? 'DARK_BLUISH_GRAY' : 'LIGHT_BLUISH_GRAY', x, 2, z);
+      } else if (inPondL || inPondR) {
+        b.place('tile_1x1', 'TRANS_LIGHT_BLUE', x, 2, z);
+      } else {
+        const col = ((x * 3 + z) % 7 === 0) ? 'LIME' : (((x + z) % 5 === 0) ? 'DARK_GREEN' : 'BRIGHT_GREEN');
+        b.place('plate_1x1', col, x, 2, z);
+      }
+    }
+  }
+  b.addDecal('tch_plaque', '府前廣場正前方・臺中市政府銘牌', 'slope_tch_2x2', 'BLACK', -1, 2, 20, 0, [0, 4, 10]);
+  const chTrees = [
+    // Front plaza formal tree rows (left & right wings)
+    [-34, 12], [-34, 17], [-28, 17], [-22, 17], [22, 17], [28, 17], [34, 17], [34, 12],
+    // Rear Four Seasons Park trees
+    [-34, -12], [-34, -19], [-28, -20], [-12, -13], [-10, -20],
+    [10, -20], [12, -13], [28, -20], [34, -19], [34, -12],
+    [-18, -21], [18, -21]
+  ];
+  for (const [tx, tz] of chTrees) {
+    b.place('round_brick_1x1', 'REDDISH_BROWN', tx, 3, tz);
+    b.place('flower_1x1', 'DARK_GREEN', tx, 6, tz);
+    b.place('flower_1x1', 'BRIGHT_GREEN', tx, 7, tz);
+    b.place('flower_1x1', 'LIME', tx, 8, tz);
+  }
+
+  // -------------------------------------------------------------------------
+  // BAG 2: West Wing (惠中樓 X=-34..-10) & East Wing (文心樓 X=10..34) 1F-4F Interiors
+  // -------------------------------------------------------------------------
+  b.beginStep(2, '建置西側「惠中樓」1–4F 中庭迴廊與「漆畫未來」彩繪藝術柱', '於惠中樓內部打造挑空中庭、溫潤米色辦公陽台與紅藍金三色公共藝術彩柱！');
+  // Interior structural piers & lobby art columns inside Huizhong Wing (-34..-10, -9..9)
+  for (const [cx, cz, col] of [
+    [-28, -4, 'RED'], [-28, 4, 'BLUE'], [-16, -4, 'PEARL_GOLD'], [-16, 4, 'RED'],
+    [-22, -6, 'WHITE'], [-22, 6, 'WHITE']
+  ]) {
+    for (let y = 3; y <= 14; y += 3) b.place('brick_1x1', col, cx, y, cz);
+    b.place('plate_1x1', col, cx, 15, cz);
+    b.place('plate_1x1', col, cx, 16, cz);
+  }
+  // 2F & 3F office mezzanine walkways framing the Huizhong central atrium
+  for (const fy of [7, 12]) {
+    b.fillRect(-33, -29, -8, 8, fy, 'TAN', 'plate');
+    b.fillRect(-15, -11, -8, 8, fy, 'TAN', 'plate');
+  }
+
+  b.beginStep(2, '建置東側「文心樓」1–4F 中庭迴廊與「漆畫未來」彩繪藝術柱', '對稱於東側文心樓打造挑空中庭、服務櫃檯與繽紛彩繪藝術柱群。');
+  for (const [cx, cz, col] of [
+    [15, -4, 'RED'], [15, 4, 'PEARL_GOLD'], [27, -4, 'BLUE'], [27, 4, 'RED'],
+    [21, -6, 'WHITE'], [21, 6, 'WHITE']
+  ]) {
+    for (let y = 3; y <= 14; y += 3) b.place('brick_1x1', col, cx, y, cz);
+    b.place('plate_1x1', col, cx, 15, cz);
+    b.place('plate_1x1', col, cx, 16, cz);
+  }
+  for (const fy of [7, 12]) {
+    b.fillRect(11, 15, -8, 8, fy, 'TAN', 'plate');
+    b.fillRect(29, 33, -8, 8, fy, 'TAN', 'plate');
+  }
+
+  // Helper: Precision Swiss Glass Curtain Wall (Weber + Hofer aluminum louver rhythm)
+  const buildSwissCurtainBox = (x1, x2, z1, z2, yStart, yEnd, skipPortalFaces = false) => {
+    for (let y = yStart; y <= yEnd; y++) {
+      const isLouverBand = (y % 4 === 0);
+      // Front (z2-1) & Rear (z1)
+      for (let x = x1; x < x2; x++) {
+        for (const z of [z1, z2 - 1]) {
+          const isMullion = ((x - x1) % 4 === 0) || (x === x2 - 1);
+          const col = isLouverBand ? 'FLAT_SILVER'
+            : (isMullion ? 'DARK_BLUISH_GRAY' : 'TRANS_LIGHT_BLUE');
+          b.place('plate_1x1', col, x, y, z);
+        }
+      }
+      // Left (x1) & Right (x2-1)
+      for (let z = z1 + 1; z < z2 - 1; z++) {
+        for (const x of [x1, x2 - 1]) {
+          if (skipPortalFaces && (x === x1 || x === x2 - 1)) continue;
+          const isMullion = ((z - z1) % 4 === 0);
+          const col = isLouverBand ? 'FLAT_SILVER'
+            : (isMullion ? 'DARK_BLUISH_GRAY' : 'TRANS_LIGHT_BLUE');
+          b.place('plate_1x1', col, x, y, z);
+        }
+      }
+    }
+  };
+
+  // -------------------------------------------------------------------------
+  // BAG 3: Lower 1F–4F Swiss Glass Curtain Walls (Y = 3..16)
+  // Leaves Central Hollow Open-Air Portal (川堂 X = -10..10) completely open!
+  // -------------------------------------------------------------------------
+  b.beginStep(3, '包覆西側惠中樓 1–4F 瑞士精密玻璃帷幕與水平銀鋁遮陽板', '以金屬銀水平層間帶交錯透亮水藍玻璃與深灰豎框，重現瑞士韋伯／侯佛極簡美學！');
+  buildSwissCurtainBox(-34, -10, -9, 9, 3, 16, false);
+
+  b.beginStep(3, '包覆東側文心樓 1–4F 玻璃帷幕並形塑中央挑空川堂', '雙樓於中央留出 20 格寬、4 層樓高的壯闊開放川堂，前後視覺完全穿透至四季公園！');
+  buildSwissCurtainBox(10, 34, -9, 9, 3, 16, false);
+
+  // -------------------------------------------------------------------------
+  // BAG 4: Suspended 4F–10F Central Bridge Volume (X = -10..10, Y = 17..35)
+  // Built STRICTLY AFTER both wings reach Y=16! Anchored onto X=-11 & X=10!
+  // Includes 4F Grand Assembly Hall + Giant Outdoor Civic Plaza LED Screen!
+  // -------------------------------------------------------------------------
+  b.beginStep(4, '架設 4F 巨型鋼骨轉換大樑橫跨中央挑空川堂 (1–2 樓合體)', '於 Y=17–18 架設深藍灰與金屬銀雙層鋼骨結構橋板，將惠中樓與文心樓合體成「城市之門」！');
+  // Anchored into both wings (-12..12) so 100% supported on Y=16 wing walls!
+  b.fillRect(-12, 12, -9, 9, 17, 'DARK_BLUISH_GRAY', 'plate');
+  b.fillRect(-12, 12, -9, 9, 18, 'FLAT_SILVER', 'plate');
+
+  b.beginStep(4, '打造中央橋體內部 4F 挑高「市政集會堂」階梯座席與講台', '於懸空橋體正中央配置深棕講台與紅藍階梯式集會堂觀眾席！');
+  b.fillRect(-6, 6, -7, -4, 19, 'DARK_BROWN', 'plate');
+  b.fillRect(-6, 6, -7, -4, 20, 'DARK_BROWN', 'tile');
+  for (let row = 0; row < 4; row++) {
+    const rz = -2 + row * 2;
+    const ry = 19 + row * 2;
+    const col = row % 2 === 0 ? 'RED' : 'DARK_BLUE';
+    for (let x = -6; x < 6; x += 2) {
+      for (let py = 19; py < ry; py++) b.place('plate_2x2', 'DARK_BLUISH_GRAY', x, py, rz);
+      b.place('plate_2x2', col, x, ry, rz);
+      b.place('tile_1x2',  col, x, ry + 1, rz, 1);
+    }
+  }
+
+  b.beginStep(4, '砌築中央橋體 5–10F 玻璃帷幕與正面「府前巨型戶外 LED 螢幕」', '正中央嵌入臺中跨年與賽事轉播招牌巨型戶外 LED 螢幕，背面延續透藍玻璃帷幕！');
+  for (let y = 19; y <= 35; y++) {
+    const isLouverBand = (y % 4 === 0);
+    for (let x = -10; x < 10; x++) {
+      // Rear face (Z = -9): pure Swiss glass curtain wall
+      const isRearMullion = ((x + 10) % 4 === 0);
+      b.place('plate_1x1', isLouverBand ? 'FLAT_SILVER' : (isRearMullion ? 'DARK_BLUISH_GRAY' : 'TRANS_LIGHT_BLUE'), x, y, -9);
+
+      // Front face (Z = 8): Giant Outdoor LED Screen in X = -6..5, Y = 20..29!
+      const inLedFrame = (x >= -6 && x <= 5 && y >= 20 && y <= 29);
+      const inLedScreen = (x >= -5 && x <= 4 && y >= 21 && y <= 28);
+      if (inLedScreen) {
+        // Stylized glowing Taichung skyline / blue-cyan-white LED graphic
+        const ledCol = (y === 24 || y === 25) ? 'WHITE'
+          : (((x + y) % 3 === 0) ? 'TRANS_LIGHT_BLUE' : 'BLUE');
+        b.place('plate_1x1', ledCol, x, y, 8);
+      } else if (inLedFrame) {
+        b.place('plate_1x1', 'BLACK', x, y, 8);
+      } else {
+        const isFrontMullion = ((x + 10) % 4 === 0);
+        b.place('plate_1x1', isLouverBand ? 'FLAT_SILVER' : (isFrontMullion ? 'DARK_BLUISH_GRAY' : 'TRANS_LIGHT_BLUE'), x, y, 8);
+      }
+    }
+  }
+
+  // -------------------------------------------------------------------------
+  // BAG 5: Upper 5F–10F Twin Wings (惠中樓 & 文心樓高層 Y = 17..35)
+  // Unites the entire 68-stud-wide horizontal rectangular "City Gate" monolith!
+  // -------------------------------------------------------------------------
+  b.beginStep(5, '層疊西側惠中樓 5–10F 高層玻璃帷幕與樓板', '將西側惠中樓向上拉升至 10 層樓高，與中央橋體無縫齊平！');
+  buildSwissCurtainBox(-34, -10, -9, 9, 17, 35, false);
+
+  b.beginStep(5, '層疊東側文心樓 5–10F 高層玻璃帷幕完成「城市之門」主體', '完成東側文心樓高層帷幕，68 格寬巨幅橫向矩形市政大樓氣勢磅礴成型！');
+  buildSwissCurtainBox(10, 34, -9, 9, 17, 35, false);
+
+  // -------------------------------------------------------------------------
+  // BAG 6: Crisp Aluminum Roof Fascia, Twin Atrium Skylights, Rooftop Gardens
+  // & Iconic Bright-Red Public Art Sculptures on the Front Plaza!
+  // -------------------------------------------------------------------------
+  b.beginStep(6, '封頂 68×18 市政大樓承重屋頂與金屬銀俐落女兒牆', '覆蓋全幅淺藍灰屋頂樓板，並以金屬銀與純白光磚圍築俐落水平屋頂外框。');
+  b.fillRect(-34, 34, -9, 9, 36, 'LIGHT_BLUISH_GRAY', 'plate');
+  b.wallRing(-34, 34, -9, 9, 37, 'FLAT_SILVER', 'plate');
+  b.wallRing(-34, 34, -9, 9, 38, 'WHITE', 'tile');
+
+  b.beginStep(6, '安裝惠中樓＆文心樓雙中庭採光天窗與屋頂空中綠化花園', '於左右兩座中庭上方加裝透亮水藍大型採光天窗，並鋪設市政大樓屋頂綠化草坪與機電格柵。');
+  // Twin atrium skylights (-27..-17 and 17..27)
+  for (const [sx1, sx2] of [[-27, -17], [17, 27]]) {
+    b.wallRing(sx1, sx2, -5, 5, 37, 'FLAT_SILVER', 'plate');
+    b.fillRect(sx1 + 1, sx2 - 1, -4, 4, 37, 'TRANS_LIGHT_BLUE', 'tile');
+  }
+  // Central mechanical louver screen & rooftop garden strips
+  for (let x = -8; x < 8; x += 2) {
+    b.place('tile_grille', 'DARK_BLUISH_GRAY', x, 37, -3, 1);
+    b.place('tile_grille', 'DARK_BLUISH_GRAY', x, 37,  2, 1);
+  }
+  b.fillRect(-32, -28, -7, 7, 37, 'BRIGHT_GREEN', 'plate');
+  b.fillRect(28, 32, -7, 7, 37, 'BRIGHT_GREEN', 'plate');
+
+  b.beginStep(6, '落成正面鮮紅公共藝術「從過去到未來之間」與「塔之語」雙塔完工', '於府前廣場正門與惠中／文心入口立起最具代表性的大紅色雕塑地標，臺中市政府完美落成！');
+  // 1. Center Front Entrance Red Arch Sculpture: 「從過去到未來之間」 (X=-2..2, Z=13)
+  for (let y = 3; y <= 10; y++) {
+    b.place('plate_1x1', 'RED', -2, y, 13);
+    b.place('plate_1x1', 'RED',  2, y, 13);
+  }
+  b.place('plate_1x2', 'RED', -2, 11, 13, 1);
+  b.place('plate_1x2', 'RED',  1, 11, 13, 1);
+  b.place('plate_1x3', 'RED', -1, 12, 13, 1);
+  b.place('tile_1x3',  'RED', -1, 13, 13, 1);
+
+  // 2. Twin Red Lattice Towers flanking Huizhong & Wenxin entrances: 「塔之語」 (X=-13 & X=12, Z=12)
+  for (const tx of [-13, 12]) {
+    b.place('plate_2x2', 'DARK_BLUISH_GRAY', tx, 3, 11);
+    for (let y = 4; y <= 12; y++) {
+      b.place('plate_1x1', 'RED', tx, y, 11);
+      b.place('plate_1x1', 'RED', tx + 1, y, 12);
+      if (y % 2 === 0) {
+        b.place('plate_1x1', 'RED', tx + 1, y, 11);
+        b.place('plate_1x1', 'RED', tx, y, 12);
+      }
+    }
+    b.place('tile_2x2', 'RED', tx, 13, 11);
+  }
+
+  return b.finalize();
+}
+
+// ============================================================================
+// GENERATE ALL 9 SETS + VALIDATE + WRITE JSON, LDRAW (.ldr), CSV & MD MANUALS
 // ============================================================================
 const ALL_SETS = [
   buildSetNanjing(),
@@ -2067,7 +2634,9 @@ const ALL_SETS = [
   buildSetMorris(),
   buildSetRD(),
   buildSetTaichungOpera(),
-  buildSetTaichungExpo()
+  buildSetTaichungExpo(),
+  buildSetGreenMuseumbrary(),
+  buildSetTaichungCityHall()
 ];
 
 // Verify zero overlaps on orthogonal bricks across all sets
@@ -2106,13 +2675,15 @@ function computeBOM(bricks, filter = {}) {
 
 // 3. Generate LDraw (.ldr), CSV BOM, and Markdown Instruction Manual for each set
 const filePrefix = {
-  set01_hq:      'SET01_21035_NANJING',
-  set02_jasm:    'SET02_21036_JASM',
-  set03_arizona: 'SET03_21037_ARIZONA',
-  set04_morris:  'SET04_21038_MORRIS',
-  set05_rd:      'SET05_21039_RD',
-  set06_ntt:     'SET06_21040_TAICHUNG_OPERA',
-  set07_ticec:   'SET07_21041_TAICHUNG_EXPO'
+  set01_hq:                'SET01_21035_NANJING',
+  set02_jasm:              'SET02_21036_JASM',
+  set03_arizona:           'SET03_21037_ARIZONA',
+  set04_morris:            'SET04_21038_MORRIS',
+  set05_rd:                'SET05_21039_RD',
+  set06_ntt:               'SET06_21040_TAICHUNG_OPERA',
+  set07_ticec:             'SET07_21041_TAICHUNG_EXPO',
+  set08_green_museumbrary: 'SET08_21042_TAICHUNG_GREEN_MUSEUMBRARY',
+  set09_taichung_cityhall: 'SET09_21043_TAICHUNG_CITY_HALL'
 };
 
 for (const set of ALL_SETS) {

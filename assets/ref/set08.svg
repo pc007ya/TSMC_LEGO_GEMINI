@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="sky8" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0d1b2a"/>
+      <stop offset="55%" stop-color="#1b3a4b"/>
+      <stop offset="100%" stop-color="#143d2c"/>
+    </linearGradient>
+    <pattern id="mesh" width="8" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 4 L4 0 L8 4 L4 8 Z" fill="none" stroke="#ffffff" stroke-opacity="0.32" stroke-width="0.9"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="500" fill="url(#sky8)"/>
+  <!-- Shuinan Central Park Lawn -->
+  <ellipse cx="400" cy="435" rx="390" ry="75" fill="#1d8f44" opacity="0.85"/>
+  <ellipse cx="400" cy="445" rx="330" ry="42" fill="#2aa858" opacity="0.7"/>
+  <!-- Reflective Central Water Pool -->
+  <ellipse cx="400" cy="395" rx="75" ry="18" fill="#3ac5ed" opacity="0.82" stroke="#e2e8f0" stroke-width="2"/>
+  <!-- 8 Interconnected SANAA White Expanded-Mesh Cubes -->
+  <!-- Left Museum Cluster (4 Cubes) -->
+  <g stroke="#e2e8f0" stroke-width="1.5">
+    <rect x="95" y="195" width="115" height="150" fill="#e6f4fa" fill-opacity="0.88"/>
+    <rect x="95" y="195" width="115" height="150" fill="url(#mesh)"/>
+    <rect x="195" y="145" width="130" height="200" fill="#f6f7f9" fill-opacity="0.94"/>
+    <rect x="195" y="145" width="130" height="200" fill="url(#mesh)"/>
+    <rect x="145" y="235" width="105" height="115" fill="#cfefff" fill-opacity="0.85"/>
+    <rect x="145" y="235" width="105" height="115" fill="url(#mesh)"/>
+    <rect x="290" y="175" width="100" height="170" fill="#f1f5f9" fill-opacity="0.92"/>
+    <rect x="290" y="175" width="100" height="170" fill="url(#mesh)"/>
+    <!-- Right Library Cluster (4 Cubes) -->
+    <rect x="410" y="160" width="115" height="185" fill="#f6f7f9" fill-opacity="0.94"/>
+    <rect x="410" y="160" width="115" height="185" fill="url(#mesh)"/>
+    <rect x="505" y="130" width="125" height="215" fill="#e6f4fa" fill-opacity="0.90"/>
+    <rect x="505" y="130" width="125" height="215" fill="url(#mesh)"/>
+    <rect x="595" y="195" width="110" height="150" fill="#f1f5f9" fill-opacity="0.92"/>
+    <rect x="595" y="195" width="110" height="150" fill="url(#mesh)"/>
+    <rect x="470" y="230" width="105" height="120" fill="#cfefff" fill-opacity="0.86"/>
+    <rect x="470" y="230" width="105" height="120" fill="url(#mesh)"/>
+  </g>
+  <!-- Piloti Columns -->
+  <g stroke="#f8fafc" stroke-width="3">
+    <line x1="120" y1="345" x2="120" y2="390"/><line x1="175" y1="345" x2="175" y2="390"/>
+    <line x1="250" y1="345" x2="250" y2="390"/><line x1="335" y1="345" x2="335" y2="390"/>
+    <line x1="455" y1="345" x2="455" y2="390"/><line x1="540" y1="345" x2="540" y2="390"/>
+    <line x1="620" y1="345" x2="620" y2="390"/><line x1="680" y1="345" x2="680" y2="390"/>
+  </g>
+  <!-- Iconic Rooftop Cultural Forest Circular Skybridge -->
+  <ellipse cx="400" cy="148" rx="145" ry="24" fill="none" stroke="#ffffff" stroke-width="8"/>
+  <ellipse cx="400" cy="148" rx="145" ry="24" fill="none" stroke="#86efac" stroke-width="2" stroke-dasharray="6 4"/>
+  <!-- Park Trees -->
+  <g fill="#22c55e" opacity="0.92">
+    <circle cx="65" cy="375" r="24"/><circle cx="735" cy="375" r="24"/>
+    <circle cx="110" cy="405" r="18"/><circle cx="690" cy="405" r="18"/>
+    <circle cx="310" cy="135" r="12"/><circle cx="490" cy="120" r="12"/>
+  </g>
+  <!-- Collector Banner -->
+  <rect x="0" y="438" width="800" height="62" fill="#0f172a" opacity="0.92"/>
+  <rect x="34" y="454" width="6" height="30" fill="#1d8f44"/>
+  <text x="52" y="468" fill="#ffffff" font-family="Noto Sans TC, sans-serif" font-size="22" font-weight="800">臺中綠美圖 UCS 典藏版  #21042</text>
+  <text x="52" y="489" fill="#86efac" font-family="Inter, sans-serif" font-size="12" font-weight="600">TAICHUNG GREEN MUSEUMBRARY • SANAA 8-VOLUME CULTURAL FOREST</text>
+</svg>
