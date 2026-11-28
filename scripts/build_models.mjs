@@ -2673,7 +2673,288 @@ function buildSetTaichungCityHall() {
 }
 
 // ============================================================================
-// GENERATE ALL 9 SETS + VALIDATE + WRITE JSON, LDRAW (.ldr), CSV & MD MANUALS
+// SET 10: 大疆天空之城 DJI Sky City 1:800 典藏版 (48 × 32 studs × 84p tall, 4,500+ bricks, 6 Bags)
+// Inspired by MOC-244414 (SPBrix) & Foster + Partners Shenzhen HQ:
+// Twin Asymmetric Suspended Steel Towers (195m West + 213m East), 12 Cantilevered Glass Boxes
+// with Exposed V-Trusses & Rooftop Sky Gardens, 105m Steel Suspension Skybridge & Sloped Podium Park
+// ============================================================================
+function buildSetDJISkyCity() {
+  const b = new LegoBuilder({
+    id: 'set10_dji_sky_city',
+    setNumber: '21044',
+    shortName: '大疆天空之城',
+    name: '大疆天空之城 DJI Sky City (1:800 典藏版)',
+    englishName: 'DJI Sky City — Foster + Partners (1:800 Collector Edition)',
+    location: '深圳・南山區留仙洞總部基地 (Nanshan, Shenzhen — MOC-244414 Scale)',
+    footprint: '48 × 32',
+    age: '18+',
+    year: '2026',
+    refImage: 'assets/ref/set10.svg',
+    accentColor: '#3AC5ED',
+    cameraPos: [48, 38, 56],
+    cameraTarget: [0, 15, 0],
+    description: '致敬 Foster + Partners 打造的全球首座 200 米以上非对称懸掛鋼構摩天雙塔「大疆天空之城」（參考 MOC-244414 1:800 比例規格升級精細版）！以 48×32 底座搭配高達 84 層薄板的壯闊垂直天際線，忠實呈現西塔（195m／40F）與東塔（213m／44F）雙核心筒、合計 12 座高低錯落的非對稱大懸挑玻璃量體、外露啞光深灰 V 型巨型桁架、東塔頂層四層挑高無人機試飛實驗室、105 米高空羽翼鋼構懸索連橋，以及層層疊翠的空中花園與坡地裙樓水景！',
+    bags: [
+      { id: 1, title: '第 1 包：48×32 坡地公園底座、鏡面水景與專屬銘牌',   subtitle: '48x32 Sloped Park Podium, Mirror Pool & Plaque', color: '#1D8F44' },
+      { id: 2, title: '第 2 包：西塔 (195m) 與東塔 (213m) 雙中央巨型核心筒', subtitle: 'West (40F) & East (44F) Central Steel Mega-Cores', color: '#555C63' },
+      { id: 3, title: '第 3 包：西塔 6 座非對稱大懸挑玻璃方盒與空中花園',   subtitle: 'West Tower 6 Cantilevered Glass Volumes & Sky Gardens', color: '#3AC5ED' },
+      { id: 4, title: '第 4 包：東塔 6 座懸挑方盒與頂層無人機試飛實驗室',   subtitle: 'East Tower 6 Volumes & 4F Drone Flight Testing Lab', color: '#1B3A63' },
+      { id: 5, title: '第 5 包：105 米高空「羽翼鋼構懸索連橋」與拋物線主纜', subtitle: '105m High-Altitude Steel Suspension Skybridge & Cables', color: '#92989F' },
+      { id: 6, title: '第 6 包：雙塔頂冠、無人機停機坪與禪意空中松林完工',  subtitle: 'Tower Crowns, Drone Helipads & Zen Sky Pines', color: '#1D2024' }
+    ]
+  });
+
+  // Helper: Build one cantilevered suspended glass box with exposed matte-dark V-trusses & sky garden
+  const buildCantileverBox = (x1, x2, z1, z2, yStart, yEnd, hasVTruss = true, hasGarden = true) => {
+    // 1. Heavy steel cantilever transfer slab anchored flush to the mega-core (yStart..yStart+1)
+    b.fillRect(x1, x2, z1, z2, yStart, 'DARK_BLUISH_GRAY', 'plate');
+    b.fillRect(x1, x2, z1, z2, yStart + 1, 'FLAT_SILVER', 'plate');
+
+    const w = x2 - x1;
+    const d = z2 - z1;
+    const h = (yEnd - 1) - (yStart + 2);
+
+    // 2. Perimeter glass curtain wall + exposed matte dark steel V-shaped mega-trusses
+    for (let y = yStart + 2; y < yEnd; y++) {
+      const ly = y - (yStart + 2);
+      const isFloorBand = (ly % 4 === 0);
+      // Front (z2-1) & Rear (z1) faces
+      for (let x = x1; x < x2; x++) {
+        const lx = x - x1;
+        for (const z of [z1, z2 - 1]) {
+          const isCorner = (lx === 0 || lx === w - 1);
+          // V-shaped mega-truss diagonal across facade!
+          const vDiag1 = hasVTruss && h > 0 && Math.abs(lx - Math.round((ly / h) * (w / 2))) === 0;
+          const vDiag2 = hasVTruss && h > 0 && Math.abs((w - 1 - lx) - Math.round((ly / h) * (w / 2))) === 0;
+          const col = (isCorner || vDiag1 || vDiag2) ? 'BLACK'
+            : (isFloorBand ? 'DARK_BLUISH_GRAY' : ((lx % 2 === 0) ? 'TRANS_LIGHT_BLUE' : 'TRANS_CLEAR'));
+          b.place('plate_1x1', col, x, y, z);
+        }
+      }
+      // Left (x1) & Right (x2-1) faces
+      for (let z = z1 + 1; z < z2 - 1; z++) {
+        const lz = z - z1;
+        for (const x of [x1, x2 - 1]) {
+          const vDiag = hasVTruss && h > 0 && Math.abs(lz - Math.round((ly / h) * (d / 2))) === 0;
+          const col = vDiag ? 'BLACK'
+            : (isFloorBand ? 'DARK_BLUISH_GRAY' : ((lz % 2 === 0) ? 'TRANS_LIGHT_BLUE' : 'TRANS_CLEAR'));
+          b.place('plate_1x1', col, x, y, z);
+        }
+      }
+    }
+
+    // 3. Top structural roof deck (yEnd) + matte dark parapet (yEnd + 1) + lush Sky Garden!
+    b.fillRect(x1, x2, z1, z2, yEnd, 'DARK_BLUISH_GRAY', 'plate');
+    b.wallRing(x1, x2, z1, z2, yEnd + 1, 'BLACK', 'tile');
+    if (hasGarden) {
+      for (let x = x1 + 1; x < x2 - 1; x++) {
+        for (let z = z1 + 1; z < z2 - 1; z++) {
+          const col = ((x + z) % 3 === 0) ? 'DARK_GREEN' : (((x * 2 + z) % 5 === 0) ? 'LIME' : 'BRIGHT_GREEN');
+          b.place('plate_1x1', col, x, yEnd + 1, z);
+        }
+      }
+    }
+  };
+
+  // -------------------------------------------------------------------------
+  // BAG 1: 48 x 32 UCS Baseplate (-24..24, -16..16) + Sloped Shenzhen Podium & Mirror Pool
+  // -------------------------------------------------------------------------
+  b.beginStep(1, '拼合 48×32 曜石黑典藏展示底板', '以 6 塊 16×16 曜石黑基礎薄板拼出 48×32 精巧摩天雙塔展示底座。');
+  for (let x = -24; x < 24; x += 16) {
+    for (let z = -16; z < 16; z += 16) {
+      b.place('plate_16x16', 'BLACK', x, 0, z);
+    }
+  }
+
+  b.beginStep(1, '鋪設 46×30 深圳南山坡地裙樓地基與鏡面水池', '於雙塔連橋軸線正下方鋪設鏡面景觀水池，四周鋪設多層次草坪與石材步道。');
+  b.fillRect(-23, 23, -15, 15, 1, 'DARK_BLUISH_GRAY', 'plate');
+  for (let x = -22; x < 22; x++) {
+    for (let z = -14; z < 14; z++) {
+      if ((x === -1 || x === 0) && (z === 12 || z === 13)) continue; // reserve for plaque
+      const inCore = ((x >= -14 && x < -8) || (x >= 8 && x < 14)) && (z >= -3 && z < 3);
+      const inPool = (x >= -7 && x < 7 && z >= -4 && z < 5);
+      const inPlaza = (Math.abs(z) <= 5 && Math.abs(x) <= 18);
+      if (inCore) {
+        b.place('plate_1x1', 'DARK_BLUISH_GRAY', x, 2, z);
+      } else if (inPool) {
+        b.place('tile_1x1', (Math.abs(x) === 6 || z === -4 || z === 4) ? 'FLAT_SILVER' : 'TRANS_LIGHT_BLUE', x, 2, z);
+      } else if (inPlaza) {
+        b.place('plate_1x1', 'LIGHT_BLUISH_GRAY', x, 2, z);
+      } else {
+        const col = ((x + z) % 4 === 0) ? 'DARK_GREEN' : (((x * 3 + z) % 7 === 0) ? 'LIME' : 'BRIGHT_GREEN');
+        b.place('plate_1x1', col, x, 2, z);
+      }
+    }
+  }
+
+  b.beginStep(1, '雕塑雙側階梯式裙樓花台、禪意黑松與「大疆天空之城」銘牌', '於東西兩側建立低層綠化裙樓台地，種植東方禪意黑松並扣上專屬斜面銘牌。', 'dji_plaque');
+  // Stepped low green podium terraces at East & West edges
+  b.fillRect(-22, -16, -12, 10, 3, 'LIGHT_BLUISH_GRAY', 'plate');
+  b.fillRect(-21, -17, -11,  9, 4, 'BRIGHT_GREEN', 'plate');
+  b.fillRect( 16,  22, -12, 10, 3, 'LIGHT_BLUISH_GRAY', 'plate');
+  b.fillRect( 17,  21, -11,  9, 4, 'BRIGHT_GREEN', 'plate');
+  b.addDecal('dji_plaque', '南側廣場正前方・大疆天空之城銘牌', 'slope_dji_2x2', 'BLACK', -1, 2, 12, 0, [0, 4, 10]);
+  const zenPines = [
+    [-20, 12], [-12, 12], [11, 12], [19, 12],
+    [-20, -13], [-8, -12], [8, -12], [19, -13]
+  ];
+  for (const [tx, tz] of zenPines) {
+    b.place('round_brick_1x1', 'REDDISH_BROWN', tx, 3, tz);
+    b.place('flower_1x1', 'DARK_GREEN', tx, 6, tz);
+    b.place('flower_1x1', 'BRIGHT_GREEN', tx, 7, tz);
+  }
+
+  // -------------------------------------------------------------------------
+  // BAG 2: Twin Central Steel Mega-Cores
+  // West Core: X = -14..-8, Z = -3..3, Y = 3..75 (40F / 195m)
+  // East Core: X =   8..14, Z = -3..3, Y = 3..83 (44F / 213m)
+  // -------------------------------------------------------------------------
+  const buildMegaCore = (x1, x2, yStart, yEnd) => {
+    for (let y = yStart; y <= yEnd; y++) {
+      const isBand = (y % 8 === 0);
+      for (let x = x1; x < x2; x++) {
+        for (let z = -3; z < 3; z++) {
+          const isEdge = (x === x1 || x === x2 - 1 || z === -3 || z === 2);
+          if (!isEdge) continue;
+          const isCorner = (x === x1 || x === x2 - 1) && (z === -3 || z === 2);
+          const isLiftWindow = (x === x1 + 2 || x === x1 + 3) && (z === -3 || z === 2) && !isBand;
+          const col = isCorner ? 'BLACK'
+            : (isBand ? 'FLAT_SILVER'
+              : (isLiftWindow ? 'TRANS_LIGHT_BLUE' : 'DARK_BLUISH_GRAY'));
+          b.place('plate_1x1', col, x, y, z);
+        }
+      }
+      // Periodic internal stiffening diaphragms every 8 plates
+      if (isBand) {
+        b.fillRect(x1 + 1, x2 - 1, -2, 2, y, 'DARK_BLUISH_GRAY', 'plate');
+      }
+    }
+  };
+
+  b.beginStep(2, '建置西塔 (40F／195m) 下半段中央巨型鋼骨核心筒 (Y 3–39)', '以啞光深藍灰、曜石黑角柱與金屬銀桁架錨定帶築起西塔主承重核心！');
+  buildMegaCore(-14, -8, 3, 39);
+
+  b.beginStep(2, '建置西塔上半段中央核心筒直達 40 層頂部 (Y 40–75)', '繼續向上拉升西塔核心筒至 75 層薄板高，預留 6 座懸挑方盒錨定節點。');
+  buildMegaCore(-14, -8, 40, 75);
+
+  b.beginStep(2, '建置東塔 (44F／213m) 下半段中央巨型鋼骨核心筒 (Y 3–43)', '於東側對稱立起更高聳的東塔核心筒下段，與西塔夾出 16 格寬高空連橋跨距。');
+  buildMegaCore(8, 14, 3, 43);
+
+  b.beginStep(2, '建置東塔上半段中央核心筒直達 44 層最高峰 (Y 44–83)', '拉升東塔核心筒至全案最高 83 層薄板，雙塔高低不對稱天際線立現！');
+  buildMegaCore(8, 14, 44, 83);
+
+  // -------------------------------------------------------------------------
+  // BAG 3: West Tower — 6 Asymmetrical Cantilevered Floating Glass Volumes (Bottom-to-Top!)
+  // -------------------------------------------------------------------------
+  b.beginStep(3, '懸掛西塔低中層第 1、2 座非對稱懸挑玻璃方盒', '分別向西側與東內側大膽懸挑出透明玻璃辦公量體，底部完全留空呈現浮空視覺奇觀！');
+  // W1: West overhang (X=-21..-14, Z=-5..4, Y=12..25)
+  buildCantileverBox(-21, -14, -5, 4, 12, 25, true, true);
+  // W4: East-inner lower overhang (X=-8..-2, Z=-5..4, Y=18..31)
+  buildCantileverBox(-8, -2, -5, 4, 18, 31, true, true);
+
+  b.beginStep(3, '懸掛西塔中層第 3、4 座交錯懸挑玻璃方盒與 V 型桁架', '轉向南側與北側懸挑兩座大型辦公盒，頂部鋪設層層翠綠空中花園。');
+  // W2: South overhang (X=-15..-6, Z=3..10, Y=20..33)
+  buildCantileverBox(-15, -6, 3, 10, 20, 33, true, true);
+  // W3: North overhang (X=-16..-7, Z=-10..-3, Y=29..42)
+  buildCantileverBox(-16, -7, -10, -3, 29, 42, true, true);
+
+  b.beginStep(3, '懸掛西塔高層第 5、6 座大跨距懸挑方盒 (40F)', '於西塔高空再懸挑兩座錯落玻璃方盒，完美重現 Foster + Partners 非對稱力學美學！');
+  // W5: West upper overhang (X=-22..-14, Z=-4..5, Y=46..60)
+  buildCantileverBox(-22, -14, -4, 5, 46, 60, true, true);
+  // W6: South-East crown overhang (X=-14..-4, Z=3..10, Y=58..73)
+  buildCantileverBox(-14, -4, 3, 10, 58, 73, true, true);
+
+  // -------------------------------------------------------------------------
+  // BAG 4: East Tower — 6 Asymmetrical Cantilevered Volumes + 4F Drone Flight Lab (Bottom-to-Top!)
+  // -------------------------------------------------------------------------
+  b.beginStep(4, '懸掛東塔低中層第 1、2 座非對稱懸挑玻璃方盒', '於東塔向東側與西內側懸挑出大尺度辦公盒體，與西塔形成動態錯位平衡。');
+  // E1: East overhang (X=14..21, Z=-4..5, Y=14..27)
+  buildCantileverBox(14, 21, -4, 5, 14, 27, true, true);
+  // E4: West-inner lower overhang (X=2..8, Z=-5..4, Y=20..33)
+  buildCantileverBox(2, 8, -5, 4, 20, 33, true, true);
+
+  b.beginStep(4, '懸掛東塔中層第 3、4 座懸挑玻璃方盒與 V 型鋼構', '向北側與南側懸挑中層研發量體，每層屋頂皆配置空中花園綠帶。');
+  // E2: North overhang (X=6..15, Z=-10..-3, Y=22..35)
+  buildCantileverBox(6, 15, -10, -3, 22, 35, true, true);
+  // E3: South overhang (X=7..16, Z=3..10, Y=31..44)
+  buildCantileverBox(7, 16, 3, 10, 31, 44, true, true);
+
+  b.beginStep(4, '懸掛東塔高層第 5 座方盒與頂層「四層挑高無人機試飛實驗室」', '東塔頂部（Y 65–81）打造大疆招牌四層挑高 V 型桁架試飛實驗室，俯瞰整座深圳灣！');
+  // E5: East upper overhang (X=14..22, Z=-5..4, Y=49..63)
+  buildCantileverBox(14, 22, -5, 4, 49, 63, true, true);
+  // E6: Quadruple-height Drone Flight Testing Lab at East Tower top! (X=5..16, Z=-10..-3, Y=65..81)
+  buildCantileverBox(5, 16, -10, -3, 65, 81, true, true);
+
+  // -------------------------------------------------------------------------
+  // BAG 5: Iconic 105m High-Altitude Steel Suspension Skybridge (Y = 41..54)
+  // Spanning X = -8..8 (between West Core X=-9 and East Core X=8), Z = -2..2
+  // -------------------------------------------------------------------------
+  b.beginStep(5, '架設 105 米高空「羽翼鋼構懸索連橋」輕盈橋面與玻璃護欄', '於 24F 高度（Y=41）橫跨 16 格連接東西雙塔，造型如羽毛般輕巧通透！');
+  b.fillRect(-8, 8, -2, 2, 41, 'DARK_BLUISH_GRAY', 'plate');
+  b.fillRect(-8, 8, -2, 2, 42, 'FLAT_SILVER', 'plate');
+  // Transparent glass wind-screen balustrades along north/south sides of skybridge
+  for (let x = -8; x < 8; x++) {
+    b.place('plate_1x1', (x % 3 === 0) ? 'FLAT_SILVER' : 'TRANS_LIGHT_BLUE', x, 43, -2);
+    b.place('plate_1x1', (x % 3 === 0) ? 'FLAT_SILVER' : 'TRANS_LIGHT_BLUE', x, 43,  1);
+    b.place('tile_1x1',  'FLAT_SILVER', x, 44, -2);
+    b.place('tile_1x1',  'FLAT_SILVER', x, 44,  1);
+  }
+
+  b.beginStep(5, '拉設高空連橋雙側拋物線鋼索主纜與垂直吊桿', '從東西雙塔高處錨定點（Y=53）優雅垂墜拋物線鋼索至連橋中央，重現天空之城靈魂地標！');
+  for (let x = -8; x < 8; x++) {
+    const t = (x + 0.5) / 7.5; // -1..1
+    const cableY = Math.round(45 + 8 * t * t); // 45 at center, 53 at tower anchor!
+    for (const cz of [-2, 1]) {
+      b.place('plate_1x1', 'FLAT_SILVER', x, cableY, cz);
+      // Connect vertical hanger rods every 2 studs from bridge top (45) up to cableY!
+      if ((x + 8) % 2 === 0) {
+        for (let hy = 45; hy < cableY; hy++) {
+          b.place('plate_1x1', 'LIGHT_BLUISH_GRAY', x, hy, cz);
+        }
+      }
+      // Step-fill cable continuity so parabolic curve has zero gaps
+      if (x > -8) {
+        const prevT = (x - 0.5) / 7.5;
+        const prevY = Math.round(45 + 8 * prevT * prevT);
+        for (let cy = Math.min(cableY, prevY); cy <= Math.max(cableY, prevY); cy++) {
+          b.place('plate_1x1', 'FLAT_SILVER', x, cy, cz);
+        }
+      }
+    }
+  }
+
+  // -------------------------------------------------------------------------
+  // BAG 6: Twin Tower Crowns, Drone Helipads & Sky-Garden Pines
+  // -------------------------------------------------------------------------
+  b.beginStep(6, '封頂西塔 (40F) 與東塔 (44F) 機械冠頂、無人機停機坪與空中黑松完工', '加裝雙塔啞光黑冠頂、屋頂無人機起降平台與空中花園綠樹，大疆天空之城完美落成！');
+  // West Tower Crown (Y = 76..77)
+  b.fillRect(-14, -8, -3, 3, 76, 'DARK_BLUISH_GRAY', 'plate');
+  b.wallRing(-14, -8, -3, 3, 77, 'BLACK', 'tile');
+  b.place('round_tile_2x2', 'FLAT_SILVER', -12, 77, -1);
+
+  // East Tower Crown (Y = 84..85) + Drone Launch Pad
+  b.fillRect(8, 14, -3, 3, 84, 'DARK_BLUISH_GRAY', 'plate');
+  b.wallRing(8, 14, -3, 3, 85, 'BLACK', 'tile');
+  b.place('round_tile_2x2', 'FLAT_SILVER', 10, 85, -1);
+  b.place('tile_1x1', 'TRANS_LIGHT_BLUE', 9, 85, -2);
+  b.place('tile_1x1', 'TRANS_LIGHT_BLUE', 12, 85, 1);
+
+  // Micro Zen pines on select cantilevered sky gardens
+  const skyPines = [
+    [-18, 27, 0], [-11, 35, 6], [-18, 62, 0],
+    [18, 29, 0], [11, 46, 6], [18, 65, 0]
+  ];
+  for (const [px, py, pz] of skyPines) {
+    b.place('round_plate_1x1', 'REDDISH_BROWN', px, py, pz);
+    b.place('flower_1x1', 'DARK_GREEN', px, py + 1, pz);
+    b.place('flower_1x1', 'LIME', px, py + 2, pz);
+  }
+
+  return b.finalize();
+}
+
+// ============================================================================
+// GENERATE ALL 10 SETS + VALIDATE + WRITE JSON, LDRAW (.ldr), CSV & MD MANUALS
 // ============================================================================
 const ALL_SETS = [
   buildSetNanjing(),
@@ -2684,7 +2965,8 @@ const ALL_SETS = [
   buildSetTaichungOpera(),
   buildSetTaichungExpo(),
   buildSetGreenMuseumbrary(),
-  buildSetTaichungCityHall()
+  buildSetTaichungCityHall(),
+  buildSetDJISkyCity()
 ];
 
 // Verify zero overlaps on orthogonal bricks across all sets
@@ -2731,7 +3013,8 @@ const filePrefix = {
   set06_ntt:               'SET06_21040_TAICHUNG_OPERA',
   set07_ticec:             'SET07_21041_TAICHUNG_EXPO',
   set08_green_museumbrary: 'SET08_21042_TAICHUNG_GREEN_MUSEUMBRARY',
-  set09_taichung_cityhall: 'SET09_21043_TAICHUNG_CITY_HALL'
+  set09_taichung_cityhall: 'SET09_21043_TAICHUNG_CITY_HALL',
+  set10_dji_sky_city:      'SET10_21044_DJI_SKY_CITY'
 };
 
 for (const set of ALL_SETS) {

@@ -306,6 +306,19 @@ export class LegoEngine {
       ctx.fillText('TAICHUNG CITY HALL', 256, 170);
       ctx.fillStyle = '#C91A09';
       ctx.fillRect(56, 216, 400, 12);
+    } else if (printKey === 'DJI_PLAQUE') {
+      ctx.fillStyle = '#14181F';
+      ctx.fillRect(0, 0, 512, 256);
+      ctx.fillStyle = '#F6F7F9';
+      ctx.font = '800 60px "Noto Sans TC", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('大疆天空之城', 256, 98);
+      ctx.font = '600 22px "Inter", sans-serif';
+      ctx.fillStyle = '#93C5FD';
+      ctx.fillText('DJI SKY CITY • 1:800 SCALE', 256, 170);
+      ctx.fillStyle = '#3AC5ED';
+      ctx.fillRect(56, 216, 400, 12);
     }
 
     const tex = new THREE.CanvasTexture(canvas);

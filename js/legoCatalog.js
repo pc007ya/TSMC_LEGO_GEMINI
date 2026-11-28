@@ -111,7 +111,8 @@ export const PARTS = {
   slope_ntt_2x2:       { partId: '3039pr02',  name: 'Slope 2 x 2 (臺中國家歌劇院 銘牌)',      zh: '2×2 斜面印刷磚 (臺中國家歌劇院)', w: 2, d: 2, h: 3, shape: 'slope', studs: false, print: 'NTT_PLAQUE' },
   slope_ticec_2x2:     { partId: '3039pr03',  name: 'Slope 2 x 2 (臺中國際會展中心 銘牌)',    zh: '2×2 斜面印刷磚 (臺中國際會展中心)', w: 2, d: 2, h: 3, shape: 'slope', studs: false, print: 'TICEC_PLAQUE' },
   slope_tgm_2x2:       { partId: '3039pr04',  name: 'Slope 2 x 2 (臺中綠美圖 銘牌)',          zh: '2×2 斜面印刷磚 (臺中綠美圖)',      w: 2, d: 2, h: 3, shape: 'slope', studs: false, print: 'TGM_PLAQUE' },
-  slope_tch_2x2:       { partId: '3039pr05',  name: 'Slope 2 x 2 (臺中市政府 銘牌)',          zh: '2×2 斜面印刷磚 (臺中市政府)',      w: 2, d: 2, h: 3, shape: 'slope', studs: false, print: 'TCH_PLAQUE' }
+  slope_tch_2x2:       { partId: '3039pr05',  name: 'Slope 2 x 2 (臺中市政府 銘牌)',          zh: '2×2 斜面印刷磚 (臺中市政府)',      w: 2, d: 2, h: 3, shape: 'slope', studs: false, print: 'TCH_PLAQUE' },
+  slope_dji_2x2:       { partId: '3039pr06',  name: 'Slope 2 x 2 (大疆天空之城 銘牌)',        zh: '2×2 斜面印刷磚 (大疆天空之城)',    w: 2, d: 2, h: 3, shape: 'slope', studs: false, print: 'DJI_PLAQUE' }
 };
 
 export function brick(part, color, x, y, z, rot = 0, bag = 1, step = 1) {

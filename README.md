@@ -4,7 +4,7 @@
 
 本專案依據台積電全球五大代表性廠區樂高建築參考圖，打造完整的 **Three.js 3D 互動樂高展示與組裝工坊**，包含真實樂高比例積木、頂部橫欄快速切換、典藏盒裝開箱、編號分包零件袋拆袋、官方風格組裝說明書與逐項核對的模型零件表。
 
-## 🏛️ 收錄九款建築典藏盒組（共 43,907 個模型配置）
+## 🏛️ 收錄十款建築典藏盒組（共 53,109 個模型配置）
 
 | 編號 | 盒組名稱 | 底座 (凸點) | 總零件數 | 料號 × 顏色列 | 步驟 / 貼紙 | 說明書 / BOM / LDraw |
 | :---: | :--- | :---: | :---: | :---: | :---: | :--- |
@@ -17,6 +17,7 @@
 | **#21041** | **臺中國際會展中心 1・2 期 UCS 典藏版 (`Taichung Expo Phases 1 & 2`)** | **80 × 44** | **9,962** | 79 | 25 步 / 6 包 / 1 貼紙 | [MD](./docs/SET07_21041_TAICHUNG_EXPO_MANUAL.md) · [CSV](./docs/SET07_21041_TAICHUNG_EXPO_BOM.csv) · [LDR](./docs/SET07_21041_TAICHUNG_EXPO.ldr) |
 | **#21042** | **臺中綠美圖 UCS 典藏版 (`Taichung Green Museumbrary — SANAA`)** | **76 × 52** | **13,855** | 28 | 17 步 / 6 包 / 1 貼紙 | [MD](./docs/SET08_21042_TAICHUNG_GREEN_MUSEUMBRARY_MANUAL.md) · [CSV](./docs/SET08_21042_TAICHUNG_GREEN_MUSEUMBRARY_BOM.csv) · [LDR](./docs/SET08_21042_TAICHUNG_GREEN_MUSEUMBRARY.ldr) |
 | **#21043** | **臺中市政府・臺灣大道市政大樓 UCS 典藏版 (`Taichung City Hall`)** | **76 × 48** | **8,338** | 67 | 16 步 / 6 包 / 1 貼紙 | [MD](./docs/SET09_21043_TAICHUNG_CITY_HALL_MANUAL.md) · [CSV](./docs/SET09_21043_TAICHUNG_CITY_HALL_BOM.csv) · [LDR](./docs/SET09_21043_TAICHUNG_CITY_HALL.ldr) |
+| **#21044** | **大疆天空之城 1:800 典藏版 (`DJI Sky City — Foster + Partners`)** | **48 × 32** | **9,202** | 51 | 16 步 / 6 包 / 1 貼紙 | [MD](./docs/SET10_21044_DJI_SKY_CITY_MANUAL.md) · [CSV](./docs/SET10_21044_DJI_SKY_CITY_BOM.csv) · [LDR](./docs/SET10_21044_DJI_SKY_CITY.ldr) |
 
 👉 [五廠區料號核對摘要](./docs/TSMC_LEGO_BOM_AUDIT.md) · [合併核對 CSV](./docs/TSMC_LEGO_BOM_AUDIT.csv) · [設計總覽](./docs/TSMC_LEGO_MASTER_DESIGN.md)
 
